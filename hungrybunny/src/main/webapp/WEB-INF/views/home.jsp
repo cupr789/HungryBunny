@@ -10,5 +10,12 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+
+<table>
+	<tr>번호</tr>
+	<tr>이름</tr>
+</table>
+
 </body>
 </html>
