@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	핼로우핼로우
+	윤재형
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
