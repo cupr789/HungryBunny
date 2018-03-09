@@ -13,7 +13,6 @@
 </head>
 <script>
 function shopList(){
-	alert("1");
 	var aufsl = new AjaxUtilForShopList(".animatedParent no-more-tables>.container>.row>.col-md-12>.table-responsive tbl-one>.col-md-12  table table-bordered one-color","${root}/shop/shopList",null,"GET");
 	aufl.send();
 }
