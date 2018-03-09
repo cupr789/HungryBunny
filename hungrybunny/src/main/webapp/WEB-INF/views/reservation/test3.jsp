@@ -13,8 +13,9 @@
 </head>
 <script>
 function shopList(){
+	alert("1");
 	//var aufsl = new AjaxUtilForShopList(".animatedParent no-more-tables>.container>.row>.col-md-12>.table-responsive tbl-one>.col-md-12  table table-bordered one-color","${root}/shop/shopList",null,"GET");
-	var aufsl = new AjaxUtilForShopList(".table-responsive>.table-bordered","${root}/shop/shopList",null,"GET");
+	var aufsl = new AjaxUtilForShopList(".table-responsive tbl-one>.col-md-12  table table-bordered one-color","${root}/shop/shopList",null,"GET");
 	aufsl.send();
 }
 </script>
@@ -38,6 +39,12 @@ function shopList(){
             <!-- Table Record Begin -->
             <div class="table-responsive tbl-one">
               <table class="col-md-12  table table-bordered one-color">
+              <tbody>
+              	<tr>
+              		<td>
+              		</td>
+              	</tr>
+              </tbody>
                 <thead>
                   <tr>
                     <th>가게이름</th>

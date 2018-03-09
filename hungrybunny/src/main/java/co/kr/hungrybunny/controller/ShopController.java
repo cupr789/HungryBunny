@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,6 +43,12 @@ public class ShopController {
 		System.out.println("shop컨트롤러에요");
 		shopList = shs.getShopList();
 		System.out.println("shopList에요오오ㅗㅇ"+shopList);
+		return shopList;
+	}
+	
+	@RequestMapping(value="/shopList2/{shopNo}", method=RequestMethod.POST)
+	public @ResponseBody List<ShopVO> getShopList2(@PathVariable("shopNo") String shopNo){
+		System.out.println("shopNo받아옴"+shopNo);
 		return shopList;
 	}
 	

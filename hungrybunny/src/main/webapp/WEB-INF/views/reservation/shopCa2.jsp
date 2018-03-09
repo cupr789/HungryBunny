@@ -8,16 +8,31 @@
 </head>
 <script>
 $("#3").val()
+function a(){
+	alert("한식 눌렀어?");
+	var id = document.getElementById("1");
+	var shopNo = $(".col-sm-6").attr("id");
+	
+	/* var param ={shapCaNo:b}; */
+	var au = new AjaxUtil("${root}/shop/shopList2/"+shopNo,null,"POST");
+	au.send(exam);
+	alert(b);
+}
+
+function exam(){
+	alert("성공");
+}
+
 </script>
 <body>
 <!-- portfolio grid section -->
 <section id="portfolio" class="section portfolio">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-6 portfolio-item"> <a href="${pPath}/reservation/shop" class="portfolio-link">
+      <div id="1" class="col-sm-6 portfolio-item"> <a href="" class="portfolio-link"  onclick="a()" id="1">
         <div class="caption">
           <div class="caption-content">
-            <h2>한식</h2>
+            <h2 id="">한식</h2>
             <h4>Korean Food</h4>
           </div>
         </div>
@@ -30,38 +45,6 @@ $("#3").val()
           </div>
         </div>
         <img src="${rPath}/images/portfolio/jungsik.jpg" class="img-responsive" alt=""> </a> </div>
-      <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
-        <div class="caption">
-          <div class="caption-content">
-            <h2>분식</h2>
-            <h4>Snack Bar</h4>
-          </div>
-        </div>
-        <img src="${rPath}/images/portfolio/work-3.jpg" class="img-responsive" alt=""> </a> </div>
-      <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
-        <div class="caption">
-          <div class="caption-content">
-            <h2>일식</h2>
-            <h4>Japanese Food</h4>
-          </div>
-        </div>
-        <img src="${rPath}/images/portfolio/ilsik.jpg" class="img-responsive" alt=""> </a> </div>
-      <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link" id="3" onclick="search(id)">
-        <div class="caption">
-          <div class="caption-content">
-            <h2>양식</h2>
-            <h4>Western food</h4>
-          </div>
-        </div>
-        <img src="${rPath}/images/portfolio/work-5.jpg" class="img-responsive" alt=""> </a> </div>
-      <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
-        <div class="caption">
-          <div class="caption-content">
-            <h2>야식</h2>
-            <h4>Late-night Snack</h4>
-          </div>
-        </div>
-        <img src="${rPath}/images/portfolio/work-6.jpg" class="img-responsive" alt=""> </a> </div>
     </div>
   </div>
 </section>

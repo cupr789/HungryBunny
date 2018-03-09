@@ -100,14 +100,18 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 var AjaxUtilForShopList = function (target, url, params, type, dataType){
 	var au = new AjaxUtil(url, params, type, dataType);
 	this.callback = function(res){
-		var htmlStr ='';
+		var htmlStr = '<tbody>';
 		for(var key in res){
 			var shop = res[key];
+			htmlStr += '<tr>';
 			htmlStr += '<td>'+shop.shopName+'<td>';
-			htmlStr += '<td>'+shop.shopAddress+'<td>'
-			htmlStr += '<td>'+shop.shopHP+'<td>'
-			htmlStr += '<td>'+shop.shopTime+'<td>'
+			htmlStr += '<td>'+shop.shopAddress+'<td>';
+			htmlStr += '<td>'+shop.shopHP+'<td>';
+			htmlStr += '<td>'+shop.shopTime+'<td>';
+			htmlStr += '<td>'+'<td>';
+			htmlStr += '</tr>';
 		}
+		htmlStr += '</tbody>';
 		$(target).html(htmlStr);
 		console.log(htmlStr);
 	}
