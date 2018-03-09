@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<body>
+<!-- Header Section -->
+<section class="tophead" role="tophead"> 
+  <!-- Navigation Section -->
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" href="#">Hungry Bunny</a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="#services">Login</a></li>
+          <li><a href="${pPath}/reservation/shopCa">Reservation</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+  </header>
+  <!-- Navigation Section --> 
+</section>
+<!-- Header Section --> 
+</body>
