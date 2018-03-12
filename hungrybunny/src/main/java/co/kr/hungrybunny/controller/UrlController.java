@@ -23,7 +23,7 @@ import co.kr.hungrybunny.controller.UrlController;
 public class UrlController {
 	
 	private static final Logger log = LoggerFactory.getLogger(UrlController.class);
-
+ 
 	private String getUrl(String url, String rootPath) {
 		return url.replace(rootPath + "/path", "");
 	}
