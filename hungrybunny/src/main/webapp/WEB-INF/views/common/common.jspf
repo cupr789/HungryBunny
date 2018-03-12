@@ -10,7 +10,7 @@
 <c:set var="pPath" value="${root}/path"/>
 <c:set var="ver" value="1.0.0.1"/>
 <script charset="utf-8" type="text/javascript">
-	var root = "${root}";
+	var root = "${root}"; 
 	var rPath = "${rPath}";
 	var pPath = "${pPath}";
 </script>
