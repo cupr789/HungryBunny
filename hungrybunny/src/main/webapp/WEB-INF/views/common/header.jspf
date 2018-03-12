@@ -13,9 +13,12 @@ String loginUrl ="http://localhost/path/user/login";
 if(ui!=null){
 	loginMenu = "Logout";
 	loginUrl = root+"/user/logout";
-	adminMenu="MYshop";
-	adminUrl=root+"/adminShop/List";
+	if (ui.getAdmin()==1){
+		adminMenu="MYshop";
+		adminUrl="http://localhost/path/user/admin";
+	}
 }
+
 %>
 
 <body>

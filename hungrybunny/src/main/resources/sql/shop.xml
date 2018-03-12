@@ -10,4 +10,8 @@
 	<select id="selectShopListWithShopCaNo" parameterType="int" resultType="shop">
 		select * from shop where shopCaNo=#{shopCaNo} order by shopNo;
 	</select>
+	
+	<select id="selectAdminShop" parameterType="int" resultType="shop">
+		select * from shop where uiNo=#{num}
+	</select>
 </mapper>  
