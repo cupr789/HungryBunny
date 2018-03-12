@@ -78,8 +78,9 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 		var htmlStr ='';
 		for(var key in res){
 			var ca = res[key];
+			htmlStr +='<div id="' + ca.shopCaNo + '" class="' + ca.shopCaName + '">';
 			htmlStr +='<div class="col-sm-6 portfolio-item">';
-			htmlStr += '<a href="' + pPath + '/reservation/shop" class="portfolio-link">';
+			htmlStr += '<a href="" class="portfolio-link" onclick="goShopList()">';
 			htmlStr += '<div class="caption">';
 			htmlStr += '<div class="caption-content">';
 			htmlStr += '<h2>' + ca.shopCaNo + '.' + ca.shopCaName + '</h2>';
@@ -87,6 +88,7 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 			htmlStr += '</div>';
 			htmlStr += '<img src="' + rPath + imgs[ca.shopCaNo] + '"class="img-responsive" alt="">';
 			htmlStr += '</a>';
+			htmlStr +='</div>';
 			htmlStr += '</div>';
 		}
 		$(target).html(htmlStr);
@@ -100,18 +102,19 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 var AjaxUtilForShopList = function (target, url, params, type, dataType){
 	var au = new AjaxUtil(url, params, type, dataType);
 	this.callback = function(res){
-		var htmlStr = '<tbody>';
+		var htmlStr = '';
+		//var htmlStr = '<tbody>';
 		for(var key in res){
 			var shop = res[key];
 			htmlStr += '<tr>';
-			htmlStr += '<td>'+shop.shopName+'<td>';
-			htmlStr += '<td>'+shop.shopAddress+'<td>';
-			htmlStr += '<td>'+shop.shopHP+'<td>';
-			htmlStr += '<td>'+shop.shopTime+'<td>';
-			htmlStr += '<td>'+'<td>';
+			htmlStr += '<td>'+shop.shopName+'</td>';
+			htmlStr += '<td>'+shop.shopAddress+'</td>';
+			htmlStr += '<td>'+shop.shopHP+'</td>';
+			htmlStr += '<td>'+shop.shopTime+'</td>';
+			htmlStr += '<td>'+'</td>';
 			htmlStr += '</tr>';
 		}
-		htmlStr += '</tbody>';
+		//htmlStr += '</tbody>';
 		$(target).html(htmlStr);
 		console.log(htmlStr);
 	}

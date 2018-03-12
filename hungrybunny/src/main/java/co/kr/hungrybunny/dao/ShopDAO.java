@@ -6,5 +6,5 @@ import co.kr.hungrybunny.vo.ShopVO;
 
 public interface ShopDAO {
 
-	List<ShopVO> selectShopList();
+	List<ShopVO> selectShopList(int shopCaNo);
 }

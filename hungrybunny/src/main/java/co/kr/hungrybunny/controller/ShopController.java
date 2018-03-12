@@ -38,17 +38,19 @@ public class ShopController {
 //		return map;
 //	}
 	
-	@RequestMapping(value="/shopList", method=RequestMethod.GET)
-	public @ResponseBody List<ShopVO> getShopList(){
-		System.out.println("shop컨트롤러에요");
-		shopList = shs.getShopList();
-		System.out.println("shopList에요오오ㅗㅇ"+shopList);
+	@RequestMapping(value="/shopList2/{shopNo}", method=RequestMethod.POST)
+	public @ResponseBody List<ShopVO> getShopList2(@PathVariable("shopNo") int shopNo){
+		System.out.println("shopCaNo받아옴"+shopNo);
+		shopList = shs.getShopList(shopNo);
+		System.out.println("shopList에는 "+shopList);
 		return shopList;
 	}
 	
-	@RequestMapping(value="/shopList2/{shopNo}", method=RequestMethod.POST)
-	public @ResponseBody List<ShopVO> getShopList2(@PathVariable("shopNo") String shopNo){
-		System.out.println("shopNo받아옴"+shopNo);
+	@RequestMapping(value="/shopList/{shopCaNo}", method=RequestMethod.POST)
+	public @ResponseBody List<ShopVO> getShopList(@PathVariable("shopCaNo") int shopCaNo){
+		System.out.println("shopCaNo받아옴"+shopCaNo);
+		shopList = shs.getShopList(shopCaNo);
+		System.out.println("shopList에는 "+shopList);
 		return shopList;
 	}
 	

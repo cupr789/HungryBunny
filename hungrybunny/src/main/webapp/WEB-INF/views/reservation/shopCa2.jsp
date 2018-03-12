@@ -11,7 +11,9 @@ $("#3").val()
 function a(){
 	alert("한식 눌렀어?");
 	var id = document.getElementById("1");
-	var shopNo = $(".col-sm-6").attr("id");
+	var shopNo = $(".중식").attr("id");
+	alert(shopNo);
+	//var shopNo = $(".col-sm-6").attr("id");
 	
 	/* var param ={shapCaNo:b}; */
 	var au = new AjaxUtil("${root}/shop/shopList2/"+shopNo,null,"POST");
@@ -29,15 +31,17 @@ function exam(){
 <section id="portfolio" class="section portfolio">
   <div class="container-fluid">
     <div class="row">
-      <div id="1" class="col-sm-6 portfolio-item"> <a href="" class="portfolio-link"  onclick="a()" id="1">
+    <div class="한식" id="1">
+      <div class="col-sm-6 portfolio-item"> <a href="" class="portfolio-link"  onclick="a()">
         <div class="caption">
           <div class="caption-content">
             <h2 id="">한식</h2>
             <h4>Korean Food</h4>
           </div>
         </div>
-        <img src="${rPath}/images/portfolio/hansik.jpg" class="img-responsive" alt=""> </a> </div>
-      <div class="col-sm-6 portfolio-item"> <a href="work-details.html" class="portfolio-link">
+        <img src="${rPath}/images/portfolio/hansik.jpg" class="img-responsive" alt=""> </a> </div> </div>
+      <div class="중식" id="2">
+      <div class="col-sm-6 portfolio-item"> <a href="" class="portfolio-link" onclick="a()">
         <div class="caption">
           <div class="caption-content">
             <h2>중식</h2>

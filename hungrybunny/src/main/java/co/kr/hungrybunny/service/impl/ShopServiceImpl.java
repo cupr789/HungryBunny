@@ -15,9 +15,9 @@ public class ShopServiceImpl implements ShopService{
 	@Autowired
 	private ShopDAO sdao;
 	@Override
-	public List<ShopVO> getShopList() {
-		System.out.println("너 값 어딨어"+sdao.selectShopList());
-		return sdao.selectShopList();
+	public List<ShopVO> getShopList(int shopCaNo) {
+		System.out.println("너 값 어딨어"+sdao.selectShopList(shopCaNo));
+		return sdao.selectShopList(shopCaNo);
 	}
 
 }

@@ -16,11 +16,20 @@ public class ShopDAOImpl implements ShopDAO {
 	@Autowired
 	private SqlSessionFactory ssf;
 	
+//	@Override
+//	public List<ShopVO> selectShopList() {
+//		SqlSession ss = ssf.openSession();
+//		List<ShopVO> shopList = ss.selectList("shop.selectShopList");
+//		System.out.println("shopList    :   "+shopList);
+//		ss.close();
+//		return shopList;
+//	}
+	
 	@Override
-	public List<ShopVO> selectShopList() {
+	public List<ShopVO> selectShopList(int shopCaNo) {
 		SqlSession ss = ssf.openSession();
-		List<ShopVO> shopList = ss.selectList("shop.selectKShopList");
-		System.out.println("KShopList    :   "+shopList);
+		List<ShopVO> shopList = ss.selectList("shop.selectShopListWithShopCaNo", shopCaNo);
+		System.out.println("shopList    :   "+shopList);
 		ss.close();
 		return shopList;
 	}

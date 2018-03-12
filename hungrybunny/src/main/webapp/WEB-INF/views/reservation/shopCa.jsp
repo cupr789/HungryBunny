@@ -17,20 +17,43 @@
 		alert(res);
 		
 	}
+	
+	function goShopList(){
+		alert("눌렀구낭");
+		var shopCaNo = $(".한식").attr("id");
+		alert(shopCaNo);
+		var au = new AjaxUtil("${root}/shop/shopList/"+shopCaNo, null, "POST");
+		au.send(exam);
+	}
+	
+	function exam(){
+		$("#tagID").removeAttr("style").hide();
+		var chToTable = document.getElementById("chToTable");
+ 		chToTable.innerHTML = '';
+		chToTable.innerHTML += '<div class="container" style="position: absolute;">';
+		chToTable.innerHTML += '<h1>가게리스트</h1>';
+		chToTable.innerHTML += '<table class="table table-bordered">';
+		chToTable.innerHTML += '<thead>';
+		chToTable.innerHTML += '<tr>'; 
+		chToTable.innerHTML += '<th>가게이름</th>';
+		chToTable.innerHTML += '<th>주소</th>';
+		chToTable.innerHTML += '<th>전화번호</th>';
+		chToTable.innerHTML += '<th>운영시간</th>';
+		chToTable.innerHTML += '<th>예약하기</th>';
+		chToTable.innerHTML += '</tr>';
+	}
 </script>
 
 <body onload="category()">
 	<!-- portfolio grid section -->
-	
-	
-	<section id="portfolio" class="section portfolio"> 
-	<div class="container-fluid">
-		<div class="row">
-			
+	<section id="portfolio" class="section portfolio">
+	<div id="chToTable">
+		<div id="tagID" class="container-fluid">
+			<div class="row">
+				
+			</div>
 		</div>
 	</div>
-
-
 	</section>
 	<!-- portfolio grid section -->
 </body>

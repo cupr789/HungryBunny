@@ -14,7 +14,7 @@
 <script>
 function shopList(){
 	//var aufsl = new AjaxUtilForShopList(".animatedParent no-more-tables>.container>.row>.col-md-12>.table-responsive tbl-one>.col-md-12  table table-bordered one-color","${root}/shop/shopList",null,"GET");
-	var aufsl = new AjaxUtilForShopList(".table-responsive>.table-bordered","${root}/shop/shopList",null,"GET");
+	var aufsl = new AjaxUtilForShopList(".tbody","${root}/shop/shopList/"+2,null,"POST"); 
 	aufsl.send();
 }
 </script>
@@ -47,7 +47,9 @@ function shopList(){
                     <th>예약하기</th>
                   </tr>
                 </thead>
+                <tbody class="tbody">
                 
+                </tbody>
               </table>
             </div>
           </div>
