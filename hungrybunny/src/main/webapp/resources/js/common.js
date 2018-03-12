@@ -73,14 +73,14 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 			2:'/images/portfolio/jungsik.jpg',
 			3:'/images/portfolio/ilsik.jpg',
 	}
-	var au = new AjaxUtil(url, params, type, dataType);
+	var $aufl_au = new AjaxUtil(url, params, type, dataType);
 	this.callback = function(res){
 		var htmlStr ='';
 		for(var key in res){
 			var ca = res[key];
 			htmlStr +='<div id="' + ca.shopCaNo + '" class="' + ca.shopCaName + '">';
 			htmlStr +='<div class="col-sm-6 portfolio-item">';
-			htmlStr += '<a href="" class="portfolio-link" onclick="goShopList()">';
+			htmlStr += '<a class="portfolio-link" onclick="goShopList()">';
 			htmlStr += '<div class="caption">';
 			htmlStr += '<div class="caption-content">';
 			htmlStr += '<h2>' + ca.shopCaNo + '.' + ca.shopCaName + '</h2>';
@@ -95,12 +95,12 @@ var AjaxUtilForList = function (target, url, params, type, dataType){
 		console.log(htmlStr);
 	}
 	this.send = function(){
-		au.send(this.callback);
+		$aufl_au.send(this.callback);
 	}
 }
 
 var AjaxUtilForShopList = function (target, url, params, type, dataType){
-	var au = new AjaxUtil(url, params, type, dataType);
+	var $aufl_au = new AjaxUtil(url, params, type, dataType);
 	this.callback = function(res){
 		var htmlStr = '';
 		//var htmlStr = '<tbody>';
@@ -119,7 +119,7 @@ var AjaxUtilForShopList = function (target, url, params, type, dataType){
 		console.log(htmlStr);
 	}
 	this.send = function(){
-		au.send(this.callback);
+		$aufl_au.send(this.callback);
 	}
 }
 /*

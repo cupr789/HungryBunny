@@ -19,15 +19,13 @@
 	}
 	
 	function goShopList(){
-		alert("눌렀구낭");
 		var shopCaNo = $(".한식").attr("id");
-		alert(shopCaNo);
 		var au = new AjaxUtil("${root}/shop/shopList/"+shopCaNo, null, "POST");
 		au.send(exam);
 	}
 	
 	function exam(){
-		$("#tagID").removeAttr("style").hide();
+		$("#tagID").css("display","none");
 		var chToTable = document.getElementById("chToTable");
  		chToTable.innerHTML = '';
 		chToTable.innerHTML += '<div class="container" style="position: absolute;">';

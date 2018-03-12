@@ -8,24 +8,25 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <c:set var="rPath" value="${root}/resources"/>
 <c:set var="pPath" value="${root}/path"/>
+<c:set var="ver" value="1.0.0.1"/>
 <script charset="utf-8" type="text/javascript">
 	var root = "${root}";
 	var rPath = "${rPath}";
 	var pPath = "${pPath}";
 </script>
 <!-- CSS FILES --> 
-<link rel="stylesheet" href="${rPath}/css/bootstrap.min.css">
-<link rel="stylesheet" href="${rPath}/css/flexslider.css">
-<link rel="stylesheet" href="${rPath}/css/main.css">
-<link rel="stylesheet" href="${rPath}/css/responsive.css">
-<link rel="stylesheet" href="${rPath}/css/animate.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${rPath}/css/bootstrap.min.css?${ver}">
+<link rel="stylesheet" href="${rPath}/css/flexslider.css?${ver}">
+<link rel="stylesheet" href="${rPath}/css/main.css?${ver}">
+<link rel="stylesheet" href="${rPath}/css/responsive.css?${ver}">
+<link rel="stylesheet" href="${rPath}/css/animate.min.css?${ver}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?${ver}">
 
 <!-- JS FILES --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-<script src="${rPath}/js/bootstrap.min.js"></script> 
-<script src="${rPath}/js/jquery.flexslider-min.js"></script> 
-<script src="${rPath}/js/retina.min.js"></script> 
-<script src="${rPath}/js/modernizr.js"></script> 
-<script src="${rPath}/js/main.js"></script>
-<script src="${rPath}/js/common.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?${ver}"></script> 
+<script src="${rPath}/js/bootstrap.min.js?${ver}"></script> 
+<script src="${rPath}/js/jquery.flexslider-min.js?${ver}"></script> 
+<script src="${rPath}/js/retina.min.js?${ver}"></script> 
+<script src="${rPath}/js/modernizr.js?${ver}"></script> 
+<script src="${rPath}/js/main.js?${ver}"></script>
+<script src="${rPath}/js/common.js?${ver}"></script>
