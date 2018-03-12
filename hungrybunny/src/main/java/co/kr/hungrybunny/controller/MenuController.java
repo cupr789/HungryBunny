@@ -26,6 +26,8 @@ public class MenuController {
 		map.put("menuList", menuList);
 		System.out.println(menuList);
 		System.out.println("나 맵이야"+map);
+		System.out.println("");
+		System.out.println("ss");
 		return map;
 	}
 }
