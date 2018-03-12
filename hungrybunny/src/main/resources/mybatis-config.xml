@@ -11,10 +11,12 @@
 		<typeAlias alias="menu" type="co.kr.hungrybunny.vo.MenuVO"/>
 		<typeAlias alias="shop" type="co.kr.hungrybunny.vo.ShopVO"/>
 		<typeAlias alias="shopCa" type="co.kr.hungrybunny.vo.ShopCaVO"/>
+		<typeAlias alias="ui" type="co.kr.hungrybunny.vo.UserInfoVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="sql/menu.xml"/>
 		<mapper resource="sql/shop.xml"/>
 		<mapper resource="sql/shopCa.xml"/>
+		<mapper resource="sql/user_info.xml"/>
 	</mappers>
 </configuration>

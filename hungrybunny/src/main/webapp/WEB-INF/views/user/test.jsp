@@ -52,11 +52,6 @@
 </style>
 
 <body>
-
-
-<h1>asdasdasdasdasdsadasdasd</h1>
-
-
 <section class="section">
 <div class="container">
 	<div class="row">

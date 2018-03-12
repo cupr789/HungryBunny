@@ -20,7 +20,7 @@
 	
 	function goShopList(){
 		var shopCaNo = $(".한식").attr("id");
-		var au = new AjaxUtil("${root}/shop/shopList/"+shopCaNo, null, "POST");
+		var au = new AjaxUtil2("${root}/shop/shopList/"+shopCaNo, null, "POST");
 		au.send(exam);
 	}
 	

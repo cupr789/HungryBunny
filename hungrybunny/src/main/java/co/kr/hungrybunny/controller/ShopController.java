@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import co.kr.hungrybunny.service.ShopCaService;
 import co.kr.hungrybunny.service.ShopService;
 import co.kr.hungrybunny.vo.ShopCaVO;
 import co.kr.hungrybunny.vo.ShopVO;
+import co.kr.hungrybunny.vo.UserInfoVO;
 
 
 @Controller
@@ -28,15 +31,6 @@ public class ShopController {
 
 	List<ShopVO> shopList = new ArrayList<ShopVO>();
 	List<ShopCaVO> caList = new ArrayList<ShopCaVO>();
-	
-//	@RequestMapping(value="/shopList", method=RequestMethod.POST)
-//	public @ResponseBody Map<String, Object> getMenuList(Map<String,Object> map){
-//		System.out.println("shop컨트롤러에요");
-//		List<ShopVO> shopList = shs.getShopList();
-//		map.put("shopList", shopList);
-//		System.out.println(map);
-//		return map;
-//	}
 	
 	@RequestMapping(value="/shopList2/{shopNo}", method=RequestMethod.POST)
 	public @ResponseBody List<ShopVO> getShopList2(@PathVariable("shopNo") int shopNo){
@@ -59,5 +53,20 @@ public class ShopController {
 		System.out.println("shop컨트롤러의 카테고리에요");
 		caList = scs.getCaList();
 		return caList;
+	}
+	
+	@RequestMapping(value = "/adminHave", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getadminHave(HttpSession hs, Map<String, Object> map) {
+		UserInfoVO ui = new UserInfoVO();
+		if (hs.getAttribute("userNo") != null) {
+			ui.setUiNo((Integer) hs.getAttribute("userNo"));//song
+		} else {
+			map.put("msg", "혹시 가게가 망하셨나요?ㅋㅋㅋ 사장님?");
+		}
+		List<ShopVO> spList = shs.getConnectionInfoList(ui);
+		map.put("spList", spList);
+		System.out.println("888888888888888888" + spList);
+
+		return map;
 	}
 }

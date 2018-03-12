@@ -33,5 +33,12 @@ public class ShopDAOImpl implements ShopDAO {
 		ss.close();
 		return shopList;
 	}
+	
+	@Override
+	public List<ShopVO> selectConnectionInfoList(int uiNo) {
+		SqlSession ss = ssf.openSession();
+		List<ShopVO> spList = ss.selectList("shop.selectAdminShop",uiNo);
+		return spList;
+	}
 
 }
