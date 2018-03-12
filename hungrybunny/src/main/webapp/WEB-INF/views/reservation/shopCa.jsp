@@ -12,39 +12,33 @@
 		aufl.send();  
 	}
 	
-	function goShopList(shopCaNo){
-		var au = new AjaxUtil2("${root}/shop/shopList/"+shopCaNo, null, "POST");
-		au.send(shopListCB); 
+	function caList(res) {
+		console.log(res.caList);
+		alert(res);
+		
 	}
 	
-	function shopListCB(res){
+	function goShopList(){
+		var shopCaNo = $(".한식").attr("id");
+		var au = new AjaxUtil2("${root}/shop/shopList/"+shopCaNo, null, "POST");
+		au.send(exam);
+	}
+	
+	function exam(){
 		$("#tagID").css("display","none");
-		var htmlStr = '';
-		htmlStr += '<div class="container">';
-		htmlStr += '<h1>가게리스트</h1>';
-		htmlStr += '<table class="table table-bordered">';
-		htmlStr += '<thead>';
-		htmlStr += '<tr>'; 
-		htmlStr += '<th>가게이름</th>';
-		htmlStr += '<th>주소</th>';
-		htmlStr += '<th>전화번호</th>';
-		htmlStr += '<th>운영시간</th>';
-		htmlStr += '<th>예약하기</th>';
-		htmlStr += '</tr>';
-		htmlStr += '<tbody>';
-		for(var key in res){
-			var shop = res[key];
-			htmlStr += '<tr>';
-			htmlStr += '<td>'+shop.shopName+'</td>';
-			htmlStr += '<td>'+shop.shopAddress+'</td>';
-			htmlStr += '<td>'+shop.shopHP+'</td>';
-			htmlStr += '<td>'+shop.shopTime+'</td>';
-			htmlStr += '<td>'+'</td>';
-			htmlStr += '</tr>';
-		}
-		htmlStr += '</tbody>';
-		console.log(htmlStr);
-		$("#chToTable").html(htmlStr)
+		var chToTable = document.getElementById("chToTable");
+ 		chToTable.innerHTML = '';
+		chToTable.innerHTML += '<div class="container" style="position: absolute;">';
+		chToTable.innerHTML += '<h1>가게리스트</h1>';
+		chToTable.innerHTML += '<table class="table table-bordered">';
+		chToTable.innerHTML += '<thead>';
+		chToTable.innerHTML += '<tr>'; 
+		chToTable.innerHTML += '<th>가게이름</th>';
+		chToTable.innerHTML += '<th>주소</th>';
+		chToTable.innerHTML += '<th>전화번호</th>';
+		chToTable.innerHTML += '<th>운영시간</th>';
+		chToTable.innerHTML += '<th>예약하기</th>';
+		chToTable.innerHTML += '</tr>';
 	}
 </script>
 
