@@ -30,19 +30,27 @@ public class BunnySocket {
 	private static final Logger log = LoggerFactory.getLogger(BunnySocket.class);
 	private static Map<String,Session> sessionMap = Collections
 			.synchronizedMap(new HashMap<String,Session>());
-	@Autowired
-	private ObjectMapper mapper;
+	
+	private ObjectMapper mapper = new ObjectMapper();
 	
 	@OnMessage
 	public void onMessage(String text, Session session) throws IOException {
-		Map<String,String> map = mapper.readValue(text,  new TypeReference<Map<String, String>>() {});
+
+	    TypeReference<HashMap<String,Object>> typeRef 
+	            = new TypeReference<HashMap<String,Object>>() {};
+
+		Map<String,String> map = mapper.readValue(text, typeRef);
 		log.info("text = >{}",map);
+		String targetId = map.get("target");
+		
 		synchronized (sessionMap) {
 			final Iterator<String> it = sessionMap.keySet().iterator();
 			while(it.hasNext()) {
 				final String key = it.next();
-				Session ss = sessionMap.get(key);
-				ss.getBasicRemote().sendText(text);
+				if(key.equals(targetId)) {
+					Session ss = sessionMap.get(key);
+					ss.getBasicRemote().sendText(text);
+				}
 			}
 		}
 	}
@@ -62,7 +70,7 @@ public class BunnySocket {
 		System.out.println(session);
 		final HttpSession hs = (HttpSession) config.getUserProperties()
                 .get(HttpSession.class.getName());
-		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("user");
+		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
 		final String userId = uiv.getUiId();
 		sessionMap.put(userId, session);
 	}
