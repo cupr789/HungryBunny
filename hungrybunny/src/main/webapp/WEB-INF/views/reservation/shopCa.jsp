@@ -29,6 +29,7 @@
 		htmlStr += '<th>주소</th>';
 		htmlStr += '<th>전화번호</th>';
 		htmlStr += '<th>운영시간</th>';
+		htmlStr += '<th>남은자리</th>';
 		htmlStr += '<th>메뉴보기</th>';
 		htmlStr += '</tr>';
 		htmlStr += '<tbody>';
@@ -39,6 +40,7 @@
 			htmlStr += '<td>'+shop.shopAddress+'</td>';
 			htmlStr += '<td>'+shop.shopHP+'</td>';
 			htmlStr += '<td>'+shop.shopTime+'</td>';
+			htmlStr += '<td></td>';
 			htmlStr += '<td><button type="button" onclick="menuList('+shop.shopNo+')">Click Me!</button></td>';
 			htmlStr += '</tr>';
 		}
@@ -51,11 +53,11 @@
 	}
 	
 	function backToCa(){
-		
+		$("#chToSTable").css("display","none");
+		$("#tagID").css("display","block");
 	}
 	
 	function menuList(shopNo){
-		alert(shopNo);
 		var au = new AjaxUtil2("${root}/menu/menuList/"+shopNo,null,"POST");
 		au.send(menuListCB);
 	}
@@ -69,7 +71,6 @@
 		htmlStr += '<tr>'; 
 		htmlStr += '<th>메뉴이름</th>';
 		htmlStr += '<th>메뉴가격</th>';
-		htmlStr += '<th>남은 자리</th>';
 		htmlStr += '<th>예약하기</th>';
 		htmlStr += '</tr>';
 		htmlStr += '<tbody>';
@@ -79,7 +80,6 @@
 			htmlStr += '<td>'+menu.menuName+'</td>';
 			htmlStr += '<td>'+menu.menuPrice+'</td>';
 			htmlStr += '<td></td>';
-			htmlStr += '<td></td>';
 			htmlStr += '</tr>';
 		}
 		htmlStr += '</tbody>';
@@ -87,6 +87,11 @@
 		htmlStr += '</div>';
 		htmlStr += '<button type="button" onclick="backToShop()">가게리스트로 돌아가기!</button>';
 		$("#chToMTable").html(htmlStr);
+	}
+	
+	function backToShop(){
+		$("#chToMTable").css("display","none");
+		alert("박혜진");
 	}
 </script>
 
