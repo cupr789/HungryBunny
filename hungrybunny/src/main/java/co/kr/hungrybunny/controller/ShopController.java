@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.hungrybunny.service.HallService;
 import co.kr.hungrybunny.service.ShopCaService;
 import co.kr.hungrybunny.service.ShopService;
+import co.kr.hungrybunny.vo.HallVO;
 import co.kr.hungrybunny.vo.ShopCaVO;
 import co.kr.hungrybunny.vo.ShopVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -30,6 +32,8 @@ public class ShopController {
 	private ShopService shs;
 	@Autowired
 	private ShopCaService scs;
+	@Autowired
+	private HallService hs;
 	
 	UserInfoVO ui = new UserInfoVO();
 	List<ShopVO> shopList = new ArrayList<ShopVO>();
@@ -83,6 +87,23 @@ public class ShopController {
 		System.out.println("[][][][][][][][][]["+slist);
 		mav.addObject("slist",slist);
 		mav.setViewName("adminShop/update");
+		return mav;
+	}
+	
+	@RequestMapping(value="/reservation", method = RequestMethod.GET)
+	public ModelAndView goReservation(ModelAndView mav,@RequestParam Map<String, Object> map) {
+		System.out.println("res컨트롤러??"+map.get("shopNo"));
+		String str = map.get("shopNo").toString();
+		int shopNo = Integer.parseInt(str);
+		map = hs.getResList(shopNo);
+		List<HallVO> resListWithTwo = (List<HallVO>) map.get("resListWithTwo");
+		List<HallVO> resListWithFour = (List<HallVO>) map.get("resListWithFour");
+		mav.addObject("resListWithTwo",resListWithTwo);
+		mav.addObject("resListWithFour",resListWithFour);
+		mav.addObject("resListWithTwoCnt",resListWithTwo.size());
+		mav.addObject("resListWithFourCnt",resListWithFour.size());
+		mav.addObject("resList",map);
+		mav.setViewName("reservation/resList");
 		return mav;
 	}
 }
