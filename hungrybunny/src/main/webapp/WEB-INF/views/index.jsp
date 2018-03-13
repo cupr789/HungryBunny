@@ -3,6 +3,17 @@
 <html>
 <head>
 	<title>Home</title>
+	<script type="text/javascript">
+	function goNaverMap(){
+		var str = $("#address").val();
+		
+		var param = "address";
+  		var au = new AjaxUtil("${root}/map/mapList",param,"POST");
+  		au.send();
+	}
+
+	
+	</script>
 </head>
 
 <style>
@@ -45,6 +56,10 @@
 }
 </style>
 
+
+
+
+
 <body>
 <!-- Slider Section -->
 <section id="header-slider" class="section">
@@ -74,16 +89,15 @@
 </section>
 <!-- Slider Section --> 
 
-
 <div class="container">
 	<div class="row">
         <div class="col-md-6">
     		<h2>Custom search field</h2>
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="주소를 입력해주세요" />
+                    <input id="address" name="address" type="text" class="form-control input-lg" placeholder="주소를 입력해주세요" />
                     <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
+                        <button  class="btn btn-info btn-lg" type="button" onclick="goNaverMap()">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -92,7 +106,11 @@
         </div>
 	</div>
 </div>
-<br><br><br><br><br> 
+
+
+
+
+
 
 <!-- Service Section -->
 <section id="services" class="section services">
