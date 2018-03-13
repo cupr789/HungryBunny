@@ -19,7 +19,6 @@ public class MenuController {
 	
 	@Autowired
 	private MenuService ms;
-	
 	@RequestMapping(value="/koreanMenu", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getMenuList(Map<String,Object> map){
 		List<MenuVO> menuList = ms.getMenuList();
