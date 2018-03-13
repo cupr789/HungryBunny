@@ -16,8 +16,8 @@ import co.kr.hungrybunny.vo.MenuVO;
 @Controller
 @RequestMapping("/map")
 public class MapController {
-	@RequestMapping(value="/mapList", method=RequestMethod.POST)
-	public @ResponseBody ModelAndView getMenuList(@RequestBody Map<String,Object> map ,ModelAndView mav){
+	@RequestMapping(value="/mapList", method=RequestMethod.GET)
+	public @ResponseBody ModelAndView getMenuList(@RequestParam Map<String,Object> map ,ModelAndView mav){
 		
 		
 		System.out.println("검색한 값: "+map.get("address"));

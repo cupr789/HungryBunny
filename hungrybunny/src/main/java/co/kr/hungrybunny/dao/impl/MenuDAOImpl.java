@@ -17,10 +17,10 @@ public class MenuDAOImpl implements MenuDAO {
 	private SqlSessionFactory ssf;
 	
 	@Override
-	public List<MenuVO> selectMenuList() {
+	public List<MenuVO> selectMenuList(int shopNo) {
 		SqlSession ss = ssf.openSession();
-		List<MenuVO> menuList = ss.selectList("menu.selectMenuList");
-		System.out.println(menuList);
+		List<MenuVO> menuList = ss.selectList("menu.selectMenuList", shopNo);
+		System.out.println("다오의 menuList : "+menuList);
 		ss.close();
 		return menuList;
 	}
