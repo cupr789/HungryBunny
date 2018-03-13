@@ -8,4 +8,5 @@ public interface ShopDAO {
 
 	public List<ShopVO> selectConnectionInfoList(int uiNo);
 	List<ShopVO> selectShopList(int shopCaNo);
+	List<ShopVO> selectAdminShop(int shopNo);
 }

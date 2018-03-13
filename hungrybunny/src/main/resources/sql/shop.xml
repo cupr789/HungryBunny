@@ -14,4 +14,7 @@
 	<select id="selectAdminShop" parameterType="int" resultType="shop">
 		select * from shop where uiNo=#{num}
 	</select>
+		<select id="selectAdminHave" parameterType="int" resultType="shop">
+		select * from shop where shopNo=#{num}
+	</select>
 </mapper>  

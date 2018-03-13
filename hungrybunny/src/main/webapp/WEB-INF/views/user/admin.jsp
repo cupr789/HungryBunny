@@ -14,7 +14,10 @@ function adminHave(){
 function callback(res){
 	var str="";
     for(var i=0;i<res.spList.length;i++){
-		 str+="<tr><td>"+ res.spList[i].shopName+"</td>"+"<td>"+res.spList[i].shopAddress+"</td>"+"<td>"+res.spList[i].shopHP+"</td>"+"<td>"+ res.spList[i].shopTime+"</td>"+"<td></td></tr>";
+		 str+="<tr><td>"+ res.spList[i].shopName+"</td>"+"<td>"+res.spList[i].shopAddress+"</td>"+"<td>"+res.spList[i].shopHP+"</td>"+"<td>"+ res.spList[i].shopTime+"</td>"+
+		 "<td><button><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button>"+
+		 "<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></button>"+
+		 "</form></td></tr>";
 		 	} 
 	
  	

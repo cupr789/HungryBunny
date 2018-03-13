@@ -41,4 +41,11 @@ public class ShopDAOImpl implements ShopDAO {
 		return spList;
 	}
 
+	@Override
+	public List<ShopVO> selectAdminShop(int shopNo) {
+		SqlSession ss = ssf.openSession();
+		List<ShopVO> slist = ss.selectList("shop.selectAdminHave",shopNo);
+		return slist;
+	}
+
 }
