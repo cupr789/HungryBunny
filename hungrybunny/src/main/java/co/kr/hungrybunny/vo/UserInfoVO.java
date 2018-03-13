@@ -1,7 +1,13 @@
 package co.kr.hungrybunny.vo;
 
-public class UserInfoVO {
+import java.io.Serializable;
 
+public class UserInfoVO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int uiNo;
 	private String uiId;
 	private String uiName;
