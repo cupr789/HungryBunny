@@ -29,7 +29,7 @@
 		htmlStr += '<th>주소</th>';
 		htmlStr += '<th>전화번호</th>';
 		htmlStr += '<th>운영시간</th>';
-		htmlStr += '<th>예약하기</th>';
+		htmlStr += '<th>메뉴보기</th>';
 		htmlStr += '</tr>';
 		htmlStr += '<tbody>';
 		for(var key in res){
@@ -39,24 +39,68 @@
 			htmlStr += '<td>'+shop.shopAddress+'</td>';
 			htmlStr += '<td>'+shop.shopHP+'</td>';
 			htmlStr += '<td>'+shop.shopTime+'</td>';
-			htmlStr += '<td>'+'</td>';
+			htmlStr += '<td><button type="button" onclick="menuList('+shop.shopNo+')">Click Me!</button></td>';
 			htmlStr += '</tr>';
 		}
 		htmlStr += '</tbody>';
+		htmlStr += '</table>';
+		htmlStr += '</div>';
+		htmlStr += '<button type="button" onclick="backToCa()">카테고리로 돌아가기!</button>';
 		console.log(htmlStr);
-		$("#chToTable").html(htmlStr)
+		$("#chToSTable").html(htmlStr)
+	}
+	
+	function backToCa(){
+		
+	}
+	
+	function menuList(shopNo){
+		alert(shopNo);
+		var au = new AjaxUtil2("${root}/menu/menuList/"+shopNo,null,"POST");
+		au.send(menuListCB);
+	}
+	function menuListCB(res){
+		$("#chToSTable").css("display","none");
+		var htmlStr = '';
+		htmlStr += '<div class="container">';
+		htmlStr += '<h1>메뉴리스트</h1>';
+		htmlStr += '<table class="table table-bordered">';
+		htmlStr += '<thead>';
+		htmlStr += '<tr>'; 
+		htmlStr += '<th>메뉴이름</th>';
+		htmlStr += '<th>메뉴가격</th>';
+		htmlStr += '<th>남은 자리</th>';
+		htmlStr += '<th>예약하기</th>';
+		htmlStr += '</tr>';
+		htmlStr += '<tbody>';
+		for(var key in res){
+			var menu = res[key];
+			htmlStr += '<tr>';
+			htmlStr += '<td>'+menu.menuName+'</td>';
+			htmlStr += '<td>'+menu.menuPrice+'</td>';
+			htmlStr += '<td></td>';
+			htmlStr += '<td></td>';
+			htmlStr += '</tr>';
+		}
+		htmlStr += '</tbody>';
+		htmlStr += '</table>';
+		htmlStr += '</div>';
+		htmlStr += '<button type="button" onclick="backToShop()">가게리스트로 돌아가기!</button>';
+		$("#chToMTable").html(htmlStr);
 	}
 </script>
 
 <body onload="category()">
 	<!-- portfolio grid section -->
 	<section id="portfolio" class="section portfolio">
-	<div id="chToTable">
+	<div id="chToMTable">
+	<div id="chToSTable">
 		<div id="tagID" class="container-fluid">
 			<div class="row">
 				
 			</div>
 		</div>
+	</div>
 	</div>
 	</section>
 	<!-- portfolio grid section -->
