@@ -9,12 +9,18 @@
   	  <!-- <script src="/resources/js/jquery-3.2.1.js" charset="utf-8"></script> -->
   </head>
   <body>
-  <div>
+  <section class="section">
+<!--   <div>
   	<input id="address" type="text" placeholder="도로명주소 입력해주세요!">
   	<button id="submit" type="button">검색</button>
-  </div>
+  </div> -->
     <div id="map" style="width:100%;height:400px;"></div>
-    <script>
+ </section>
+  </body>
+ 
+ <script>
+      
+      
     var map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.3595316, 127.1052133),
         zoom: 10,
@@ -187,13 +193,12 @@
 
             searchAddressToCoordinate($('#address').val());
         });
-
-        searchAddressToCoordinate('강남대로');
+		
+        searchAddressToCoordinate("${address}");
     }
 
     naver.maps.onJSContentLoaded = initGeocoder;
       </script>
-  </body>
 </html>
   
   
