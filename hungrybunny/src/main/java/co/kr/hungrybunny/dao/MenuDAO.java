@@ -6,5 +6,5 @@ import co.kr.hungrybunny.vo.MenuVO;
 
 public interface MenuDAO {
 
-	List<MenuVO> selectMenuList();
+	List<MenuVO> selectMenuList(int shopNo);
 }

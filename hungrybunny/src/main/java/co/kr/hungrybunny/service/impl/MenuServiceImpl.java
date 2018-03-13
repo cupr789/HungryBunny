@@ -16,8 +16,8 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDAO menudao;
 	
 	@Override
-	public List<MenuVO> getMenuList() {
-		System.out.println(menudao.selectMenuList());
-		return menudao.selectMenuList();
+	public List<MenuVO> getMenuList(int shopNo) {
+		System.out.println("서비스의 menuList : "+menudao.selectMenuList(shopNo));
+		return menudao.selectMenuList(shopNo);
 	}
 }

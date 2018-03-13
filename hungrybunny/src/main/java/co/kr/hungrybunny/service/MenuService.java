@@ -6,5 +6,5 @@ import co.kr.hungrybunny.vo.MenuVO;
 
 public interface MenuService {
 
-	List<MenuVO> getMenuList();
+	List<MenuVO> getMenuList(int shopNo);
 }
