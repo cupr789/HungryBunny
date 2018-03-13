@@ -14,7 +14,7 @@
   	<input id="address" type="text" placeholder="도로명주소 입력해주세요!">
   	<button id="submit" type="button">검색</button>
   </div> -->
-    <div id="map" style="width:100%;height:400px;"></div>
+    <div id="map" style="width:80%;height:400px;"></div>
  </section>
   </body>
  
