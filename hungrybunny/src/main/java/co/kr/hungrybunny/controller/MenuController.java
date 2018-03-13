@@ -19,15 +19,13 @@ public class MenuController {
 	
 	@Autowired
 	private MenuService ms;
+	
 	@RequestMapping(value="/koreanMenu", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getMenuList(Map<String,Object> map){
 		List<MenuVO> menuList = ms.getMenuList();
 		map.put("menuList", menuList);
 		System.out.println(menuList);
 		System.out.println("나 맵이야"+map);
-		System.out.println("");
-		System.out.println("학원에서");
-		System.out.println("ss");
 		return map;
 	}
 }
