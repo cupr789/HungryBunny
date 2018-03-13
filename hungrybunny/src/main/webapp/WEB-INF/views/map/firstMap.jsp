@@ -14,7 +14,7 @@
   	<input id="address" type="text" placeholder="도로명주소 입력해주세요!">
   	<button id="submit" type="button">검색</button>
   </div> -->
-    <div id="map" style="width:100%;height:400px;"></div>
+    <div id="map" style="width:80%;height:400px;"></div>
  </section>
   </body>
  
@@ -40,9 +40,9 @@
     var HOME_PATH = window.HOME_PATH || '.';
     
     var latlngs = [
-        new naver.maps.LatLng(37.5256101, 127.0156204),
-        new naver.maps.LatLng(37.5239302, 127.0192074),
-        new naver.maps.LatLng(37.5276264, 127.017622)
+        new naver.maps.LatLng(37.4957695, 127.0293933),
+        new naver.maps.LatLng(37.4948495, 127.0309517),
+        new naver.maps.LatLng(37.4945086, 127.0302185)
        
     ];
     
@@ -174,6 +174,8 @@
             infoWindow.open(map, point);
         });
     }
+    
+    //19:00 쓰리팝 (칼바람,첫조건 20:00전에 끝날시 한판더하고 끝 ), 19:40-19:50 할리스 도착(내일제출 문서작업,프로젝트) 22:00-22:30 귀가
 
     function initGeocoder() {
         map.addListener('click', function(e) {

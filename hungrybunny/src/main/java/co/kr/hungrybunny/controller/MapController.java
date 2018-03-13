@@ -20,7 +20,7 @@ public class MapController {
 	public @ResponseBody ModelAndView getMenuList(@RequestParam Map<String,Object> map ,ModelAndView mav){
 		System.out.println("검색한 값: "+map.get("address"));
 		mav.addObject("address",map.get("address"));
-		mav.setViewName("map/firstMap");
+		mav.setViewName("reservation/shopCa");
 		return mav;
 	}
 }

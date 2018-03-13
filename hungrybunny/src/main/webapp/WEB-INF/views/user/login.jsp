@@ -21,7 +21,7 @@ function login(){
 function callback(res){
 	alert(res.msg);
 	if(res.biz){
-		location.href="${root}/path/reservation/shopCa";
+		location.href="${root}/path/index";
 	}
 	
 	if(res.aiz){
