@@ -26,6 +26,7 @@ public class MenuController {
 		System.out.println(menuList);
 		System.out.println("나 맵이야"+map);
 		System.out.println("");
+		System.out.println("학원에서");
 		System.out.println("ss");
 		return map;
 	}
