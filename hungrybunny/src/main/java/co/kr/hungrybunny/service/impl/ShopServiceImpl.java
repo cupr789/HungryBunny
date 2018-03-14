@@ -30,9 +30,8 @@ public class ShopServiceImpl implements ShopService{
 	}
 
 	@Override
-	public List<ShopVO> getAdminShop(Map<String, Object> map) {
-		String str=map.get("updateShop").toString();
-		int shopNo=Integer.parseInt(str);
+	public List<ShopVO> getAdminShop(int shopNo) {
+		
 		return sdao.selectAdminShop(shopNo);
 	}
 
