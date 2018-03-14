@@ -11,4 +11,12 @@ public interface ShopService {
 	public List<ShopVO> getConnectionInfoList(UserInfoVO ui);
 	List<ShopVO> getShopList(int shopCaNo);
 	List<ShopVO> getAdminShop(int shopNo);
+	
+	
+	
+	
+	
+	
+	// 재형이 추가함
+	List<ShopVO> getConditionShop(Map<String, Object> map);
 }

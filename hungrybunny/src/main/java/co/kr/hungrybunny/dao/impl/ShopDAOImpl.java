@@ -1,6 +1,7 @@
 package co.kr.hungrybunny.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -34,6 +35,8 @@ public class ShopDAOImpl implements ShopDAO {
 		return shopList;
 	}
 	
+	
+	
 	@Override
 	public List<ShopVO> selectConnectionInfoList(int uiNo) {
 		SqlSession ss = ssf.openSession();
@@ -46,6 +49,17 @@ public class ShopDAOImpl implements ShopDAO {
 		SqlSession ss = ssf.openSession();
 		List<ShopVO> slist = ss.selectList("shop.selectAdminHave",shopNo);
 		return slist;
+	}
+
+	
+	
+	// 재형이 추가함 To Do 2018-03-14 여기서부터 하면됨
+	@Override
+	public List<ShopVO> selectConditionShop(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<ShopVO> shopConlist = ss.selectList("shop.",map);
+		ss.close();
+		return null;
 	}
 
 }

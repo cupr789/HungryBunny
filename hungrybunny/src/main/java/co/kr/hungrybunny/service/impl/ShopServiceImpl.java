@@ -35,4 +35,14 @@ public class ShopServiceImpl implements ShopService{
 		return sdao.selectAdminShop(shopNo);
 	}
 
+	
+	// 재형이 추가함
+	@Override
+	public List<ShopVO> getConditionShop(Map<String, Object> map) {
+		
+		return null;
+	}
+
+
+
 }
