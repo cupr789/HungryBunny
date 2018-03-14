@@ -93,7 +93,7 @@
 			htmlStr += '<tr>';
 			htmlStr += '<td>'+menu.menuName+'</td>';
 			htmlStr += '<td>'+menu.menuPrice+'</td>';
-			htmlStr += '<td><form action="${root}/shop/reservation" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
+			htmlStr += '<td><form action="${root}/res/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
 			htmlStr += '</tr>';
 		}
 		htmlStr += '</tbody>';

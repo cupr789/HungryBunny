@@ -36,8 +36,6 @@ public class ShopController {
 	@Autowired
 	private ShopCaService scs;
 	@Autowired
-	private HallService hs;
-	@Autowired
 	private MenuService ms;
 	
 	UserInfoVO ui = new UserInfoVO();
@@ -98,23 +96,6 @@ public class ShopController {
 		mav.addObject("slist",slist);
 		mav.addObject("mlist",mlist);
 		mav.setViewName("adminShop/updateShop");
-		return mav;
-	}
-	
-	@RequestMapping(value="/reservation", method = RequestMethod.GET)
-	public ModelAndView goReservation(ModelAndView mav,@RequestParam Map<String, Object> map) {
-		System.out.println("res컨트롤러??"+map.get("shopNo"));
-		String str = map.get("shopNo").toString();
-		int shopNo = Integer.parseInt(str);
-		map = hs.getResList(shopNo);
-		List<HallVO> resListWithTwo = (List<HallVO>) map.get("resListWithTwo");
-		List<HallVO> resListWithFour = (List<HallVO>) map.get("resListWithFour");
-		mav.addObject("resListWithTwo",resListWithTwo);
-		mav.addObject("resListWithFour",resListWithFour);
-		mav.addObject("resListWithTwoCnt",resListWithTwo.size());
-		mav.addObject("resListWithFourCnt",resListWithFour.size());
-		mav.addObject("resList",map);
-		mav.setViewName("reservation/resList");
 		return mav;
 	}
 }

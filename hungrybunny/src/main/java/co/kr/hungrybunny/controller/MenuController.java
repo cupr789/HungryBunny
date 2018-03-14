@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.hungrybunny.service.MenuService;
 import co.kr.hungrybunny.vo.MenuVO;
@@ -44,6 +45,19 @@ public class MenuController {
 		menuList = ms.getMenuList(shopNo);
 		System.out.println("컨트롤러의 menuList : "+menuList);
 		return menuList;
+	}
+	
+	@RequestMapping(value="/menuList2", method=RequestMethod.POST)
+	public ModelAndView getMenuListForRes(ModelAndView mav, @RequestParam Map<String, Object> map){
+		System.out.println("메뉴 컨트롤러 왔샤");
+		System.out.println("map.get(\"shopNo\")를 가져와야해"+map.get("shopNo"));
+		String str = map.get("shopNo").toString();
+		int shopNo = Integer.parseInt(str);
+		List<MenuVO> menuList = new ArrayList<MenuVO>();
+		menuList = ms.getMenuList(shopNo);
+		mav.addObject("menuList",menuList);
+		mav.setViewName("reservation/resList");
+		return mav;
 	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)

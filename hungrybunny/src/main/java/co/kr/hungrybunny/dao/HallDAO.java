@@ -1,8 +1,10 @@
 package co.kr.hungrybunny.dao;
 
-import java.util.Map;
+import java.util.List;
+
+import co.kr.hungrybunny.vo.HallVO;
 
 public interface HallDAO {
 
-	Map<String, Object> selectResList(int shopNo);
+	List<HallVO> selectHallList(int shopNo);
 }
