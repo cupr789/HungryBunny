@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import co.kr.hungrybunny.dao.MenuDAO;
 import co.kr.hungrybunny.vo.MenuVO;
+import co.kr.hungrybunny.vo.ReservationMenuVO;
 
 @Repository
 public class MenuDAOImpl implements MenuDAO {
@@ -25,4 +27,24 @@ public class MenuDAOImpl implements MenuDAO {
 		return menuList;
 	}
 
+	@Override
+	public int insertMenu(MenuVO mv) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.insert("menu.insertMenu",mv);
+		return result;
+	}
+
+	@Override
+	public List<ReservationMenuVO> checkReservation(int menuNo) {
+		SqlSession ss = ssf.openSession();
+		List<ReservationMenuVO> list=ss.selectList("menu.checkMenu", menuNo);
+		return list;
+	}
+
+	@Override
+	public int deletetMenu(MenuVO mv) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.delete("menu.deletetMenu",mv);
+		return result;
+	}
 }

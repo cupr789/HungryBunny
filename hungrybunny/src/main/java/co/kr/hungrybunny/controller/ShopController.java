@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import co.kr.hungrybunny.service.HallService;
+import co.kr.hungrybunny.service.MenuService;
 import co.kr.hungrybunny.service.ShopCaService;
 import co.kr.hungrybunny.service.ShopService;
 import co.kr.hungrybunny.vo.HallVO;
+import co.kr.hungrybunny.vo.MenuVO;
 import co.kr.hungrybunny.vo.ShopCaVO;
 import co.kr.hungrybunny.vo.ShopVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -34,6 +37,8 @@ public class ShopController {
 	private ShopCaService scs;
 	@Autowired
 	private HallService hs;
+	@Autowired
+	private MenuService ms;
 	
 	UserInfoVO ui = new UserInfoVO();
 	List<ShopVO> shopList = new ArrayList<ShopVO>();
@@ -77,16 +82,22 @@ public class ShopController {
 	}
 	@RequestMapping(value="/updateShop", method = RequestMethod.GET)
 	public ModelAndView goIndex(ModelAndView mav,HttpSession hs,@RequestParam Map<String, Object> map) {
-		System.out.println("ioioioioioi"+map.get("updateShop"));
+	
 		if (hs.getAttribute("userNo") != null) {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}
-		List<ShopVO> slist = shs.getAdminShop(map);
-		System.out.println("[][][][][][][][][]["+slist);
+		
+		String str=map.get("updateShop").toString();
+		int shopNo=Integer.parseInt(str);
+		System.out.println(":::::::::::::::::::::::"+ms);
+		List<ShopVO> slist = shs.getAdminShop(shopNo);
+		List<MenuVO> mlist= ms.getMenuList(shopNo);
+		System.out.println("***********************"+mlist);
 		mav.addObject("slist",slist);
-		mav.setViewName("adminShop/update");
+		mav.addObject("mlist",mlist);
+		mav.setViewName("adminShop/updateShop");
 		return mav;
 	}
 	

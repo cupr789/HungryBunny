@@ -5,5 +5,16 @@
 <mapper namespace="menu">
 	<select id="selectMenuList" parameterType="int" resultType="menu">
 		select * from menu where shopNo=#{shopNo}
-	</select>	
+	</select>
+	<insert id="insertMenu" parameterType="menu">
+		insert into menu(menuName,menuPrice,shopNo)
+		values(#{menuName}, #{menuPrice}, #{shopNo})
+	
+	</insert>
+	<select id="checkMenu" parameterType="int" resultType="resMenu">
+		select * from ReservationMenu where menuNo=#{menuNo}
+	</select>
+	<delete id="deleteMenu" parameterType="menu">
+		delete from menu where menuNo=#{menuNo}
+	</delete>
 </mapper>  

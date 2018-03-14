@@ -10,5 +10,5 @@ public interface ShopService {
 
 	public List<ShopVO> getConnectionInfoList(UserInfoVO ui);
 	List<ShopVO> getShopList(int shopCaNo);
-	List<ShopVO> getAdminShop(Map<String,Object> map);
+	List<ShopVO> getAdminShop(int shopNo);
 }
