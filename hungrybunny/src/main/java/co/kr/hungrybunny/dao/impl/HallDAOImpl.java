@@ -19,15 +19,12 @@ public class HallDAOImpl implements HallDAO{
 	private SqlSessionFactory ssf;
 	
 	@Override
-	public Map<String, Object> selectResList(int shopNo) {
+	public List<HallVO> selectHallList(int shopNo) {
 		SqlSession ss = ssf.openSession();
-		List<HallVO> resListWithTwo = ss.selectList("hall.selectResListWithTwo", shopNo);
-		List<HallVO> resListWithFour = ss.selectList("hall.selectResListWithFour", shopNo);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("resListWithTwo", resListWithTwo);
-		map.put("resListWithFour", resListWithFour);
+		List<HallVO> resList = ss.selectList("hall.selectResList", shopNo);
+		System.out.println("???????????????????????????????"+resList);
 		ss.close();
-		return map;
+		return resList;
 	}
 
 }

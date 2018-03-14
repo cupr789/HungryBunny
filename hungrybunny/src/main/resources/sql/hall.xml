@@ -6,7 +6,12 @@
 	<select id="selectResListWithTwo" parameterType="int" resultType="hall">
 		select * from hall where shopNo=#{shopNo} and seatCnt=2 and hallStatus=0;
 	</select>	
+	
 	<select id="selectResListWithFour" parameterType="int" resultType="hall">
 		select * from hall where shopNo=#{shopNo} and seatCnt=4 and hallStatus=0;
+	</select>
+	
+	<select id="selectResList" parameterType="int" resultType="hall">
+		select *, count(1) as cnt from hall where shopNo=#{shopNo} and hallStatus=0 group by seatCnt;
 	</select>
 </mapper>  

@@ -5,7 +5,14 @@ public class HallVO {
 	private int seatCnt;
 	private int hallStatus;
 	private int shopNo;
+	private int cnt;
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public int getHallNo() {
 		return hallNo;
 	}
@@ -34,6 +41,6 @@ public class HallVO {
 	@Override
 	public String toString() {
 		return "HallVO [hallNo=" + hallNo + ", seatCnt=" + seatCnt + ", hallStatus=" + hallStatus + ", shopNo=" + shopNo
-				+ "]";
+				+ ", cnt=" + cnt + "]";
 	}
 }
