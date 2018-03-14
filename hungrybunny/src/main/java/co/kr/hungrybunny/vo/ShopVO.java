@@ -7,9 +7,25 @@ public class ShopVO {
 	private String shopAddress;
 	private String shopHP;
 	private String shopTime;
+	private double shopLon;
+	private double shopLat;
 	private int shopCaNo;
 	private int uiNo;
 	
+	
+	
+	public double getShopLon() {
+		return shopLon;
+	}
+	public void setShopLon(double shopLon) {
+		this.shopLon = shopLon;
+	}
+	public double getShopLat() {
+		return shopLat;
+	}
+	public void setShopLat(double shopLat) {
+		this.shopLat = shopLat;
+	}
 	public int getShopNo() {
 		return shopNo;
 	}
@@ -56,6 +72,7 @@ public class ShopVO {
 	@Override
 	public String toString() {
 		return "ShopVO [shopNo=" + shopNo + ", shopName=" + shopName + ", shopAddress=" + shopAddress + ", shopHP="
-				+ shopHP + ", shopTime=" + shopTime + ", shopCaNo=" + shopCaNo + ", uiNo=" + uiNo + "]";
+				+ shopHP + ", shopTime=" + shopTime + ", shopLon=" + shopLon + ", shopLat=" + shopLat + ", shopCaNo="
+				+ shopCaNo + ", uiNo=" + uiNo + "]";
 	}
 }

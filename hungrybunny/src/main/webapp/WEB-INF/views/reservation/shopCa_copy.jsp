@@ -12,29 +12,45 @@
 		var aufl = new AjaxUtilForList(".container-fluid>.row","${root}/shop/category", null, "GET");
 		aufl.send();  
 	}
-	var shopCaNum;
+	
 	function goShopList(shopCaNo){
-		shopCaNum=shopCaNo;
 		var au = new AjaxUtil2("${root}/shop/shopList/"+shopCaNo, null, "POST");
 		au.send(shopListCB); 
 	}
+	
 	function shopListCB(res){
-		var searchAddr = "${address}";
-		alert(searchAddr);
-		alert(shopCaNum);
-		var param = {searchAddr:searchAddr,shopCaNum:shopCaNum};
-		//param=JSON.stringify(param);
-		console.log(param);
-	 	/* var au = new AjaxUtil2("${root}/map/selectMap",param,"POST");
-		au.send(callback);   */
-		$.ajax({
-			url: "${root}/map/selectMap",
-			type:"POST",
-			data: param,
-			success: function(res){
-				alert("sds");
-			}
-		})
+		$("#tagID").css("display","none");
+		var htmlStr = '';
+		htmlStr += '<div class="container">';
+		htmlStr += '<h1>가게리스트</h1>';
+		htmlStr += '<table class="table table-bordered">';
+		htmlStr += '<thead>';
+		htmlStr += '<tr>'; 
+		htmlStr += '<th>가게이름</th>';
+		htmlStr += '<th>주소</th>';
+		htmlStr += '<th>전화번호</th>';
+		htmlStr += '<th>운영시간</th>';
+		htmlStr += '<th>남은자리</th>';
+		htmlStr += '<th>메뉴보기</th>';
+		htmlStr += '</tr>';
+		htmlStr += '<tbody>';
+		for(var key in res){
+			var shop = res[key];
+			htmlStr += '<tr>';
+			htmlStr += '<td>'+shop.shopName+'</td>';
+			htmlStr += '<td>'+shop.shopAddress+'</td>';
+			htmlStr += '<td>'+shop.shopHP+'</td>';
+			htmlStr += '<td>'+shop.shopTime+'</td>';
+			htmlStr += '<td></td>';
+			htmlStr += '<td><button type="button" onclick="menuList('+shop.shopNo+')">Click Me!</button></td>';
+			htmlStr += '</tr>';
+		}
+		htmlStr += '</tbody>';
+		htmlStr += '</table>';
+		htmlStr += '</div>';
+		htmlStr += '<button type="button" onclick="backToCa()">카테고리로 돌아가기!</button>';
+		console.log(htmlStr);
+		$("#chToSTable").html(htmlStr)
 	}
 	
 	function backToCa(){
@@ -64,7 +80,8 @@
 			htmlStr += '<tr>';
 			htmlStr += '<td>'+menu.menuName+'</td>';
 			htmlStr += '<td>'+menu.menuPrice+'</td>';
-			htmlStr += '<td><form action="${root}/res/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
+			// 혜진   :       기존것 -> "${root}/shop/reservation" 에서 reservation을 checkOption으로바꿈
+			htmlStr += '<td><form action="${root}/shop/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
 			htmlStr += '</tr>';
 		}
 		htmlStr += '</tbody>';
@@ -77,8 +94,6 @@
 	function backToShop(){
 		$("#chToMTable").css("display","none");
 		alert("박혜진");
-	function callback(res){
-		alert("컨트롤러 찍고옴!!");
 	}
 </script>
 
