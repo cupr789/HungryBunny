@@ -38,6 +38,7 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<ShopVO> selectConnectionInfoList(int uiNo) {
 		SqlSession ss = ssf.openSession();
 		List<ShopVO> spList = ss.selectList("shop.selectAdminShop",uiNo);
+		ss.close();
 		return spList;
 	}
 
@@ -45,6 +46,7 @@ public class ShopDAOImpl implements ShopDAO {
 	public List<ShopVO> selectAdminShop(int shopNo) {
 		SqlSession ss = ssf.openSession();
 		List<ShopVO> slist = ss.selectList("shop.selectAdminHave",shopNo);
+		ss.close();
 		return slist;
 	}
 

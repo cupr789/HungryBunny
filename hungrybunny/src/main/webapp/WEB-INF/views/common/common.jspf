@@ -8,7 +8,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <c:set var="rPath" value="${root}/resources"/>
 <c:set var="pPath" value="${root}/path"/>
-<c:set var="ver" value="1.0.0.1"/>
+<c:set var="ver" value="1.0.0.2"/>
 <script charset="utf-8" type="text/javascript">
 	var root = "${root}";
 	var rPath = "${rPath}";

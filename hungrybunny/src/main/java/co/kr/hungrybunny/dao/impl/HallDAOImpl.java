@@ -26,6 +26,7 @@ public class HallDAOImpl implements HallDAO{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resListWithTwo", resListWithTwo);
 		map.put("resListWithFour", resListWithFour);
+		ss.close();
 		return map;
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -71,6 +72,25 @@ public class MenuController {
 			int result=ms.deleteMenu(mv,map);
 			if(result==1) {
 				map.put("msg","삭제성공이요~~");
+				map.put("biz",true);
+			}
+		} else {
+			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+		}
+		
+		return map;
+	}
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> updateMenu(@RequestParam Map<String, Object> map,HttpSession hs){
+		if (hs.getAttribute("userNo") != null) {
+			ui.setUiNo((Integer) hs.getAttribute("userNo"));
+			System.out.println("$$$$$$$$$$$$$$$$$$$$"+map.get("menuNo"));
+			map.put("menuNo",Integer.parseInt(map.get("menuNo").toString()));
+			map.put("menuPrice",Integer.parseInt(map.get("menuPrice").toString()));
+			int result=ms.updateMenu(map);
+			if(result==1) {
+				map.put("msg","수정성공이요~~");
+				map.put("biz",true);
 			}
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");

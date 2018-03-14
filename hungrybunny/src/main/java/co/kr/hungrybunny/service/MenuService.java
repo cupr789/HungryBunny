@@ -11,4 +11,5 @@ public interface MenuService {
 	public int inertMenu(MenuVO mv);
 	public int deleteMenu(MenuVO mv,Map<String, Object> map);
 	public int checkMenu(int menuNo);
+	public int updateMenu(Map<String, Object> map);
 }

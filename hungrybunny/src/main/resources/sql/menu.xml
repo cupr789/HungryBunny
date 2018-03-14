@@ -12,9 +12,12 @@
 	
 	</insert>
 	<select id="checkMenu" parameterType="int" resultType="resMenu">
-		select * from ReservationMenu where menuNo=#{menuNo}
+		select * from ReservationMenu where menuNo=#{num}
 	</select>
 	<delete id="deleteMenu" parameterType="menu">
 		delete from menu where menuNo=#{menuNo}
 	</delete>
+	<update id="updateMenu" parameterType="map">
+	update menu set menuName=#{menuName},menuPrice=#{menuPrice} where menuNo=#{menuNo}
+	</update>
 </mapper>  

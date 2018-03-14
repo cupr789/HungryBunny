@@ -1,6 +1,7 @@
 package co.kr.hungrybunny.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -31,6 +32,7 @@ public class MenuDAOImpl implements MenuDAO {
 	public int insertMenu(MenuVO mv) {
 		SqlSession ss = ssf.openSession();
 		int result=ss.insert("menu.insertMenu",mv);
+		ss.close();
 		return result;
 	}
 
@@ -38,13 +40,24 @@ public class MenuDAOImpl implements MenuDAO {
 	public List<ReservationMenuVO> checkReservation(int menuNo) {
 		SqlSession ss = ssf.openSession();
 		List<ReservationMenuVO> list=ss.selectList("menu.checkMenu", menuNo);
+		System.out.println("xml에서 뱉어준 list"+list);
+		ss.close();
 		return list;
 	}
 
 	@Override
-	public int deletetMenu(MenuVO mv) {
+	public int deleteMenu(MenuVO mv) {
 		SqlSession ss = ssf.openSession();
-		int result=ss.delete("menu.deletetMenu",mv);
+		int result=ss.delete("menu.deleteMenu",mv);
+		ss.close();
+		return result;
+	}
+
+	@Override
+	public int updateMenu(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.update("menu.updateMenu",map);
+		ss.close();
 		return result;
 	}
 }

@@ -15,7 +15,7 @@ function callback(res){
 	var str="";
     for(var i=0;i<res.spList.length;i++){
 		 str+="<tr><td>"+ res.spList[i].shopName+"</td>"+"<td>"+res.spList[i].shopAddress+"</td>"+"<td>"+res.spList[i].shopHP+"</td>"+"<td>"+ res.spList[i].shopTime+"</td>"+
-		 "<td><button><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button>"+
+		 "<td><form action='${root}/res/adminRes'><button name='adminRes' type='submit' value='"+res.spList[i]+"'><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button></form>"+
 		 "<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></button>"+
 		 "</form></td></tr>";
 		 	} 
@@ -30,7 +30,7 @@ function callback(res){
 	"<th>주소</th>"+
 	"<th>전화번호</th>"+
 	"<th>운영시간</th>"+
-	"<th>예약하기</th></tr>"+  
+	"<th>예약하기/정보수정</th></tr>"+  
     "</thead>"+  
     "<tbody class='tbody'>"+
    	str+

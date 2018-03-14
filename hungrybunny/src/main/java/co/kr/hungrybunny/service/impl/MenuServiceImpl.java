@@ -32,12 +32,13 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int deleteMenu(MenuVO mv,Map<String, Object> map) {
 		int num=checkMenu(mv.getMenuNo());
+		System.out.println("~~~~~~~~~~~~~"+num);
+		System.out.println("@@@@@@@@@@@@@@@@@@@"+mv.getMenuNo());
 		if(num==2) {
 			map.put("msg","예약된메뉴입니다....");
 			return 2;
 		}else {
-			
-			return menudao.insertMenu(mv);
+			return menudao.deleteMenu(mv);
 		}
 		
 	
@@ -46,9 +47,21 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public int checkMenu(int menuNo) {
 		List<ReservationMenuVO> list=menudao.checkReservation(menuNo);
-		if(list!=null) {
-			return 1;
+		if(!list.isEmpty()) {
+			return 2;
 		}
-		return 2;
+		return 1;
+	}
+
+	@Override
+	public int updateMenu(Map<String, Object> map) {
+		int num=checkMenu((Integer) map.get("menuNo"));
+		if(num==2) {
+			map.put("msg","예약된메뉴입니다....");
+			return 2;
+		}else {
+			return menudao.updateMenu(map);
+		}
+		
 	}
 }

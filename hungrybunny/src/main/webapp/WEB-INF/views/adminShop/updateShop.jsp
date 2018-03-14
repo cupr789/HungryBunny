@@ -19,13 +19,35 @@
 			 location.reload()
 		}
 	}
-	function deleteMenu(){
-		var params = "menuNo";
+	function deleteMenu(menuNo){
+		var params = "menuNo=" + menuNo;
 		var au = new AjaxUtil("${root}/menu/delete",params,"POST");
 		au.send(callback2); 
 	}
 	function callback2(res){
-		alert(res.msg);		
+		alert(res.msg);
+		if(res.biz){
+			 location.reload()
+		}
+	}
+	function updateMenu(menuNo,idx){
+
+		 var menuName = $("[name=updateName]").eq(idx).val();
+		var menuPrice = $("[name=updatePrice]").eq(idx).val();
+		 var param = {menuNo:menuNo,menuName:menuName,menuPrice:menuPrice};
+		$.ajax({
+	           type:"POST",
+	           url:"${root}/menu/update",
+	           data:param,
+	           success :callback3,
+	           error :callback3
+	     });  
+	}
+	function callback3(res){
+		alert(res.msg);
+		if(res.biz){
+			 location.reload()
+		}
 	}
 	
 </script>
@@ -72,22 +94,24 @@
 	</thead>  
     <tbody class='tbody'>
     
-   	<c:forEach items="${mlist}" var="mlist">
+   	<c:forEach items="${mlist}" var="mlist" varStatus="idx" >
    	<tr>
    		<td>${mlist.menuName}<input name="menuNo" type="hidden" value="${mlist.menuNo}"></td>
-   		<td><input name="updateName" type="text"></td>
+   		<td><input name="updateName" type="text" value="${mlist.menuName}"></td>
    		<td>${mlist.menuPrice}</td>
-   		<td><input name="updatePrice" type="text"></td>
-   		<td><button type="button" onclick="deleteMenu()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-   		<button type="button" ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+   		<td><input name="updatePrice" type="text" value="${mlist.menuPrice}" placeholder="${mlist.menuPrice}" ></td>
+   		<td><button type="button" onclick="deleteMenu(${mlist.menuNo})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+   		<button type="button" onclick="updateMenu(${mlist.menuNo},${idx.index})"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
    		</td>
    	</tr>
    </c:forEach>
+   
+   
    <tr>
    <td>메뉴이름<input name="shopNo" type="hidden" value="${slist[0].shopNo}"></td>
-   <td><input name="menuName" type="text"></td>
+   <td><input  name="menuName" type="text"></td>
    <td>메뉴가격</td>
-   <td><input name="menuPrice" type="text"></td>
+   <td><input  name="menuPrice" type="text"></td>
    <td><button type="button" onclick="insertMenu()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td>
    </tr>
        </tbody> 
