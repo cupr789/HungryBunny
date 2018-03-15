@@ -22,19 +22,18 @@
 		var searchAddr = "${address}";
 		alert(searchAddr);
 		alert(shopCaNum);
-		var param = {searchAddr:searchAddr,shopCaNum:shopCaNum};
+	/* 	var param = {searchAddr:searchAddr,shopCaNum:shopCaNum};
 		//param=JSON.stringify(param);
 		console.log(param);
-	 	/* var au = new AjaxUtil2("${root}/map/selectMap",param,"POST");
-		au.send(callback);   */
 		$.ajax({
 			url: "${root}/map/selectMap",
 			type:"POST",
 			data: param,
 			success: function(res){
-				alert("sds");
+				location.href="firstMap.jsp";
 			}
-		})
+		}) */
+		location.href="${root}/path/map/firstMap?address="+searchAddr+"&shopCaNo="+shopCaNum;
 	}
 	
 	function backToCa(){
@@ -61,7 +60,7 @@
 		htmlStr += '<tbody>';
 		for(var key in res){
 			var menu = res[key];
-			htmlStr += '<tr>';
+			htmlStr += '<tr>'; 
 			htmlStr += '<td>'+menu.menuName+'</td>';
 			htmlStr += '<td>'+menu.menuPrice+'</td>';
 			htmlStr += '<td><form action="${root}/res/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
@@ -77,6 +76,7 @@
 	function backToShop(){
 		$("#chToMTable").css("display","none");
 		alert("박혜진");
+	}
 	function callback(res){
 		alert("컨트롤러 찍고옴!!");
 	}

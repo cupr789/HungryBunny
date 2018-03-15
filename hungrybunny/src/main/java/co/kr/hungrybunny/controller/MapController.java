@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.hungrybunny.service.ShopService;
 import co.kr.hungrybunny.vo.MenuVO;
+import co.kr.hungrybunny.vo.ShopVO;
 
 @Controller
 @RequestMapping("/map")
 public class MapController {
 	
+	@Autowired
+	private ShopService shService;
 	
 	
 	@RequestMapping(value="/mapList", method=RequestMethod.GET)
@@ -29,11 +33,16 @@ public class MapController {
 	}
 	
 	@RequestMapping(value="/selectMap", method=RequestMethod.POST)
-	public @ResponseBody ModelAndView getSelectMap(@RequestParam Map<String,Object> map ,ModelAndView mav){
+	public @ResponseBody List<ShopVO> getSelectMap(@RequestParam Map<String,Object> map){
 		System.out.println("들어는옴");
-		System.out.println(map.get("searchAddr"));
-		System.out.println(map.get("shopCaNum"));
-		return mav;
+		System.out.println(map);
+		
+		
+		List<ShopVO> shopList = shService.getShopList(Integer.parseInt(map.get("shopCaNo").toString()));
+		System.out.println(shopList);
+		
+		
+		return shopList;
 	}
 	
 }
