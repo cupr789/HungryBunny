@@ -1,5 +1,7 @@
 package co.kr.hungrybunny.dao.impl;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +32,11 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	
 	
 }
+
+	@Override
+	public int updateUser(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+	int result =ss.update("user_info.updateUserInfo",map);
+		return result;
+	}
 }

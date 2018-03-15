@@ -61,4 +61,27 @@ public class UserInfoServiceImpl implements UserInfoService{
 		}
 		return uidao.insertUserInfo(ui);
 	}
+	
+	@Override
+	public void updateUser(Map<String, Object> map, UserInfoVO ui) {
+		String checkPwd=map.get("check").toString();
+		String checkId=map.get("uiId").toString();
+		if(checkPwd.equals(ui.getUiPwd())) {
+			if(checkId.equals(ui.getUiId())) {
+			int result=uidao.updateUser(map);
+			
+		if(result==1) {
+			map.put("msg","성공");
+			map.put("biz",true);
+		}else {
+			map.put("msg","알수없는이유로 수정실패");
+			
+		}
+		}else {
+		map.put("msg","변경하려는아이디 중복입니다.");
+		}
+	}else {
+		map.put("msg","비밀번호가 일치하지 않습니다");
+	}
+	}
 }
