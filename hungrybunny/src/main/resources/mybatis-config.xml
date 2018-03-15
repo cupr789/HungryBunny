@@ -23,5 +23,6 @@
 		<mapper resource="sql/user_info.xml"/>
 		<mapper resource="sql/hall.xml"/>
 		<mapper resource="sql/adminres.xml"/>
+		<mapper resource="sql/res.xml"/>
 	</mappers>
 </configuration>

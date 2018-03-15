@@ -81,7 +81,7 @@
 			htmlStr += '<td>'+menu.menuName+'</td>';
 			htmlStr += '<td>'+menu.menuPrice+'</td>';
 			// 혜진   :       기존것 -> "${root}/shop/reservation" 에서 reservation을 checkOption으로바꿈
-			htmlStr += '<td><form action="${root}/shop/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
+			htmlStr += '<td><form action="${root}/res/checkOption" method="get"><button name="shopNo" value="'+menu.shopNo+'">예약하기</button></form></td>';
 			htmlStr += '</tr>';
 		}
 		htmlStr += '</tbody>';
