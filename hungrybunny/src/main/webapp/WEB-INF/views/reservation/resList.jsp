@@ -43,22 +43,23 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach><br>
-			<c:forEach items="${menuList}" var="menuList">
+			<c:forEach items="${menuList}" var="menuList" varStatus="status">
 				${menuList.menuName}
-				<select>
-					<option>개수를 선택해주세요</option>
-					<option name="resMenuCnt">1</option>
-					<option name="resMenuCnt">2</option>
-					<option name="resMenuCnt">3</option>
-					<option name="resMenuCnt">4</option>
-					<option name="resMenuCnt">5</option>
+				<input type="hidden" name="menuNo" value="${menuList.menuNo}">
+				<select name="resMenuCnt">
+					<option value="0">개수를 선택해주세요</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
 				</select><br>
 			</c:forEach>
 				결제방식
-				<select>
+				<select name="payNo">
 					<option>결제방식을 선택해주세요</option>
-					<option name="payNo" value="1">휴대폰</option>
-					<option name="payNo" value="2">카드</option>
+					<option value="1">휴대폰</option>
+					<option value="2">카드</option>
 				</select><br>
 			<button>예약</button>
 		</form>

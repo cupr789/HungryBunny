@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="res">
+	<insert id="insertRes" parameterType="map">
+		insert into reservation(resDate, shopNo, hallNo, uiNo, payNo)
+		values(now(), (select shopNo from hall where hallNo=#{hallNo}), #{hallNo}, #{uiNo}, #{payNo});
+		<!-- insert into reservation(resDate, shopNo, hallNo, uiNo, payNo) values (now(),(select shopNo from hall where hallNo=13),13,1,1); -->
+	</insert>
+	
+	<insert id="insertResMenu" parameterType="map">
+		insert into reservationmenu(resMenuCnt, resNo, menuNo)
+		values(#{resMenuCnt},
+		(select resNo from reservation where shopNo = (select shopNo from hall where hallNo=#{hallNo}) and hallNo=#{hallNo} and uiNo=#{uiNo} and PayNo=#{payNo}),
+		#{menuNo})
+	</insert>
+</mapper>  

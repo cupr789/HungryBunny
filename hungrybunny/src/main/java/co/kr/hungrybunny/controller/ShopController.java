@@ -42,16 +42,8 @@ public class ShopController {
 	List<ShopVO> shopList = new ArrayList<ShopVO>();
 	List<ShopCaVO> caList = new ArrayList<ShopCaVO>();
 	
-	@RequestMapping(value="/shopList2/{shopNo}", method=RequestMethod.POST)
-	public @ResponseBody List<ShopVO> getShopList2(@PathVariable("shopNo") int shopNo){
-		System.out.println("shopCaNo받아옴"+shopNo);
-		shopList = shs.getShopList(shopNo);
-		System.out.println("shopList에는 "+shopList);
-		return shopList;
-	}
-	
 	@RequestMapping(value="/shopList/{shopCaNo}", method=RequestMethod.POST)
-	public @ResponseBody List<ShopVO> getShopList(@PathVariable("shopCaNo") int shopCaNo){
+	public @ResponseBody List<ShopVO> getShopList(@PathVariable("shopCaNo") int shopCaNo, HttpSession hs){
 		System.out.println("shopCaNo받아옴"+shopCaNo);
 		shopList = shs.getShopList(shopCaNo);
 		System.out.println("shopList에는 "+shopList);
@@ -59,7 +51,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping(value="/category", method=RequestMethod.GET)
-	public @ResponseBody List<ShopCaVO> getCaList(){
+	public @ResponseBody List<ShopCaVO> getCaList(HttpSession hs){
 		System.out.println("shop컨트롤러의 카테고리에요");
 		caList = scs.getCaList();
 		return caList;
