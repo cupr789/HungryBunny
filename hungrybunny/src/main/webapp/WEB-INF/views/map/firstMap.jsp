@@ -8,7 +8,7 @@
       <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lLWN_ojJYVj9L7235_lg&submodules=geocoder"></script>
   	  <!-- <script src="/resources/js/jquery-3.2.1.js" charset="utf-8"></script> -->
   </head>
-  <body>
+  <body onload="conditionMap()">
   <section class="section">
 <!--   <div>
   	<input id="address" type="text" placeholder="도로명주소 입력해주세요!">
@@ -19,7 +19,26 @@
   </body>
  
  <script>
-      
+ 
+ var getParameters = function (paramName) {
+	    // 리턴값을 위한 변수 선언
+	    var returnValue;
+
+	    // 현재 URL 가져오기
+	    var url = location.href;
+
+	    // get 파라미터 값을 가져올 수 있는 ? 를 기점으로 slice 한 후 split 으로 나눔
+	    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+
+	    // 나누어진 값의 비교를 통해 paramName 으로 요청된 데이터의 값만 return
+	    for (var i = 0; i < parameters.length; i++) {
+	        var varName = parameters[i].split('=')[0];
+	        if (varName.toUpperCase() == paramName.toUpperCase()) {
+	            returnValue = parameters[i].split('=')[1];
+	            return decodeURIComponent(returnValue);
+	        }
+	    }
+	};  
       
     var map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.3595316, 127.1052133),
@@ -39,39 +58,65 @@
     
     var HOME_PATH = window.HOME_PATH || '.';
     
-    var latlngs = [
+    
+    var latlngs=[];
+    
+    function conditionMap(){
+    	var shopCaNo = getParameters("shopCaNo");
+    	var address = getParameters("address");
+    	
+    	var param = {shopCaNo:shopCaNo,address:address};
+    	
+    	$.ajax({
+    		url: "${root}/map/selectMap",
+    		type: "POST",
+    		data: param,
+    		success:function(res){
+    			console.log(res);
+    			var shopList = res;
+    			for(var listIdx in shopList){
+    				latlngs.push(new naver.maps.LatLng(shopList[listIdx].shopLat, shopList[listIdx].shopLon));
+    				for (var i=0, ii=latlngs.length; i<ii; i++) {
+    			        var icon = {
+    			                url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
+    			                size: new naver.maps.Size(24, 37),
+    			                anchor: new naver.maps.Point(12, 37),
+    			                origin: new naver.maps.Point(i * 29, 0)
+    			            },
+    			            marker = new naver.maps.Marker({
+    			                position: latlngs[i],
+    			                map: map,
+    			                icon: icon
+    			            });
+
+    			        marker.set('seq', i);
+
+    			        markerList.push(marker);
+
+    			        marker.addListener('mouseover', onMouseOver);
+    			        marker.addListener('mouseout', onMouseOut);
+
+    			        icon = null;
+    			        marker = null;
+    			    }
+    			}
+    		},
+    	})
+    }
+    
+    
+/*        var latlngs = [
         new naver.maps.LatLng(37.4957695, 127.0293933),
         new naver.maps.LatLng(37.4948495, 127.0309517),
         new naver.maps.LatLng(37.4945086, 127.0302185)
        
-    ];
-    
+    ];    */
 
     var markerList = [];
 
-    for (var i=0, ii=latlngs.length; i<ii; i++) {
-        var icon = {
-                url: HOME_PATH +'/img/example/sp_pins_spot_v3.png',
-                size: new naver.maps.Size(24, 37),
-                anchor: new naver.maps.Point(12, 37),
-                origin: new naver.maps.Point(i * 29, 0)
-            },
-            marker = new naver.maps.Marker({
-                position: latlngs[i],
-                map: map,
-                icon: icon
-            });
-
-        marker.set('seq', i);
-
-        markerList.push(marker);
-
-        marker.addListener('mouseover', onMouseOver);
-        marker.addListener('mouseout', onMouseOut);
-
-        icon = null;
-        marker = null;
-    }
+    
+    
+    
     
     function onMouseOver(e) {
         var marker = e.overlay,
@@ -104,13 +149,6 @@
     
     ////////////////////////////////////////////////////////////////////////// 마커 부분 끝
     
-    
-    
-    
-    
-    
-   
-
     // search by tm128 coordinate
     function searchCoordinateToAddress(latlng) {
         var tm128 = naver.maps.TransCoord.fromLatLngToTM128(latlng);
@@ -174,8 +212,6 @@
             infoWindow.open(map, point);
         });
     }
-    
-    //19:00 쓰리팝 (칼바람,첫조건 20:00전에 끝날시 한판더하고 끝 ), 19:40-19:50 할리스 도착(내일제출 문서작업,프로젝트) 22:00-22:30 귀가
 
     function initGeocoder() {
         map.addListener('click', function(e) {
@@ -196,7 +232,7 @@
             searchAddressToCoordinate($('#address').val());
         });
 		
-        searchAddressToCoordinate("${address}");
+        searchAddressToCoordinate(getParameters("address"));
     }
 
     naver.maps.onJSContentLoaded = initGeocoder;
