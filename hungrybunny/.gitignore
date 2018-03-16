@@ -1,6 +1,6 @@
-/target/
-/web-resources/
-
-/.classpath
-/.project
-/.settings/
+*/bin/*
+*/.git/*
+*/.settings/*
+*/.classpath
+*/.project
+*/target/*
