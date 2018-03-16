@@ -1,7 +1,6 @@
-classpath/
-target/
-web-resources/
+/target/
+/web-resources/
 
-.classpath
-.project
-.settings/
+/.classpath
+/.project
+/.settings/
