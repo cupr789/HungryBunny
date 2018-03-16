@@ -40,7 +40,11 @@
 		}
 	}
 	function callback2(res){
+		
 		alert(res.msg);
+		if(res.biz){
+			location.href="${root}/path/user/updateUser";
+		}
 	}
 	function deleteUser(){
 		 if (confirm("회원탈퇴하시겠습니까?") == true){
@@ -62,6 +66,7 @@
 </script>
 <body onload="info()">
 <section class="section">
+<div ></div>
 <div id="userinfo"></div>
 </section>
 </body>

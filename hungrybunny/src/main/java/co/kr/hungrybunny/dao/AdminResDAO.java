@@ -1,10 +1,11 @@
 package co.kr.hungrybunny.dao;
 
 import java.util.List;
+import java.util.Map;
 
-import co.kr.hungrybunny.vo.AdminResVO;
+
 
 public interface AdminResDAO {
 
-	List<AdminResVO> selectAdminShop(int shopNo);
+	List<Object> selectAdminShop(int shopNo);
 }

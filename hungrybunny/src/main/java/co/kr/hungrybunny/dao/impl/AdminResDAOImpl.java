@@ -1,19 +1,25 @@
 package co.kr.hungrybunny.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.kr.hungrybunny.dao.AdminResDAO;
-import co.kr.hungrybunny.vo.AdminResVO;
 
 @Repository
 public class AdminResDAOImpl implements AdminResDAO{
+	@Autowired
+	private SqlSessionFactory ssf;
 
 	@Override
-	public List<AdminResVO> selectAdminShop(int shopNo) {
-	
-		return null;
+	public List<Object> selectAdminShop(int shopNo) {
+		SqlSession ss = ssf.openSession();
+		List<Object> list= ss.selectList("adminres.selectAdminHave",shopNo);
+		return list;
 	}
 
 }

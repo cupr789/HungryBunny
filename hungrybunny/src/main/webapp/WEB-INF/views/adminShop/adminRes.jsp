@@ -8,7 +8,7 @@
 </head>
 <body>
 <section class="section">
-<h1>매장예야관리 페이지</h1>
+<h1>매장예야관리 페이지${reslist[0]}</h1>
 </section>
 </body>
 </html>

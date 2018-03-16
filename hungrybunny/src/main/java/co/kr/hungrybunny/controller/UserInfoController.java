@@ -85,6 +85,7 @@ public class UserInfoController {
 	@RequestMapping(value = "/userinfo", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getUserInfo(HttpSession hs, Map<String, Object> map) {
 		if (hs.getAttribute("userNo") != null) {
+			
 		} else {
 			map.put("msg","로그인부터해주세요 브끄^^");
 		}
@@ -94,8 +95,8 @@ public class UserInfoController {
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> UpdateUser(HttpSession hs,@RequestBody Map<String, Object> map) {
 		if (hs.getAttribute("userInfo")!= null) {
-		ui=(UserInfoVO)hs.getAttribute("userInfo");
-			uis.updateUser(map, ui);
+			ui=(UserInfoVO)hs.getAttribute("userInfo");
+			uis.updateUser(map, ui,hs);
 		
 		} else {
 			map.put("msg","로그인부터해주세요 브끄^^");
