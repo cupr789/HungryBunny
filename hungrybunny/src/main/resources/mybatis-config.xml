@@ -15,6 +15,7 @@
 		<typeAlias alias="hall" type="co.kr.hungrybunny.vo.HallVO"/>
 		<typeAlias alias="resMenu" type="co.kr.hungrybunny.vo.ReservationMenuVO"/>
 		<typeAlias alias="adminres" type="co.kr.hungrybunny.vo.AdminResVO"/>
+		<typeAlias alias="payCa" type="co.kr.hungrybunny.vo.PayCaVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="sql/menu.xml"/>
@@ -24,5 +25,6 @@
 		<mapper resource="sql/hall.xml"/>
 		<mapper resource="sql/adminres.xml"/>
 		<mapper resource="sql/res.xml"/>
+		<mapper resource="sql/payCa.xml"/>
 	</mappers>
 </configuration>

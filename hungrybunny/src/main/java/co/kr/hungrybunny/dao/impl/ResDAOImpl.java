@@ -1,5 +1,6 @@
 package co.kr.hungrybunny.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,16 +19,32 @@ import co.kr.hungrybunny.vo.ReservationVO;
 public class ResDAOImpl implements ResDAO {
 
 	@Autowired
-	SqlSessionFactory ssf;
+	private SqlSessionFactory ssf;
 	
 	@Override
 	public int insertRes(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
+		int resMenuCnt=0;
+		int menuPrice=0;
+		int payPrice=0;
+		
 		System.out.println("저 다온데여...."+map);
+		String[] resMenuCntList = (String[]) map.get("resMenuCntList");
+		String[] menuPriceList = (String[]) map.get("menuPriceList");
+		for(int i=0;i<resMenuCntList.length;i++) {
+			resMenuCnt = Integer.parseInt(resMenuCntList[i]);
+			menuPrice = Integer.parseInt(menuPriceList[i]);
+			payPrice += (resMenuCnt*menuPrice);
+		}
+		System.out.println("totalPrice 맞긴하니?"+payPrice);
+		map.put("payPrice", payPrice);
 		
 		int result = ss.insert("res.insertRes", map);
 		if(result==1) {
 			System.out.println("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ흐엉 성공했셔");
+		}
+		if(result==0) {
+			map.put("error", "엥? 뭐잘못한거아냐?");
 		}
 		ss.close();
 		return result;
@@ -42,9 +59,7 @@ public class ResDAOImpl implements ResDAO {
 		String[] menuNoList = (String[]) map.get("menuNoList");
 		System.out.println("resMenuCntList : "+resMenuCntList + "menuNoList : "+menuNoList);
 		for(int i=0;i<menuNoList.length;i++) {
-			
 			if(Integer.parseInt(resMenuCntList[i])!=0) {
-				//resMap = new HashMap<String, Object>();
 				map.put("resMenuCnt", resMenuCntList[i]);
 				map.put("menuNo", menuNoList[i]);
 				result = ss.insert("res.insertResMenu", map);
@@ -53,8 +68,18 @@ public class ResDAOImpl implements ResDAO {
 				}
 			}
 		}
+		result = ss.update("hall.updateHallStatus",map);
+		if(result==1) {
+			System.out.println("이것두 흐엉 성공했셔");
+		}
+		System.out.println("uino가 있을꺼야..."+map);
+		String uiNoStr = map.get("uiNo").toString();
+		int uiNo = Integer.parseInt(uiNoStr);
+		System.out.println(uiNo);
+		List<Map<String, Object>> testList = ss.selectList("res.confrimRes", uiNo);
+		System.out.println("하느님 제발 testListㅠㅠㅠ"+testList);
 		ss.close();
-		return 0;
+		return result;
 	}
 
 }

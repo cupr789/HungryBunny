@@ -22,7 +22,7 @@
 <section class="section">
 	<div class="container">
 		<h2>예약하기</h2>
-		<form action="${root}/res/confirmRes" method="GET">
+		<form action="${root}/res/askRes" method="POST">
 			<c:forEach items="${hallList}" var="hallList">
 				<c:choose>
 					<c:when test="${hallList.seatCnt eq '2'}">
@@ -43,9 +43,10 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach><br>
-			<c:forEach items="${menuList}" var="menuList" varStatus="status">
+			<c:forEach items="${menuList}" var="menuList">
 				${menuList.menuName}
 				<input type="hidden" name="menuNo" value="${menuList.menuNo}">
+				<input type="hidden" name="menuPrice" value="${menuList.menuPrice}">
 				<select name="resMenuCnt">
 					<option value="0">개수를 선택해주세요</option>
 					<option value="1">1</option>
@@ -53,13 +54,14 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-				</select><br>
+				</select>
+				(${menuList.menuPrice}원)<br>
 			</c:forEach>
 				결제방식
-				<select name="payNo">
-					<option>결제방식을 선택해주세요</option>
-					<option value="1">휴대폰</option>
-					<option value="2">카드</option>
+				<select name="payCaNo">
+					<c:forEach items="${payCaList}" var="payCaList">
+						<option value="${payCaList.payCaNo}">${payCaList.payType}</option>
+					</c:forEach>
 				</select><br>
 			<button>예약</button>
 		</form>

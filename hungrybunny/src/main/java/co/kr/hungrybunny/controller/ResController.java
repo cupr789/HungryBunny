@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.hungrybunny.service.HallService;
+import co.kr.hungrybunny.service.PayCaService;
 import co.kr.hungrybunny.service.ResService;
 import co.kr.hungrybunny.vo.HallVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -27,39 +28,48 @@ public class ResController {
 	private HallService hs;
 	@Autowired
 	private ResService rs;
+	@Autowired
+	private PayCaService ps;
 	
 	List<HallVO> list = new ArrayList<HallVO>();
 	Map<String, Object> map = new HashMap<String, Object>();
 	
 	@RequestMapping(value="/checkOption", method = RequestMethod.GET)
 	public ModelAndView getCheckOption(ModelAndView mav,@RequestParam Map<String, Object> map, HttpSession hs) {
-		System.out.println("res컨트롤러??"+map.get("shopNo"));
 		String str = map.get("shopNo").toString();
 		int shopNo = Integer.parseInt(str);
 		map = this.hs.getCheckOption(shopNo);
-		System.out.println("map을 뽑아보자"+map);
 		mav.addObject("hallList", map.get("hallList"));
 		mav.addObject("menuList", map.get("menuList"));
+		mav.addObject("payCaList", map.get("payCaList"));
 		mav.setViewName("reservation/resList");
 		return mav;
 	}
 	
-	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
+	@RequestMapping(value="/askRes", method = RequestMethod.POST)
 	public ModelAndView insertRes(ModelAndView mav,@RequestParam Map<String, Object> map, 
 			@RequestParam("resMenuCnt") String[] resMenuCntList, 
 			@RequestParam("menuNo") String[] menuNoList,
+			@RequestParam("menuPrice") String[] menuPriceList,
 			HttpSession hs) {
 		System.out.println("res컨트롤러??????????");		
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		System.out.println("map을 뽑아보자"+map);
-		System.out.println("resMenuCnt을 뽑아보자"+resMenuCntList);
-		System.out.println("menuNoList을 뽑아보자"+menuNoList);
 		int uiNo = ui.getUiNo();
 		map.put("uiNo", uiNo);
 		map.put("resMenuCntList", resMenuCntList);
 		map.put("menuNoList", menuNoList);
-		System.out.println("map을 뽑아보자"+map);
-		int result = rs.insertRes(map);
-		return null;
+		map.put("menuPriceList", menuPriceList);
+	    try {
+	    	int result = rs.insertRes(map);
+	    	mav.addObject("error", map.get("error"));
+	    	System.out.println(map);
+			mav.setViewName("reservation/confirmRes");
+			return mav;
+		} catch (Exception e) {
+			mav.setViewName("reservation/confirmRes");
+			return mav;
+		}
+		
 	}
 }

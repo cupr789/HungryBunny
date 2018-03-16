@@ -4,15 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="res">
 	<insert id="insertRes" parameterType="map">
-		insert into reservation(resDate, shopNo, hallNo, uiNo, payNo)
-		values(now(), (select shopNo from hall where hallNo=#{hallNo}), #{hallNo}, #{uiNo}, #{payNo});
-		<!-- insert into reservation(resDate, shopNo, hallNo, uiNo, payNo) values (now(),(select shopNo from hall where hallNo=13),13,1,1); -->
+		insert into reservation(resDate,shopNo,hallNo,uiNo,payCaNo,payPrice)
+		values(now(), (select shopNo from hall where hallNo=#{hallNo}), #{hallNo}, #{uiNo}, #{payCaNo}, #{payPrice});
 	</insert>
 	
 	<insert id="insertResMenu" parameterType="map">
 		insert into reservationmenu(resMenuCnt, resNo, menuNo)
-		values(#{resMenuCnt},
-		(select resNo from reservation where shopNo = (select shopNo from hall where hallNo=#{hallNo}) and hallNo=#{hallNo} and uiNo=#{uiNo} and PayNo=#{payNo}),
-		#{menuNo})
+		values(#{resMenuCnt}, (select resNo from reservation where hallNo=#{hallNo}), #{menuNo});
 	</insert>
+	
+	<select id="confrimRes" parameterType="int" resultType="map">
+		select s.shopname, s.shopAddress, s.shopHP, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.PayType, h.seatCnt
+		from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
+		where r.uiNo=#{uiNo}
+		and r.shopNo=s.shopNo
+		and rm.menuNo=m.menuNo
+		and rm.resNo=r.resNo
+		and r.PayCaNo=p.PayCaNo
+		and r.hallNo=h.hallNo group by menuName;
+	</select>
 </mapper>  
