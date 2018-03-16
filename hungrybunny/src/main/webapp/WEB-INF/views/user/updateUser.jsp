@@ -42,6 +42,21 @@
 	function callback2(res){
 		alert(res.msg);
 	}
+	function deleteUser(){
+		 if (confirm("회원탈퇴하시겠습니까?") == true){
+				var params = "uiNo,check";
+				var au = new AjaxUtil("${root}/user/deleteUser",params,"POST");
+				au.send(callback3);  
+		}else{
+			return;
+		}
+	}
+	function callback3(res){
+		alert(res.msg);
+		if(res.biz){
+			location.href="${root}/path/user/login";
+		}
+	}
 	
 
 </script>
@@ -49,6 +64,5 @@
 <section class="section">
 <div id="userinfo"></div>
 </section>
-<input type="password">
 </body>
 </html>

@@ -14,7 +14,7 @@ String updateUser="";
 String updateUserUrl="";
 if(ui!=null){
 	updateUser="개인정보변경";
-	updateUserUrl="http://localhost/path/user/updateUser";
+	updateUserUrl="http://localhost/path/user/checkPwd";
 	loginMenu = "Logout";
 	loginUrl = root+"/user/logout";
 	if (ui.getAdmin()==1){

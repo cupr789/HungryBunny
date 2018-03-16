@@ -32,7 +32,6 @@ public class UserInfoController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> login(@RequestBody Map<String,Object> rmap, HttpSession hs){
 		Map<String, Object> map = new HashMap<String, Object>();
-	
 		ui.setUiId((String) rmap.get("uiId"));
 		ui.setUiPwd((String) rmap.get("uiPwd"));
 		
@@ -97,6 +96,34 @@ public class UserInfoController {
 		if (hs.getAttribute("userInfo")!= null) {
 		ui=(UserInfoVO)hs.getAttribute("userInfo");
 			uis.updateUser(map, ui);
+		
+		} else {
+			map.put("msg","로그인부터해주세요 브끄^^");
+		}
+		
+		return map;
+	}
+	@RequestMapping(value = "/checkPwd", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> checkPwd(HttpSession hs,@RequestBody Map<String, Object> map) {
+		if (hs.getAttribute("userInfo")!= null) {
+		String uiPwd=map.get("uiPwd").toString();
+		ui=(co.kr.hungrybunny.vo.UserInfoVO) hs.getAttribute("userInfo");
+		if(uiPwd.equals(ui.getUiPwd())) {
+			map.put("biz",true);
+		}else {
+			map.put("msg","비밀번호가 일치하지 않습니다");
+		}
+		} else {
+			map.put("msg","로그인부터해주세요 브끄^^");
+		}
+		
+		return map;
+	}
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> deleteUser(HttpSession hs,@RequestBody Map<String, Object> map) {
+		if (hs.getAttribute("userInfo")!= null) {
+			ui=(co.kr.hungrybunny.vo.UserInfoVO) hs.getAttribute("userInfo");
+			uis.deleteUser(map,ui);
 		
 		} else {
 			map.put("msg","로그인부터해주세요 브끄^^");
