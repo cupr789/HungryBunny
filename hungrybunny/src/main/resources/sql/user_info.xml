@@ -23,4 +23,8 @@
 	<update id="updateUserInfo" parameterType="map">
 	update user_info set uiName=#{uiName}, uiId=#{uiId}, uiPwd=#{uiPwd}, uiHP=#{uiHP}, admin=#{admin} where uiNo=#{uiNo}
 	</update>
+	<delete id="deleteUserInfo" parameterType="int">
+	delete from user_info where uiNo=#{num}
+	
+	</delete>
 </mapper>  

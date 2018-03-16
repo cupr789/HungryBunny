@@ -8,5 +8,6 @@ public interface UserInfoService {
 	public boolean login(Map<String,Object> rMap, UserInfoVO ui);
 	public int join(UserInfoVO ui);
 	public int checkUserId(String uiId);
-	public void updateUser(Map<String,Object> Map,UserInfoVO ui);
+	public void updateUser(Map<String,Object> map,UserInfoVO ui);
+	public void deleteUser(Map<String,Object> map,UserInfoVO ui);
 }

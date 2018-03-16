@@ -39,4 +39,11 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	int result =ss.update("user_info.updateUserInfo",map);
 		return result;
 	}
+
+	@Override
+	public int deleteUser(int uiNo) {
+		SqlSession ss = ssf.openSession();
+		int result =ss.delete("user_info.deleteUserInfo",uiNo);
+		return result;
+	}
 }

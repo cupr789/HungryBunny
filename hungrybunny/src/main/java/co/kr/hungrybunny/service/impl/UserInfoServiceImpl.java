@@ -21,7 +21,6 @@ public class UserInfoServiceImpl implements UserInfoService{
 		
 		
 		ui = uidao.selectUserInfo(ui);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~"+ui);
 		rMap.put("msg", "아이디 비밀번호를 확인해주세요.");
 		rMap.put("biz", false);
 		if(ui!=null) {
@@ -83,5 +82,22 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}else {
 		map.put("msg","비밀번호가 일치하지 않습니다");
 	}
+	}
+
+	@Override
+	public void deleteUser(Map<String, Object> map,UserInfoVO ui) {
+		String uiPwd=map.get("check").toString();
+		if(uiPwd.equals(ui.getUiPwd())) {
+		String str=map.get("uiNo").toString();
+		int uiNo=Integer.parseInt(str);
+		int result=uidao.deleteUser(uiNo);
+		if(result==1) {
+			map.put("msg","이런....매정한사람....");
+		}else {
+			map.put("msg","관리자에게 문의바랍니다 ㅜㅜ ");
+		}
+		}else {
+			map.put("msg","비밀번호를 잘못입력했어요 ㅜㅜ ");
+		}
 	}
 }

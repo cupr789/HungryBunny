@@ -11,4 +11,5 @@ public interface UserInfoDAO {
 	public int insertUserInfo(UserInfoVO ui);
 	
 	public int updateUser(Map<String,Object> map);
+	public int deleteUser(int uiNo);
 }
