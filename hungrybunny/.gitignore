@@ -12,6 +12,7 @@ local.properties
 .settings/
 .loadpath
 */target/*
+*/m2e-wtp/*
 
 # External tool builders
 .externalToolBuilders/
