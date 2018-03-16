@@ -1,3 +1,7 @@
-/classpath/
-/target/
-/web-resources/
+classpath/
+target/
+web-resources/
+
+.classpath
+.project
+.settings/

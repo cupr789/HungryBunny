@@ -1,3 +1,4 @@
-/target/
-
-/hungrybunny/
+hungrybunny/classpath/
+hungrybunny/target/
+hungrybunny/web-resources/
+hungrybunny/.settings/
