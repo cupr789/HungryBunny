@@ -11,6 +11,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+*/target/*
 
 # External tool builders
 .externalToolBuilders/
@@ -37,7 +38,6 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 pom.properties
-*pom.properties
 
 ### Java ###
 *.class
