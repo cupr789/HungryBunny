@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.hungrybunny.service.HallService;
 import co.kr.hungrybunny.service.PayCaService;
 import co.kr.hungrybunny.service.ResService;
 import co.kr.hungrybunny.vo.HallVO;
+import co.kr.hungrybunny.vo.ShopCaVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @Controller
@@ -70,7 +72,18 @@ public class ResController {
 			mav.setViewName("reservation/confirmRes");
 			return mav;
 		}
-		
+	}
+	
+	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
+	public @ResponseBody List<Object> getConfirmRes(HttpSession hs){
+		System.out.println("??????????????????????롸???");
+		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
+		int uiNo = ui.getUiNo();
+		System.out.println("uiNo에요"+uiNo);
+		List<Object> resList = new ArrayList<Object>();
+		resList = rs.getConfirmRes(uiNo);
+		System.out.println("resList!!!!!!!!!!!!!!!"+resList);
+		return resList;
 	}
 	
 }

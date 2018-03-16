@@ -13,8 +13,8 @@
 		values(#{resMenuCnt}, (select resNo from reservation where hallNo=#{hallNo}), #{menuNo});
 	</insert>
 	
-	<select id="confrimRes" parameterType="int" resultType="map">
-		select s.shopname, s.shopAddress, s.shopHP, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.PayType, h.seatCnt
+	<select id="confirmRes" parameterType="int" resultType="map">
+		select s.shopName, s.shopAddress, s.shopHP, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.payType, h.seatCnt
 		from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
 		where r.uiNo=#{uiNo}
 		and r.shopNo=s.shopNo

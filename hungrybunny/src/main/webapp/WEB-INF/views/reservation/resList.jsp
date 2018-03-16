@@ -44,7 +44,7 @@
 				</c:choose>
 			</c:forEach><br>
 			<c:forEach items="${menuList}" var="menuList">
-				${menuList.menuName}
+				${menuList.menuName} (${menuList.menuPrice}원)
 				<input type="hidden" name="menuNo" value="${menuList.menuNo}">
 				<input type="hidden" name="menuPrice" value="${menuList.menuPrice}">
 				<select name="resMenuCnt">
@@ -54,8 +54,7 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-				</select>
-				(${menuList.menuPrice}원)<br>
+				</select><br>
 			</c:forEach>
 				결제방식
 				<select name="payCaNo">

@@ -1,5 +1,6 @@
 package co.kr.hungrybunny.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,9 @@ public class ResServiceImpl implements ResService{
 		return 0;
 	}
 
+	@Override
+	public List<Object> getConfirmRes(int uiNo){
+		System.out.println("서비스에요 uiNo는 "+uiNo);
+		return rdao.selectConfirmRes(uiNo);
+	}
 }
