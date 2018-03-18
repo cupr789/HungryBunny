@@ -27,7 +27,6 @@ public class ResServiceImpl implements ResService{
 
 	@Override
 	public List<Object> getConfirmRes(int uiNo){
-		System.out.println("서비스에요 uiNo는 "+uiNo);
 		return rdao.selectConfirmRes(uiNo);
 	}
 }

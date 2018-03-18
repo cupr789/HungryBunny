@@ -21,6 +21,6 @@
 		and rm.menuNo=m.menuNo
 		and rm.resNo=r.resNo
 		and r.PayCaNo=p.PayCaNo
-		and r.hallNo=h.hallNo group by menuName;
+		and r.hallNo=h.hallNo group by menuName order by s.shopName;
 	</select>
 </mapper>  

@@ -36,7 +36,6 @@ public class ResDAOImpl implements ResDAO {
 			menuPrice = Integer.parseInt(menuPriceList[i]);
 			payPrice += (resMenuCnt*menuPrice);
 		}
-		System.out.println("totalPrice 맞긴하니?"+payPrice);
 		map.put("payPrice", payPrice);
 		
 		int result = ss.insert("res.insertRes", map);
@@ -72,12 +71,6 @@ public class ResDAOImpl implements ResDAO {
 		if(result==1) {
 			System.out.println("이것두 흐엉 성공했셔");
 		}
-//		System.out.println("uino가 있을꺼야..."+map);
-//		String uiNoStr = map.get("uiNo").toString();
-//		int uiNo = Integer.parseInt(uiNoStr);
-//		System.out.println(uiNo);
-//		List<Map<String, Object>> testList = ss.selectList("res.confrimRes", uiNo);
-//		System.out.println("하느님 제발 testListㅠㅠㅠ"+testList);
 		ss.close();
 		return result;
 	}
@@ -85,10 +78,9 @@ public class ResDAOImpl implements ResDAO {
 	@Override
 	public List<Object> selectConfirmRes(int uiNo){
 		SqlSession ss = ssf.openSession();
-		System.out.println("다오에서 uiNo받았지?"+uiNo);
 		List<Object> confirmResList = ss.selectList("res.confirmRes", uiNo);
 		System.out.println("confirmResList???"+confirmResList);
-		System.out.println("하느님 제발 confirmResListㅠㅠㅠ"+confirmResList);
+		ss.close();
 		return confirmResList;
 	}
 

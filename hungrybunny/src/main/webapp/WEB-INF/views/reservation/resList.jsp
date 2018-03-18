@@ -17,12 +17,28 @@
 <link rel="stylesheet" type="text/css" href="${rPath}/css/button/vicons-font.css" />
 <link rel="stylesheet" type="text/css" href="${rPath}/css/button/base.css" />
 <link rel="stylesheet" type="text/css" href="${rPath}/css/button/buttons.css" />
-
+<script>
+function validate(){
+	var payCaNo = document.getElementById("payCaNo");
+	var getInTime = document.getElementById("getInTime");
+//	alert('선택된 옵션 text 값=' + target.options[target.selectedIndex].text);     // 옵션 text 값
+//	alert('선택된 옵션 value 값=' + target.options[target.selectedIndex].value);
+	
+	if(payCaNo.options[payCaNo.selectedIndex].value==0){
+		alert("결제방식을 선택해주세요");
+		return false;
+	}
+	if(getInTime.options[getInTime.selectedIndex].value==0){
+		alert("도착 예정 시간을 선택해주세요");
+		return false;
+	}
+}
+</script>
 <body>
 <section class="section">
 	<div class="container">
 		<h2>예약하기</h2>
-		<form action="${root}/res/askRes" method="POST">
+		<form action="${root}/res/askRes" method="POST" onsubmit="return validate();">
 			<c:forEach items="${hallList}" var="hallList">
 				<c:choose>
 					<c:when test="${hallList.seatCnt eq '2'}">
@@ -47,20 +63,31 @@
 				${menuList.menuName} (${menuList.menuPrice}원)
 				<input type="hidden" name="menuNo" value="${menuList.menuNo}">
 				<input type="hidden" name="menuPrice" value="${menuList.menuPrice}">
-				<select name="resMenuCnt">
+				<div class="form-group">
+				<select class="form-control" name="resMenuCnt">
 					<option value="0">개수를 선택해주세요</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-				</select><br>
+				</select></div><br>
 			</c:forEach>
 				결제방식
-				<select name="payCaNo">
+				<div class="form-group">
+				<select class="form-control" name="payCaNo" id="payCaNo">
+					<option value="0">결제방식을 선택해주세요</option>
 					<c:forEach items="${payCaList}" var="payCaList">
 						<option value="${payCaList.payCaNo}">${payCaList.payType}</option>
 					</c:forEach>
+				</select></div><br>
+				도착예정시간
+				<div class="form-group">
+				<select class="form-control" name="getInTime" id="getInTime">
+					<option value="0">도착 예정 시간을 선택해주세요</option>
+					<option value="10">10분 안으로 도착</option>
+					<option value="20">20분 안으로 도착</option>
+					<option value="30">30분 안으로 도착</option>
 				</select><br>
 			<button>예약</button>
 		</form>
