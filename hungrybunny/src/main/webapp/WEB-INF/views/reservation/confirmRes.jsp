@@ -8,43 +8,41 @@
 </head>
 <script>
 function confirmRes(){
-	alert("??");
 	var au = new AjaxUtil2("${root}/res/confirmRes",null,"GET");
 	au.send(test);
 }
 function test(res){
-	alert("asdfa");
-	$("#res").css("display","none");
 	var htmlStr = '';
-/*   	for(var i=0;i<res.length;i++){
-		if(res[i].shopName==res[i+1].shopName){ //자리랑 가격
-			htmlStr += '자리는 ' + res[i].seatCnt +'인석' + '<br>';
-			htmlStr += '가격은 ' + res[i].payPrice + '<br>';
-			alert(res[i].shopName); 
-		}
-		htmlStr += '개수는 ' + res[i].resMenuCnt + '<br>'; 
-		htmlStr += '가게 ' + res[i].shopName + '<br>';
-		htmlStr += '메뉴는 ' + res[i].menuName + '<br>';
-	} */
-		for(var key in res){
-			var resList = res[key];
-			htmlStr += '개수는 ' + resList.resMenuCnt + '<br>'; 
-			htmlStr += '가게 ' + resList.shopName + '<br>';
-			htmlStr += '자리는 ' + resList.seatCnt +'인석' + '<br>';
-			htmlStr += '가격은 ' + resList.payPrice + '<br>';
-			htmlStr += '메뉴는 ' + resList.menuName + '<br><br><br><br>';
-		}
-		htmlStr += '<button>예약취소</button><br><br><br><br>'
-		$("#resList").html(htmlStr);
+	htmlStr += '<div class="container">';
+	htmlStr += '<h1>예약확인</h1>';
+	htmlStr += '<table class="table table-bordered">';
+	htmlStr += '<thead>';
+	htmlStr += '<tr>'; 
+	htmlStr += '<th>가게</th>';
+	htmlStr += '<th>메뉴</th>';
+	htmlStr += '<th>자리</th>';
+	htmlStr += '<th>금액</th>';
+	htmlStr += '<th></th>';
+	htmlStr += '</tr>';
+	htmlStr += '<tbody>';
+	htmlStr += '<tr>';
+	htmlStr += '<td>' + res[0].shopName + '</td>';
+	htmlStr += '<td>';
+	for(var key in res){
+		var resList = res[key];
+		htmlStr += resList.menuName + '('+resList.menuPrice+'원) X '+ resList.resMenuCnt + '<br>';
+	}
+	htmlStr += '</td>';
+	htmlStr += '<td>' + resList.seatCnt +'인석' + '</td>';
+	htmlStr += '<td>' + resList.payPrice + '</td>';
+	htmlStr += '<td><button>예약취소</button></td>';
+	htmlStr += '</tr>';
+	$("#resList").html(htmlStr);
 }
 </script>
-<body>
+<body onload="confirmRes()">
 <section class="section">
 <div id="resList">
-<div id="res">
-<h1>예약이 완료되었습니다!</h1>
-<button onclick="confirmRes()">예약확인</button>
-</div>
 </div>
 </section>
 </body>

@@ -72,10 +72,10 @@ public class ResController {
 	    	int result = rs.insertRes(map);
 	    	mav.addObject("error", map.get("error"));
 	    	System.out.println(map);
-			mav.setViewName("reservation/confirmRes");
+			mav.setViewName("reservation/completeRes");
 			return mav;
 		} catch (Exception e) {
-			mav.setViewName("reservation/confirmRes");
+			mav.setViewName("reservation/completeRes");
 			return mav;
 		}
 	}
