@@ -113,7 +113,7 @@ public class MenuController {
 		
 		return map;
 	}
-	
+	//재형이 추가함 브끄^^
 	@RequestMapping(value="/getMenuName", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getMenuName(MenuVO mv,@RequestBody Map<String,Object> map,HttpSession hs){
 		//Map<String, Object> map = new HashMap<String, Object>();
