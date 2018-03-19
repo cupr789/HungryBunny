@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.kr.hungrybunny.dao.MenuDAO;
+import co.kr.hungrybunny.dao.impl.MenuDAOImpl;
 import co.kr.hungrybunny.service.MenuService;
 import co.kr.hungrybunny.vo.MenuVO;
 import co.kr.hungrybunny.vo.ReservationMenuVO;
@@ -63,5 +64,15 @@ public class MenuServiceImpl implements MenuService {
 			return menudao.updateMenu(map);
 		}
 		
+	}
+	
+	
+	
+	// 사장메세지에서 메뉴이름 보기위해 (재형)
+	@Override
+	public Map<String, Object> getMenuName(Map<String, Object> map) {
+		
+		menudao.selectMenuName(map);
+		return null;
 	}
 }

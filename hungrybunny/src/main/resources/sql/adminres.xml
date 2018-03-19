@@ -14,4 +14,7 @@
 			and rm.menuNo=m.menuNo
 			and r.hallNo=h.hallNo
 	</select>
+	<select id="selecthall" parameterType="int" resultType="map">
+	select * from hall where shopNo=#{num}
+	</select>
 </mapper>  

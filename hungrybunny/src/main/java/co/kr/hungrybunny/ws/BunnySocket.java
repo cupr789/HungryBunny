@@ -19,29 +19,43 @@ import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import co.kr.hungrybunny.controller.UrlController;
+import co.kr.hungrybunny.service.MenuService;
+import co.kr.hungrybunny.service.ResService;
+import co.kr.hungrybunny.service.impl.MenuServiceImpl;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @ServerEndpoint(value = "/alarm", 
         configurator = GetHttpSessionConfigurator.class)
 public class BunnySocket {	
-
+	
 	private static final Logger log = LoggerFactory.getLogger(BunnySocket.class);
 	private static Map<String,Session> sessionMap = Collections
 			.synchronizedMap(new HashMap<String,Session>());
 	
 	private ObjectMapper mapper = new ObjectMapper();
+	private EndpointConfig config;
 	
 	@OnMessage
 	public void onMessage(String text, Session session) throws IOException {
 
+		final HttpSession hs = (HttpSession) config.getUserProperties()
+                .get(HttpSession.class.getName());
+		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
+		final String userId = uiv.getUiId();
+		
 	    TypeReference<HashMap<String,Object>> typeRef 
 	            = new TypeReference<HashMap<String,Object>>() {};
 
-		Map<String,String> map = mapper.readValue(text, typeRef);
-		log.info("text = >{}",map);
-		String targetId = map.get("target");
+	    //// Object 의문점있음
+	            
+		Map<String,Object> map = mapper.readValue(text, typeRef);
+		Object targetId = map.get("target");
+		map.put("senderId", userId);
+		System.out.println("버니 소켓 : "+map);
+		text = mapper.writeValueAsString(map);
 		
 		synchronized (sessionMap) {
 			final Iterator<String> it = sessionMap.keySet().iterator();
@@ -67,7 +81,8 @@ public class BunnySocket {
 	}
 	@OnOpen
 	public void onOpen(Session session, EndpointConfig config) {
-		System.out.println(session);
+		System.out.println(session+"  세션??");
+		this.config = config;
 		final HttpSession hs = (HttpSession) config.getUserProperties()
                 .get(HttpSession.class.getName());
 		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
