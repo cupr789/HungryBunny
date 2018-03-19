@@ -6,7 +6,10 @@
 	<select id="selectResList" parameterType="int" resultType="hall">
 		select *, count(1) as cnt from hall where shopNo=#{shopNo} and hallStatus=0 group by seatCnt;
 	</select>
-	<update id="updateHallStatus" parameterType="map">
+	<update id="updateHallStatusOne" parameterType="map">
 		update hall set hallstatus=1 where hallNo=#{hallNo};
+	</update>
+	<update id="updateHallStatusZero" parameterType="map">
+		update hall set hallStatus=0 where hallNo=(select hallNo from reservation where uiNo=#{uiNo} and resNo=#{resNo});
 	</update>
 </mapper>  

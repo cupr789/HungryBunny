@@ -6,5 +6,5 @@ import java.util.Map;
 import co.kr.hungrybunny.vo.HallVO;
 
 public interface HallService {
-	Map<String,Object> getCheckOption(int shopNo);
+	public Map<String,Object> getCheckOption(int shopNo);
 }

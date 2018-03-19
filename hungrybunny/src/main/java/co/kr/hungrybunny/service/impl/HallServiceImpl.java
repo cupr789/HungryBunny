@@ -29,5 +29,4 @@ public class HallServiceImpl implements HallService{
 		map.put("payCaList", pdao.selectPayCa());
 		return map;
 	}
-
 }

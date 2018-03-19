@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="res">
 	<insert id="insertRes" parameterType="map">
-		insert into reservation(resDate,shopNo,hallNo,uiNo,payCaNo,payPrice)
-		values(now(), (select shopNo from hall where hallNo=#{hallNo}), #{hallNo}, #{uiNo}, #{payCaNo}, #{payPrice});
+		insert into reservation(resDate,shopNo,hallNo,uiNo,payCaNo,payPrice,currentStatus)
+		values(now(), (select shopNo from hall where hallNo=#{hallNo}), #{hallNo}, #{uiNo}, #{payCaNo}, #{payPrice},1);
 	</insert>
 	
 	<insert id="insertResMenu" parameterType="map">
@@ -14,13 +14,25 @@
 	</insert>
 	
 	<select id="confirmRes" parameterType="int" resultType="map">
-		select s.shopName, s.shopAddress, s.shopHP, m.menuName, m.menuPrice, rm.resMenuCnt, r.resDate, r.payPrice, p.payType, h.seatCnt
+		select s.shopName, s.shopAddress, s.shopHP, m.menuName, m.menuPrice, rm.resMenuCnt, r.resDate, r.payPrice, p.payType, h.seatCnt, r.currentStatus, r.resNo
 		from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
 		where r.uiNo=#{uiNo}
 		and r.shopNo=s.shopNo
 		and rm.menuNo=m.menuNo
 		and rm.resNo=r.resNo
 		and r.PayCaNo=p.PayCaNo
-		and r.hallNo=h.hallNo group by menuName order by s.shopName;
+		and r.hallNo=h.hallNo group by menuName, shopName order by s.shopName;
 	</select>
+	
+	<delete id="deleteResMenu" parameterType="int">
+		delete from reservationmenu where resNo in (select resNo from reservation where uiNo=#{uiNo});
+	</delete>
+	
+	<delete id="deleteRes" parameterType="int">
+		delete from reservation where uiNo=#{uiNo};
+	</delete>
+	
+	<update id="updateResStatus" parameterType="map">
+		update reservation set currentStatus=0 where uiNo=#{uiNo} and resNo=#{resNo};
+	</update>
 </mapper>  

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,4 +93,21 @@ public class ResController {
 		return resList;
 	}
 	
+	@RequestMapping(value="/cancleRes/{resNo}", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> cancleRes(HttpSession hs, @PathVariable("resNo") int resNo){
+		System.out.println("에약취소 컨트롤러");
+		Map<String, Object> map = new HashMap<String, Object>();
+		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
+		int uiNo = ui.getUiNo();
+		map.put("uiNo",uiNo);
+		map.put("resNo",resNo);
+		int result = rs.cancleRes(map);
+		System.out.println("최종 result임"+result);
+		if(result==1) {
+			map.put("result", "취소 완료!!");
+		}else if(result==0) {
+			map.put("result", "취소 실패ㅠㅠ!!");
+		}
+		return map;
+	}
 }

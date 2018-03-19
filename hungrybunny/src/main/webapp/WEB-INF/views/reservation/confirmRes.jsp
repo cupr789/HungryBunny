@@ -12,38 +12,85 @@ function confirmRes(){
 	au.send(test);
 }
 function test(res){
-	var htmlStr = '';
-	htmlStr += '<div class="container">';
-	htmlStr += '<h1>예약확인</h1>';
-	htmlStr += '<table class="table table-bordered">';
-	htmlStr += '<thead>';
-	htmlStr += '<tr>'; 
-	htmlStr += '<th>가게</th>';
-	htmlStr += '<th>메뉴</th>';
-	htmlStr += '<th>자리</th>';
-	htmlStr += '<th>금액</th>';
-	htmlStr += '<th></th>';
-	htmlStr += '</tr>';
-	htmlStr += '<tbody>';
-	htmlStr += '<tr>';
-	htmlStr += '<td>' + res[0].shopName + '</td>';
-	htmlStr += '<td>';
-	for(var key in res){
-		var resList = res[key];
-		htmlStr += resList.menuName + '('+resList.menuPrice+'원) X '+ resList.resMenuCnt + '<br>';
+	var resList = res;
+	for(var i=0;i<res.length;i++){
+		if(res[i].currentStatus==0){
+			resList.splice(i,1);
+			i--;
+		}
 	}
-	htmlStr += '</td>';
-	htmlStr += '<td>' + resList.seatCnt +'인석' + '</td>';
-	htmlStr += '<td>' + resList.payPrice + '</td>';
-	htmlStr += '<td><button>예약취소</button></td>';
-	htmlStr += '</tr>';
+
+	var htmlStr = '';
+	
+	if(res.length==0){
+		htmlStr += '<h2>예약내역이 없습니다</h2>';
+	}else{
+		htmlStr += '<table class="table table-bordered">';
+		htmlStr += '<thead>';
+		htmlStr += '<tr>'; 
+		htmlStr += '<th>가게</th>';
+		htmlStr += '<th>메뉴</th>';
+		htmlStr += '<th>금액</th>';
+		htmlStr += '<th>결제방식</th>';
+		htmlStr += '<th>날짜</th>';
+		htmlStr += '</tr>';
+		htmlStr += '<tbody>';
+		for(var i=0;i<res.length;i++){
+			for(var j=0;j<i;j++){
+				if(res[i].shopName==res[j].shopName){
+					res[i].shopName = '';
+					res[i].payPrice = '';
+					res[i].resMenuCnt = '';
+					res[i].payType = '';
+					res[i].resDate = '';
+				}
+			}
+		}
+		var resNo = '';
+		for(var i=0;i<res.length;i++){
+			htmlStr += '<tr>';
+			htmlStr += '<td>'+res[i].shopName+'</td>';
+			htmlStr += '<td>'+res[i].menuName+'('+res[i].menuPrice+'원) X'+res[i].resMenuCnt+'</td>';
+			htmlStr += '<td>'+res[i].payPrice+'</td>';
+			htmlStr += '<td>'+res[i].payType+'</td>';
+			htmlStr += '<td>'+res[i].resDate+'</td>';
+			htmlStr += '</tr>'; 
+			var resNo = res[i].resNo;
+		}
+		htmlStr += '</tbody>';
+		htmlStr += '</table>';
+		htmlStr += '<button onclick="validate('+resNo+')">예약취소</button>'
+	}
 	$("#resList").html(htmlStr);
+}
+
+function validate(resNo){
+	alert(resNo);
+	var check = confirm("정말로 취소하시겠습니까?");
+	if(check == true){
+		var au = new AjaxUtil2("${root}/res/cancleRes/"+resNo,null,"POST");
+		au.send(cancleRes);
+	}
+	if(check == false){
+		return false;
+	}
+}
+
+function cancleRes(res){
+	if(res.result){
+		alert(res.result);
+		location.reload();
+	}
 }
 </script>
 <body onload="confirmRes()">
 <section class="section">
-<div id="resList">
-</div>
+	<div class="container">
+	<h1>예약확인</h1>
+		<div id="resList">
+		</div>
+		<button><a href="${pPath}/reservation/confirmRes2">지난 예약 보기</a></button>
+	</div>
 </section>
 </body>
 </html>

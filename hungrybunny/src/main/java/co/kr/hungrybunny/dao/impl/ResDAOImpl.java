@@ -67,10 +67,6 @@ public class ResDAOImpl implements ResDAO {
 				}
 			}
 		}
-		result = ss.update("hall.updateHallStatus",map);
-		if(result==1) {
-			System.out.println("이것두 흐엉 성공했셔");
-		}
 		ss.close();
 		return result;
 	}
@@ -83,5 +79,31 @@ public class ResDAOImpl implements ResDAO {
 		ss.close();
 		return confirmResList;
 	}
-
+	
+	@Override
+	public int deleteResMenu(int uiNo) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.delete("res.deleteResMenu", uiNo);
+		ss.close();
+		System.out.println("resMenu는 1나옴?"+result);
+		return result;
+	}
+	
+	@Override
+	public int deleteRes(int uiNo) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.delete("res.deleteRes", uiNo);
+		ss.close();
+		System.out.println("res는 1나옴?"+result);
+		return result;
+	}
+	
+	@Override
+	public int updateResStatus(Map<String,Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.update("res.updateResStatus", map);
+		ss.close();
+		System.out.println("res는 1나옴?"+result);
+		return result;
+	}
 }

@@ -27,4 +27,20 @@ public class HallDAOImpl implements HallDAO{
 		return resList;
 	}
 
+	@Override
+	public int updateHallStatusOne(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.update("hall.updateHallStatusOne",map);
+		ss.close();
+		return result;
+	}
+
+	@Override
+	public int updateHallStatusZero(Map<String,Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result = ss.update("hall.updateHallStatusZero",map);
+		ss.close();
+		System.out.println("hall는 1나옴?"+result);
+		return result;
+	}
 }
