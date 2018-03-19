@@ -60,9 +60,14 @@
 		onMessage(event)
 	};
 	function onMessage(event) {
-
-		/* var msgObj = JSON.parse(event.data);
-		alert(msgObj.msg); */
+		alert(event);
+		var msgObj = JSON.parse(event.data);
+		var allow = msgObj.msg;
+		if (allow) {
+			alert("예약이 성공하였습니다!");
+		} else {
+			alert("매장 사정에 의해 예약이 거부되었습니다.");
+		}
 	}
 	function onOpen(event) {
 		//textarea.value += "연결 성공\n";
@@ -75,19 +80,48 @@
 		var hallNo = $('input:radio[name="hallNo"]:checked').val();
 		var menuNo = $("input[name='menuNo']");
 		var menuPrice = $("input[name='menuPrice']");
-		var selectCnt = $("select[name='resMenuCnt']");
+		var menuCnt = $("select[name='resMenuCnt']");
+		var payCaNo = $("select[name='payCaNo']").val();
+		var getInTime = $("select[name='getInTime']").val();
+
 		var menuPriceArr = [];
-		var selectCntArr = [];
-		var menuArr = [];
+		var menuCntArr = [];
+		var menuNoArr = [];
 		for (var i = 0; i < menuNo.size(); i++) {
-			menuArr[i] = menuNo[i].value;
+			menuNoArr[i] = menuNo[i].value;
 			menuPriceArr[i] = menuPrice[i].value;
-			selectCntArr[i] = selectCnt[i].value;
+			menuCntArr[i] = menuCnt[i].value;
 		}
-		console.log(menuArr);
+		console.log(menuNoArr);
 		console.log(menuPriceArr);
-		console.log(selectCntArr);
-		//webSocket.send(JSON.stringify(msg));
+		console.log(menuCntArr);
+		console.log(payCaNo);
+		console.log(getInTime);
+		var target = "song";
+		var param = {
+			"hallNo" : hallNo,
+			"menuNoArr" : menuNoArr,
+			"menuPriceArr" : menuPriceArr,
+			"menuCntArr" : menuCntArr,
+			"payCaNo" : payCaNo,
+			"getInTime" : getInTime,
+			"target" : target
+		};
+		param = JSON.stringify(param);
+		ajaxTest(param);
+		webSocket.send(param);
+	}
+	
+	function ajaxTest(param){
+		$.ajax({
+			url:"${root}/menu/getMenuName",
+			type:"POST",
+			data:param,
+			success:function(res){
+				alert("@@@@@@@@@@@@@");
+			}
+		})
+		
 	}
 </script>
 <body>

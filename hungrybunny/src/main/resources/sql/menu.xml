@@ -20,4 +20,23 @@
 	<update id="updateMenu" parameterType="map">
 	update menu set menuName=#{menuName},menuPrice=#{menuPrice} where menuNo=#{menuNo}
 	</update>
+	
+	
+	<!-- 사장님이 예약메세지를 볼때 필요한 질의문 (재형) -->
+	
+	<select id="adminMsgMenuName" parameterType="map">
+	select menuName from menu where = menuNo 
+	<choose>
+		<when test="menuNoArr.size != 0">
+		 <foreach collection="menuNoArr" item="item" index="index" separator="," open="(" close=")">
+		 	#{item}
+		 </foreach>
+		</when>
+		<otherwise>
+		 = ''
+		</otherwise>
+	</choose>
+		
+	</select>
+	
 </mapper>  

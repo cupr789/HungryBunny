@@ -60,4 +60,15 @@ public class MenuDAOImpl implements MenuDAO {
 		ss.close();
 		return result;
 	}
+
+	
+	// 사장메세지에서 메뉴이름 보기위해 (재형)
+	@Override
+	public Map<String, Object> selectMenuName(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<String> map1 = ss.selectList("menu.adminMsgMenuName", map);
+		System.out.println(map1);
+		ss.close();
+		return null;
+	}
 }
