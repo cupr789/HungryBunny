@@ -14,13 +14,13 @@
 	</insert>
 	
 	<select id="confirmRes" parameterType="int" resultType="map">
-		select s.shopName, s.shopAddress, s.shopHP, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.payType, h.seatCnt
+		select s.shopName, s.shopAddress, s.shopHP, m.menuName, m.menuPrice, rm.resMenuCnt, r.resDate, r.payPrice, p.payType, h.seatCnt
 		from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
 		where r.uiNo=#{uiNo}
 		and r.shopNo=s.shopNo
 		and rm.menuNo=m.menuNo
 		and rm.resNo=r.resNo
 		and r.PayCaNo=p.PayCaNo
-		and r.hallNo=h.hallNo group by menuName;
+		and r.hallNo=h.hallNo group by menuName order by s.shopName;
 	</select>
 </mapper>  

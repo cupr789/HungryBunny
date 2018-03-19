@@ -12,11 +12,15 @@ String loginMenu = "Login";
 String loginUrl ="http://localhost/path/user/login";
 String updateUser="";
 String updateUserUrl="";
+String res="";
+String resUrl="";
 if(ui!=null){
 	updateUser="개인정보변경";
 	updateUserUrl="http://localhost/path/user/checkPwd";
 	loginMenu = "Logout";
 	loginUrl = root+"/user/logout";
+	res = "예약확인";
+	resUrl = "http://localhost/path/reservation/confirmRes";
 	if (ui.getAdmin()==1){
 		adminMenu="MYshop";
 		adminUrl="http://localhost/path/user/admin";
@@ -38,6 +42,7 @@ if(ui!=null){
           <li><a href="${pPath}/reservation/shopCa">Reservation</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="<%=resUrl%>"><%=res%></a></li>
           <li><a href="<%=updateUserUrl%>"><%=updateUser%></a></li>
           <li><a href="<%=adminUrl%>"><%=adminMenu%></a></li>
         </ul>
