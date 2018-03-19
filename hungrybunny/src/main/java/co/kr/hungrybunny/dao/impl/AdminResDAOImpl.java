@@ -19,6 +19,15 @@ public class AdminResDAOImpl implements AdminResDAO{
 	public List<Object> selectAdminShop(int shopNo) {
 		SqlSession ss = ssf.openSession();
 		List<Object> list= ss.selectList("adminres.selectAdminHave",shopNo);
+		ss.close();
+		return list;
+	}
+
+	@Override
+	public List<Object> selectShophall(int shopNo) {
+		SqlSession ss = ssf.openSession();
+		List<Object> list=ss.selectList("adminres.selecthall",shopNo);
+		ss.close();
 		return list;
 	}
 

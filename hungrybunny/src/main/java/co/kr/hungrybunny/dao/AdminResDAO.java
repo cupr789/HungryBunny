@@ -8,4 +8,5 @@ import java.util.Map;
 public interface AdminResDAO {
 
 	List<Object> selectAdminShop(int shopNo);
+	List<Object> selectShophall(int shopNo);
 }
