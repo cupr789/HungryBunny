@@ -10,5 +10,5 @@ import co.kr.hungrybunny.vo.AdminResVO;
 public interface AdaminResService {
 
 	
-	List<Object> getAdminShop(int shopNo);
+	List<Object> getAdminShop(int shopNo,Map<String, Object> map);
 }
