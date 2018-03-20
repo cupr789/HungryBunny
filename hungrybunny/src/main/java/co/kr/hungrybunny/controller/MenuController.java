@@ -58,7 +58,7 @@ public class MenuController {
 		List<MenuVO> menuList = new ArrayList<MenuVO>();
 		menuList = ms.getMenuList(shopNo);
 		mav.addObject("menuList",menuList);
-		mav.setViewName("reservation/resList");
+		mav.setViewName("reservation/resList2");
 		return mav;
 	}
 	

@@ -30,7 +30,7 @@ public class ResServiceImpl implements ResService{
 	}
 
 	@Override
-	public List<Object> getConfirmRes(int uiNo){
+	public List<Map<String,String>> getConfirmRes(int uiNo){
 		return rdao.selectConfirmRes(uiNo);
 	}
 

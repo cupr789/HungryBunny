@@ -3,7 +3,7 @@ package co.kr.hungrybunny.vo;
 public class ReservationVO {
 
 	private int resNo;
-	private String resDatetime;
+	private String resDate;
 	private int shopNo;
 	private int hallNo;
 	private int uiNo;
@@ -15,10 +15,10 @@ public class ReservationVO {
 		this.resNo = resNo;
 	}
 	public String getResDatetime() {
-		return resDatetime;
+		return resDate;
 	}
-	public void setResDatetime(String resDatetime) {
-		this.resDatetime = resDatetime;
+	public void setResDatetime(String resDate) {
+		this.resDate = resDate;
 	}
 	public int getShopNo() {
 		return shopNo;
@@ -46,7 +46,7 @@ public class ReservationVO {
 	}
 	@Override
 	public String toString() {
-		return "AdminResVO [resNo=" + resNo + ", resDatetime=" + resDatetime + ", shopNo=" + shopNo + ", hallNo="
+		return "AdminResVO [resNo=" + resNo + ", resDate=" + resDate + ", shopNo=" + shopNo + ", hallNo="
 				+ hallNo + ", uiNo=" + uiNo + ", PayNo=" + PayNo + "]";
 	}
 	

@@ -1,7 +1,5 @@
 package co.kr.hungrybunny.dao.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.kr.hungrybunny.dao.ResDAO;
-import co.kr.hungrybunny.vo.MenuVO;
-import co.kr.hungrybunny.vo.ReservationMenuVO;
-import co.kr.hungrybunny.vo.ReservationVO;
 
 @Repository
 public class ResDAOImpl implements ResDAO {
@@ -72,9 +67,9 @@ public class ResDAOImpl implements ResDAO {
 	}
 	
 	@Override
-	public List<Object> selectConfirmRes(int uiNo){
+	public List<Map<String,String>> selectConfirmRes(int uiNo){
 		SqlSession ss = ssf.openSession();
-		List<Object> confirmResList = ss.selectList("res.confirmRes", uiNo);
+		List<Map<String,String>> confirmResList = ss.selectList("res.confirmRes", uiNo);
 		System.out.println("confirmResList???"+confirmResList);
 		ss.close();
 		return confirmResList;

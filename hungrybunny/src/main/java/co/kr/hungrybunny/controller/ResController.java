@@ -82,12 +82,12 @@ public class ResController {
 	}
 	
 	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
-	public @ResponseBody List<Object> getConfirmRes(HttpSession hs){
+	public @ResponseBody List<Map<String,String>> getConfirmRes(HttpSession hs){
 		System.out.println("??????????????????????롸???");
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		int uiNo = ui.getUiNo();
 		System.out.println("uiNo에요"+uiNo);
-		List<Object> resList = new ArrayList<Object>();
+		List<Map<String,String>> resList = new ArrayList<Map<String,String>>();
 		resList = rs.getConfirmRes(uiNo);
 		System.out.println("resList!!!!!!!!!!!!!!!"+resList);
 		return resList;

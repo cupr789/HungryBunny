@@ -21,7 +21,6 @@ function test(res){
 	}
 
 	var htmlStr = '';
-	
 	if(res.length==0){
 		htmlStr += '<h2>예약내역이 없습니다</h2>';
 	}else{

@@ -12,40 +12,46 @@ function confirmRes(){
 	au.send(test);
 }
 function test(res){
-	var htmlStr = '';
-	htmlStr += '<table class="table table-bordered">';
-	htmlStr += '<thead>';
-	htmlStr += '<tr>'; 
-	htmlStr += '<th>가게</th>';
-	htmlStr += '<th>메뉴</th>';
-	htmlStr += '<th>금액</th>';
-	htmlStr += '<th>결제방식</th>';
-	htmlStr += '<th>날짜</th>';
-	htmlStr += '</tr>';
-	htmlStr += '<tbody>';
-	for(var i=0;i<res.length;i++){
-		for(var j=0;j<i;j++){
-			if(res[i].shopName==res[j].shopName){
-				res[i].shopName = '';
-				res[i].payPrice = '';
-				res[i].resMenuCnt = '';
-				res[i].payType = '';
-				res[i].resDate = '';
+	
+	htmlStr = '';
+	if(res.length==0){
+		htmlStr += '<h2>지난예약내역이 없습니다</h2>';
+	}else{
+		var htmlStr = '';
+		htmlStr += '<table class="table table-bordered">';
+		htmlStr += '<thead>';
+		htmlStr += '<tr>'; 
+		htmlStr += '<th>가게</th>';
+		htmlStr += '<th>메뉴</th>';
+		htmlStr += '<th>금액</th>';
+		htmlStr += '<th>결제방식</th>';
+		htmlStr += '<th>날짜</th>';
+		htmlStr += '</tr>';
+		htmlStr += '<tbody>';
+		for(var i=0;i<res.length;i++){
+			for(var j=0;j<i;j++){
+				if(res[i].shopName==res[j].shopName){
+					res[i].shopName = '';
+					res[i].payPrice = '';
+					res[i].resMenuCnt = '';
+					res[i].payType = '';
+					res[i].resDate = '';
+				}
 			}
 		}
+		console.log(res);
+		for(var i=0;i<res.length;i++){
+			htmlStr += '<tr>';
+			htmlStr += '<td>'+res[i].shopName+'</td>';
+			htmlStr += '<td>'+res[i].menuName+'('+res[i].menuPrice+'원) X'+res[i].resMenuCnt+'</td>';
+			htmlStr += '<td>'+res[i].payPrice+'</td>';
+			htmlStr += '<td>'+res[i].payType+'</td>';
+			htmlStr += '<td>'+res[i].resDate+'</td>';
+			htmlStr += '</tr>'; 
+		}
+		htmlStr += '</tbody>';
+		htmlStr += '</table>';
 	}
-	console.log(res);
-	for(var i=0;i<res.length;i++){
-		htmlStr += '<tr>';
-		htmlStr += '<td>'+res[i].shopName+'</td>';
-		htmlStr += '<td>'+res[i].menuName+'('+res[i].menuPrice+'원) X'+res[i].resMenuCnt+'</td>';
-		htmlStr += '<td>'+res[i].payPrice+'</td>';
-		htmlStr += '<td>'+res[i].payType+'</td>';
-		htmlStr += '<td>'+res[i].resDate+'</td>';
-		htmlStr += '</tr>'; 
-	}
-	htmlStr += '</tbody>';
-	htmlStr += '</table>';
 	$("#resList").html(htmlStr);
 }
 
@@ -55,7 +61,6 @@ function test(res){
 	<div class="container">
 	<h1>예약확인</h1>
 		<div id="resList">
-		<h2>예약 내역이 없습니다.</h2>
 		</div>
 	</div>
 </section>

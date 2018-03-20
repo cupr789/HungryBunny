@@ -10,8 +10,11 @@
 function goConfirmRes(){
 	location.href="${pPath}/reservation/confirmRes";
 }
+function test(){
+	console.log(${menuPriceList});
+}
 </script>
-<body>
+<body onload="test()">
 <section class="section">
 <h1>예약이 완료되었습니다!</h1>
 <button onclick="goConfirmRes()">예약확인</button>
