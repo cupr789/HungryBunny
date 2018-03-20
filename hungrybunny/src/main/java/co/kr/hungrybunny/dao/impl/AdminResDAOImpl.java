@@ -31,4 +31,10 @@ public class AdminResDAOImpl implements AdminResDAO{
 		return list;
 	}
 
+	@Override
+	public int updateHall(Map<String, Object> map) {
+		
+		return 0;
+	}
+
 }

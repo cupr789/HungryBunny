@@ -26,7 +26,6 @@ if(ui!=null){
 		adminUrl=root+"/path/user/admin";
 	}
 }
-
 %>
 
 <body>

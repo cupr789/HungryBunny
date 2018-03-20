@@ -27,8 +27,14 @@ public class AdminResServiceImpl implements AdaminResService{
 		System.out.println("/*/*/*//*/*/*/*/*/*/"+hallList);
 		map.put("msg","들어왔어요");
 		map.put("reslist",gson.toJson(list));
-		map.put("hallList", gson.toJson(hallList));
+		map.put("hallList",hallList);
 		return list;
+	}
+
+	@Override
+	public void updateHall(Map<String, Object> map) {
+		
+	
 	}
 
 }
