@@ -9,24 +9,23 @@ ui=(UserInfoVO)session.getAttribute("userInfo");
 String adminMenu="";
 String adminUrl="";
 String loginMenu = "Login";
-String loginUrl ="http://localhost/path/user/login";
+String loginUrl =root+"/path/user/login";
 String updateUser="";
 String updateUserUrl="";
 String res="";
 String resUrl="";
 if(ui!=null){
 	updateUser="개인정보변경";
-	updateUserUrl="http://localhost/path/user/checkPwd";
+	updateUserUrl=root+"/path/user/checkPwd";
 	loginMenu = "Logout";
 	loginUrl = root+"/user/logout";
 	res = "예약확인";
-	resUrl = "http://localhost/path/reservation/confirmRes";
+	resUrl = root+"/path/reservation/confirmRes";
 	if (ui.getAdmin()==1){
 		adminMenu="MYshop";
-		adminUrl="http://localhost/path/user/admin";
+		adminUrl=root+"/path/user/admin";
 	}
 }
-
 %>
 
 <body>

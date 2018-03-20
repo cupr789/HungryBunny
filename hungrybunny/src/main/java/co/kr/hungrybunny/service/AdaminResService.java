@@ -11,4 +11,5 @@ public interface AdaminResService {
 
 	
 	List<Object> getAdminShop(int shopNo,Map<String, Object> map);
+	public void updateHall(Map<String, Object> map);
 }

@@ -11,9 +11,7 @@
 
 	function resInfo(){
 		var str="";
-		var str2="";
 		var listSize=${reslist}.length;
-		var hallSize=${hallList}.length;
 		for(var i=0;i<listSize;i++){
 			str+="<tr>"+
 			"<td>"+${reslist}[i]["resMenuCnt"]+"</td>"+
@@ -28,24 +26,6 @@
 			"<td></td>"+
 			 "</tr>"
 		}
-/* 		for(var i=0;i<hallSize;i++){
-			var use="";
-			if(${hallList}[i]["hallStatus"]==1){
-				use="사용중";
-			}else{
-				use="빈자리";
-			}
-			
-			str2+="<tr>"+
-			"<td>"+${hallList}[i]["seatCnt"]+"</td>"+
-			"<td>"+${hallList}[i]["hallNo"]+"</td>"+
-			"<td>"+use+"</td>"+
-			"<td><input type='radio' id='hallStatus' name='hallStatus' value='0'>빈자리"+
-			"<input type='radio'  name='hallStatus' value='1'>사용중"+
-			"<input  name='hallNo' value='"+${hallList}[i]["hallNo"]+"'>"+
-			"<button type='button' onclick='hallUpdate()'>수정</button></td>"+
-			"</tr>"
-		} */
 		
 	$("#adminRes").html( 	
 	"<table class='table table-bordered'>"+
@@ -69,6 +49,26 @@
 	"</table>"
 	); 
 	}
+	function hallUpdate(hallNo,idx){
+		
+		var hallStatus=$("input:radio[name=hallStatus]:checked").val();
+		var param={hallStatus:hallStatus,hallNo:hallNo};
+		console.log(param);
+		$.ajax({
+		       type:"POST",
+	           url:"${root}/adminRes/hallUpdate",
+	           data:param,
+	           success : function(){
+	        	   alert("성공")
+	           },
+	           error : function(){
+	        	   alert("실패");
+	           }	
+			
+		})
+		
+	}
+	
 </script>
 
 <body onload="resInfo()" >
@@ -88,6 +88,28 @@
 		    </thead>
 		    <tbody class='tbody'>
 		    </tbody>
+		    <c:forEach items="${hallList}" var="hlist" varStatus="idx" >
+		    <c:set value="${hlist.hallStatus} " var="msg"/>
+		    <tr>
+		    <td>${hlist.seatCnt}</td>
+		    <td>${hlist.hallNo}</td>
+		    <td>
+		    <c:choose>
+       		<c:when test="${hlist.hallStatus == '1'}">
+           	사용중
+       		</c:when>
+     		<c:when test="${hlist.hallStatus == '0'}">
+         	빈자리
+       		</c:when>
+   			</c:choose>
+   			</td>
+		    <td>
+		    <input type="radio"  name="hallStatus" value="0">빈자리
+			<input type="radio"  name="hallStatus" value="1">사용중
+			<button type="button" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button>
+		     </td>
+		    </tr>
+		    </c:forEach>
 			</table>
 
 </section>

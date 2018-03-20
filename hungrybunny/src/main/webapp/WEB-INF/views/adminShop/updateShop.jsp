@@ -35,6 +35,7 @@
 		 var menuName = $("[name=updateName]").eq(idx).val();
 		var menuPrice = $("[name=updatePrice]").eq(idx).val();
 		 var param = {menuNo:menuNo,menuName:menuName,menuPrice:menuPrice};
+		 console.log(param)
 		$.ajax({
 	           type:"POST",
 	           url:"${root}/menu/update",
