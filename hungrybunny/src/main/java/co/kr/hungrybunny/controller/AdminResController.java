@@ -46,11 +46,12 @@ public class AdminResController {
 		return mav;
 	}
 	@RequestMapping(value="/hallUpdate", method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> hallUpdate(@RequestBody Map<String, Object> map,HttpSession hs){
+	public @ResponseBody Map<String, Object> hallUpdate(@RequestParam Map<String, Object> map,HttpSession hs){
 		if (hs.getAttribute("userNo") != null) {	
 			
 		
-		System.out.println("들어왔나?");
+		System.out.println("들어왔나?"+map.get("hallNo"));
+		System.out.println("90909909090909"+map);
 		
 			} else {
 				map.put("msg", "로그인 부터 다시해주세요~~~~~~");
