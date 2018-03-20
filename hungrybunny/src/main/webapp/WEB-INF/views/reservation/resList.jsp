@@ -99,14 +99,15 @@
 		console.log(getInTime);
 		var target = "song";
 		var param = {
-			"hallNo" : hallNo,
-			"menuNoArr" : menuNoArr,
-			"menuPriceArr" : menuPriceArr,
-			"menuCntArr" : menuCntArr,
-			"payCaNo" : payCaNo,
-			"getInTime" : getInTime,
-			"target" : target
+			hallNo : hallNo,
+			menuNoArr : menuNoArr,
+			menuPriceArr : menuPriceArr,
+			menuCntArr : menuCntArr,
+			payCaNo : payCaNo,
+			getInTime : getInTime,
+			target : target
 		};
+		
 		param = JSON.stringify(param);
 		ajaxTest(param);
 		webSocket.send(param);
@@ -116,6 +117,7 @@
 		$.ajax({
 			url:"${root}/menu/getMenuName",
 			type:"POST",
+			contentType:"application/json",
 			data:param,
 			success:function(res){
 				alert("@@@@@@@@@@@@@");

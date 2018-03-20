@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import co.kr.hungrybunny.service.MenuService;
 import co.kr.hungrybunny.vo.MenuVO;
@@ -117,13 +118,10 @@ public class MenuController {
 	@RequestMapping(value="/getMenuName", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> getMenuName(MenuVO mv,@RequestBody Map<String,Object> map,HttpSession hs){
 		//Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(map);
-		
 		System.out.println(map.get("menuNoArr"));
 		
-		
 		if (hs.getAttribute("userInfo") != null) {
-			//ms.getMenuName(map);
+			ms.getMenuName(map);
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}
