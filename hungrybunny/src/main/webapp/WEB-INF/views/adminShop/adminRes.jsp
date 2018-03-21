@@ -63,11 +63,9 @@
 			
 		})
 		function callback(res){
-			if(res.biz){
+			
 				 location.reload()
-			}else{
-				alert(res.msg);
-			}
+			
 		}
 		
 	}
