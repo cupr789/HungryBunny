@@ -18,8 +18,11 @@
 		delete from menu where menuNo=#{menuNo}
 	</delete>
 	<update id="updateMenu" parameterType="map">
-	update menu set menuName=#{menuName},menuPrice=#{menuPrice} where menuNo=#{menuNo}
+		update menu set menuName=#{menuName},menuPrice=#{menuPrice} where menuNo=#{menuNo}
 	</update>
+	
+	
+	
 	
 	
 	<!-- 사장님이 예약메세지를 볼때 필요한 질의문 (재형) -->

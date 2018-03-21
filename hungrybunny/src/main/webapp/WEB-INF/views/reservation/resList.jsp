@@ -126,7 +126,6 @@
 				console.log(res.menuNoNames[0]);
 				var msg = {"msg":res.menuNoNames,"target":"song"};
 				webSocket.send(JSON.stringify(msg));
-				
 			}
 		})
 		
