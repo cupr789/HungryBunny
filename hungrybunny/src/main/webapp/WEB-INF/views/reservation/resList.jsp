@@ -49,7 +49,7 @@
 
 	}
 
-	var webSocket = new WebSocket('ws://13.125.97.161:8080/hb/alarm');
+	var webSocket = new WebSocket('ws://localhost/alarm');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};
@@ -123,7 +123,7 @@
 			contentType:"application/json",
 			data:param,
 			success:function(res){
-				console.log(res.menuNoNames[0]);
+				console.log(res.menuNoNames);
 				var msg = {"msg":res.menuNoNames,"target":"song"};
 				webSocket.send(JSON.stringify(msg));
 			}

@@ -1,5 +1,7 @@
 package co.kr.hungrybunny.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,9 +72,14 @@ public class MenuServiceImpl implements MenuService {
 	
 	// 사장메세지에서 메뉴이름 보기위해 (재형)
 	@Override
-	public List<String> getMenuName(Map<String, Object> map) {
+	public Map<String, List<String>> getMenuName(Map<String, Object> map) {
 		System.out.println();
-		
-		return menudao.selectMenuName(map);
+		ArrayList<String> msList = (ArrayList<String>) menudao.selectMenuName(map);
+		System.out.println(map.get("menuCntArr")+"           ^^");
+		List<String> tesrt = (List<String>) map.get("menuCntArr");
+		Map<String, List<String>> resultMap = new HashMap<String, List<String>>();
+		resultMap.put("msList", msList);
+		resultMap.put("tesrt", tesrt);
+		return resultMap;
 	}
 }

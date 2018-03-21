@@ -14,5 +14,5 @@ public interface MenuService {
 	public int updateMenu(Map<String, Object> map);
 	
 	// 사장메세지에서 메뉴이름 보기위해 (재형)
-	public List<String> getMenuName(Map<String, Object>map);
+	public Map<String, List<String>> getMenuName(Map<String, Object>map);
 }
