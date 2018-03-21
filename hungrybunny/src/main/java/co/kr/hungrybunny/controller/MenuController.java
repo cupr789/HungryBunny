@@ -122,7 +122,7 @@ public class MenuController {
 		
 		if (hs.getAttribute("userInfo") != null) {
 			Map<String, List<String>> menuNoList =ms.getMenuName(map);
-			map.put("menuNoNames", menuNoList);
+			map.put("namesAndCnt", menuNoList);
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}

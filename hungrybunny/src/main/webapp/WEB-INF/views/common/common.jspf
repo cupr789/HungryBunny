@@ -50,10 +50,16 @@
 		var data = JSON.parse(event.data);
 		
 		///////////////////////////////여기손보다가 끝남!!!!!! 2018-03-21
-		console.log(data[0]);
-		console.log(data[1]);
-		
-		allow = confirm(data + " 예약이 들어왔습니다. 받으시겠습니까?");
+		console.log(data.msg);
+		console.log(data.msg.msList[0]);
+		console.log(data.msg.tesrt);
+		console.log(data.msg.length);
+		var sendMsg="";
+		for(var i=0;i<data.msg.msList.length;i++){
+			sendMsg+=data.msg.msList[i]+" "+data.msg.tesrt[i]+"개, ";
+		}
+		console.log(sendMsg);
+		allow = confirm(sendMsg + " 예약이 들어왔습니다. 받으시겠습니까?");
 		
 		if(allow){
 			send(data.senderId,allow);
