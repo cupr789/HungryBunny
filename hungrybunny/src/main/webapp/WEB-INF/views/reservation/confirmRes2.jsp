@@ -26,11 +26,12 @@ function test(res){
 		htmlStr += '<th>금액</th>';
 		htmlStr += '<th>결제방식</th>';
 		htmlStr += '<th>날짜</th>';
+		htmlStr += '<th>리뷰남기기</th>';
 		htmlStr += '</tr>';
 		htmlStr += '<tbody>';
 		for(var i=0;i<res.length;i++){
 			for(var j=0;j<i;j++){
-				if(res[i].shopName==res[j].shopName){
+				if(res[i].resDate==res[j].resDate){
 					res[i].shopName = '';
 					res[i].payPrice = '';
 					res[i].resMenuCnt = '';
@@ -47,6 +48,11 @@ function test(res){
 			htmlStr += '<td>'+res[i].payPrice+'</td>';
 			htmlStr += '<td>'+res[i].payType+'</td>';
 			htmlStr += '<td>'+res[i].resDate+'</td>';
+			if(res[i].shopName==""){
+				htmlStr += '<td></td>';
+			}else{
+				htmlStr += '<td><form method="POST" action="${pPath}/user/review"><button name="shopName" value="'+res[i].shopName+'">리뷰남기러가기</button></form></td>';
+			}
 			htmlStr += '</tr>'; 
 		}
 		htmlStr += '</tbody>';
@@ -54,7 +60,6 @@ function test(res){
 	}
 	$("#resList").html(htmlStr);
 }
-
 </script>
 <body onload="confirmRes()">
 <section class="section">

@@ -41,14 +41,11 @@ public class AdminResServiceImpl implements AdaminResService{
 		int hallNo=Integer.parseInt(str2);
 		String str3=map.get("currentStatus").toString();
 		int currentStatus=Integer.parseInt(str3);
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$"+hallStatus+hallNo+currentStatus);
 		Map<String,Integer> pmap=new HashMap<String,Integer>();
 		pmap.put("hallStatus", hallStatus);
 		pmap.put("hallNo", hallNo);
 		pmap.put("currentStatus", currentStatus);
 		
-		System.out.println("PPPPPPPPPPPPPP"+map.get("currentStatus"));
-		System.out.println("::::::::::::::::::"+map);
 		int result=ardao.updateHall(pmap);
 	
 	
