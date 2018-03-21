@@ -38,8 +38,9 @@ public class ResServiceImpl implements ResService{
 	public int cancleRes(Map<String,Object> map) {
 		// hall update, delete resmenu, res
 		int updateHallResult = hdao.updateHallStatusZero(map);
-		int updateResStatusResult = rdao.updateResStatus(map);
-		if(updateHallResult==1 && updateResStatusResult==1) {
+		int deleteResMenuResult = rdao.deleteResMenu(map);
+		int deleteResResult = rdao.deleteRes(map);
+		if(updateHallResult==1 && deleteResMenuResult>=1 && deleteResResult==1) {
 			return 1;
 		}
 		return 0;

@@ -133,6 +133,11 @@ public class UserInfoController {
 		return map;
 	}
 
-
-	
+	@RequestMapping(value = "/review", method = RequestMethod.POST)
+	public @ResponseBody Map<String, String> review(HttpSession hs,@RequestParam Map<String, String> map) {
+		System.out.println("....?");
+		System.out.println(map);
+		
+		return null;
+	}
 }

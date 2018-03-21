@@ -76,18 +76,18 @@ public class ResDAOImpl implements ResDAO {
 	}
 	
 	@Override
-	public int deleteResMenu(int uiNo) {
+	public int deleteResMenu(Map<String,Object> map) {
 		SqlSession ss = ssf.openSession();
-		int result = ss.delete("res.deleteResMenu", uiNo);
+		int result = ss.delete("res.deleteResMenu", map);
 		ss.close();
 		System.out.println("resMenu는 1나옴?"+result);
 		return result;
 	}
 	
 	@Override
-	public int deleteRes(int uiNo) {
+	public int deleteRes(Map<String,Object> map) {
 		SqlSession ss = ssf.openSession();
-		int result = ss.delete("res.deleteRes", uiNo);
+		int result = ss.delete("res.deleteRes", map);
 		ss.close();
 		System.out.println("res는 1나옴?"+result);
 		return result;

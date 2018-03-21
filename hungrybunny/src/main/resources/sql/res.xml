@@ -21,15 +21,15 @@
 		and rm.menuNo=m.menuNo
 		and rm.resNo=r.resNo
 		and r.PayCaNo=p.PayCaNo
-		and r.hallNo=h.hallNo group by menuName, shopName order by s.shopName;
+		and r.hallNo=h.hallNo group by menuName, shopName, resDate order by s.shopName;
 	</select>
 	
-	<delete id="deleteResMenu" parameterType="int">
-		delete from reservationmenu where resNo in (select resNo from reservation where uiNo=#{uiNo});
+	<delete id="deleteResMenu" parameterType="map">
+		delete from reservationmenu where resNo in (select resNo from reservation where uiNo=#{uiNo} and currentStatus=1);
 	</delete>
 	
-	<delete id="deleteRes" parameterType="int">
-		delete from reservation where uiNo=#{uiNo};
+	<delete id="deleteRes" parameterType="map">
+		delete from reservation where uiNo=#{uiNo} and currentStatus=1;
 	</delete>
 	
 	<update id="updateResStatus" parameterType="map">

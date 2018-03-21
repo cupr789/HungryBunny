@@ -8,7 +8,7 @@ public interface ResDAO {
 	public int insertRes(Map<String,Object> map);
 	public int insertResMenu(Map<String, Object> map);
 	public List<Map<String,String>> selectConfirmRes(int uiNo);
-	public int deleteResMenu(int uiNo);
-	public int deleteRes(int uiNo);
+	public int deleteResMenu(Map<String,Object> map);
+	public int deleteRes(Map<String,Object> map);
 	public int updateResStatus(Map<String,Object> map);
 }
