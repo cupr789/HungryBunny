@@ -15,5 +15,5 @@ public interface MenuDAO {
 	public int updateMenu(Map<String, Object> map);
 	
 	// 사장메세지에서 메뉴이름 보기위해 (재형)
-	public Map<String, Object> selectMenuName(Map<String,Object> map);
+	public List<String> selectMenuName(Map<String,Object> map);
 }
