@@ -121,7 +121,8 @@ public class MenuController {
 		System.out.println(map.get("menuNoArr"));
 		
 		if (hs.getAttribute("userInfo") != null) {
-			ms.getMenuName(map);
+			List<String> menuNoList =ms.getMenuName(map);
+			map.put("menuNoNames", menuNoList);
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}

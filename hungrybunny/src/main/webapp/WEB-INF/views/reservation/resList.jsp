@@ -88,7 +88,10 @@
 		var menuCntArr = [];
 		var menuNoArr = [];
 		for (var i = 0; i < menuNo.size(); i++) {
-			menuNoArr[i] = menuNo[i].value;
+			
+			if(menuCnt[i].value!=0){
+				menuNoArr[i] = menuNo[i].value;
+			}
 			menuPriceArr[i] = menuPrice[i].value;
 			menuCntArr[i] = menuCnt[i].value;
 		}
@@ -110,7 +113,7 @@
 		
 		param = JSON.stringify(param);
 		ajaxTest(param);
-		webSocket.send(param);
+		//webSocket.send(param);
 	}
 	
 	function ajaxTest(param){
@@ -120,7 +123,10 @@
 			contentType:"application/json",
 			data:param,
 			success:function(res){
-				alert("@@@@@@@@@@@@@");
+				console.log(res.menuNoNames[0]);
+				var msg = {"msg":res.menuNoNames,"target":"song"};
+				webSocket.send(JSON.stringify(msg));
+				
 			}
 		})
 		

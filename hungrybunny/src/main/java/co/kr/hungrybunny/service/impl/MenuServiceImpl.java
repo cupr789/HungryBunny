@@ -70,9 +70,9 @@ public class MenuServiceImpl implements MenuService {
 	
 	// 사장메세지에서 메뉴이름 보기위해 (재형)
 	@Override
-	public Map<String, Object> getMenuName(Map<String, Object> map) {
+	public List<String> getMenuName(Map<String, Object> map) {
+		System.out.println();
 		
-		menudao.selectMenuName(map);
-		return null;
+		return menudao.selectMenuName(map);
 	}
 }
