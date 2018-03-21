@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 
 </head>
+<%
+String shopNo = request.getParameter("shopNo");
+%>
 <script>
 function commentCnt(){
 	var text_max = 300;
@@ -18,12 +21,18 @@ function commentCnt(){
 	  $('#count_message').html(text_remaining + ' remaining');
 	}); 
 }
+function test(){
+	var b = <%=shopNo%>
+	alert(b);
+}
+var a = document.forms["test"].elements["shopNo"];
+alert(a);
 </script>
 <body onload="commentCnt()">
 <section class="section">
 	<div class="container">
 		<div class="form-group">
-			<h2>음식점에 대한 평가를 해주세요!<br></h2>
+			<h2><%= request.getParameter("shopName") %> 리뷰 남기기<br></h2>
 				<form action="/user/review" method="POST">
 					<fieldset class="starability-basic">
 						<legend>별점을 주세요!</legend>
@@ -46,10 +55,7 @@ function commentCnt(){
 
       					<span class="starability-focus-ring"></span>
     				</fieldset>
-			
-					<label for="usr">ID:</label>
-					<input type="text" class="form-control" id="usr">
-					
+					<br>
 					<label for="comment">Comment:</label>
 					<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
 					<h6 class="pull-right" id="count_message"></h6>
