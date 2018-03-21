@@ -49,7 +49,7 @@
 
 	}
 
-	var webSocket = new WebSocket('ws://13.125.97.161/alarm');
+	var webSocket = new WebSocket('ws://13.125.97.161/hb/alarm');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};
