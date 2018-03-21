@@ -2,13 +2,13 @@
 <diagram>
 	<dbsetting>
 		<dbsystem>MySQL</dbsystem>
-		<server>localhost</server>
+		<server>13.125.97.161</server>
 		<port>3306</port>
 		<database>rabbit</database>
-		<user>root</user>
-		<password>test</password>
+		<user>rabbit</user>
+		<password>rabbit</password>
 		<use_default_driver>true</use_default_driver>
-		<url>jdbc:mysql://localhost:3306/rabbit</url>
+		<url>jdbc:mysql://13.125.97.161:3306/rabbit</url>
 		<driver_class_name>com.mysql.jdbc.Driver</driver_class_name>
 	</dbsetting>
 	<page_setting>
@@ -23,7 +23,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>0</x>
-	<y>84</y>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -146,7 +146,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-02-28 16:32:35</creation_date>
-			<updated_date>2018-03-19 16:59:00</updated_date>
+			<updated_date>2018-03-21 10:16:23</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -170,9 +170,9 @@
 		</model_properties>
 		<table_properties>
 			<schema></schema>
-			<character_set></character_set>
+			<character_set>utf8</character_set>
 			<collation></collation>
-			<storage_engine></storage_engine>
+			<storage_engine>InnoDB</storage_engine>
 			<primary_key_length_of_text>null</primary_key_length_of_text>
 		</table_properties>
 		<environment_setting>
