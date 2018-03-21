@@ -56,7 +56,7 @@ public class BunnySocket {
 		map.put("senderId", userId);
 		System.out.println("버니 소켓 : "+map);
 		text = mapper.writeValueAsString(map);
-		
+		System.out.println(text+"             ???");
 		synchronized (sessionMap) {
 			final Iterator<String> it = sessionMap.keySet().iterator();
 			while(it.hasNext()) {

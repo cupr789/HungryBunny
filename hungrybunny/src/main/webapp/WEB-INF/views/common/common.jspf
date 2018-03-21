@@ -48,8 +48,12 @@
 	var allow;
 	function onMessage(event) {
 		var data = JSON.parse(event.data);
-
-		allow = confirm(data.menuNoArr + " 예약이 들어왔습니다. 받으시겠습니까?");
+		
+		///////////////////////////////여기손보다가 끝남!!!!!! 2018-03-21
+		console.log(data[0]);
+		console.log(data[1]);
+		
+		allow = confirm(data + " 예약이 들어왔습니다. 받으시겠습니까?");
 		
 		if(allow){
 			send(data.senderId,allow);

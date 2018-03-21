@@ -17,4 +17,17 @@
 	<select id="selecthall" parameterType="int" resultType="map">
 	select * from hall where shopNo=#{num}
 	</select>
+	<parameterMap id="procMap" type="HashMap">
+
+    <parameter property="hallStatus"  jdbcType="INTEGER" javaType="int" />
+
+    <parameter property="hallNo"  jdbcType="INTEGER" javaType="int" />
+
+    <parameter property="currentStatus"  jdbcType="INTEGER" javaType="int" />
+
+	</parameterMap>
+
+	<update id="updateHall" statementType="CALLABLE" parameterMap="procMap">
+	{call p_hall_update(?,?,?)}
+	</update>
 </mapper>  

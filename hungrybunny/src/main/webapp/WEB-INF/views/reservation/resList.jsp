@@ -123,10 +123,9 @@
 			contentType:"application/json",
 			data:param,
 			success:function(res){
-				console.log(res.menuNoNames[0]);
+				console.log(res.menuNoNames);
 				var msg = {"msg":res.menuNoNames,"target":"song"};
 				webSocket.send(JSON.stringify(msg));
-				
 			}
 		})
 		
