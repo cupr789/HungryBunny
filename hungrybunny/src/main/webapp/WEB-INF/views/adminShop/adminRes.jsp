@@ -58,14 +58,17 @@
 		       type:"POST",
 	           url:"${root}/adminRes/hallUpdate",
 	           data:param,
-	           success : function(){
-	        	   alert("성공")
-	           },
-	           error : function(){
-	        	   alert("실패");
-	           }	
+	           success :callback,
+	           error : callback
 			
 		})
+		function callback(res){
+			if(res.biz){
+				 location.reload()
+			}else{
+				alert(res.msg);
+			}
+		}
 		
 	}
 	

@@ -1,6 +1,7 @@
 package co.kr.hungrybunny.service.impl;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,23 @@ public class AdminResServiceImpl implements AdaminResService{
 
 	@Override
 	public void updateHall(Map<String, Object> map) {
+		map.put("currentStatus",map.get("hallStatus"));
+		String str1= map.get("hallStatus").toString();
+		int hallStatus=Integer.parseInt(str1);
+		String str2=map.get("hallNo").toString();
+		int hallNo=Integer.parseInt(str2);
+		String str3=map.get("currentStatus").toString();
+		int currentStatus=Integer.parseInt(str3);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$"+hallStatus+hallNo+currentStatus);
+		Map<String,Integer> pmap=new HashMap<String,Integer>();
+		pmap.put("hallStatus", hallStatus);
+		pmap.put("hallNo", hallNo);
+		pmap.put("currentStatus", currentStatus);
 		
+		System.out.println("PPPPPPPPPPPPPP"+map.get("currentStatus"));
+		System.out.println("::::::::::::::::::"+map);
+		int result=ardao.updateHall(pmap);
+	
 	
 	}
 
