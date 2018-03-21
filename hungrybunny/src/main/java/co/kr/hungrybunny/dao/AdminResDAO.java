@@ -9,5 +9,5 @@ public interface AdminResDAO {
 
 	List<Object> selectAdminShop(int shopNo);
 	List<Object> selectShophall(int shopNo);
-	int updateHall(Map<String, Object> map);
+	int updateHall(Map<String, Integer> pmap);
 }

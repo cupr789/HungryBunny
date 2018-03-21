@@ -32,9 +32,13 @@ public class AdminResDAOImpl implements AdminResDAO{
 	}
 
 	@Override
-	public int updateHall(Map<String, Object> map) {
-		
-		return 0;
+	public int updateHall(Map<String, Integer> pmap) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.update("adminres.updateHall", pmap);
+		System.out.println("llllll           "     +result);
+		return result;
 	}
+
+
 
 }
