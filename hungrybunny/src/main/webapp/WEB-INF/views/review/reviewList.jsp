@@ -6,15 +6,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+String shopNo = request.getParameter("shopNo");
+%>
 <script>
-function goConfirmRes(){
-	location.href="${pPath}/reservation/confirmRes";
+function reviewList(){
+	var msg = "${msg}";
+	if(msg){
+		alert(msg);
+	}
+	var shopNo = "${shopNo}"
+	var param = {shopNo : shopNo};
+	
+		$.ajax({
+			url : "${root}/review/reviewList",
+			type : "POST",
+			data : param,
+			success : function(res) {
+				
+			}
+		})
 }
 </script>
 <body>
 <section class="section">
-<h1>예약이 완료되었습니다!</h1>
-<button onclick="goConfirmRes()">예약확인</button>
 </section>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<insert id="insertReview" parameterType="map">
+		insert into review(reviewRating, reviewComment, shopNo, resNo)
+		values(#{reviewRating},#{reviewComment},#{shopNo},#{resNo});
+	</insert>
+	
+	<select id="selectReviewList" parameterType="int" resultType="review">
+		select * from review where shopNo=#{shopNo}
+	</select>
+</mapper>  

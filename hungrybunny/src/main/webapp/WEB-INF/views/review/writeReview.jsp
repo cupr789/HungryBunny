@@ -32,6 +32,7 @@ function commentCnt(){
 		<div class="form-group">
 			<h2>리뷰 남기기<br></h2>
 				<form action="/review/writeReview" method="POST">
+					<input type="hidden" name="resNo" value="<%= request.getParameter("resNo") %>">
 					<input type="hidden" name="shopNo" value="<%= request.getParameter("shopNo") %>">
 					<fieldset class="starability-basic">
 						<legend>별점을 주세요!</legend>

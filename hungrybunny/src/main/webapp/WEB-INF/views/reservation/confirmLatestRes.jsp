@@ -12,6 +12,13 @@ function confirmRes(){
 	au.send(test);
 }
 function test(res){
+	var resList = res;
+	for(var i=0;i<res.length;i++){
+		if(res[i].currentStatus==1){
+			resList.splice(i,1);
+			i--;
+		}
+	}
 	
 	htmlStr = '';
 	if(res.length==0){
@@ -26,11 +33,12 @@ function test(res){
 		htmlStr += '<th>금액</th>';
 		htmlStr += '<th>결제방식</th>';
 		htmlStr += '<th>날짜</th>';
+		htmlStr += '<th>리뷰남기기</th>';
 		htmlStr += '</tr>';
 		htmlStr += '<tbody>';
 		for(var i=0;i<res.length;i++){
 			for(var j=0;j<i;j++){
-				if(res[i].shopName==res[j].shopName){
+				if(res[i].resDate==res[j].resDate){
 					res[i].shopName = '';
 					res[i].payPrice = '';
 					res[i].resMenuCnt = '';
@@ -47,6 +55,13 @@ function test(res){
 			htmlStr += '<td>'+res[i].payPrice+'</td>';
 			htmlStr += '<td>'+res[i].payType+'</td>';
 			htmlStr += '<td>'+res[i].resDate+'</td>';
+			if(res[i].shopName==""){
+				htmlStr += '<td></td>';
+			}else{
+				htmlStr += '<td><form method="POST" action="${pPath}/review/writeReview">'
+				+ '<input type="hidden" name="resNo" value="'+res[i].resNo+'">'
+				+ '<button name="shopNo" value="'+res[i].shopNo+'">리뷰남기러가기</button></form></td>';
+			}
 			htmlStr += '</tr>'; 
 		}
 		htmlStr += '</tbody>';
@@ -54,7 +69,6 @@ function test(res){
 	}
 	$("#resList").html(htmlStr);
 }
-
 </script>
 <body onload="confirmRes()">
 <section class="section">

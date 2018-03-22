@@ -87,13 +87,17 @@
 		var menuPriceArr = [];
 		var menuCntArr = [];
 		var menuNoArr = [];
+		console.log(menuNo[0].value);
+		console.log(menuCnt);
 		for (var i = 0; i < menuNo.size(); i++) {
 			
-			if(menuCnt[i].value!=0){
-				menuNoArr[i] = menuNo[i].value;
-			}
-			menuPriceArr[i] = menuPrice[i].value;
-			menuCntArr[i] = menuCnt[i].value;
+				if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
+					menuNoArr[i] = menuNo[i].value;
+					menuCntArr.push(menuCnt[i].value);
+					menuPriceArr[i] = menuPrice[i].value;
+				}
+			
+
 		}
 		console.log(menuNoArr);
 		console.log(menuPriceArr);
@@ -110,25 +114,28 @@
 			getInTime : getInTime,
 			target : target
 		};
-		
+
 		param = JSON.stringify(param);
 		ajaxTest(param);
 		//webSocket.send(param);
 	}
-	
-	function ajaxTest(param){
+
+	function ajaxTest(param) {
 		$.ajax({
-			url:"${root}/menu/getMenuName",
-			type:"POST",
-			contentType:"application/json",
-			data:param,
-			success:function(res){
-				console.log(res.menuNoNames);
-				var msg = {"msg":res.menuNoNames,"target":"song"};
+			url : "${root}/menu/getMenuName",
+			type : "POST",
+			contentType : "application/json",
+			data : param,
+			success : function(res) {
+				console.log(res.namesAndCnt);
+				var msg = {
+					"msg" : res.namesAndCnt,
+					"target" : "song"
+				};
 				webSocket.send(JSON.stringify(msg));
 			}
 		})
-		
+
 	}
 </script>
 <body>

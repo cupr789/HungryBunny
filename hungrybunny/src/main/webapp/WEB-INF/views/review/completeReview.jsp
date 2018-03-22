@@ -6,15 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script>
-function goConfirmRes(){
-	location.href="${pPath}/reservation/confirmRes";
-}
-</script>
 <body>
 <section class="section">
-<h1>예약이 완료되었습니다!</h1>
-<button onclick="goConfirmRes()">예약확인</button>
+<h1>리뷰 작성 완료!</h1>
+
+	<form action="${root}/review/reviewList" method="POST">
+		<button name="shopNo" value="${shopNo}">전체 리뷰 보기</button>
+	</form>
 </section>
 </body>
 </html>
