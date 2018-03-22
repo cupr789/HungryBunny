@@ -24,7 +24,10 @@
 	update user_info set uiName=#{uiName}, uiId=#{uiId}, uiPwd=#{uiPwd}, uiHP=#{uiHP}, admin=#{admin} where uiNo=#{uiNo}
 	</update>
 	<delete id="deleteUserInfo" parameterType="int">
-	delete from user_info where uiNo=#{num}
-	
+		delete from user_info where uiNo=#{num}
 	</delete>
+	
+	<select id="selectAdminName" parameterType="map" resultType="ui">
+		select uiId from user_info where uiNo = (select uiNo from shop where shopNo=#{shopNo})
+	</select>
 </mapper>  

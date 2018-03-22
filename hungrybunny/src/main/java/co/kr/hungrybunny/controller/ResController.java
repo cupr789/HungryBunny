@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,30 +46,33 @@ public class ResController {
 		mav.addObject("hallList", map.get("hallList"));
 		mav.addObject("menuList", map.get("menuList"));
 		mav.addObject("payCaList", map.get("payCaList"));
+		//재형 2018-03-22
+		mav.addObject("shopNo", shopNo);
+		//////////////////////////////////
 		mav.setViewName("reservation/resList");
 		return mav;
 	}
 	
 	@RequestMapping(value="/askRes", method = RequestMethod.POST)
-	public ModelAndView insertRes(ModelAndView mav,@RequestParam Map<String, Object> map, 
-			@RequestParam("resMenuCnt") String[] resMenuCntList, 
-			@RequestParam("menuNo") String[] menuNoList,
-			@RequestParam("menuPrice") String[] menuPriceList,
-			HttpSession hs) {
+	public ModelAndView insertRes(ModelAndView mav,@RequestBody Map<String, Object> map,HttpSession hs) {
 		System.out.println("res컨트롤러??????????");		
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
+		map.put("uiNo", ui.getUiNo());
+		String ll = map.get("hallNo").toString();
+		String[] str = ll.split(",");
+		map.put("hallNo",str[0]);
 		System.out.println("map을 뽑아보자"+map);
-		int uiNo = ui.getUiNo();
+		rs.insertRes(map);
+		
+		///////////////////2018-03-22 재형 여기서부터해야함!!!!!!!!!!!!!!!!
+		
+		
+		
+/*		int uiNo = ui.getUiNo();
 		map.put("uiNo", uiNo);
 		map.put("resMenuCntList", resMenuCntList);
 		map.put("menuNoList", menuNoList);
 		map.put("menuPriceList", menuPriceList);
-		
-//		int result = rs.insertRes(map);
-//    	mav.addObject("error", map.get("error"));
-//    	System.out.println(map);
-//		mav.setViewName("reservation/confirmRes");
-//		return mav;
 	    try {
 	    	int result = rs.insertRes(map);
 	    	mav.addObject("error", map.get("error"));
@@ -78,7 +82,8 @@ public class ResController {
 		} catch (Exception e) {
 			mav.setViewName("reservation/completeRes");
 			return mav;
-		}
+		}*/
+		return null;
 	}
 	
 	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
