@@ -90,4 +90,7 @@ public class ShopController {
 		mav.setViewName("adminShop/updateShop");
 		return mav;
 	}
+	
+	
+
 }

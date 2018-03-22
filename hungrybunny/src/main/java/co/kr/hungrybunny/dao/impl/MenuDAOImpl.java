@@ -70,6 +70,7 @@ public class MenuDAOImpl implements MenuDAO {
 
 		 List<String> menuNameList = ss.selectList("menu.adminMsgMenuName", map);
 		System.out.println(menuNameList);
+		
 		ss.close();
 		return menuNameList;
 	}

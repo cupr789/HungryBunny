@@ -1,5 +1,6 @@
 package co.kr.hungrybunny.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -12,4 +13,6 @@ public interface UserInfoDAO {
 	
 	public int updateUser(Map<String,Object> map);
 	public int deleteUser(int uiNo);
+	
+	public List<UserInfoVO> selectAdminID(Map<String,Object> map);
 }

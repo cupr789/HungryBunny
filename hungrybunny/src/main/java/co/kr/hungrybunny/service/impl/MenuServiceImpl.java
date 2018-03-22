@@ -75,8 +75,8 @@ public class MenuServiceImpl implements MenuService {
 	public Map<String, List<String>> getMenuName(Map<String, Object> map) {
 		System.out.println();
 		ArrayList<String> msList = (ArrayList<String>) menudao.selectMenuName(map);
-		System.out.println(map.get("menuCntArr")+"           ^^");
 		List<String> tesrt = (List<String>) map.get("menuCntArr");
+		
 		Map<String, List<String>> resultMap = new HashMap<String, List<String>>();
 		resultMap.put("msList", msList);
 		resultMap.put("tesrt", tesrt);

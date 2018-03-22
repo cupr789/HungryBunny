@@ -1,5 +1,6 @@
 package co.kr.hungrybunny.dao.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,7 +37,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	@Override
 	public int updateUser(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
-	int result =ss.update("user_info.updateUserInfo",map);
+		int result =ss.update("user_info.updateUserInfo",map);
+		ss.close();
 		return result;
 	}
 
@@ -44,6 +46,17 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	public int deleteUser(int uiNo) {
 		SqlSession ss = ssf.openSession();
 		int result =ss.delete("user_info.deleteUserInfo",uiNo);
+		ss.close();
 		return result;
+	}
+
+	
+	//재형 2018-03-22 추가함
+	@Override
+	public List<UserInfoVO> selectAdminID(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<UserInfoVO> resultList =ss.selectList("user_info.selectAdminName",map);
+		ss.close();
+		return resultList;
 	}
 }
