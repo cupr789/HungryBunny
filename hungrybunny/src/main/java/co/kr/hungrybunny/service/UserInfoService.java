@@ -11,5 +11,5 @@ public interface UserInfoService {
 	public int join(UserInfoVO ui);
 	public int checkUserId(String uiId);
 	public void updateUser(Map<String,Object> map,UserInfoVO ui,HttpSession hs);
-	public void deleteUser(Map<String,Object> map,UserInfoVO ui);
+	public int deleteUser(Map<String,Object> map,UserInfoVO ui);
 }

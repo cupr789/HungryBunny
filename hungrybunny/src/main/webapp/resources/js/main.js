@@ -12,10 +12,10 @@ $(document).ready(function() {
 
 
 	// Flexslider
-	$('.flexslider').flexslider({
-		animation: "fade",
-		directionNav: false,
-	});
+//	$('.flexslider').flexslider({
+//		animation: "fade",
+//		directionNav: false,
+//	});
 
 	// Page Scroll
 	var sections = $('section')

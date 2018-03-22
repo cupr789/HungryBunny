@@ -48,8 +48,12 @@ public class UserInfoController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> join(@RequestBody UserInfoVO ui){
 		log.info("ui=>{}",ui);
+		ui.setUiId(ui.getUiId().trim());
+		ui.setUiName(ui.getUiName().trim());
+		ui.setUiPwd(ui.getUiPwd().trim());
+		ui.setUiHP(ui.getUiHP().trim());
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("msg", "회원가입 실패 임마~");
+		map.put("msg", "회원가입 실패 입니다.");
 		int result = uis.join(ui);
 		
 		if(result==1) {
@@ -67,7 +71,7 @@ public class UserInfoController {
 		ui.setUiId((String) rmap.get("uiId"));
 		Map<String, Object> map = new HashMap<String, Object>();
 	
-		map.put("msg", "아이디 중복 임마~");
+		map.put("msg", "사용할수 없는 아이디 입니다.");
 		map.put("biz", false);
 		String uiId=ui.getUiId();
 		if(uis.checkUserId(uiId)==0) {
@@ -124,8 +128,10 @@ public class UserInfoController {
 	public @ResponseBody Map<String, Object> deleteUser(HttpSession hs,@RequestBody Map<String, Object> map) {
 		if (hs.getAttribute("userInfo")!= null) {
 			ui=(co.kr.hungrybunny.vo.UserInfoVO) hs.getAttribute("userInfo");
-			uis.deleteUser(map,ui);
-		
+			int result=uis.deleteUser(map,ui);
+			if(result==1) {
+			hs.invalidate();
+			}
 		} else {
 			map.put("msg","로그인부터해주세요 브끄^^");
 		}

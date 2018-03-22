@@ -65,41 +65,36 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void updateUser(Map<String, Object> map, UserInfoVO ui,HttpSession hs) {
 		String checkPwd = map.get("check").toString();
-		String checkId = map.get("uiId").toString();
-		int check=checkUserId(checkId);
-		if (checkPwd.equals(ui.getUiPwd())) {
-			if (check!=1) {
-				int result = uidao.updateUser(map);
-				if (result == 1) {
-					map.put("msg", "성공");
-					map.put("biz", true);
-				
-				} else {
-					map.put("msg", "알수없는이유로 수정실패");
-
-				}
-			}else if(checkId.equals(ui.getUiId())) {
-				int result = uidao.updateUser(map);
-
-				if (result == 1) {
-					map.put("msg", "성공");
-					map.put("biz", true);
-				} else {
-					map.put("msg", "알수없는이유로 수정실패");
-
-				}
-				
-			}
-			else {
-				map.put("msg", "변경하려는아이디 중복입니다.");
-			}
-		} else {
-			map.put("msg", "비밀번호가 일치하지 않습니다");
+		String check = map.get("uiId").toString();
+		String checkId="";
+		if(check.equals(ui.getUiId())) {
+		checkId="";
+		}else {
+		checkId=map.get("uiId").toString();
 		}
+		int result = checkUserId(checkId);
+		if(checkPwd.equals(ui.getUiPwd())) {
+			if(result==0) {
+				int faiResualt=uidao.updateUser(map);
+				if(faiResualt==1) {
+					map.put("msg","수정성공이요 로그인부터 다시해주세요^^");
+					map.put("biz",true);
+					hs.invalidate();
+				}else {
+					map.put("msg","서버오류..관리자에게 문의바람");
+				}
+			}else {
+				map.put("msg","사용할수 없는 아이디 입니다.");
+			}
+			
+		}else {
+			map.put("msg","비밀번호가 일치하지 않습니다");
+		}
+		
 	}
 
 	@Override
-	public void deleteUser(Map<String, Object> map, UserInfoVO ui) {
+	public int deleteUser(Map<String, Object> map, UserInfoVO ui) {
 		String uiPwd = map.get("check").toString();
 		if (uiPwd.equals(ui.getUiPwd())) {
 			String str = map.get("uiNo").toString();
@@ -108,11 +103,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 			if (result == 1) {
 				map.put("msg", "이런....매정한사람....");
 				map.put("biz",true);
+				return 1;
 			} else {
 				map.put("msg", "관리자에게 문의바랍니다 ㅜㅜ ");
+				return 0;
 			}
 		} else {
 			map.put("msg", "비밀번호를 잘못입력했어요 ㅜㅜ ");
+			return 0;
 		}
+		
 	}
 }

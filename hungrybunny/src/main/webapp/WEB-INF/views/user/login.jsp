@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <script> 
-
+var cnt=0;
 
 function login(){
 	var params = "uiId,uiPwd";
@@ -19,16 +19,19 @@ function login(){
 	
 
 function callback(res){
+	cnt++;
+
 	alert(res.msg);
 	if(res.biz){
 		location.href="${root}/path/index";
 	}
-	
+	if(cnt==5){
+		alert("5회잘못입력하셧습니다");
+		location.href="${root}/path/user/findUserInfo";
+	}
 	if(res.aiz){
 		location.href="${root}/path/user/admin";
 	}
-	
-	
 }
 function join(){
 	location.href="${root}/path/user/join";
@@ -53,6 +56,7 @@ function join(){
                     <div>
                         <input type="password" class="form-control" name="uiPwd" placeholder="Password">
                     </div>
+                    <a href="${pPath}/user/findUserInfo">아이디/비밀번호찾기</a>
                     <div>
                         <button type="button" onclick="login()" class="form-control btn btn-primary">로그인</button>
                     </div>
@@ -65,5 +69,6 @@ function join(){
     </div>
 </div>
 </section>
+
 </body>
 </html>

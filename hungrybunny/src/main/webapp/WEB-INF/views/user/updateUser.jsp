@@ -18,9 +18,9 @@
 				"<thead>"+
 				"<tr><th>이름</th><th>"+res.userList.uiName+"</th><th><input name='uiName' value='"+res.userList.uiName+"' type='text'></th></tr>"+
 				"<tr><th>아이디</th><th>"+res.userList.uiId+"</th><th><input name='uiId' value='"+res.userList.uiId+"' type='text'></th></tr>"+
-				"<tr><th>비밀전호</th><th>*********</th><th><input name='uiPwd' type='password'></th></tr>"+
+				"<tr><th>비밀전호</th><th></th><th><input name='uiPwd' type='password' value='"+res.userList.uiPwd+"' ></th></tr>"+
 				"<tr><th>전화번호</th><th>"+res.userList.uiHP+"</th><th><input name='uiHP' value='"+res.userList.uiHP+"' type='text'></th></tr>"+
-				"<tr><th>현재비밀번호를 입력해주세요</th><th><input name='check' type='password'><input name='admin' value='"+res.userList.admin+"' type='hidden'><input name='uiNo' value='"+res.userList.uiNo+"' type='hidden'></th>"+
+				"<tr><th>현재비밀번호를 입력해주세요</th><th><input name='check' type='password'><input name='admin' value='"+res.userList.admin+"' type='hidden'><input name='uiNo' value='"+res.userList.uiNo+"' type='hidden'></th>"+					
 				"<th><button type='button' onclick='updateUser()'><span class='glyphicon glyphicon-refresh' aria-hidden='true'></span></button>"+
 				"<button type='button' onclick='deleteUser()'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></th></tr>"+  
 			    "</thead>"+  
@@ -43,7 +43,7 @@
 		
 		alert(res.msg);
 		if(res.biz){
-			location.href="${root}/path/user/updateUser";
+			location.href="${root}/path/user/login";
 		}
 	}
 	function deleteUser(){
@@ -67,7 +67,9 @@
 <body onload="info()">
 <section class="section">
 <div ></div>
+
 <div id="userinfo"></div>
 </section>
+
 </body>
 </html>
