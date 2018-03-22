@@ -139,4 +139,19 @@ public class UserInfoController {
 		
 		return map;
 	}
+	
+	// 재형 2018-03-22 손댐
+	@RequestMapping(value = "/getAdminName", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> getAdminName(HttpSession hs, @RequestBody Map<String, Object> map) {
+		
+		if (hs.getAttribute("userInfo") != null) {
+			String resultId = uis.getAdminID(map);
+			map.put("adminId", resultId);
+		} else {
+			map.put("msg", "사장이름가져오기 실패");
+		}
+		
+
+		return map;
+	}
 }

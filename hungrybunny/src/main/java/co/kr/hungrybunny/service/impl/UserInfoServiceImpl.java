@@ -114,4 +114,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 		
 	}
+
+	
+	//재형 2018-03-22 추가
+	@Override
+	public String getAdminID(Map<String, Object> map) {
+		System.out.println(map+"   serviceImpl");
+		List<UserInfoVO> resultList = uidao.selectAdminID(map);
+		return resultList.get(0).getUiId();
+	}
 }

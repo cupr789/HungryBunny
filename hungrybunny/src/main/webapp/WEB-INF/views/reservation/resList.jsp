@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.request.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,64 +61,131 @@
 		onMessage(event)
 	};
 	function onMessage(event) {
-		alert(event);
+		console.log(event);
 		var msgObj = JSON.parse(event.data);
 		var allow = msgObj.msg;
 		if (allow) {
+			
+			
+			var hallNo = $('input:radio[name="hallNo"]:checked').val();
+			var menuNo = $("input[name='menuNo']");
+			var menuPrice = $("input[name='menuPrice']");
+			var menuCnt = $("select[name='resMenuCnt']");
+			var payCaNo = $("select[name='payCaNo']").val();
+			var getInTime = $("select[name='getInTime']").val();
+			
+			var menuPriceArr = [];
+			var menuCntArr = [];
+			var menuNoArr = [];
+			console.log(menuNo[0].value);
+			console.log(menuCnt);
+			for (var i = 0; i < menuNo.size(); i++) {
+				
+					if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
+						menuNoArr[i] = menuNo[i].value;
+						menuCntArr.push(menuCnt[i].value);
+						menuPriceArr[i] = menuPrice[i].value;
+					}
+				
+
+			}
+			var param = {
+					hallNo : hallNo,
+					menuNoArr : menuNoArr,
+					menuPriceArr : menuPriceArr,
+					menuCntArr : menuCntArr,
+					payCaNo : payCaNo,
+					getInTime : getInTime,
+				};
+			
+			param=JSON.stringify(param);
+ 			$.ajax({
+				url: "${root}/res/askRes",
+				contentType: "application/json",
+				type:"POST",
+				data: param,
+				success: function(res){
+					alert(res);
+				}
+				
+			}) 
+			
+			
+			
 			alert("예약이 성공하였습니다!");
+			
 		} else {
 			alert("매장 사정에 의해 예약이 거부되었습니다.");
 		}
 	}
 	function onOpen(event) {
-		//textarea.value += "연결 성공\n";
-		alert("연결성공");
+		
+		console.log("연결성공");
 	}
 	function onError(event) {
 		alert(event.data);
 	}
-	function send() {
-		var hallNo = $('input:radio[name="hallNo"]:checked').val();
-		var menuNo = $("input[name='menuNo']");
-		var menuPrice = $("input[name='menuPrice']");
-		var menuCnt = $("select[name='resMenuCnt']");
-		var payCaNo = $("select[name='payCaNo']").val();
-		var getInTime = $("select[name='getInTime']").val();
-
-		var menuPriceArr = [];
-		var menuCntArr = [];
-		var menuNoArr = [];
-		console.log(menuNo[0].value);
-		console.log(menuCnt);
-		for (var i = 0; i < menuNo.size(); i++) {
-			
-				if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
-					menuNoArr[i] = menuNo[i].value;
-					menuCntArr.push(menuCnt[i].value);
-					menuPriceArr[i] = menuPrice[i].value;
-				}
-			
-
-		}
-		console.log(menuNoArr);
-		console.log(menuPriceArr);
-		console.log(menuCntArr);
-		console.log(payCaNo);
-		console.log(getInTime);
-		var target = "song";
-		var param = {
-			hallNo : hallNo,
-			menuNoArr : menuNoArr,
-			menuPriceArr : menuPriceArr,
-			menuCntArr : menuCntArr,
-			payCaNo : payCaNo,
-			getInTime : getInTime,
-			target : target
-		};
-
+	
+	
+	function send(shopNo) {
+		
+		console.log(shopNo);
+		var param = {shopNo:shopNo};
 		param = JSON.stringify(param);
-		ajaxTest(param);
-		//webSocket.send(param);
+		
+		$.ajax({
+			url : "${root}/user/getAdminName",
+			type : "POST",
+			contentType : "application/json",
+			data : param,
+			success : function(res) {
+				var adminId = res.adminId;
+				console.log(adminId);
+				
+				var hallNo = $('input:radio[name="hallNo"]:checked').val();
+				var menuNo = $("input[name='menuNo']");
+				var menuPrice = $("input[name='menuPrice']");
+				var menuCnt = $("select[name='resMenuCnt']");
+				var payCaNo = $("select[name='payCaNo']").val();
+				var getInTime = $("select[name='getInTime']").val();
+
+				var menuPriceArr = [];
+				var menuCntArr = [];
+				var menuNoArr = [];
+				console.log(menuNo[0].value);
+				console.log(menuCnt);
+				for (var i = 0; i < menuNo.size(); i++) {
+					
+						if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
+							menuNoArr[i] = menuNo[i].value;
+							menuCntArr.push(menuCnt[i].value);
+							menuPriceArr[i] = menuPrice[i].value;
+						}
+					
+
+				}
+/* 				console.log(menuNoArr);
+				console.log(menuPriceArr);
+				console.log(menuCntArr);
+				console.log(payCaNo);
+				console.log(getInTime); */
+				
+				var param = {
+					hallNo : hallNo,
+					menuNoArr : menuNoArr,
+					menuPriceArr : menuPriceArr,
+					menuCntArr : menuCntArr,
+					payCaNo : payCaNo,
+					getInTime : getInTime,
+					target : adminId
+				};
+
+				param = JSON.stringify(param);
+				ajaxTest(param);
+			}
+		})
+		
+
 	}
 
 	function ajaxTest(param) {
@@ -127,10 +195,13 @@
 			contentType : "application/json",
 			data : param,
 			success : function(res) {
-				console.log(res.namesAndCnt);
+				param = JSON.parse(param);
+				console.log(param.target);
 				var msg = {
 					"msg" : res.namesAndCnt,
-					"target" : "song"
+					"target" : param.target,
+					"hallNo" : param.hallNo
+					
 				};
 				webSocket.send(JSON.stringify(msg));
 			}
@@ -147,22 +218,22 @@
 				<c:when test="${hallList.seatCnt eq '2'}">
 					<img src="${rPath}/images/person_icon/people1.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo}">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:when test="${hallList.seatCnt eq '4'}">
 					<img src="${rPath}/images/person_icon/people2.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo}">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:when test="${hallList.seatCnt eq '6'}">
 					<img src="${rPath}/images/person_icon/people3.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo}">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:otherwise>
 					<img src="${rPath}/images/person_icon/people4.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo}">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -200,7 +271,7 @@
 				<option value="20">20분 안으로 도착</option>
 				<option value="30">30분 안으로 도착</option>
 			</select><br>
-			<button type="button" value="send" onclick="send()">예약</button>
+			<button type="button" value="send" onclick="send(${shopNo})">예약</button>
 		</div>
 	</section>
 </body>

@@ -1,5 +1,6 @@
 package co.kr.hungrybunny.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,17 +23,20 @@ public class ResDAOImpl implements ResDAO {
 		int resMenuCnt=0;
 		int menuPrice=0;
 		int payPrice=0;
-		
 		System.out.println("저 다온데여...."+map);
-		String[] resMenuCntList = (String[]) map.get("resMenuCntList");
-		String[] menuPriceList = (String[]) map.get("menuPriceList");
-		for(int i=0;i<resMenuCntList.length;i++) {
-			resMenuCnt = Integer.parseInt(resMenuCntList[i]);
-			menuPrice = Integer.parseInt(menuPriceList[i]);
-			payPrice += (resMenuCnt*menuPrice);
+		ArrayList<String> resMenuCntList =  (ArrayList<String>) map.get("menuCntArr");
+		ArrayList<String> menuPriceList =  (ArrayList<String>) map.get("menuPriceArr");
+		System.out.println(resMenuCntList +"      ??");
+		System.out.println(menuPriceList +"      ??");
+		for(int i=0;i<resMenuCntList.size();i++) {
+			if(menuPriceList.get(i)!=null) {
+				resMenuCnt = Integer.parseInt(resMenuCntList.get(i));
+				menuPrice = Integer.parseInt(menuPriceList.get(i));
+				payPrice += (resMenuCnt*menuPrice);
+			}
 		}
 		map.put("payPrice", payPrice);
-		
+		System.out.println(map+"   다오임플");
 		int result = ss.insert("res.insertRes", map);
 		if(result==1) {
 			System.out.println("ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ흐엉 성공했셔");
@@ -49,13 +53,13 @@ public class ResDAOImpl implements ResDAO {
 		SqlSession ss = ssf.openSession();
 		//Map<String, Object> resMap = new HashMap<String, Object>();
 		int result=0;
-		String[] resMenuCntList = (String[]) map.get("resMenuCntList");
-		String[] menuNoList = (String[]) map.get("menuNoList");
+		ArrayList<String> resMenuCntList =  (ArrayList<String>) map.get("menuCntArr");
+		ArrayList<String> menuNoList =  (ArrayList<String>) map.get("menuNoArr");
 		System.out.println("resMenuCntList : "+resMenuCntList + "menuNoList : "+menuNoList);
-		for(int i=0;i<menuNoList.length;i++) {
-			if(Integer.parseInt(resMenuCntList[i])!=0) {
-				map.put("resMenuCnt", resMenuCntList[i]);
-				map.put("menuNo", menuNoList[i]);
+		for(int i=0;i<menuNoList.size();i++) {
+			if(Integer.parseInt(resMenuCntList.get(i))!=0) {
+				map.put("resMenuCnt", resMenuCntList.get(i));
+				map.put("menuNo", menuNoList.get(i));
 				result = ss.insert("res.insertResMenu", map);
 				if(result==0) {
 					map.put("error", "뭔가 하나가 안들어갔어");

@@ -50,6 +50,7 @@
 		var data = JSON.parse(event.data);
 		
 		///////////////////////////////여기손보다가 끝남!!!!!! 2018-03-21
+		console.log(data);
 		console.log(data.msg);
 		console.log(data.msg.msList[0]);
 		console.log(data.msg.tesrt);
@@ -58,7 +59,10 @@
 		for(var i=0;i<data.msg.msList.length;i++){
 			sendMsg+=data.msg.msList[i]+" "+data.msg.tesrt[i]+"개, ";
 		}
-		console.log(sendMsg);
+		var splitE = data.hallNo;
+		splitE = splitE.split(',');
+		sendMsg+= splitE[1]+"인석 "; 
+		//sendMsg +=data.hallNo
 		allow = confirm(sendMsg + " 예약이 들어왔습니다. 받으시겠습니까?");
 		
 		if(allow){

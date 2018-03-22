@@ -88,6 +88,7 @@ public class BunnySocket {
 		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
 		final String userId = uiv.getUiId();
 		sessionMap.put(userId, session);
+		System.out.println("sessionMap : "+sessionMap);
 	}
 
 	@OnClose
