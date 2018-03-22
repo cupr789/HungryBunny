@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.hungrybunny.service.UserInfoService;
+import co.kr.hungrybunny.vo.ReviewVO;
 import co.kr.hungrybunny.vo.ShopVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
@@ -131,13 +132,5 @@ public class UserInfoController {
 		}
 		
 		return map;
-	}
-
-	@RequestMapping(value = "/review", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> review(HttpSession hs,@RequestParam Map<String, String> map) {
-		System.out.println("....?");
-		System.out.println(map);
-		
-		return null;
 	}
 }

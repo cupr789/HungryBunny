@@ -12,6 +12,13 @@ function confirmRes(){
 	au.send(test);
 }
 function test(res){
+	var resList = res;
+	for(var i=0;i<res.length;i++){
+		if(res[i].currentStatus==1){
+			resList.splice(i,1);
+			i--;
+		}
+	}
 	
 	htmlStr = '';
 	if(res.length==0){
@@ -51,7 +58,9 @@ function test(res){
 			if(res[i].shopName==""){
 				htmlStr += '<td></td>';
 			}else{
-				htmlStr += '<td><form method="POST" action="${pPath}/user/review"><button name="shopName" value="'+res[i].shopName+'">리뷰남기러가기</button></form></td>';
+				htmlStr += '<td><form method="POST" action="${pPath}/review/writeReview">'
+				+ '<input type="hidden" name="resNo" value="'+res[i].resNo+'">'
+				+ '<button name="shopNo" value="'+res[i].shopNo+'">리뷰남기러가기</button></form></td>';
 			}
 			htmlStr += '</tr>'; 
 		}

@@ -100,7 +100,8 @@
 						marker = e.overlay, seq = marker.get('seq');
 						infoWindow
 								.setContent([ "<div style='align-content: center'><h3>" + shopList[seq].shopName
-										+ "</h3><br><form action='${root}/res/checkOption' method='get'><button name='shopNo' value='"+shopList[seq].shopNo+"'>예약하러가기</button></form></div>" ]
+										+ "</h3><br><form action='${root}/res/checkOption' method='get'><button name='shopNo' value='"+shopList[seq].shopNo+"'>예약하러가기</button></form>"
+										+ "<form action='${root}/review/reviewList' method='POST'><button name='shopNo' value='"+shopList[seq].shopNo+"'>리뷰보기</button></form></div>" ]
 										.join('\n'));
 						infoWindow.open(map, marker);
 					});

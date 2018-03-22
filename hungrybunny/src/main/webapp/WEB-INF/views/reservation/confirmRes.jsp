@@ -88,7 +88,7 @@ function cancleRes(res){
 	<h1>예약확인</h1>
 		<div id="resList">
 		</div>
-		<button><a href="${pPath}/reservation/confirmRes2">지난 예약 보기</a></button>
+		<button><a href="${pPath}/reservation/confirmLatestRes">지난 예약 보기</a></button>
 	</div>
 </section>
 </body>
