@@ -58,8 +58,8 @@ public class ResController {
 		System.out.println("res컨트롤러??????????");		
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		map.put("uiNo", ui.getUiNo());
-		String ll = map.get("hallNo").toString();
-		String[] str = ll.split(",");
+		String hallno = map.get("hallNo").toString();
+		String[] str = hallno.split(",");
 		map.put("hallNo",str[0]);
 		System.out.println("map을 뽑아보자"+map);
 		rs.insertRes(map);

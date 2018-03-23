@@ -10,7 +10,7 @@
 	
 	<insert id="insertResMenu" parameterType="map">
 		insert into reservationmenu(resMenuCnt, resNo, menuNo)
-		values(#{resMenuCnt}, (select resNo from reservation where hallNo=#{hallNo}), #{menuNo});
+		values(#{resMenuCnt}, (select resNo from reservation where hallNo=#{hallNo} and currentStatus=1), #{menuNo});
 	</insert>
 	
 	<select id="confirmRes" parameterType="int" resultType="map">

@@ -39,7 +39,6 @@ function test(res){
 				if(res[i].shopName==res[j].shopName){
 					res[i].shopName = '';
 					res[i].payPrice = '';
-					res[i].resMenuCnt = '';
 					res[i].payType = '';
 					res[i].resDate = '';
 				}

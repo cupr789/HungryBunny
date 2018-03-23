@@ -105,14 +105,11 @@
 				type:"POST",
 				data: param,
 				success: function(res){
-					alert(res);
+					console.log(res);
+					alert("예약이 성공하였습니다!");
 				}
-				
 			}) 
 			
-			
-			
-			alert("예약이 성공하였습니다!");
 			
 		} else {
 			alert("매장 사정에 의해 예약이 거부되었습니다.");
