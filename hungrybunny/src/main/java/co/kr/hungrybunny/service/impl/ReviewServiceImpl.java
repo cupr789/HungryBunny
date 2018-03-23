@@ -24,7 +24,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public List<ReviewVO> getReviewList(int shopNo) {
-		System.out.println("나는 서비스");
-		return null;
+		return rdao.selectReviewList(shopNo);
 	}
 }
