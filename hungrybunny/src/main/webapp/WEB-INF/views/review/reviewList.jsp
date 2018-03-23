@@ -10,26 +10,39 @@
 String shopNo = request.getParameter("shopNo");
 %>
 <script>
-function reviewList(){
+function alertMsg(){
 	var msg = "${msg}";
 	if(msg){
 		alert(msg);
 	}
-	var shopNo = "${shopNo}"
-	var param = {shopNo : shopNo};
-	
-		$.ajax({
-			url : "${root}/review/reviewList",
-			type : "POST",
-			data : param,
-			success : function(res) {
-				
-			}
-		})
 }
 </script>
-<body>
+<body onload="alertMsg()">
 <section class="section">
+<div class="container">
+	<table class="table table-bordered" style="width:100%">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>메뉴</th>
+				<th>코멘트</th>
+				<th>별점</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${reviewList}" var="reviewList">
+				<tr>
+					<td>${reviewList.uiId}님</td>
+					<td>${reviewList.menuName}</td>
+					<td>${reviewList.reviewComment}</td>
+					<td width="10%"><fieldset class="starability-basic"><input type="radio"/><label for="rate1"></label>
+					<span>X${reviewList.reviewRating}</span></fieldset></td>
+				</tr>
+			</c:forEach>
+		
+		</tbody>
+	</table>
+</div>
 </section>
 </body>
 </html>

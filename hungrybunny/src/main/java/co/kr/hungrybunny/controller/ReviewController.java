@@ -45,22 +45,16 @@ public class ReviewController {
 		}
 	}
 	
-//	@RequestMapping(value="/reviewList/{shopNo}", method=RequestMethod.POST)
-//	public @ResponseBody List<ReviewVO> reviewList(HttpSession hs,@PathVariable("shopNo") int shopNo, @RequestParam Map<String, Object> map) {
-//		System.out.println("....?");
-//		System.out.println("나는 shopNo받았어"+shopNo);
-//		if(map.get("shopNo")!=null) {
-//			System.out.println("map.get(\"shopNo\")에 값이 있다"+map.get("shopNo"));
-//		}
-//		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
-//		return reviewList;
-//	}
-	
 	@RequestMapping(value="/reviewList", method=RequestMethod.POST)
-	public @ResponseBody List<ReviewVO> reviewList(HttpSession hs, @RequestParam Map<String, Object> map) {
+	public ModelAndView reviewList(HttpSession hs, @RequestParam Map<String, Object> map, ModelAndView mav) {
 		System.out.println("....?!!!!!!!!!!!!!!!!");
 		System.out.println("나는 shopNo받았어"+map.get("shopNo"));
-		
-		return null;
+		String shopNoStr = map.get("shopNo").toString();
+		int shopNo = Integer.parseInt(shopNoStr);
+		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
+		System.out.println("reviewList     :        "+reviewList);
+		mav.addObject("reviewList", reviewList);
+		mav.setViewName("review/reviewList");
+		return mav;
 	}
 }

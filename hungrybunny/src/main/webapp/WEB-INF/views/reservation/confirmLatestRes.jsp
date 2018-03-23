@@ -35,13 +35,13 @@ function test(res){
 		htmlStr += '<th>날짜</th>';
 		htmlStr += '<th>리뷰남기기</th>';
 		htmlStr += '</tr>';
+		htmlStr += '</thead>';
 		htmlStr += '<tbody>';
 		for(var i=0;i<res.length;i++){
 			for(var j=0;j<i;j++){
 				if(res[i].resDate==res[j].resDate){
 					res[i].shopName = '';
 					res[i].payPrice = '';
-					res[i].resMenuCnt = '';
 					res[i].payType = '';
 					res[i].resDate = '';
 				}

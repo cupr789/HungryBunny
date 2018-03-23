@@ -6,5 +6,56 @@ public class ReviewVO {
 	private int reviewRating;
 	private String reviewComment;
 	private int shopNo;
-	private int uiNo;
+	private int resNo;
+	private String uiId;
+	private String menuName;
+	
+	public int getReviewNo() {
+		return reviewNo;
+	}
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
+	}
+	public int getReviewRating() {
+		return reviewRating;
+	}
+	public void setReviewRating(int reviewRating) {
+		this.reviewRating = reviewRating;
+	}
+	public String getReviewComment() {
+		return reviewComment;
+	}
+	public void setReviewComment(String reviewComment) {
+		this.reviewComment = reviewComment;
+	}
+	public int getShopNo() {
+		return shopNo;
+	}
+	public void setShopNo(int shopNo) {
+		this.shopNo = shopNo;
+	}
+	public int getResNo() {
+		return resNo;
+	}
+	public void setResNo(int resNo) {
+		this.resNo = resNo;
+	}
+	public String getUiId() {
+		return uiId;
+	}
+	public void setUiId(String uiId) {
+		this.uiId = uiId;
+	}
+	public String getMenuName() {
+		return menuName;
+	}
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+	
+	@Override
+	public String toString() {
+		return "ReviewVO [reviewNo=" + reviewNo + ", reviewRating=" + reviewRating + ", reviewComment=" + reviewComment
+				+ ", shopNo=" + shopNo + ", resNo=" + resNo + ", uiId=" + uiId + ", menuName=" + menuName + "]";
+	}
 }
