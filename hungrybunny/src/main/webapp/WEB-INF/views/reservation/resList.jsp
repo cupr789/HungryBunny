@@ -24,6 +24,7 @@
 	href="${rPath}/css/button/base.css" />
 <link rel="stylesheet" type="text/css"
 	href="${rPath}/css/button/buttons.css" />
+	
 <script>
 	function validate() {
 		var payCaNo = document.getElementById("payCaNo");
@@ -49,6 +50,16 @@
 		}
 
 	}
+	
+	
+	$(document).ready(function(){
+
+		IMP.init('imp33735056');
+		alert('아이폼트 레디먹힘');
+
+	});
+	
+	
 
 	var webSocket = new WebSocket('ws://localhost/alarm');
 	webSocket.onerror = function(event) {
@@ -123,10 +134,36 @@
 		alert(event.data);
 	}
 	
-	
 	function send(shopNo) {
 		
-		console.log(shopNo);
+		
+		IMP.request_pay({
+		    pg : 'html5_inicis',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '주문명:결제테스트',
+		    amount : 14000,
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '구매자이름',
+		    buyer_tel : '010-1234-5678',
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+
+		    alert(msg);
+		});
+		
+/* 		console.log(shopNo);
 		var param = {shopNo:shopNo};
 		param = JSON.stringify(param);
 		
@@ -161,11 +198,11 @@
 					
 
 				}
-/* 				console.log(menuNoArr);
+ 				console.log(menuNoArr);
 				console.log(menuPriceArr);
 				console.log(menuCntArr);
 				console.log(payCaNo);
-				console.log(getInTime); */
+				console.log(getInTime); 
 				
 				var param = {
 					hallNo : hallNo,
@@ -181,7 +218,7 @@
 				ajaxTest(param);
 			}
 		})
-		
+		 */
 
 	}
 
