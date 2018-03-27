@@ -21,7 +21,6 @@ import co.kr.hungrybunny.service.HallService;
 import co.kr.hungrybunny.service.PayCaService;
 import co.kr.hungrybunny.service.ResService;
 import co.kr.hungrybunny.vo.HallVO;
-import co.kr.hungrybunny.vo.ShopCaVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @Controller

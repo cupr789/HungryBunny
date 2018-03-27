@@ -30,4 +30,13 @@
 	<select id="selectAdminName" parameterType="map" resultType="ui">
 		select uiId from user_info where uiNo = (select uiNo from shop where shopNo=#{shopNo})
 	</select>
+		<select id="findUserInfo" parameterType="map" resultType="ui">
+	select * from user_info where uiEmail=#{uiEmail}
+	</select>
+	<select id="checkUiNo" parameterType="int" resultType="ui">
+	select * from user_info where uiNo=#{num}	
+	</select>
+	<update id="updateFindUser" parameterType="map">
+	update user_info set uiId=#{uiId}, uiPwd=#{uiPwd} where uiNo=#{uiNo}	
+	</update>
 </mapper>  

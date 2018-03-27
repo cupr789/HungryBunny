@@ -59,4 +59,27 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 		ss.close();
 		return resultList;
 	}
+	@Override
+	public List<UserInfoVO> findUserInfo(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<UserInfoVO> list=ss.selectList("user_info.findUserInfo", map);
+		ss.close();
+		return list;
+	}
+
+	@Override
+	public List<UserInfoVO> checkUiNo(int uiNo) {
+		SqlSession ss = ssf.openSession();
+		List<UserInfoVO> list=ss.selectList("user_info.checkUiNo", uiNo);
+		ss.close();
+		return list;
+	}
+
+	@Override
+	public int updateFindUser(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.update("user_info.updateFindUser", map);
+		ss.close();
+		return result;
+	}
 }

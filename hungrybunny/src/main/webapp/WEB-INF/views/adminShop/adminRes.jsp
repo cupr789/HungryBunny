@@ -11,6 +11,7 @@
 
 	function resInfo(){
 		var str="";
+		var cnt=1;
 		var listSize=${reslist}.length;
 		for(var i=0;i<listSize;i++){
 			str+="<tr>"+
@@ -26,6 +27,7 @@
 			"<td></td>"+
 			 "</tr>"
 		}
+		
 		
 	$("#adminRes").html( 	
 	"<table class='table table-bordered'>"+
@@ -44,6 +46,7 @@
 	"</tr>"  +
     "</thead>"+
     "<tbody class='tbody'>"+
+    
     str+
    	"</tbody>"+
 	"</table>"

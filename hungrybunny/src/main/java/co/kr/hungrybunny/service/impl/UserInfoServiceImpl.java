@@ -123,4 +123,28 @@ public class UserInfoServiceImpl implements UserInfoService {
 		List<UserInfoVO> resultList = uidao.selectAdminID(map);
 		return resultList.get(0).getUiId();
 	}
+	@Override
+	public List<UserInfoVO> findUserInfo( Map<String, Object> map) {
+		List<UserInfoVO> list=uidao.findUserInfo(map);
+		return list;
+	}
+
+	@Override
+	public List<UserInfoVO> checkUiNo(int uiNo) {
+		List<UserInfoVO> list=uidao.checkUiNo(uiNo);
+		return list;
+	}
+
+	@Override
+	public void updateFindUser(Map<String, Object> map, HttpSession hs) {
+		int result =uidao.updateFindUser(map);
+		if(result==1) {
+			map.put("msg","변경성공이요~~");
+			map.put("biz",true);
+			hs.invalidate();
+		}else {
+			map.put("msg","서버오류 관리자에게 문의 해주세요");
+		}
+		
+	}
 }

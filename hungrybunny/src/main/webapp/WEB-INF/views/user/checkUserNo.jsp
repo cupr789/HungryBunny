@@ -7,38 +7,40 @@
 <title>Insert title here</title>
 </head>
 <script >
-function findUserInfo() {
-	var params = "uiEmail";
-	var au = new AjaxUtil("${root}/user/findUserInfo", params, "POST");
+function checkUiNo(){
+	var params = "uiNo";
+	var au = new AjaxUtil("${root}/user/checkUiNo", params, "POST");
 	au.send(callback);
-
+	
 }
 function callback(res){
 	alert(res.msg);
 	if(res.biz){
-		location.href="${root}/path/user/checkUserNo"
+		location.href="${root}/path/user/updateFindUser"
 	}
 }
 </script>
-<body>
+<body >
 <section class="section">
+
 <div class="container">
     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <div class="panel-title">가입하신 Email을 입력해주세요</div>
+                <div class="panel-title">메일로받은 번호를 입력해주세요</div>
             </div>
             <div class="panel-body">
                 <a id="login-form">
                     <div>
-                        <input type="text" class="form-control" name="uiEmail" placeholder="oooo@naver.com">
+                        <input type="text" class="form-control" name="uiNo" placeholder="Number">
                     </div>
              
                     <div>
-                        <button type="button" onclick="findUserInfo()" class="form-control btn btn-primary">메일보내기</button>
+                        <button type="button" onclick="checkUiNo()" class="form-control btn btn-primary">확인</button>
                     </div>
                   
                     </a>
+
 </section>
 </body>
 </html>

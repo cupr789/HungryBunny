@@ -17,5 +17,9 @@ public interface UserInfoService {
 	
 	//재형 2018-03-22
 	public String getAdminID(Map<String,Object> map);
+	
+	public List<UserInfoVO> findUserInfo(Map<String,Object> map);
+	public List<UserInfoVO> checkUiNo(int uiNo);
+	public void updateFindUser(Map<String,Object> map, HttpSession hs);
 
 }

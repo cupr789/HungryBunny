@@ -15,4 +15,7 @@ public interface UserInfoDAO {
 	public int deleteUser(int uiNo);
 	
 	public List<UserInfoVO> selectAdminID(Map<String,Object> map);
+	public List<UserInfoVO> findUserInfo(Map<String,Object> map);
+	public List<UserInfoVO> checkUiNo(int uiNo);
+	public int updateFindUser(Map<String,Object> map);
 }
