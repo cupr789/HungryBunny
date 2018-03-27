@@ -6,9 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<%
-String shopNo = request.getParameter("shopNo");
-%>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script>
 function alertMsg(){
 	var msg = "${msg}";
@@ -27,21 +26,31 @@ function alertMsg(){
 				<th>메뉴</th>
 				<th>코멘트</th>
 				<th>별점</th>
+				<th>날짜</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${reviewList}" var="reviewList">
 				<tr>
-					<td>${reviewList.uiId}님</td>
+					<td><div class="w3-xxxlarge"><i class="glyphicon glyphicon-user"></i></div>${reviewList.uiId}</td>
 					<td>${reviewList.menuName}</td>
 					<td>${reviewList.reviewComment}</td>
-					<td width="10%"><fieldset class="starability-basic"><input type="radio"/><label for="rate1"></label>
-					<span>X${reviewList.reviewRating}</span></fieldset></td>
+					<td width="15%">
+					<fieldset class="starability-basic">
+					<c:forEach begin="1" end="${reviewList.reviewRating}">
+					<input type="radio"/><label for="rate1"></label>
+					</c:forEach>
+					</fieldset>
+					</td>
+					<td>${reviewList.resDate}</td>
 				</tr>
 			</c:forEach>
 		
 		</tbody>
 	</table>
+			<c:forEach items="${reviewList}" var="reviewList">
+			
+			</c:forEach>
 </div>
 </section>
 </body>

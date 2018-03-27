@@ -54,7 +54,7 @@
 </script>
 <body>
 <section class="section">
-
+<div class="container">
 	<h4 style="font: bold;">ShopInfo</h4>
 	<br>
 	
@@ -121,6 +121,7 @@
 	
 	 <div id="menuList">
 	</div> 
+	</div>
 </section>
 </body>
 </html>

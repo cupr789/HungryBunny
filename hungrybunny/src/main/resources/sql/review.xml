@@ -9,9 +9,9 @@
 	</insert>
 	
 	<select id="selectReviewList" parameterType="int" resultType="review">
-		select rv.reviewComment, rv.reviewRating, u.uiId, m.menuName, rv.reviewNo, r.resNo
+		select rv.reviewComment, rv.reviewRating, u.uiId, m.menuName, rv.reviewNo, r.resNo, r.resDate
 		from review rv, reservation r, user_info u , reservationmenu rm, menu m
-		where rv.shopNo = 2
+		where rv.shopNo = #{shopNo}
 		and rv.resNo = r.resNo
 		and rv.resNo = rm.resNo
 		and rm.menuNo = m.menuNo

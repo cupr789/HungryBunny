@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminres">
 		<select id="selectAdminHave" parameterType="int" resultType="map">
-			select s.shopname, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.PayType, u.uiName, u.uiHP, h.seatCnt, r.hallNo
+			select r.resNo,s.shopname, m.menuName, rm.resMenuCnt, r.resDate, r.payPrice, p.PayType, u.uiName, u.uiHP, h.seatCnt, r.hallNo
 			from user_info u, reservation r, reservationmenu rm, pay_category p, shop s, menu m, hall h
 			where r.shopNo=#{num}
 			and u.uiNo=r.uiNo

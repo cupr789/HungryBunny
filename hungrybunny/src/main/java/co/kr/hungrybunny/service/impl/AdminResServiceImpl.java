@@ -26,6 +26,8 @@ public class AdminResServiceImpl implements AdaminResService{
 		List<Object> hallList=ardao.selectShophall(shopNo);
 		List<Object> list=ardao.selectAdminShop(shopNo);
 		System.out.println("/*/*/*//*/*/*/*/*/*/"+hallList);
+		System.out.println("/*/*/*//*/*/*/*/*/*/"+list);
+		
 		map.put("msg","들어왔어요");
 		map.put("reslist",gson.toJson(list));
 		map.put("hallList",hallList);

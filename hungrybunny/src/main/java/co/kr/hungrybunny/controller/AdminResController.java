@@ -34,6 +34,8 @@ public class AdminResController {
 		String str=map.get("adminRes").toString();
 		int shopNo=Integer.parseInt(str);
 	List<Object> list = ars.getAdminShop(shopNo,map);
+	
+	System.out.println("%%%%%%%%%%%%%   "+list);
 	if(list!=null) {
 		mav.addAllObjects(map);
 	}
