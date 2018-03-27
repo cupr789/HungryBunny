@@ -11,19 +11,18 @@
 
 	function resInfo(){
 		var str="";
+		var partStr="";
 		var listSize=${reslist}.length;
 		for(var i=0;i<listSize;i++){
 			str+="<tr>"+
-			"<td>"+${reslist}[i]["resMenuCnt"]+"</td>"+
-			"<td>"+${reslist}[i]["payPrice"]+"</td>"+
 			"<td>"+${reslist}[i]["seatCnt"]+"</td>"+
-			"<td>"+${reslist}[i]["menuName"]+"</td>"+
+			"<td>"+${reslist}[i]["menuName"]+"("+${reslist}[i]["resMenuCnt"]+"개)"+"</td>"+
 			"<td>"+${reslist}[i]["resDate"]+"</td>"+
 			"<td>"+${reslist}[i]["uiHP"]+"</td>"+
 			"<td>"+${reslist}[i]["PayType"]+"</td>"+
 			"<td>"+${reslist}[i]["uiName"]+"</td>"+
 			"<td>"+${reslist}[i]["hallNo"]+"</td>"+
-			"<td></td>"+
+			"<td>"+${reslist}[i]["payPrice"]+"</td>"+
 			 "</tr>"
 		}
 		
@@ -31,8 +30,6 @@
 	"<table class='table table-bordered'>"+
 	"<thead>"+
 	"<tr>"+
-	"<th>개수</th>"+
-	"<th>총합</th>"+
 	"<th>예약인수</th>"+
 	"<th>메뉴</th>"+
 	"<th>예약시간</th>"+
@@ -40,7 +37,7 @@
 	"<th>결제방법</th>"+
 	"<th>예약자명</th>"+
 	"<th>예약테이블</th>"+
-	"<th>확인/취소</th>"+
+	"<th>총금액</th>"+
 	"</tr>"  +
     "</thead>"+
     "<tbody class='tbody'>"+
@@ -64,7 +61,7 @@
 		})
 		function callback(res){
 			
-				 location.reload()
+				 location.reload();
 			
 		}
 		
@@ -72,9 +69,9 @@
 	
 </script>
 
-<body onload="resInfo()" >
+<body onload="resInfo()">
 <section class="section">
-
+<div class="container">
 <div id="adminRes"></div>
 
 			<h3>홀현황</h3>
@@ -112,7 +109,7 @@
 		    </tr>
 		    </c:forEach>
 			</table>
-
+</div>
 </section>
 </body>
 </html>
