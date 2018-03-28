@@ -11,6 +11,7 @@
 <h1>리뷰 작성 완료!</h1>
 
 	<form action="${root}/review/reviewList" method="POST">
+		
 		<button name="shopNo" value="${shopNo}">전체 리뷰 보기</button>
 	</form>
 </section>

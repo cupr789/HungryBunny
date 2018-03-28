@@ -32,4 +32,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 		ss.close();
 		return reviewList;
 	}
+
+	@Override
+	public int adminComment(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result =ss.insert("review.adminComment", map);
+		System.out.println("저장성공");
+		ss.close();
+		return result;
+	}
 }
