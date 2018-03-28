@@ -10,6 +10,7 @@ public class ReviewVO {
 	private String uiId;
 	private String menuName;
 	private String resDate;
+	private String reviewImageName;
 	
 	public int getReviewNo() {
 		return reviewNo;
@@ -59,11 +60,17 @@ public class ReviewVO {
 	public void setResDate(String resDate) {
 		this.resDate = resDate;
 	}
+	public String getReviewImageName() {
+		return reviewImageName;
+	}
+	public void setReviewImageName(String reviewImageName) {
+		this.reviewImageName = reviewImageName;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNo=" + reviewNo + ", reviewRating=" + reviewRating + ", reviewComment=" + reviewComment
 				+ ", shopNo=" + shopNo + ", resNo=" + resNo + ", uiId=" + uiId + ", menuName=" + menuName + ", resDate="
-				+ resDate + "]";
+				+ resDate + ", reviewImageName=" + reviewImageName + "]";
 	}
 }
