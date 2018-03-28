@@ -9,4 +9,5 @@ public interface ReviewService {
 
 	public int insertReview(Map<String, Object> map);
 	public List<ReviewVO> getReviewList(int shopNo);
+	public void adminComment(Map<String, Object> map);
 }
