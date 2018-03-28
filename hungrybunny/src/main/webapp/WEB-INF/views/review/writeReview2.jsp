@@ -6,15 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+
 </head>
-
-<style>
-	.img_warp{
-		width:300px;
-		margin-top:50px;
-	}
-</style>
-
+<%
+String shopNo = request.getParameter("shopNo");
+%>
 <script>
 function commentCnt(){
 	var text_max = 300;
@@ -25,38 +21,17 @@ function commentCnt(){
 	  $('#count_message').html(text_remaining + ' remaining');
 	}); 
 }
-
-$(document).ready(function(){
-	$("#input_img").on("change", handleImgFileSelect);
-});
-
-function handleImgFileSelect(e){
-	var files = e.target.files;
-	var filesArr = Array.prototype.slice.call(files);
-	
-	filesArr.forEach(function(f){
-		if(!f.type.match("image.*")){
-			alert("으아아ㅏ아아아아아");
-			return;
-		}
-		
-		sel_file = f;
-		
-		var reader = new FileReader();
-		reader.onload = function(e){
-			$("#img").attr("src", e.target.result);
-		}
-		reader.readAsDataURL(f);
-	});
-}
-
+<%-- function test(){
+	var shopName = <%=shopName%>
+	alert(shopNo);
+} --%>
 </script>
 <body onload="commentCnt()">
 <section class="section">
 	<div class="container">
 		<div class="form-group">
 			<h2>리뷰 남기기<br></h2>
-				<form action="/review/writeReview" method="POST" enctype="multipart/form-data">
+				<form action="/review/writeReview" method="POST">
 					<input type="hidden" name="resNo" value="<%= request.getParameter("resNo") %>">
 					<input type="hidden" name="shopNo" value="<%= request.getParameter("shopNo") %>">
 					<fieldset class="starability-basic">
@@ -84,14 +59,7 @@ function handleImgFileSelect(e){
 					<label for="comment">Comment:</label>
 					<textarea class="form-control" rows="5" id="comment" name="reviewComment"></textarea>
 					<h6 class="pull-right" id="count_message"></h6>
-					<br>
-					File to upload: <input type="file" name="file" id="input_img">
-					<br>
-					<div>
-						<div class="img_wrap">
-							<img id="img" style="width: 100%; max-width: 200px;"/>
-						</div>
-					</div>
+					
 					<button>등록하기</button>
 				</form>
 		</div>
