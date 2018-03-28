@@ -26,23 +26,39 @@
 	href="${rPath}/css/button/buttons.css" />
 	
 <script>
-	function validate() {
+
+
+$(document).ready(function(){
+
+	IMP.init('imp33735056');
+
+});
+
+
+
+	function validate(shopNo) {
+		
 		var payCaNo = document.getElementById("payCaNo");
 		var getInTime = document.getElementById("getInTime");
-		//	alert('선택된 옵션 text 값=' + target.options[target.selectedIndex].text);     // 옵션 text 값
-		//	alert('선택된 옵션 value 값=' + target.options[target.selectedIndex].value);
-
-		if (payCaNo.options[payCaNo.selectedIndex].value == 0) {
+		var hallNo = $('input:radio[name="hallNo"]:checked').val();
+		var menuCnt = $("select[name='resMenuCnt']").val();
+		if(hallNo==null){
+			alert("자리를 선택해주세요.");
+			return false;
+		}else if(menuCnt==0){
+			alert("메뉴 개수를 선택해주세요");
+			return false;
+		}else if (payCaNo.options[payCaNo.selectedIndex].value == 0) {
 			alert("결제방식을 선택해주세요");
 			return false;
-		}
-		if (getInTime.options[getInTime.selectedIndex].value == 0) {
+		}else if (getInTime.options[getInTime.selectedIndex].value == 0) {
 			alert("도착 예정 시간을 선택해주세요");
 			return false;
 		}
+		
 		var con_res = confirm("예약 시 환불이 불가능합니다. 예약하시겠습니까?");
 		if (con_res == true) {
-			return true;
+			send(shopNo);
 		} else if (con_res == false) {
 			alert("예약이 취소되었습니다.");
 			location.reload();
@@ -51,15 +67,42 @@
 
 	}
 	
-	
-	$(document).ready(function(){
+	function initParam(){
+		
+		var hallNo = $('input:radio[name="hallNo"]:checked').val();
+		var menuNo = $("input[name='menuNo']");
+		var menuPrice = $("input[name='menuPrice']");
+		var menuCnt = $("select[name='resMenuCnt']");
+		var payCaNo = $("select[name='payCaNo']").val();
+		var getInTime = $("select[name='getInTime']").val();
+		
+		var menuPriceArr = [];
+		var menuCntArr = [];
+		var menuNoArr = [];
+		console.log(menuNo[0].value);
+		console.log(menuCnt);
+		for (var i = 0; i < menuNo.size(); i++) {
+			
+				if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
+					menuNoArr[i] = menuNo[i].value;
+					menuCntArr.push(menuCnt[i].value);
+					menuPriceArr[i] = menuPrice[i].value;
+				}
+			
 
-		IMP.init('imp33735056');
-		alert('아이폼트 레디먹힘');
+		}
+		var param = {
+				hallNo : hallNo,
+				menuNoArr : menuNoArr,
+				menuPriceArr : menuPriceArr,
+				menuCntArr : menuCntArr,
+				payCaNo : payCaNo,
+				getInTime : getInTime,
+			};
+		
+		return param;
+	}
 
-	});
-	
-	
 
 	var webSocket = new WebSocket('ws://localhost/alarm');
 	webSocket.onerror = function(event) {
@@ -76,7 +119,7 @@
 		var msgObj = JSON.parse(event.data);
 		var allow = msgObj.msg;
 		if (allow) {
-			IMP.request_pay({
+/* 			IMP.request_pay({
 			    pg : 'html5_inicis',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
@@ -100,41 +143,14 @@
 			    }
 
 			    alert(msg);
-			});
+			}); */
 			
-			var hallNo = $('input:radio[name="hallNo"]:checked').val();
-			var menuNo = $("input[name='menuNo']");
-			var menuPrice = $("input[name='menuPrice']");
-			var menuCnt = $("select[name='resMenuCnt']");
-			var payCaNo = $("select[name='payCaNo']").val();
-			var getInTime = $("select[name='getInTime']").val();
 			
-			var menuPriceArr = [];
-			var menuCntArr = [];
-			var menuNoArr = [];
-			console.log(menuNo[0].value);
-			console.log(menuCnt);
-			for (var i = 0; i < menuNo.size(); i++) {
-				
-					if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
-						menuNoArr[i] = menuNo[i].value;
-						menuCntArr.push(menuCnt[i].value);
-						menuPriceArr[i] = menuPrice[i].value;
-					}
-				
-
-			}
-			var param = {
-					hallNo : hallNo,
-					menuNoArr : menuNoArr,
-					menuPriceArr : menuPriceArr,
-					menuCntArr : menuCntArr,
-					payCaNo : payCaNo,
-					getInTime : getInTime,
-				};
 			
-			param=JSON.stringify(param);
- 			$.ajax({
+			param=JSON.stringify(initParam());
+			console.log(param);
+			
+/*  			$.ajax({
 				url: "${root}/res/askRes",
 				contentType: "application/json",
 				type:"POST",
@@ -143,7 +159,7 @@
 					console.log(res);
 					alert("예약이 성공하였습니다!");
 				}
-			}) 
+			})  */
 			
 			
 		} else {
@@ -186,21 +202,12 @@
 				console.log(menuNo[0].value);
 				console.log(menuCnt);
 				for (var i = 0; i < menuNo.size(); i++) {
-					
 						if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
 							menuNoArr[i] = menuNo[i].value;
 							menuCntArr.push(menuCnt[i].value);
 							menuPriceArr[i] = menuPrice[i].value;
 						}
-					
-
 				}
- 				console.log(menuNoArr);
-				console.log(menuPriceArr);
-				console.log(menuCntArr);
-				console.log(payCaNo);
-				console.log(getInTime); 
-				
 				var param = {
 					hallNo : hallNo,
 					menuNoArr : menuNoArr,
@@ -232,7 +239,6 @@
 					"msg" : res.namesAndCnt,
 					"target" : param.target,
 					"hallNo" : param.hallNo
-					
 				};
 				webSocket.send(JSON.stringify(msg));
 			}
@@ -302,7 +308,7 @@
 				<option value="20">20분 안으로 도착</option>
 				<option value="30">30분 안으로 도착</option>
 			</select><br>
-			<button type="button" value="send" onclick="send(${shopNo})">예약</button>
+			<button type="button" value="send" onclick="validate(${shopNo})">예약</button>
 		</div>
 	</section>
 </body>
