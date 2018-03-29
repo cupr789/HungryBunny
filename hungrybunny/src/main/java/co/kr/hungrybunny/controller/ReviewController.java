@@ -52,7 +52,6 @@ public class ReviewController {
 	public ModelAndView writeReview(@RequestParam Map<String, Object> map, @RequestParam("file") MultipartFile file,
 			ModelAndView mav, MultipartHttpServletRequest request) throws IOException {
 		if (!file.isEmpty()) {
-			// windows 사용자라면 "c:\temp\년도\월\일" 형태의 문자열을 구한다.
 			String path = request.getSession().getServletContext().getRealPath("resources/review/imgs");
 			File dir = new File(path);
 
@@ -60,11 +59,9 @@ public class ReviewController {
 				dir.mkdirs(); // 해당 디렉토리를 만든다. 하위폴더까지 한꺼번에 만든다.
 			}
 
-			String fileContentType = file.getContentType();
 			String fileName = file.getOriginalFilename();
 			long fileSize = file.getSize();
 			InputStream inputStream = file.getInputStream();
-			byte[] fileContent = IOUtils.toByteArray(inputStream);
 
 			String uuid = UUID.randomUUID().toString(); // 중복될 일이 거의 없다.
 			String realFile = path + File.separator + fileName;
@@ -103,6 +100,12 @@ public class ReviewController {
 			}
 		} else {
 			map.put("msg", "너 왜 파일 선택 안하냐ㅎ");
+			
+			/// 사진없이 리뷰를 작성하기위해 추가한 코드
+			rs.insertReview(map);
+			mav.addObject("shopNo", map.get("shopNo"));
+			///////////////////////////////////////////
+			
 			mav.setViewName("review/completeReview");
 			return mav;
 		}
@@ -112,34 +115,35 @@ public class ReviewController {
 	@RequestMapping(value = "/reviewList", method = RequestMethod.POST)
 	public ModelAndView reviewList(HttpSession hs, @RequestParam Map<String, Object> map, ModelAndView mav) {
 		if (hs.getAttribute("userInfo") != null) {
-			System.out.println("....?!!!!!!!!!!!!!!!!" + map.get("reviewNo"));
-			System.out.println("나는 shopNo받았어" + map.get("shopNo"));
-			String shopNoStr = map.get("shopNo").toString();
-			int shopNo = Integer.parseInt(shopNoStr);
-			List<ReviewVO> reviewList = rs.getReviewList(shopNo);
-			System.out.println("reviewList     :        " + reviewList);
-			mav.addObject("reviewList", reviewList);
-			mav.setViewName("review/reviewList");
-			//////////////////////////// 명훈
-			UserInfoVO ui = new UserInfoVO();
-			ui = (UserInfoVO) hs.getAttribute("userInfo");
-			mav.addObject("admin", ui.getAdmin());
+
+		System.out.println("....?!!!!!!!!!!!!!!!!"+map.get("reviewNo"));
+		System.out.println("나는 shopNo받았어"+map.get("shopNo"));
+		String shopNoStr = map.get("shopNo").toString();
+		System.out.println("DDDDDDDDDDDDDD"+shopNoStr);
+		int shopNo = Integer.parseInt(shopNoStr);
+		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
+		System.out.println("reviewList     :        "+reviewList);
+		mav.addObject("reviewList", reviewList);
+		mav.setViewName("review/reviewList");
+		////////////////////////////명훈
+		UserInfoVO ui=new UserInfoVO();
+		ui=(UserInfoVO) hs.getAttribute("userInfo");
+		mav.addObject("admin",ui.getAdmin());
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}
 		return mav;
 	}
-
-	@RequestMapping(value = "/adminComment", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> adminComment(@RequestParam Map<String, Object> map, HttpSession hs) {
-		if (hs.getAttribute("userInfo") != null) {
-			System.out.println("ssssssssssssss" + map);
-			map.put("msg", "연결됨");
-			rs.adminComment(map);
-		} else {
-			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
-		}
-
+	
+	@RequestMapping(value="/adminComment", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> adminComment(@RequestParam Map<String, Object> map,HttpSession hs){
+		/*if (hs.getAttribute("userInfo") != null) {	
+		System.out.println("ssssssssssssss"+map);
+		map.put("msg","연결됨");
+		rs.adminComment(map);
+			} else {
+				map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+			}*/
 		return map;
 	}
 }

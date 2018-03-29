@@ -25,11 +25,38 @@
 	function back() {
 		location.href = "${root}/path/user/login";
 	}
+	function checkForm2(form) {
+		if (form.uiId.value == "") {
+			alert("Error: 사용자아이디를 비워둘수없습니다.");
+			form.username.focus();
+			return false;
+		}
+		re = /^\w+$/;
+		if (!re.test(form.uiId.value)) {
+			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
+			form.uiId.focus();
+			return false;
+			
+		}else{
+			check();
+		}
+		}
 
 	function checkForm(form) {
 		if (form.uiId.value == "") {
 			alert("Error: 사용자아이디를 비워둘수없습니다.");
 			form.username.focus();
+			return false;
+		}
+		if (form.uiName.value == "") {
+			alert("Error: 사용자이름을 비워둘수없습니다.");
+			form.username.focus();
+			return false;
+		}
+		re = /^\w+$/;
+		if (!re.test(form.uiName.value)) {
+			alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
+			form.uiId.focus();
 			return false;
 		}
 		re = /^\w+$/;
@@ -89,7 +116,7 @@
 		return true;
 	}
 	function join() {
-		var params = "uiName,uiId,uiPwd,uiHP,admin";
+		var params = "uiName,uiId,uiPwd,uiHP,admin,uiEmail";
 		var au = new AjaxUtil("${root}/user/join", params, "POST");
 		au.send(callback);
 	}
@@ -113,6 +140,10 @@
 							아이디<input type="text" class="form-control" name="uiId"
 								placeholder="ID">
 						</div>
+							<div>
+							Email<input type="text" class="form-control" name="uiEmail"
+								placeholder="Email.@nvaer.com">
+						</div>
 						<div>
 							비밀번호<input type="password" class="form-control" name="uiPwd"
 								placeholder="Password">
@@ -133,7 +164,7 @@
 						</div >
 						
 						<div>
-							<button type="button" onclick="check()"
+							<button type="button" onclick="checkForm2(form)"
 								class="form-control btn btn-primary">ID중복체크</button>
 						</div>
 						<div>
