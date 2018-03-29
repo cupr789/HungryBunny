@@ -61,7 +61,8 @@ function adminComment(){
 			<c:forEach items="${reviewList}" var="reviewList">
 				<tr>
 		
-					<td>		    <c:choose>
+					<td>		    
+			<c:choose>
        		<c:when test="${admin == '1'}">
            	<input type="checkbox" name="reviewNo" value="${reviewList.reviewNo}">
        		</c:when>
@@ -90,14 +91,22 @@ function adminComment(){
 			</c:forEach>
 </div>
 <div>
-			<a>
+			
 				<br>
+			<c:choose>
+       		<c:when test="${admin == '1'}">
+           	<a>
 					<label for="comment">Comment:</label>
 					<textarea class="form-control" rows="5" id="adminComment" name="adminComment"></textarea>
 					<h6 class="pull-right" id="count_message"></h6>
 					
 					<button onclick="adminComment()">등록하기</button>
 				</a>
+       		</c:when>
+     		<c:when test="${admin == '0'}">
+         	
+       		</c:when>
+   			</c:choose>
 
 </div>
 

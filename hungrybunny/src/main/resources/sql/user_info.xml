@@ -5,7 +5,7 @@
 <mapper namespace="user_info">
 	<select id="selectUserInfo" parameterType="ui" resultType="ui">
 		select
-		uino,uiname,uiid,uipwd,uiHP, admin 
+		uino,uiname,uiid,uipwd,uiHP, admin, uiEmail
 		from user_info
 		where 1=1
 		<if test="uiId!=null">
@@ -17,8 +17,8 @@
 	</select>
 	
 	<insert id="insertUserInfo" parameterType="ui">
-		insert into user_info(uiName, uiId, uiPwd, uiHP, admin)
-		values(#{uiName}, #{uiId}, #{uiPwd}, #{uiHP}, #{admin})
+		insert into user_info(uiName, uiId, uiPwd, uiHP, admin,uiEmail)
+		values(#{uiName}, #{uiId}, #{uiPwd}, #{uiHP}, #{admin}, #{uiEmail})
 	</insert>
 	<update id="updateUserInfo" parameterType="map">
 	update user_info set uiName=#{uiName}, uiId=#{uiId}, uiPwd=#{uiPwd}, uiHP=#{uiHP}, admin=#{admin} where uiNo=#{uiNo}

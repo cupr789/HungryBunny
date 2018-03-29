@@ -78,6 +78,14 @@ public class ReviewController {
 			}
 		} else {
 			map.put("msg", "너 왜 파일 선택 안하냐ㅎ");
+			
+			
+			/// 사진없이 리뷰를 작성하기위해 추가한 코드
+			rs.insertReview(map);
+			mav.addObject("shopNo", map.get("shopNo"));
+			///////////////////////////////////////////
+			
+			
 			mav.setViewName("review/completeReview");
 			return mav;
 		}
@@ -89,6 +97,7 @@ public class ReviewController {
 		System.out.println("....?!!!!!!!!!!!!!!!!"+map.get("reviewNo"));
 		System.out.println("나는 shopNo받았어"+map.get("shopNo"));
 		String shopNoStr = map.get("shopNo").toString();
+		System.out.println("DDDDDDDDDDDDDD"+shopNoStr);
 		int shopNo = Integer.parseInt(shopNoStr);
 		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
 		System.out.println("reviewList     :        "+reviewList);
@@ -105,13 +114,13 @@ public class ReviewController {
 	}
 	@RequestMapping(value="/adminComment", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> adminComment(@RequestParam Map<String, Object> map,HttpSession hs){
-		if (hs.getAttribute("userInfo") != null) {	
+		/*if (hs.getAttribute("userInfo") != null) {	
 		System.out.println("ssssssssssssss"+map);
 		map.put("msg","연결됨");
 		rs.adminComment(map);
 			} else {
 				map.put("msg", "로그인 부터 다시해주세요~~~~~~");
-			}
+			}*/
 			
 		return map;
 	}
