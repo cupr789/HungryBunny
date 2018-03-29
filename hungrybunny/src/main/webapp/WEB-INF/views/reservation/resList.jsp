@@ -41,7 +41,15 @@ $(document).ready(function(){
 		var payCaNo = document.getElementById("payCaNo");
 		var getInTime = document.getElementById("getInTime");
 		var hallNo = $('input:radio[name="hallNo"]:checked').val();
-		var menuCnt = $("select[name='resMenuCnt']").val();
+		var menuCnt = $("select[name='resMenuCnt']");
+		 for(var idx of menuCnt){
+				if(idx.options[idx.selectedIndex].value==0){
+					menuCnt=0;
+				}else{
+					menuCnt=1;
+					break;
+				}
+		} 
 		if(hallNo==null){
 			alert("자리를 선택해주세요.");
 			return false;
@@ -58,7 +66,7 @@ $(document).ready(function(){
 		
 		var con_res = confirm("예약 시 환불이 불가능합니다. 예약하시겠습니까?");
 		if (con_res == true) {
-			send(shopNo);
+			initParam(shopNo);
 		} else if (con_res == false) {
 			alert("예약이 취소되었습니다.");
 			location.reload();
@@ -67,114 +75,8 @@ $(document).ready(function(){
 
 	}
 	
-	function initParam(){
+	function initParam(shopNo){
 		
-		var hallNo = $('input:radio[name="hallNo"]:checked').val();
-		var menuNo = $("input[name='menuNo']");
-		var menuPrice = $("input[name='menuPrice']");
-		var menuCnt = $("select[name='resMenuCnt']");
-		var payCaNo = $("select[name='payCaNo']").val();
-		var getInTime = $("select[name='getInTime']").val();
-		
-		var menuPriceArr = [];
-		var menuCntArr = [];
-		var menuNoArr = [];
-		console.log(menuNo[0].value);
-		console.log(menuCnt);
-		for (var i = 0; i < menuNo.size(); i++) {
-			
-				if (menuCnt[i].value != 0 && menuCnt[i].value != null) {
-					menuNoArr[i] = menuNo[i].value;
-					menuCntArr.push(menuCnt[i].value);
-					menuPriceArr[i] = menuPrice[i].value;
-				}
-			
-
-		}
-		var param = {
-				hallNo : hallNo,
-				menuNoArr : menuNoArr,
-				menuPriceArr : menuPriceArr,
-				menuCntArr : menuCntArr,
-				payCaNo : payCaNo,
-				getInTime : getInTime,
-			};
-		
-		return param;
-	}
-
-
-	var webSocket = new WebSocket('ws://localhost/alarm');
-	webSocket.onerror = function(event) {
-		onError(event)
-	};
-	webSocket.onopen = function(event) {
-		onOpen(event)
-	};
-	webSocket.onmessage = function(event) {
-		onMessage(event)
-	};
-	function onMessage(event) {
-		console.log(event);
-		var msgObj = JSON.parse(event.data);
-		var allow = msgObj.msg;
-		if (allow) {
-/* 			IMP.request_pay({
-			    pg : 'html5_inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 14000,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			    }
-
-			    alert(msg);
-			}); */
-			
-			
-			
-			param=JSON.stringify(initParam());
-			console.log(param);
-			
-/*  			$.ajax({
-				url: "${root}/res/askRes",
-				contentType: "application/json",
-				type:"POST",
-				data: param,
-				success: function(res){
-					console.log(res);
-					alert("예약이 성공하였습니다!");
-				}
-			})  */
-			
-			
-		} else {
-			alert("매장 사정에 의해 예약이 거부되었습니다.");
-		}
-	}
-	function onOpen(event) {
-		
-		console.log("연결성공");
-	}
-	function onError(event) {
-		alert(event.data);
-	}
-	
-	function send(shopNo) {
 		
  		console.log(shopNo);
 		var param = {shopNo:shopNo};
@@ -219,14 +121,95 @@ $(document).ready(function(){
 				};
 
 				param = JSON.stringify(param);
-				ajaxTest(param);
+				sendToAdmin(param);
 			}
 		})
+	}
+
+
+	var webSocket = new WebSocket('ws://localhost/alarm');
+	webSocket.onerror = function(event) {
+		onError(event)
+	};
+	webSocket.onopen = function(event) {
+		onOpen(event)
+	};
+	webSocket.onmessage = function(event) {
+		onMessage(event)
+	};
+	function onMessage(event) {
+		console.log(event);
+		var msgObj = JSON.parse(event.data);
+		var allow = msgObj.msg;
+		if (allow) {
+			
+			console.log(msgObj);
+			
+			var totalPrice=0;
+			
+			for(var i=0; i<msgObj.data.msg.msList.length; i++){
+				totalPrice += (msgObj.data.param.menuCntArr[i] * msgObj.data.param.menuPriceArr[i]);
+			}
+
+ 			IMP.request_pay({
+			    pg : 'html5_inicis',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '주문명:결제테스트',
+			    amount : totalPrice,
+			    buyer_email : 'iamport@siot.do',
+			    buyer_name : '구매자이름',
+			    buyer_tel : '010-1234-5678',
+			    buyer_addr : '서울특별시 강남구 삼성동',
+			    buyer_postcode : '123-456'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+ 			        var msg = '결제가 완료되었습니다.';
+			        msg += '고유ID : ' + rsp.imp_uid;
+			        msg += '상점 거래ID : ' + rsp.merchant_uid;
+			        msg += '결제 금액 : ' + rsp.paid_amount;
+			        msg += '카드 승인번호 : ' + rsp.apply_num;
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        
+			    }
+			    alert(msg);
+			   
+			}); 
+ 			
+ 			param=JSON.stringify(msgObj.data.param);
+			console.log(param); 
+			
+  			 $.ajax({
+				url: "${root}/res/askRes",
+				contentType: "application/json",
+				type:"POST",
+				data: param,
+				success: function(res){
+					console.log(res);
+					alert("예약이 성공하였습니다!");
+				}
+			})   
+		} else {
+			alert("매장 사정에 의해 예약이 거부되었습니다.");
+		}
+	}
+	function onOpen(event) {
+		
+		console.log("연결성공");
+	}
+	function onError(event) {
+		alert(event.data);
+	}
+	
+	function send(shopNo) {
+
 		 
 
 	}
 
-	function ajaxTest(param) {
+	function sendToAdmin(param) {
 		$.ajax({
 			url : "${root}/menu/getMenuName",
 			type : "POST",
@@ -238,7 +221,8 @@ $(document).ready(function(){
 				var msg = {
 					"msg" : res.namesAndCnt,
 					"target" : param.target,
-					"hallNo" : param.hallNo
+					"hallNo" : param.hallNo,
+					"param" : param
 				};
 				webSocket.send(JSON.stringify(msg));
 			}
