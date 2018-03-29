@@ -29,6 +29,12 @@
 
 	</beans:bean>
 	
+	<beans:bean id = "uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\WorkSpace_Spring\login\src\main\webapp\resources\profileImage">
+
+		</beans:constructor-arg>
+	</beans:bean>
+	
 	<context:component-scan base-package="co.kr.hungrybunny" />
 	
 	

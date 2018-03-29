@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 	<insert id="insertReview" parameterType="map">
-		insert into review(reviewRating, reviewComment, shopNo, resNo, reviewImageName)
-		values(#{reviewRating},#{reviewComment},#{shopNo},#{resNo},#{reviewImageName});
+		insert into review(reviewRating, reviewComment, shopNo, resNo <if test="fileName!=null"> ,fileName ,fileSize </if>)
+		values(#{reviewRating},#{reviewComment},#{shopNo},#{resNo} <if test="fileName!=null"> ,#{fileName},#{fileSize} </if>);
 	</insert>
 	
 	<select id="selectReviewList" parameterType="int" resultType="review">
-		select rv.reviewComment, rv.reviewRating, u.uiId, m.menuName, rv.reviewNo, r.resNo, r.resDate, rv.reviewImageName
+		select rv.reviewComment, rv.reviewRating, u.uiId, m.menuName, rv.reviewNo, r.resNo, r.resDate, rv.fileName
 		from review rv, reservation r, user_info u , reservationmenu rm, menu m
 		where rv.shopNo = #{shopNo}
 		and rv.resNo = r.resNo

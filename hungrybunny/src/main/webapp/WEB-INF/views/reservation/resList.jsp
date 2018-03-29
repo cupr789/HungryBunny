@@ -24,7 +24,7 @@
 	href="${rPath}/css/button/base.css" />
 <link rel="stylesheet" type="text/css"
 	href="${rPath}/css/button/buttons.css" />
-	
+
 <script>
 
 
@@ -76,7 +76,6 @@ $(document).ready(function(){
 	}
 	
 	function initParam(shopNo){
-		
 		
  		console.log(shopNo);
 		var param = {shopNo:shopNo};
@@ -164,17 +163,18 @@ $(document).ready(function(){
 			    buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
- 			        var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			        
-			    }
-			    alert(msg);
+
+			var msg = '결제가 완료되었습니다.';
+			msg += '고유ID : ' + rsp.imp_uid;
+			msg += '상점 거래ID : ' + rsp.merchant_uid;
+			msg += '결제 금액 : ' + rsp.paid_amount;
+			msg += '카드 승인번호 : ' + rsp.apply_num;
+			} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+			
+			}
+			alert(msg);
 			   
 			}); 
  			
@@ -239,22 +239,26 @@ $(document).ready(function(){
 				<c:when test="${hallList.seatCnt eq '2'}">
 					<img src="${rPath}/images/person_icon/people1.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
+					<input type="radio" name="hallNo"
+						value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:when test="${hallList.seatCnt eq '4'}">
 					<img src="${rPath}/images/person_icon/people2.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
+					<input type="radio" name="hallNo"
+						value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:when test="${hallList.seatCnt eq '6'}">
 					<img src="${rPath}/images/person_icon/people3.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
+					<input type="radio" name="hallNo"
+						value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:when>
 				<c:otherwise>
 					<img src="${rPath}/images/person_icon/people4.jpg"
 						style="width: 30%;">
-					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}">
+					<input type="radio" name="hallNo"
+						value="${hallList.hallNo},${hallList.seatCnt}">
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

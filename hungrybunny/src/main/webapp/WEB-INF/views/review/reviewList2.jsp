@@ -8,19 +8,12 @@
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script>
-function alertMsg(){
-	var msg = "${msg}";
-	if(msg){
-		alert(msg);
-	}
-}
-</script>
-<body onload="alertMsg()">
+
+<body>
 <section class="section">
 <div class="container">
 	<table class="table table-bordered" style="width:100%">
-		<thead>
+<!-- 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>사진</th>
@@ -29,12 +22,11 @@ function alertMsg(){
 				<th>별점</th>
 				<th>날짜</th>
 			</tr>
-		</thead>
+		</thead> -->
 		<tbody>
 			<c:forEach items="${reviewList}" var="reviewList">
 				<tr>
 					<td><div class="w3-xxxlarge"><i class="glyphicon glyphicon-user"></i></div>${reviewList.uiId}</td>
-					<td><img src="D:\iot_study\server\apache-tomcat-8.5.23\tmpFiles\${reviewList.reviewImageName}" width="100"></td>
 					<td>${reviewList.menuName}</td>
 					<td>${reviewList.reviewComment}</td>
 					<td width="15%">
@@ -45,15 +37,17 @@ function alertMsg(){
 					</fieldset>
 					</td>
 					<td>${reviewList.resDate}</td>
+					<td><img src="${rPath}/review/imgs/${reviewList.fileName}" width="100"></td>
 				</tr>
-			</c:forEach>
-		
+			</c:forEach>		
 		</tbody>
 	</table>
-			<c:forEach items="${reviewList}" var="reviewList">
-			
-			</c:forEach>
-</div>
+		<div class="img_area">
+			<div class="img_box">
+				<div class="slider_box"></div>
+			</div>
+		</div>
+	</div>
 </section>
 </body>
 </html>

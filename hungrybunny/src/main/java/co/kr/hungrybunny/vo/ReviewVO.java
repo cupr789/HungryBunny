@@ -1,5 +1,7 @@
 package co.kr.hungrybunny.vo;
 
+import java.util.Arrays;
+
 public class ReviewVO {
 
 	private int reviewNo;
@@ -10,7 +12,8 @@ public class ReviewVO {
 	private String uiId;
 	private String menuName;
 	private String resDate;
-	private String reviewImageName;
+	private String fileName;
+	private long fileSize;
 	
 	public int getReviewNo() {
 		return reviewNo;
@@ -60,17 +63,23 @@ public class ReviewVO {
 	public void setResDate(String resDate) {
 		this.resDate = resDate;
 	}
-	public String getReviewImageName() {
-		return reviewImageName;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setReviewImageName(String reviewImageName) {
-		this.reviewImageName = reviewImageName;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
 	}
 	
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNo=" + reviewNo + ", reviewRating=" + reviewRating + ", reviewComment=" + reviewComment
 				+ ", shopNo=" + shopNo + ", resNo=" + resNo + ", uiId=" + uiId + ", menuName=" + menuName + ", resDate="
-				+ resDate + ", reviewImageName=" + reviewImageName + "]";
+				+ resDate + ", fileName=" + fileName + ", fileSize=" + fileSize + "]";
 	}
 }

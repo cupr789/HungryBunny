@@ -61,6 +61,7 @@ public class UserInfoController {
 		ui.setUiName(ui.getUiName().trim());
 		ui.setUiPwd(ui.getUiPwd().trim());
 		ui.setUiHP(ui.getUiHP().trim());
+		ui.setUiEmail(ui.getUiEmail().trim());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("msg", "회원가입 실패 입니다.");
 		int result = uis.join(ui);
