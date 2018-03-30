@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.hungrybunny.dao.ReviewDAO;
 import co.kr.hungrybunny.service.ReviewService;
-import co.kr.hungrybunny.vo.AdminReview;
+
 import co.kr.hungrybunny.vo.ReviewVO;
 
 @Service
@@ -27,6 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewVO> getReviewList(int shopNo) {
 		List<ReviewVO> reviewList = rdao.selectReviewList(shopNo);
 		System.out.println(reviewList);
+		System.out.println(reviewList.get(0).getReviewComment());
 		for(int i=0; i<reviewList.size(); i++) {
 			reviewList.get(i).setUiId(reviewList.get(i).getUiId().substring(0, 2)+"**님");
 			for(int j=(i+1);j<reviewList.size();j++) {
@@ -44,10 +45,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public void adminComment(Map<String, Object> map) {
 		int result=rdao.adminComment(map);
 		if(result==1) {
-			map.put("msg","리뷰저장 성공이요~~");
+			map.put("msg","리뷰저장 성공이요~~새로고침 하면 보여요^^");
 
 		}else {
-			map.put("msg","오류");
+			map.put("msg","저장오류");
 		}
 		
 	}

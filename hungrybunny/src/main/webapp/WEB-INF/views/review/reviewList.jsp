@@ -15,9 +15,14 @@ function alertMsg(){
 		alert(msg);
 		
 	}
+	alert("${admin}");
 }
+
 function adminComment(){
 	var reviewNo=$("input:checkbox[name=reviewNo]:checked").val();
+	if(reviewNo==null){
+		alert("수정하려는 댓글을 체크해주세요");
+	}
 	alert(reviewNo);
 	var adminComment=$("#adminComment").val();
 	alert(adminComment);
@@ -34,7 +39,6 @@ function adminComment(){
 	function callback(res){
 			alert(res.msg);
 			
-			/*  location.reload(); */
 		
 	}	
 	
@@ -59,9 +63,9 @@ function adminComment(){
 		</thead>
 		<tbody>
 			<c:forEach items="${reviewList}" var="reviewList">
-				<tr>
+			<tr>
 		
-					<td>		    
+			<td>		    
 			<c:choose>
        		<c:when test="${admin == '1'}">
            	<input type="checkbox" name="reviewNo" value="${reviewList.reviewNo}">
@@ -69,9 +73,10 @@ function adminComment(){
      		<c:when test="${admin == '0'}">
          	
        		</c:when>
-   			</c:choose> </td>
-					<td><div class="w3-xxxlarge"><i class="glyphicon glyphicon-user"></i></div>${reviewList.uiId}</td>
-					<td>${reviewList.menuName}</td>
+   			</c:choose> 
+   			</td>
+					<td ><div class="w3-xxxlarge"><i class="glyphicon glyphicon-user"></i></div>${reviewList.uiId}</td>
+					<td >${reviewList.menuName}</td>
 					<td>${reviewList.reviewComment}</td>
 					<td width="15%">
 					<fieldset class="starability-basic">
@@ -82,19 +87,29 @@ function adminComment(){
 					</td>
 					<td>${reviewList.resDate}</td>
 				</tr>
+				<tr>
+						<c:choose>
+       		<c:when test="${reviewList.adminComment != null}">
+           	<td colspan="6">사장님댓글-->${reviewList.adminComment}</td>
+       		</c:when>
+     		<c:when test="${reviewList.adminComment == null}">
+         	<td colspan="6">아직댓글이 없어요</td>
+       		</c:when>
+   			</c:choose> 
+			
+				</tr>
+				
 			</c:forEach>
 		
 		</tbody>
 	</table>
-			<c:forEach items="${reviewList}" var="reviewList">
-			
-			</c:forEach>
+	
 </div>
 <div>
 			
 				<br>
 			<c:choose>
-       		<c:when test="${admin == '1'}">
+       		<c:when test="${admin =='1'}">
            	<a>
 					<label for="comment">Comment:</label>
 					<textarea class="form-control" rows="5" id="adminComment" name="adminComment"></textarea>
@@ -109,7 +124,7 @@ function adminComment(){
    			</c:choose>
 
 </div>
-
+<h1>${reviewList}</h1>>
 <h1>${admin}</h1>
 </section>
 </body>

@@ -14,7 +14,7 @@ public class ReviewVO {
 	private String resDate;
 	private String fileName;
 	private long fileSize;
-	
+	private String adminComment;
 	public int getReviewNo() {
 		return reviewNo;
 	}
@@ -75,11 +75,19 @@ public class ReviewVO {
 	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
-	
+	public String getAdminComment() {
+		return adminComment;
+	}
+	public void setAdminComment(String adminComment) {
+		this.adminComment = adminComment;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewNo=" + reviewNo + ", reviewRating=" + reviewRating + ", reviewComment=" + reviewComment
 				+ ", shopNo=" + shopNo + ", resNo=" + resNo + ", uiId=" + uiId + ", menuName=" + menuName + ", resDate="
-				+ resDate + ", fileName=" + fileName + ", fileSize=" + fileSize + "]";
+				+ resDate + ", fileName=" + fileName + ", fileSize=" + fileSize + ", adminComment=" + adminComment
+				+ "]";
 	}
+	
+	
 }
