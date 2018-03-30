@@ -124,7 +124,12 @@ function closeImg()
 					</fieldset>
 					</td>
 					<td>${reviewList.resDate}</td>
-					<td><img src="${rPath}/review/imgs/${reviewList.fileName}" width="100" onclick="resizeImg(this.src)"></td>
+					<c:if test="${empty reviewList.fileName}">
+						<td>사진이 없또요</td>
+					</c:if>
+					<c:if test="${not empty reviewList.fileName}">
+						<td><img src="${rPath}/review/imgs/${reviewList.fileName}" width="100" onclick="resizeImg(this.src)"></td>
+					</c:if>
 				</tr>
 			</c:forEach>		
 		</tbody>
