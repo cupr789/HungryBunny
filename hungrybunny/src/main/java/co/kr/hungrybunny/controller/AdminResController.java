@@ -25,39 +25,43 @@ import co.kr.hungrybunny.vo.UserInfoVO;
 @RequestMapping("/adminRes")
 public class AdminResController {
 	@Autowired
-	private AdaminResService ars;	
+	private AdaminResService ars;
 	UserInfoVO ui = new UserInfoVO();
 
-	@RequestMapping(value="/resInfo", method = RequestMethod.GET)
-	public ModelAndView goIndex(ModelAndView mav,HttpSession hs,@RequestParam Map<String, Object> map) {
-	if (hs.getAttribute("userNo") != null) {	
-		String str=map.get("adminRes").toString();
-		int shopNo=Integer.parseInt(str);
-	List<Object> list = ars.getAdminShop(shopNo,map);
-	
-	System.out.println("%%%%%%%%%%%%%   "+list);
-	if(list!=null) {
-		mav.addAllObjects(map);
-	}
+	@RequestMapping(value = "/resInfo", method = RequestMethod.GET)
+	public ModelAndView goIndex(ModelAndView mav, HttpSession hs, @RequestParam Map<String, Object> map) {
+		if (hs.getAttribute("userNo") != null) {
+			String str = map.get("adminRes").toString();
+			int shopNo = Integer.parseInt(str);
+			List<Object> list = ars.getAdminShop(shopNo, map);
+
+			System.out.println("%%%%%%%%%%%%%   " + list);
+			if (list != null) {
+				mav.addAllObjects(map);
+			}
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}
-		
-		
+
 		mav.setViewName("adminShop/adminRes");
 		return mav;
 	}
-	@RequestMapping(value="/hallUpdate", method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> hallUpdate(@RequestParam Map<String, Object> map,HttpSession hs){
-		if (hs.getAttribute("userNo") != null) {	
-			ars.updateHall(map);
-		
+
+	@RequestMapping(value = "/hallUpdate", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> hallUpdate(@RequestParam Map<String, Object> map, HttpSession hs) {
+		if (hs.getAttribute("userNo") != null) {
+			int result = ars.updateHall(map);
+			if (result >= 1) {
+				map.put("msg", "수정완료");
 			} else {
-				map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+				map.put("msg", "수정실패");
 			}
-			
+
+		} else {
+			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+		}
+
 		return map;
 	}
 
-	
 }

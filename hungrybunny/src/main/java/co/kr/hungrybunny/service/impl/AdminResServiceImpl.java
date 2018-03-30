@@ -34,7 +34,7 @@ public class AdminResServiceImpl implements AdaminResService{
 	}
 
 	@Override
-	public void updateHall(Map<String, Object> map) {
+	public int updateHall(Map<String, Object> map) {
 		map.put("currentStatus",map.get("hallStatus"));
 		String str1= map.get("hallStatus").toString();
 		int hallStatus=Integer.parseInt(str1);
@@ -48,7 +48,7 @@ public class AdminResServiceImpl implements AdaminResService{
 		pmap.put("currentStatus", currentStatus);
 		
 		int result=ardao.updateHall(pmap);
-	
+		return result;
 	
 	}
 

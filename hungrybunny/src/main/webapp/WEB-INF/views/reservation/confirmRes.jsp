@@ -7,11 +7,17 @@
 <title>Insert title here</title>
 </head>
 <script>
+
 function confirmRes(){
+	var updateMsg = "${msg}";
+	if(updateMsg){
+		alert(updateMsg);
+	}
 	var au = new AjaxUtil2("${root}/res/confirmRes",null,"GET");
 	au.send(test);
 }
 function test(res){
+	console.log(res);
 	var resList = res;
 	for(var i=0;i<res.length;i++){
 		if(res[i].currentStatus==0){
@@ -24,6 +30,7 @@ function test(res){
 	if(res.length==0){
 		htmlStr += '<h2>예약내역이 없습니다</h2>';
 	}else{
+		htmlStr += '<form action="${root}/res/cancleRes" method="post" onsubmit="return validate();">';
 		htmlStr += '<table class="table table-bordered">';
 		htmlStr += '<thead>';
 		htmlStr += '<tr>'; 
@@ -52,26 +59,35 @@ function test(res){
 			htmlStr += '<td>'+res[i].payPrice+'</td>';
 			htmlStr += '<td>'+res[i].payType+'</td>';
 			htmlStr += '<td>'+res[i].resDate+'</td>';
+			htmlStr += '<input type="hidden" name="hallNo" value="'+res[i].hallNo+'">';
+			htmlStr += '<input type="hidden" name="hallStatus" value="0">';
+			htmlStr += '<input type="hidden" name="currentStatus" value="0">';
 			htmlStr += '</tr>'; 
 			var resNo = res[i].resNo;
 		}
 		htmlStr += '</tbody>';
 		htmlStr += '</table>';
-		htmlStr += '<button onclick="validate('+resNo+')">예약취소</button>'
+		htmlStr += '<button type="submit">예약취소</button>'
+		htmlStr += '</form>';
 	}
 	$("#resList").html(htmlStr);
 }
 
 function validate(resNo){
-	alert(resNo);
-	var check = confirm("정말로 취소하시겠습니까?");
-	if(check == true){
+	console.log(resNo);
+	var check = confirm("정말로 취소하시겠습니까? 환불은 불가합니다.");
+	if(check==true){
+		return true;
+	}else{
+		return false;
+	}
+	/* if(check == true){
 		var au = new AjaxUtil2("${root}/res/cancleRes/"+resNo,null,"POST");
 		au.send(cancleRes);
 	}
 	if(check == false){
 		return false;
-	}
+	} */
 }
 
 function cancleRes(res){

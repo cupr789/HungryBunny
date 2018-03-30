@@ -7,5 +7,5 @@ public interface ResService {
 
 	public int insertRes(Map<String,Object> map);
 	public List<Map<String,String>> getConfirmRes(int uiNo);
-	public int cancleRes(Map<String,Object> map);
+	public int cancleRes(Map<String,Integer> map);
 }

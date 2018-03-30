@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.hungrybunny.service.AdaminResService;
 import co.kr.hungrybunny.service.HallService;
 import co.kr.hungrybunny.service.PayCaService;
 import co.kr.hungrybunny.service.ResService;
@@ -33,6 +34,8 @@ public class ResController {
 	private ResService rs;
 	@Autowired
 	private PayCaService ps;
+	@Autowired
+	private AdaminResService ars;
 	
 	List<HallVO> list = new ArrayList<HallVO>();
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -61,28 +64,18 @@ public class ResController {
 		String[] str = hallno.split(",");
 		map.put("hallNo",str[0]);
 		System.out.println("map을 뽑아보자"+map);
-		rs.insertRes(map);
-		
-		///////////////////2018-03-22 재형 여기서부터해야함!!!!!!!!!!!!!!!!
-		
-		
-		
-/*		int uiNo = ui.getUiNo();
-		map.put("uiNo", uiNo);
-		map.put("resMenuCntList", resMenuCntList);
-		map.put("menuNoList", menuNoList);
-		map.put("menuPriceList", menuPriceList);
 	    try {
+	    	// 재형 수정함 2018-03-30
 	    	int result = rs.insertRes(map);
-	    	mav.addObject("error", map.get("error"));
 	    	System.out.println(map);
+	    	mav.addObject("msg","예약이 성공적으로 완료되었습니다.");
 			mav.setViewName("reservation/completeRes");
 			return mav;
 		} catch (Exception e) {
+			mav.addObject("msg", map.get("error"));
 			mav.setViewName("reservation/completeRes");
 			return mav;
-		}*/
-		return null;
+		}
 	}
 	
 	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
@@ -97,14 +90,35 @@ public class ResController {
 		return resList;
 	}
 	
-	@RequestMapping(value="/cancleRes/{resNo}", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> cancleRes(HttpSession hs, @PathVariable("resNo") int resNo){
+	
+	//재형 수정중 2018-03-30
+	@RequestMapping(value="/cancleRes", method = RequestMethod.POST)
+	public ModelAndView cancleRes(HttpSession hs, @RequestParam Map<String,Object>map){
 		System.out.println("에약취소 컨트롤러");
-		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int result = ars.updateHall(map);
+		System.out.println(map);
+		if(result==0) {
+			map.put("msg", "수정완료");
+		}else{
+			map.put("msg", "수정실패");
+		}
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg",map.get("msg"));
+		mav.setViewName("reservation/confirmRes");
+/*		Map<String, Integer> map = new HashMap<String, Integer>();
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		int uiNo = ui.getUiNo();
-		map.put("uiNo",uiNo);
+		
+		System.out.println();*/
+		
+	/*  map.put("uiNo",uiNo);
 		map.put("resNo",resNo);
+		
+		
+		
 		int result = rs.cancleRes(map);
 		System.out.println("최종 result임"+result);
 		if(result==1) {
@@ -112,6 +126,7 @@ public class ResController {
 		}else if(result==0) {
 			map.put("result", "취소 실패ㅠㅠ!!");
 		}
-		return map;
+	*/
+		return mav;
 	}
 }
