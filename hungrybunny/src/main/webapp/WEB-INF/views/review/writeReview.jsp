@@ -28,6 +28,11 @@ function commentCnt(){
 
 $(document).ready(function(){
 	$("#input_img").on("change", handleImgFileSelect);
+	
+	//파일 사이즈가 max를 넘으면 뜨는 알람
+	if("${error}"){
+		alert("${error}");
+	}
 });
 
 function handleImgFileSelect(e){

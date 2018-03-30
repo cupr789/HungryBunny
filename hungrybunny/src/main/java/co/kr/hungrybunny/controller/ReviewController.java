@@ -61,6 +61,13 @@ public class ReviewController {
 
 			String fileName = file.getOriginalFilename();
 			long fileSize = file.getSize();
+			//파일 사이즈 추가
+			if(fileSize>5000000) {
+				map.put("error", "파일 사이즈는 5000000을 넘을 수 없습니다. 현재 파일 사이즈는 "+fileSize+"입니다");
+				mav.addObject("error", map.get("error"));
+				mav.setViewName("review/writeReview");
+				return mav;
+			}
 			InputStream inputStream = file.getInputStream();
 
 			String uuid = UUID.randomUUID().toString(); // 중복될 일이 거의 없다.
@@ -124,7 +131,7 @@ public class ReviewController {
 		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
 		System.out.println("reviewList     :        "+reviewList);
 		mav.addObject("reviewList", reviewList);
-		mav.setViewName("review/reviewList");
+		mav.setViewName("review/reviewList2");
 		////////////////////////////명훈
 		UserInfoVO ui=new UserInfoVO();
 		ui=(UserInfoVO) hs.getAttribute("userInfo");
