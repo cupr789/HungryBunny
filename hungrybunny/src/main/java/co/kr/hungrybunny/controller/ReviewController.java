@@ -42,7 +42,7 @@ import co.kr.hungrybunny.vo.UserInfoVO;
 @RequestMapping("/review")
 public class ReviewController {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 	@Autowired
 	private ReviewService rs;
@@ -131,11 +131,12 @@ public class ReviewController {
 		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
 		System.out.println("reviewList     :        "+reviewList);
 		mav.addObject("reviewList", reviewList);
-		mav.setViewName("review/reviewList2");
+		mav.setViewName("review/reviewList");
 		////////////////////////////명훈
 		UserInfoVO ui=new UserInfoVO();
 		ui=(UserInfoVO) hs.getAttribute("userInfo");
 		mav.addObject("admin",ui.getAdmin());
+		
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}
@@ -144,13 +145,13 @@ public class ReviewController {
 	
 	@RequestMapping(value="/adminComment", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> adminComment(@RequestParam Map<String, Object> map,HttpSession hs){
-		/*if (hs.getAttribute("userInfo") != null) {	
+		if (hs.getAttribute("userInfo") != null) {	
 		System.out.println("ssssssssssssss"+map);
 		map.put("msg","연결됨");
 		rs.adminComment(map);
 			} else {
 				map.put("msg", "로그인 부터 다시해주세요~~~~~~");
-			}*/
+			}
 		return map;
 	}
 }

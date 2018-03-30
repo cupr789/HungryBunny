@@ -17,8 +17,8 @@
 		and rm.menuNo = m.menuNo
 		and r.uiNo = u.uiNo;
 	</select>
-	<insert id="adminComment" parameterType="map">
-	insert into  adminReview(adminComment,reviewNo)
-	values(#{adminComment},#{reviewNo})
-	</insert>
+	
+	<update id="adminComment" parameterType="map">
+		update review set adminComment = #{adminComment} where reviewNo = #{reviewNo};
+	</update>
 </mapper>  

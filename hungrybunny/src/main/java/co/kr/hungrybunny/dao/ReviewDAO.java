@@ -3,7 +3,7 @@ package co.kr.hungrybunny.dao;
 import java.util.List;
 import java.util.Map;
 
-import co.kr.hungrybunny.vo.AdminReview;
+
 import co.kr.hungrybunny.vo.ReviewVO;
 
 public interface ReviewDAO {
