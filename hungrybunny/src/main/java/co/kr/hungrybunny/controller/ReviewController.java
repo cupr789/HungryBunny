@@ -42,7 +42,7 @@ import co.kr.hungrybunny.vo.UserInfoVO;
 @RequestMapping("/review")
 public class ReviewController {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 	@Autowired
 	private ReviewService rs;
