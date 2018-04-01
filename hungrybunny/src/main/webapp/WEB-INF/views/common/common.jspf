@@ -57,23 +57,28 @@
 	function onMessage(event) {
 		var data = JSON.parse(event.data);
 		
-		///////////////////////////////여기손보다가 끝남!!!!!! 2018-03-21
-		console.log(data);
-		console.log(data.msg);
-		console.log(data.msg.msList[0]);
-		console.log(data.msg.tesrt);
-		console.log(data.msg.length);
-		var sendMsg="";
-		for(var i=0;i<data.msg.msList.length;i++){
-			sendMsg+=data.msg.msList[i]+" "+data.msg.tesrt[i]+"개 \r\n";
+			///////////////////////////////여기손보다가 끝남!!!!!! 2018-03-21
+			console.log(data);
+			console.log(data.msg);
+			console.log(data.msg.msList);
+			console.log(data.msg.tesrt);
+			console.log(data.msg.length);
+			var sendMsg="";
+		if(data.msg.msList!=null){
+			for(var i=0;i<data.msg.msList.length;i++){
+				sendMsg+=data.msg.msList[i]+" "+data.msg.tesrt[i]+"개 \r\n";
+			}
+			var splitE = data.hallNo;
+			splitE = splitE.split(',');
+			sendMsg+= splitE[1]+"인석 \r\n"; 
+			//sendMsg +=data.hallNo
+			sendMsg+= " [도착예상시간: "+data.param.getInTime+"분] \r\n";
+			allow = confirm(sendMsg + " 예약이 들어왔습니다. 받으시겠습니까?");
+		}else{
+			console.log(data);
+			alert(data.msg);
+			
 		}
-		var splitE = data.hallNo;
-		splitE = splitE.split(',');
-		sendMsg+= splitE[1]+"인석 \r\n"; 
-		//sendMsg +=data.hallNo
-		sendMsg+= " [도착예상시간: "+data.param.getInTime+"분] \r\n";
-		allow = confirm(sendMsg + " 예약이 들어왔습니다. 받으시겠습니까?");
-		
 		if(allow){
 			send(data.senderId,allow,data);
 		}else{
