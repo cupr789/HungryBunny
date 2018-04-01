@@ -26,11 +26,20 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public List<ReviewVO> selectReviewList(int shopNo) {
+	public List<ReviewVO> selectReviewList(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
-		List<ReviewVO> reviewList = ss.selectList("review.selectReviewList", shopNo);
+		List<ReviewVO> reviewList = ss.selectList("review.selectReviewList", map);
 		ss.close();
 		return reviewList;
+	}
+
+	@Override
+	public Integer selectReviewTotalCnt(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		System.out.println("map         : "+map);
+		int reviewTotalCnt = ss.selectOne("review.selectReivewTotalCnt", map);
+		ss.close();
+		return reviewTotalCnt;
 	}
 
 	@Override

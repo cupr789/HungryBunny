@@ -10,6 +10,7 @@ import co.kr.hungrybunny.vo.AdminResVO;
 public interface AdaminResService {
 
 	
-	List<Object> getAdminShop(int shopNo,Map<String, Object> map);
+	List<Object> getAdminShop(Map<String, Object> map);
+	public Integer getAdminShopTotalCnt(Map<String, Object> map);
 	public int updateHall(Map<String, Object> map);
 }

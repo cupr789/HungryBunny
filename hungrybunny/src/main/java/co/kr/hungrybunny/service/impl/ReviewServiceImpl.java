@@ -24,21 +24,26 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> getReviewList(int shopNo) {
-		List<ReviewVO> reviewList = rdao.selectReviewList(shopNo);
+	public List<ReviewVO> getReviewList(Map<String, Object> map) {
+		List<ReviewVO> reviewList = rdao.selectReviewList(map);
 		System.out.println(reviewList);
 		System.out.println(reviewList.get(0).getReviewComment());
-		for(int i=0; i<reviewList.size(); i++) {
-			reviewList.get(i).setUiId(reviewList.get(i).getUiId().substring(0, 2)+"**님");
-			for(int j=(i+1);j<reviewList.size();j++) {
-				if(reviewList.get(i).getResNo()==reviewList.get(j).getResNo()) {
-					reviewList.get(i).setMenuName(reviewList.get(i).getMenuName()+", "+reviewList.get(j).getMenuName());
-//					reviewList.get(i).getMenuName().add(reviewList.get(j).getMenuName().get(0));
-					reviewList.remove(j);
-				}
-			}
-		}
+//		for(int i=0; i<reviewList.size(); i++) {
+//			reviewList.get(i).setUiId(reviewList.get(i).getUiId().substring(0, 2)+"**님");
+//			for(int j=(i+1);j<reviewList.size();j++) {
+//				if(reviewList.get(i).getResNo()==reviewList.get(j).getResNo()) {
+//					reviewList.get(i).setMenuName(reviewList.get(i).getMenuName()+", "+reviewList.get(j).getMenuName());
+//					reviewList.remove(j);
+//				}
+//			}
+//		}
 		return reviewList;
+	}
+
+	@Override
+	public Integer getReviewTotalCnt(Map<String, Object> map) {
+		int reviewTotalCnt = rdao.selectReviewTotalCnt(map);
+		return reviewTotalCnt;
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,46 +8,6 @@
 </head>
 
 <script>
-
-	function resInfo(){
-		var str="";
-		var partStr="";
-		var listSize=${reslist}.length;
-		for(var i=0;i<listSize;i++){
-			str+="<tr>"+
-			"<td>"+${reslist}[i]["seatCnt"]+"</td>"+
-			"<td>"+${reslist}[i]["menuName"]+"("+${reslist}[i]["resMenuCnt"]+"개)"+"</td>"+
-			"<td>"+${reslist}[i]["resDate"]+"</td>"+
-			"<td>"+${reslist}[i]["uiHP"]+"</td>"+
-			"<td>"+${reslist}[i]["PayType"]+"</td>"+
-			"<td>"+${reslist}[i]["uiName"]+"</td>"+
-			"<td>"+${reslist}[i]["hallNo"]+"</td>"+
-			"<td>"+${reslist}[i]["payPrice"]+"</td>"+
-			 "</tr>"
-		}
-		
-		
-	$("#adminRes").html( 	
-	"<table class='table table-bordered'>"+
-	"<thead>"+
-	"<tr>"+
-	"<th>예약인수</th>"+
-	"<th>메뉴</th>"+
-	"<th>예약시간</th>"+
-	"<th>핸드폰</th>"+
-	"<th>결제방법</th>"+
-	"<th>예약자명</th>"+
-	"<th>예약테이블</th>"+
-	"<th>총금액</th>"+
-	"</tr>"  +
-    "</thead>"+
-    "<tbody class='tbody'>"+
-    
-    str+
-   	"</tbody>"+
-	"</table>"
-	); 
-	}
 	function hallUpdate(hallNo,idx){
 		
 		var hallStatus=$("input:radio[name=hallStatus]:checked").val();
@@ -68,50 +28,136 @@
 		}
 		
 	}
-	
 </script>
 
-<body onload="resInfo()">
-<section class="section">
-<div class="container">
-<div id="adminRes"></div>
-
-			<h3>홀현황</h3>
-			<table class='table table-bordered'>
+<body>
+	<section class="section">
+	<div class="container">
+		<table class='table table-bordered'>
 			<thead>
-			<tr>
-			<th>좌석수</th>
-			<th>번호</th>
-			<th>사용현황</th>
-			<th>수정</th>
-			</tr>
-		    </thead>
-		    <tbody class='tbody'>
-		    </tbody>
-		    <c:forEach items="${hallList}" var="hlist" varStatus="idx" >
-		    <c:set value="${hlist.hallStatus} " var="msg"/>
-		    <tr>
-		    <td>${hlist.seatCnt}</td>
-		    <td>${hlist.hallNo}</td>
-		    <td>
-		    <c:choose>
-       		<c:when test="${hlist.hallStatus == '1'}">
-           	사용중
-       		</c:when>
-     		<c:when test="${hlist.hallStatus == '0'}">
-         	빈자리
-       		</c:when>
-   			</c:choose>
-   			</td>
-		    <td>
-		    <input type="radio"  name="hallStatus" value="0">빈자리
-			<input type="radio"  name="hallStatus" value="1">사용중
-			<button type="button" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button>
-		     </td>
-		    </tr>
-		    </c:forEach>
-			</table>
-</div>
+				<tr>
+					<th>예약인수</th>
+					<th>메뉴</th>
+					<th>예약시간</th>
+					<th>핸드폰</th>
+					<th>결제방법</th>
+					<th>예약자명</th>
+					<th>예약테이블</th>
+					<th>총금액</th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+			<c:if test="${totalCnt eq 0}">
+			<tr><td colspan="8">예약 내역이 없습니다</td></tr></c:if>
+			<c:forEach items="${resList}" var="resList">
+				<tr>
+					<td>${resList.seatCnt}</td>
+					<td>${resList.menuName}(${resList.resMenuCnt}개)</td>
+					<td>${resList.resDate}</td>
+					<td>${resList.uiHP}</td>
+					<td>${resList.PayType}</td>
+					<td>${resList.uiName}</td>
+					<td>${resList.hallNo}</td>
+					<td>${resList.payPrice}</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		
+		<!-- 페이징 -->
+		<div class="jb-center" style="text-align: center">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${page.nowPage eq 1}">
+						<li class='disabled'><a>«</a></li>
+						<li class='disabled'><a>‹</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a>«</a></li>
+						<li><a>‹</a></li>
+					</c:otherwise>
+				</c:choose>
+
+				<!--페이지번호 -->
+				<c:forEach var='i' begin="${page.nowBlock}" end="${page.endBlock}"
+					step="1">
+					<c:choose>
+						<c:when test="${page.nowPage eq i}">
+							<li class='active'><a>${i}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a>${i}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:choose>
+					<c:when test="${page.nowPage eq page.totalPage}">
+						<li class='disabled'><a>›</a></li>
+						<li class='disabled'><a>»</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a>›</a></li>
+						<li><a>»</a></li>
+					</c:otherwise>
+				</c:choose>
+			</ul>
+		</div>
+
+		<h3>홀현황</h3>
+		<table class='table table-bordered'>
+			<thead>
+				<tr>
+					<th>좌석수</th>
+					<th>번호</th>
+					<th>사용현황</th>
+					<th>수정</th>
+				</tr>
+			</thead>
+			<tbody class='tbody'>
+			<c:forEach items="${hallList}" var="hlist" varStatus="idx">
+				<c:set value="${hlist.hallStatus} " var="msg" />
+				<tr>
+					<td>${hlist.seatCnt}</td>
+					<td>${hlist.hallNo}</td>
+					<td>
+						<c:choose>
+							<c:when test="${hlist.hallStatus == '1'}">사용중</c:when>
+							<c:when test="${hlist.hallStatus == '0'}">빈자리</c:when>
+						</c:choose>
+					</td>
+					<td><input type="radio" name="hallStatus" value="0">빈자리
+						<input type="radio" name="hallStatus" value="1">사용중
+						<button type="button" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button>
+					</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </section>
 </body>
+<script>
+$("li[class!='active'][class!='disabled']>a").click(function(){
+	var shopNo = "${shopNo}";
+	var url = "${root}/adminRes/resInfo/?nowPage=";
+	var pageNum = new Number(this.innerHTML);
+	if(isNaN(pageNum)){
+		var sign = this.innerHTML;
+		if(sign=="‹"){
+			url += (${page.nowPage}-1) + "&shopNo="+shopNo;
+		} else if(sign=="«"){
+			url += 1 + "&shopNo="+shopNo;
+		} else if(sign=="»"){
+			url += ${page.totalPage} + "&shopNo="+shopNo;
+		} else if(sign=="›"){
+			url += (${page.nowPage}+1) + "&shopNo="+shopNo;
+		}
+	}else{
+		url += pageNum + "&shopNo="+shopNo;
+	}
+	
+	location.href=url;
+})
+</script>
 </html>

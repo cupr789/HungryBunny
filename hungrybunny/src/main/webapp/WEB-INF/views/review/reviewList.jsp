@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script>
+var shopNo;
 function alertMsg(){
 	var msg = "${msg}";
 	if(msg){
 		alert(msg);
 		
 	}
-	alert("${admin}");
 }
 
 function adminComment(){
@@ -216,8 +216,68 @@ function closeImg()
    			</c:choose>
 
 </div>
-<h1>${reviewList}</h1>>
-<h1>${admin}</h1>
+
+<!-- 페이징 -->
+	<div class="jb-center" style="text-align: center">
+		<ul class="pagination">
+            <c:choose>
+	            <c:when test="${page.nowPage eq 1}">
+					<li class='disabled'><a>«</a></li>
+					<li class='disabled'><a>‹</a></li>
+	            </c:when>
+	            <c:otherwise>
+					<li><a>«</a></li>
+					<li><a>‹</a></li>
+	            </c:otherwise>
+            </c:choose>
+			
+			<!--페이지번호 -->
+			<c:forEach var='i' begin="${page.nowBlock}" end="${page.endBlock}" step="1">
+                <c:choose>
+                    <c:when test="${page.nowPage eq i}">
+						<li class='active'><a>${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+						<li><a>${i}</a></li>
+                    </c:otherwise>
+                </c:choose>
+			</c:forEach>
+						
+            <c:choose>
+	            <c:when test="${page.nowPage eq page.totalPage}">
+					<li class='disabled'><a>›</a></li>
+					<li class='disabled'><a>»</a></li>
+	            </c:when>
+	            <c:otherwise>
+					<li><a>›</a></li>
+					<li><a>»</a></li>
+	            </c:otherwise>
+            </c:choose>
+		</ul>
+	</div>
 </section>
 </body>
+<script>
+$("li[class!='active'][class!='disabled']>a").click(function(){
+	var shopNo = "${shopNo}";
+	var url = "${root}/review/reviewList/?nowPage=";
+	var pageNum = new Number(this.innerHTML);
+	if(isNaN(pageNum)){
+		var sign = this.innerHTML;
+		if(sign=="‹"){
+			url += (${page.nowPage}-1) + "&shopNo="+shopNo;
+		}else if(sign=="«"){
+			url += 1 + "&shopNo="+shopNo;
+		}else if(sign=="»"){
+			url += ${page.totalPage} + "&shopNo="+shopNo;
+		}else if(sign=="›"){
+			url += (${page.nowPage}+1) + "&shopNo="+shopNo;
+		}
+	}else{
+		url += pageNum + "&shopNo="+shopNo;
+	}
+	
+	location.href=url;
+})
+</script>
 </html>

@@ -16,17 +16,26 @@ public class AdminResDAOImpl implements AdminResDAO{
 	private SqlSessionFactory ssf;
 
 	@Override
-	public List<Object> selectAdminShop(int shopNo) {
+	public List<Object> selectAdminShop(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
-		List<Object> list= ss.selectList("adminres.selectAdminHave",shopNo);
+		List<Object> list= ss.selectList("adminres.selectAdminHave",map);
 		ss.close();
 		return list;
 	}
 
 	@Override
-	public List<Object> selectShophall(int shopNo) {
+	public Integer selectAdminShopTotalCnt(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
-		List<Object> list=ss.selectList("adminres.selecthall",shopNo);
+		int adminShopTotalCnt = ss.selectOne("adminres.selectAdminHaveTotalCnt",map);
+		System.out.println("adminShopTotalCnt????????????????"+adminShopTotalCnt);
+		ss.close();
+		return adminShopTotalCnt;
+	}
+
+	@Override
+	public List<Object> selectShophall(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<Object> list=ss.selectList("adminres.selecthall",map);
 		ss.close();
 		return list;
 	}
@@ -38,7 +47,4 @@ public class AdminResDAOImpl implements AdminResDAO{
 		System.out.println("llllll           "     +result);
 		return result;
 	}
-
-
-
 }

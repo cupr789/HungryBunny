@@ -9,7 +9,8 @@ import co.kr.hungrybunny.vo.ReviewVO;
 public interface ReviewDAO {
 
 	public int insertReview(Map<String, Object> map);
-	public List<ReviewVO> selectReviewList(int shopNo);
+	public List<ReviewVO> selectReviewList(Map<String, Object> map);
+	public Integer selectReviewTotalCnt(Map<String, Object> map);
 	public int adminComment(Map<String, Object> map);
 
 }

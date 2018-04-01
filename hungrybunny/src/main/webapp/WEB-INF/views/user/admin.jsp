@@ -14,13 +14,15 @@ function adminHave(){
 function callback(res){
 	var str="";
     for(var i=0;i<res.spList.length;i++){
-		 str+="<tr><td>"+ res.spList[i].shopName+"</td>"+"<td>"+res.spList[i].shopAddress+"</td>"+"<td>"+res.spList[i].shopHP+"</td>"+"<td>"+ res.spList[i].shopTime+"</td>"+
-		 "<td><form action='${root}/adminRes/resInfo'><button name='adminRes' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button></form>"+
-		 "<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></button>"+
-		 "</form>"+
-		 "<form action='${root}/review/reviewList' method='POST'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'>리뷰보기</button>"+
-		 "</form></td>"+
-		 "</tr>";
+		 str+="<tr><td>"+ res.spList[i].shopName+"</td>"
+		 +"<td>"+res.spList[i].shopAddress+"</td>"
+		 +"<td>"+res.spList[i].shopHP+"</td>"
+		 +"<td>"+ res.spList[i].shopTime+"</td>"
+		 +"<td>"
+		 +"<form action='${root}/adminRes/resInfo'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button></form>"
+		 +"<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></button></form>"
+		 +"<form action='${root}/review/reviewList' method='GET'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'>리뷰보기</button></form>"
+		 +"</td></tr>";
 		 	} 
 	
  	

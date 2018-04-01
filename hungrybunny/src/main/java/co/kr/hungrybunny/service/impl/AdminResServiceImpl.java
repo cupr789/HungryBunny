@@ -21,18 +21,23 @@ public class AdminResServiceImpl implements AdaminResService{
 	private AdminResDAO ardao; 
 
 	@Override
-	public List<Object> getAdminShop(int shopNo,Map<String, Object> map) {
-		Gson gson= new Gson();
-		List<Object> hallList=ardao.selectShophall(shopNo);
-		List<Object> list=ardao.selectAdminShop(shopNo);
+	public List<Object> getAdminShop(Map<String, Object> map) {
+		List<Object> hallList=ardao.selectShophall(map);
+		List<Object> list=ardao.selectAdminShop(map);
 
 		
 		map.put("msg","들어왔어요");
-		map.put("reslist",gson.toJson(list));
+		map.put("resList",list);
 		map.put("hallList",hallList);
 		return list;
 	}
 
+
+	@Override
+	public Integer getAdminShopTotalCnt(Map<String, Object> map) {
+		return ardao.selectAdminShopTotalCnt(map);
+	}
+	
 	@Override
 	public int updateHall(Map<String, Object> map) {
 		map.put("currentStatus",map.get("hallStatus"));

@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import co.kr.hungrybunny.vo.Paging;
 
 import co.kr.hungrybunny.service.ReviewService;
 import co.kr.hungrybunny.vo.ReviewVO;
@@ -119,18 +122,27 @@ public class ReviewController {
 	}
 
 	// 2018-03-29 혜진
-	@RequestMapping(value = "/reviewList", method = RequestMethod.POST)
-	public ModelAndView reviewList(HttpSession hs, @RequestParam Map<String, Object> map, ModelAndView mav) {
+	@RequestMapping(value = "/reviewList", method = RequestMethod.GET)
+	public ModelAndView reviewList(HttpSession hs, @RequestParam Map<String, Object> map,@ModelAttribute Paging page, ModelAndView mav) {
 		if (hs.getAttribute("userInfo") != null) {
-
-		System.out.println("....?!!!!!!!!!!!!!!!!"+map.get("reviewNo"));
-		System.out.println("나는 shopNo받았어"+map.get("shopNo"));
-		String shopNoStr = map.get("shopNo").toString();
-		System.out.println("DDDDDDDDDDDDDD"+shopNoStr);
-		int shopNo = Integer.parseInt(shopNoStr);
-		List<ReviewVO> reviewList = rs.getReviewList(shopNo);
-		System.out.println("reviewList     :        "+reviewList);
+			System.out.println("여기 타?????????????????????");
+			System.out.println("????????????????????"+map);
+			
+			
+		logger.info("nowPage => {} ", page.getNowPage());
+		map.put("snum", Integer.toString(page.getStartNum()));
+		map.put("enum",Integer.toString(page.getRowCnt()));
+		
+		
+		List<ReviewVO> reviewList = rs.getReviewList(map);
+		int totalCnt = rs.getReviewTotalCnt(map);
+		page.setTotalCnt(totalCnt);
+		
 		mav.addObject("reviewList", reviewList);
+		mav.addObject("page", page);
+		if(map.get("shopNo")!=null) {
+			mav.addObject("shopNo",map.get("shopNo"));
+		}
 		mav.setViewName("review/reviewList");
 		////////////////////////////명훈
 		UserInfoVO ui=new UserInfoVO();
