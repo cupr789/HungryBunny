@@ -95,11 +95,14 @@ public class ResController {
 	@RequestMapping(value="/cancleRes", method = RequestMethod.POST)
 	public ModelAndView cancleRes(HttpSession hs, @RequestParam Map<String,Object>map){
 		System.out.println("에약취소 컨트롤러");
-		
+		System.out.println("ddd,,,ccc        "+map);
 		int result = ars.updateHall(map);
 		System.out.println(map);
 		if(result==0) {
 			map.put("msg", "수정완료");
+			map.put("shopNo", map.get("shopNo").toString());
+			map.put("hallNo", map.get("hallNo").toString());
+			map.put("resDate", map.get("resDate").toString());
 		}else{
 			map.put("msg", "수정실패");
 		}
@@ -107,6 +110,9 @@ public class ResController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg",map.get("msg"));
+		mav.addObject("shopNo",map.get("shopNo"));
+		mav.addObject("hallNo", map.get("hallNo"));
+		mav.addObject("resDate", map.get("resDate"));
 		mav.setViewName("reservation/confirmRes");
 /*		Map<String, Integer> map = new HashMap<String, Integer>();
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");

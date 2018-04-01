@@ -7,18 +7,69 @@
 <title>Insert title here</title>
 </head>
 <script>
-
+var resList;
 function confirmRes(){
 	var updateMsg = "${msg}";
+	var shopNo = "${shopNo}";
+	var hallNo = "${hallNo}";
+	var resDate = "${resDate}";
 	if(updateMsg){
 		alert(updateMsg);
+		alert(shopNo);
+		
+		
+		var webSocket = new WebSocket('ws://localhost/alarm');
+		webSocket.onerror = function(event) {
+			onError(event)
+		};
+		webSocket.onopen = function(event) {
+			onOpen(event)
+		};
+		webSocket.onmessage = function(event) {
+			onMessage(event)
+		};
+		function onMessage(event) {
+			
+		}
+		function onOpen(event) {
+			
+			console.log("연결성공");
+			send();
+			
+		}
+		function onError(event) {
+			alert(event.data);
+		}
+		function send(){
+			
+ 
+			var param = {shopNo:shopNo};
+			param = JSON.stringify(param); 
+			
+			$.ajax({
+				url : "${root}/user/getAdminName",
+				type : "POST",
+				contentType : "application/json",
+				data : param,
+				success : function(res) {
+					var adminId = res.adminId;
+					console.log(adminId);
+					var msg = {"msg":"예약일시: ["+resDate+"]\n 테이블:[ "+hallNo+"번 ]\n 예약 취소가 들어왔습니다.","target":adminId};
+			        webSocket.send(JSON.stringify(msg));
+				}
+			})
+		     /*    var msg = {"msg":inputMessage.value,"target":targetId.value}
+		        webSocket.send(JSON.stringify(msg)); */
+		}
 	}
+	
 	var au = new AjaxUtil2("${root}/res/confirmRes",null,"GET");
 	au.send(test);
 }
+
 function test(res){
 	console.log(res);
-	var resList = res;
+	resList = res;
 	for(var i=0;i<res.length;i++){
 		if(res[i].currentStatus==0){
 			resList.splice(i,1);
@@ -62,6 +113,8 @@ function test(res){
 			htmlStr += '<input type="hidden" name="hallNo" value="'+res[i].hallNo+'">';
 			htmlStr += '<input type="hidden" name="hallStatus" value="0">';
 			htmlStr += '<input type="hidden" name="currentStatus" value="0">';
+			htmlStr += '<input type="hidden" name="shopNo" value="'+res[i].shopNo+'">';
+			htmlStr += '<input type="hidden" name="resDate" value="'+res[i].resDate+'">';
 			htmlStr += '</tr>'; 
 			var resNo = res[i].resNo;
 		}
@@ -105,6 +158,7 @@ function cancleRes(res){
 		</div>
 		<button><a href="${pPath}/reservation/confirmLatestRes">지난 예약 보기</a></button>
 	</div>
+
 </section>
 </body>
 </html>
