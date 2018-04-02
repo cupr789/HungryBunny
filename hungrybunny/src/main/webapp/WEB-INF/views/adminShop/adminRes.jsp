@@ -37,13 +37,14 @@
 			<thead>
 				<tr>
 					<th>예약인수</th>
-					<th>메뉴</th>
+					<th>메뉴/개수</th>
 					<th>예약시간</th>
 					<th>핸드폰</th>
 					<th>결제방법</th>
 					<th>예약자명</th>
 					<th>예약테이블</th>
 					<th>총금액</th>
+					<th>예약상태</th>
 				</tr>
 			</thead>
 			<tbody class="tbody">
@@ -52,13 +53,19 @@
 			<c:forEach items="${resList}" var="resList">
 				<tr>
 					<td>${resList.seatCnt}</td>
-					<td>${resList.menuName}(${resList.resMenuCnt}개)</td>
+					<td>${resList.menuName}</td>
 					<td>${resList.resDate}</td>
 					<td>${resList.uiHP}</td>
 					<td>${resList.PayType}</td>
 					<td>${resList.uiName}</td>
 					<td>${resList.hallNo}</td>
 					<td>${resList.payPrice}</td>
+					<c:if test="${resList.currentStatus eq 1 }">
+					<td>현재예약</td>	
+					</c:if>
+					<c:if test="${resList.currentStatus eq 0 }">
+					<td>지난예약</td>	
+					</c:if>
 				</tr>
 			</c:forEach>
 			</tbody>

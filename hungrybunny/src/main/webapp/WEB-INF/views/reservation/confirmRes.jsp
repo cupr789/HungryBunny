@@ -50,7 +50,7 @@ function confirmRes(){
 				url : "${root}/user/getAdminName",
 				type : "POST",
 				contentType : "application/json",
-				data : param,
+				data : param,	
 				success : function(res) {
 					var adminId = res.adminId;
 					console.log(adminId);

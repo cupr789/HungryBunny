@@ -46,7 +46,7 @@ public class AdminResController {
 			List<Object> list = ars.getAdminShop(map);
 			int totalCnt = ars.getAdminShopTotalCnt(map);
 			page.setTotalCnt(totalCnt);
-
+			System.out.println(map.get("resList")+" ???!!??");
 			if(map.get("shopNo")!=null) {
 				mav.addObject("shopNo",map.get("shopNo"));
 				mav.addObject("resList", map.get("resList"));
