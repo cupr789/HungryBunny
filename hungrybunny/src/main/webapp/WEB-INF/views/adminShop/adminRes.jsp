@@ -165,6 +165,6 @@ $("li[class!='active'][class!='disabled']>a").click(function(){
 	}
 	
 	location.href=url;
-})
+});
 </script>
 </html>

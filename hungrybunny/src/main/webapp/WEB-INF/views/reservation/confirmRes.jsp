@@ -106,7 +106,7 @@ function test(res){
 		for(var i=0;i<res.length;i++){
 			htmlStr += '<tr>';
 			htmlStr += '<td>'+res[i].shopName+'</td>';
-			htmlStr += '<td>'+res[i].menuName+'('+res[i].menuPrice+'원) X'+res[i].resMenuCnt+'</td>';
+			htmlStr += '<td>'+res[i].menuName+'</td>';
 			htmlStr += '<td>'+res[i].payPrice+'</td>';
 			htmlStr += '<td>'+res[i].payType+'</td>';
 			htmlStr += '<td>'+res[i].resDate+'</td>';
