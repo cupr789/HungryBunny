@@ -6,7 +6,7 @@
 		<select id="selectAdminHave" parameterType="map" resultType="map">
 			select r.resNo,s.shopname, group_concat(concat(m.menuName,rm.resMenuCnt,'개') separator ' , ') as menuName, r.resDate, r.payPrice, p.PayType, u.uiName, u.uiHP, h.seatCnt, r.hallNo , r.currentStatus
 			from user_info u, reservation r, reservationmenu rm, pay_category p, shop s, menu m, hall h
-			where r.shopNo=2
+			where r.shopNo=#{shopNo}
 			and u.uiNo=r.uiNo
 			and r.resNo=rm.resNo
 			and p.PayCaNo=r.PayCaNo
@@ -32,7 +32,7 @@
 			and rm.menuNo=m.menuNo
 			and r.hallNo=h.hallNo
 			group by r.resNo
-			order by r.resNo desc;) adminResTotCnt
+			order by r.resNo desc) adminResTotCnt
 			
 	</select>
 	

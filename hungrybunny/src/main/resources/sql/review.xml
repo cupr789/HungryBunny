@@ -9,13 +9,14 @@
 	</insert>
 	
 	<select id="selectReviewList" parameterType="map" resultType="review">
-		select rv.reviewComment, rv.reviewRating, u.uiId, m.menuName, rv.reviewNo, r.resNo, r.resDate, rv.fileName, rv.adminComment
+		select rv.reviewComment, rv.reviewRating, u.uiId, group_concat(concat(m.menuName,rm.resMenuCnt,'개') separator ' , ') as menuName, rv.reviewNo, r.resNo, r.resDate, rv.fileName, rv.adminComment
 		from review rv, reservation r, user_info u , reservationmenu rm, menu m
 		where rv.shopNo = #{shopNo}
 		and rv.resNo = r.resNo
 		and rv.resNo = rm.resNo
 		and rm.menuNo = m.menuNo
 		and r.uiNo = u.uiNo
+		group by rv.reviewNo
 		
 		order by reviewNo desc
 		<if test="snum !=null and snum !=''">

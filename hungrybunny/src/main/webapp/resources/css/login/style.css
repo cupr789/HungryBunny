@@ -1,0 +1,161 @@
+body {
+	background: #F6F6F6;
+}
+
+/* .container {
+    display: flex;
+    background: #F6F6F6;
+}
+ */
+.wrap {
+	width: 42%;
+	height: auto;
+	margin: auto;
+	margin-top: 5%;
+}
+
+.avatar {
+	width: 100%;
+	margin: auto;
+	width: 150px;
+	border-radius: 100px;
+	height: 150px;
+	background: #fff;
+	position: relative;
+	bottom: -15px;
+}
+
+.avatar img {
+	width: 150px;
+	height: 150px; 
+	border-radius: 100px;
+	margin: auto;
+	border: 3px solid #fff;
+	display: block;
+}
+.wrap input[type="text"], input[type="password"] {
+	border: 1px solid #006F00;
+	background: #fff;
+	font-family: Lato;
+	font-weight: 700;
+	display: block;
+	height: 40px;
+	outline: none;
+	width: calc(100% - 5px); 
+	margin: auto;
+	margin-bottom: 2%;
+	padding: 6px 12px 6px 12px;
+	border-radius: 7px; 
+}
+
+.wrap a{
+	margin-bottom: 2%; 
+}
+
+.bar {
+	width: 100%;
+	height: 1px;
+	background: #fff;
+}
+
+.bar i {
+	width: 95%;
+	margin: auto;
+	height: 1px;
+	display: block;
+	background: #d1d1d1;
+}
+
+/* .wrap input[type="text"] {
+	border-radius: 7px 7px 0px 0px;
+}
+
+.wrap input[type="password"] {
+	border-radius: 0px 0px 7px 7px;
+} */
+
+.forgot_link {
+	color: #83afdf;
+	text-decoration: none;
+	font-size: 14px;
+	position: relative;
+	left: 399px;
+	top: -29px;
+}
+.wrap button {
+	width: 100%; 
+	border-radius: 7px;
+	background: #FFBB00;
+	text-decoration: center;
+	border: none;
+	color: #fff; 
+	margin-top: -5px;
+	margin-bottom: 10px; 
+	padding-top: 14px;
+	padding-bottom: 14px;
+	outline: none;
+	font-size: 13px;
+	border-bottom: 3px solid #C98500;
+	cursor: pointer;
+}
+
+
+
+/* 라디오버튼 */
+.center-on-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+label {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 10px;
+  line-height: 36px;
+  cursor: pointer;
+}
+label::before {
+  content: " ";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #006F00;
+  border-radius: 4px;
+  z-index: -1;
+}
+input[type="radio"] + label::before {
+  border-radius: 18px;
+}
+/* Checked */
+input[type="checkbox"]:checked + label,
+input[type="radio"]:checked + label {
+  padding-left: 10px;
+  color: #fff;
+}
+input[type="checkbox"]:checked + label::before,
+input[type="radio"]:checked + label::before {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #006F00;
+}
+/* Transition */
+label,
+label::before {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
