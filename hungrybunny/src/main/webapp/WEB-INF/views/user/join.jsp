@@ -43,24 +43,37 @@
 		}
 
 	function checkForm(form) {
-		if (form.uiId.value == "") {
+		alert(form.uiName.value);
+		if (form.uiId.value.trim() == "") {
 			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.username.focus();
+			form.uiName.focus();
 			return false;
 		}
-		if (form.uiName.value == "") {
+		if (form.uiName.value.trim() == "") {
 			alert("Error: 사용자이름을 비워둘수없습니다.");
-			form.username.focus();
+			form.uiName.focus();
 			return false;
 		}
-		re = /^\w+$/;
-		if (!re.test(form.uiName.value)) {
+		
+		if (typeof(form.uiName.value)==='number') {
 			alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
+			form.uiName.focus();
+			return false;
+		}
+		 re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
+			if (re.test(form.uiName.value)) {
+				alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
+				form.uiName.focus();
+				return false;
+			} 
+		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
+		if (re.test(form.uiId.value)) {
+			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 		}
-		re = /^\w+$/;
-		if (!re.test(form.uiId.value)) {
+			
+		if (typeof(form.uiId.value)==='number') {
 			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
