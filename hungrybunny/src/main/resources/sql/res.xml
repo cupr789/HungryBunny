@@ -14,14 +14,14 @@
 	</insert>
 	
 	<select id="confirmRes" parameterType="int" resultType="map">
-		select s.shopName, s.shopNo, s.shopAddress, s.shopHP, m.menuName, m.menuPrice, rm.resMenuCnt,  cast(r.resDate as char) as resDate, r.payPrice, p.payType, h.seatCnt, r.currentStatus, r.resNo, h.hallNo, h.hallStatus
+	select s.shopName, s.shopNo, s.shopAddress, s.shopHP, group_concat(distinct concat(m.menuName,'(',m.menuPrice,'원) ',rm.resMenuCnt,'개') separator ' , ') menuName, cast(r.resDate as char) as resDate, r.payPrice, p.payType, h.seatCnt, r.currentStatus, r.resNo, h.hallNo, h.hallStatus
 		from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
-		where r.uiNo=#{uiNo}
+		where r.uiNo=2
 		and r.shopNo=s.shopNo
 		and rm.menuNo=m.menuNo
 		and rm.resNo=r.resNo
 		and r.PayCaNo=p.PayCaNo
-		and r.hallNo=h.hallNo group by menuName, shopName, resDate order by s.shopName;
+		and r.hallNo=h.hallNo group by resNo order by s.shopName;
 	</select>
 	
 	<delete id="deleteResMenu" parameterType="map">
