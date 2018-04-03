@@ -216,11 +216,11 @@ public class UserInfoController {
 				e.printStackTrace();
 			}
 
-			map.put("msg", "Email이 발송되었습니다 번호를 입력해주세요 ");
+			map.put("msg", "Email이 발송되었습니다 인증번호를 입력해주세요 ");
 			map.put("biz", true);
 
 		} else {
-			map.put("msg", "이메일을 잘못입력했어요 ㅜㅜ");
+			map.put("msg", "등록된Email이 아닙니다.");
 		}
 
 		return map;

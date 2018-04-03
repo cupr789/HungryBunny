@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 </head>
 <script >
+function check() {
+	 var uiEmail = $("input[name='uiEmail']").val();
+	 if (uiEmail.trim() == "") {
+			alert("Error: 사용자Email을 비워둘수없습니다.");
+			return false;
+		}
+		re = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+		if (!re.test(uiEmail)) {
+			alert("Error:사용자 Email전체를 입력해주세요.");
+			return false;
+		}
+		
+		findUserInfo()
+		return true;
+}
+
 function findUserInfo() {
 	var params = "uiEmail";
 	var au = new AjaxUtil("${root}/user/findUserInfo", params, "POST");
@@ -35,7 +51,7 @@ function callback(res){
                     </div>
              
                     <div>
-                        <button type="button" onclick="findUserInfo()" class="form-control btn btn-primary">메일보내기</button>
+                        <button type="button" onclick=" check()" class="form-control btn btn-primary">메일보내기</button>
                     </div>
                   
                     </a>

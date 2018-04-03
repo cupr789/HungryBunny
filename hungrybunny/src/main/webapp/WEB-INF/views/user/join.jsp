@@ -33,7 +33,7 @@
 		}
 		re = /^\w+$/;
 		if (!re.test(form.uiId.value)) {
-			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
+			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 			
@@ -43,47 +43,67 @@
 		}
 
 	function checkForm(form) {
-		alert(form.uiName.value);
-		if (form.uiId.value.trim() == "") {
-			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.uiName.focus();
-			return false;
-		}
+		
+		
 		if (form.uiName.value.trim() == "") {
 			alert("Error: 사용자이름을 비워둘수없습니다.");
 			form.uiName.focus();
 			return false;
 		}
-		
-		if (typeof(form.uiName.value)==='number') {
-			alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
+		re = /[0-9]/;
+		if (re.test(form.uiName.value)) {
+			alert("Error: 이름에는 숫자가 들어갈수없습니다.");
 			form.uiName.focus();
 			return false;
 		}
+
 		 re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
-			if (re.test(form.uiName.value)) {
+		if (re.test(form.uiName.value)) {
 				alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
 				form.uiName.focus();
 				return false;
-			} 
+		}
+		if (form.uiId.value.length < 6) {
+				alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+				form.uiId.focus();
+				return false;
+		}
+		if (form.uiId.value.trim() == "") {
+				alert("Error: 사용자아이디를 비워둘수없습니다.");
+				form.uiId.focus();
+				return false;
+		}
 		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
 		if (re.test(form.uiId.value)) {
 			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 		}
-			
-		if (typeof(form.uiId.value)==='number') {
-			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
-			form.uiId.focus();
-			return false;
-		}
-		
-		if (form.uiHP.value.length != 11) {
-			alert("Error: 전화번호가 일치하지 않습니다.");
+	
+		re =  /[^0-9]/g;
+		if (re.test(form.uiHP.value)) {
+			alert("Error:사용자 전화에는 숫자 만 포함해야 합니다.");
 			form.uiHP.focus();
 			return false;
 		}
+
+		if (form.uiHP.value.length != 11) {
+			alert("Error: 전화번호를 확인 해주세요.");
+			form.uiHP.focus();
+			return false;
+		}
+		if (form.uiEmail.value.trim() == "") {
+			alert("Error: 사용자Email을 비워둘수없습니다.");
+			form.uiEmail.focus();
+			return false;
+	}
+		re = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+		if (!re.test(form.uiEmail.value)) {
+			alert("Error:사용자 Email전체를 입력해주세요.");
+			form.uiEmail.focus();
+			return false;
+		}
+		
 	
 		if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
 			if (form.uiPwd.value.length < 6) {
