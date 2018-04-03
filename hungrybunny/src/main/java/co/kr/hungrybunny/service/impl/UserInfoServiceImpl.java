@@ -80,6 +80,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 					map.put("msg","수정성공이요 로그인부터 다시해주세요^^");
 					map.put("biz",true);
 					hs.invalidate();
+				}else if(faiResualt==0){
+					map.put("biz",true);
 				}else {
 					map.put("msg","서버오류..관리자에게 문의바람");
 				}
