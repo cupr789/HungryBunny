@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${rPath}/css/login/radioInput.css" media="screen" type="text/css" />
 </head>
 <script>
 	function callback(res) {
@@ -155,64 +156,31 @@
 	}
 </script>
 <body>
-	<section class="section">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<div class="panel-title">회원가입!</div>
-				</div>
-				<div class="panel-body">
-					<form  id="login-form"
-						onsubmit="return checkForm(this)">
-						<div>
-							이름<input type="text" class="form-control" name="uiName"
-								placeholder="ex)홍길동" autofocus>
-						</div>
-						<div>
-							아이디<input type="text" class="form-control" name="uiId"
-								placeholder="ID">
-						</div>
-							<div>
-							Email<input type="text" class="form-control" name="uiEmail"
-								placeholder="Email.@nvaer.com">
-						</div>
-						<div>
-							비밀번호<input type="password" class="form-control" name="uiPwd"
-								placeholder="Password">
-						</div>
-						<div>
-							비밀번호확인<input type="password" class="form-control" name="uiPwd2"
-								placeholder="CheckPassword">
-								<a style="color:red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>
-						</div>
-						<div>
-							핸드폰<input type="text" class="form-control" name="uiHP"
-								placeholder="-없이숫자만 입력해주세요">
-						</div>
-						<div>
-							<input type="radio" id="admin1" name="admin" value="0"
-								checked="checked">일반사용자 <input type="radio" id="admin2"
-								name="admin" value="1">사장님
-						</div >
-						
-						<div>
-							<button type="button" onclick="checkForm2(form)"
-								class="form-control btn btn-primary">ID중복체크</button>
-						</div>
-						<div>
-							<button type="button" onclick="checkForm(form)"
-								class="form-control btn btn-primary">회원가입</button>
-						</div>
-						<div>
-							<button type="button" onclick="back()"
-								class="form-control btn btn-primary">돌아가기</button>
-						</div>
-					</form>
-				</div>
-			</div>
+<section class="section">
+	<div class="wrap">
+		<div class="avatar">
+			<img src="${rPath}/images/logo.png">
 		</div>
+		<form id="login-form" onsubmit="return checkForm(this)">
+			이름<input type="text" name="uiName" placeholder="ex)홍길동" autofocus>
+			아이디<input type="text" name="uiId" placeholder="ID">
+			Email<input type="text" name="uiEmail" placeholder="Email.@nvaer.com">
+			비밀번호<input type="password" name="uiPwd" placeholder="Password">
+			비밀번호확인<input type="password" name="uiPwd2" placeholder="CheckPassword">
+				<a style="color:red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>
+			핸드폰<input type="text" class="form-control" name="uiHP" placeholder="-없이숫자만 입력해주세요">
+			<!-- <input type="radio" id="admin1" name="admin" value="0" checked="checked">일반사용자 
+			<input type="radio" id="admin2" name="admin" value="1">사장님 -->
+			
+			<input type="radio" name="admin" id="admin1" value="0"><label for="admin1">일반사용자</label>
+			<input type="radio" name="admin" id="admin2" value="1"><label for="admin2">사장님</label>
+			
+			<button type="button" onclick="checkForm2(form)">ID중복체크</button>
+			<button type="button" onclick="checkForm(form)">회원가입</button>
+			<button type="button" onclick="back()">돌아가기</button>
+			
+		</form>
 	</div>
-	</section>
+</section>
 </body>
 </html>

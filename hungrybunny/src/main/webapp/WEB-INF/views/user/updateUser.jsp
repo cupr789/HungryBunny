@@ -6,6 +6,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+input[type="text"], input[type="password"] {
+	border: 1px solid #006F00;
+	background: #fff;
+	/* font-family: Lato; */
+	font-size: 17px;
+	font-weight: 700;
+	display: block;
+	height: 40px;
+	outline: none;
+	width: calc(100% - 5px); 
+	margin: auto;
+	margin-bottom: 2%;
+	padding: 6px 12px 6px 12px;
+	border-radius: 7px; 
+}
+
+</style>
 <script>
 	function info(){
 		var au = new AjaxUtil("${root}/user/userinfo",null,"GET");
@@ -13,20 +31,18 @@
 	}
 	function callback(res){
 		
-		$("#userinfo").html("<h2>유저수정</h2>"+
-			 	"<table class='table table-bordered'>"+
-				"<thead>"+
-				"<tr><th>이름</th><th>"+res.userList.uiName+"</th><th><input name='uiName' value='"+res.userList.uiName+"' type='text'></th></tr>"+
-				"<tr><th>아이디</th><th>"+res.userList.uiId+"</th><th><input name='uiId' value='"+res.userList.uiId+"' type='text'></th></tr>"+
-				"<tr><th>비밀전호</th><th></th><th><input name='uiPwd' type='password' value='"+res.userList.uiPwd+"' ></th></tr>"+
-				"<tr><th>전화번호</th><th>"+res.userList.uiHP+"</th><th><input name='uiHP' value='"+res.userList.uiHP+"' type='text'></th></tr>"+
-				"<tr><th>Email</th><th>"+res.userList.uiEmail+"</th><th><input name='uiEmail' value='"+res.userList.uiEmail+"' type='text'></th></tr>"+
-				"<tr><th>현재비밀번호를 입력해주세요</th><th><input name='check' type='password'><input name='admin' value='"+res.userList.admin+"' type='hidden'><input name='uiNo' value='"+res.userList.uiNo+"' type='hidden'></th>"+					
-				"<th><button type='button' onclick='check()'>수정<span class='glyphicon glyphicon-refresh' aria-hidden='true'></span></button>"+
-				"<button type='button' onclick='deleteUser()'>회원탈퇴<span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></th></tr>"+  
-			    "</thead>"+  
-			    "<tbody class='tbody'>"+
-			    "</tbody>"+ 
+		$("#userinfo").html(
+			 	"<table class='table table-striped table-hover' style='width: 100%'>"+
+				"<tbody>"+
+				"<tr><td width='30%'>이름</td><td>"+res.userList.uiName+"</td><td><input name='uiName' value='"+res.userList.uiName+"' type='text'></td></tr>"+
+				"<tr><td>아이디</td><td>"+res.userList.uiId+"</td><td><input name='uiId' value='"+res.userList.uiId+"' type='text'></td></tr>"+
+				"<tr><td>비밀전호</td><td></td><td><input name='uiPwd' type='password' value='"+res.userList.uiPwd+"' ></td></tr>"+
+				"<tr><td>전화번호</td><td>"+res.userList.uiHP+"</td><td><input name='uiHP' value='"+res.userList.uiHP+"' type='text'></td></tr>"+
+				"<tr><td>Email</td><td>"+res.userList.uiEmail+"</td><td><input name='uiEmail' value='"+res.userList.uiEmail+"' type='text'></td></tr>"+
+				"<tr><td>현재비밀번호를 입력해주세요</td><td><input name='check' type='password'><input name='admin' value='"+res.userList.admin+"' type='hidden'><input name='uiNo' value='"+res.userList.uiNo+"' type='hidden'></td>"+					
+				"<td><button type='button' onclick='check()'>수정<span class='glyphicon glyphicon-refresh' aria-hidden='true'></span></button>"+
+				"<button type='button' onclick='deleteUser()'>회원탈퇴<span class='glyphicon glyphicon-trash' aria-hidden='true'></span></button></td></tr>"+  
+			    "</tbody>"+  
 				"</table>"
 				); 
 				
@@ -178,10 +194,18 @@ function callback2(res){
 </script>
 <body onload="info()">
 <section class="section">
-<div ></div>
-
-<div id="userinfo"></div>
+	<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>유저수정</h2>
+					</div>
+				</div>
+			</div>
+			<div id="userinfo"></div>
+		</div>
+	</div>		
 </section>
-
 </body>
 </html>

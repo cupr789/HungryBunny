@@ -22,22 +22,22 @@ function test(res){
 	}
 	
 	htmlStr = '';
+	htmlStr += '<table class="table table-striped table-hover" style="width: 100%">';
+	htmlStr += '<thead>';
+	htmlStr += '<tr>'; 
+	htmlStr += '<th>가게</th>';
+	htmlStr += '<th>메뉴</th>';
+	htmlStr += '<th>금액</th>';
+	htmlStr += '<th>결제방식</th>';
+	htmlStr += '<th>날짜</th>';
+	htmlStr += '<th>리뷰남기기</th>';
+	htmlStr += '</tr>';
+	htmlStr += '</thead>';
+	htmlStr += '<tbody>';
+	
 	if(res.length==0){
-		htmlStr += '<h2>지난예약내역이 없습니다</h2>';
+		htmlStr += '<tr><td>지난예약내역이 없습니다</tr></td>';
 	}else{
-		var htmlStr = '';
-		htmlStr += '<table class="table table-bordered">';
-		htmlStr += '<thead>';
-		htmlStr += '<tr>'; 
-		htmlStr += '<th>가게</th>';
-		htmlStr += '<th>메뉴</th>';
-		htmlStr += '<th>금액</th>';
-		htmlStr += '<th>결제방식</th>';
-		htmlStr += '<th>날짜</th>';
-		htmlStr += '<th>리뷰남기기</th>';
-		htmlStr += '</tr>';
-		htmlStr += '</thead>';
-		htmlStr += '<tbody>';
 		for(var i=0;i<res.length;i++){
 			for(var j=0;j<i;j++){
 				if(res[i].resDate==res[j].resDate){
@@ -74,8 +74,18 @@ function test(res){
 <body onload="confirmRes()">
 <section class="section">
 	<div class="container">
-	<h1>예약확인</h1>
-		<div id="resList">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>지난예약확인</h2>
+					</div>
+				</div>
+			</div>
+			
+			<div id="resList">
+			</div>
+			
 		</div>
 	</div>
 </section>

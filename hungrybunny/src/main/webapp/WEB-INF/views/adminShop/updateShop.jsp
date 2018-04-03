@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +8,9 @@
 </head>
 <script>
 	function insertMenu(){
+		
+		alert($.trim($("#menuName").val()));
+		
 		var params = "menuName,menuPrice,shopNo";
 		var au = new AjaxUtil("${root}/menu/insert",params,"POST");
 		au.send(callback); 
@@ -54,73 +57,91 @@
 </script>
 <body>
 <section class="section">
-<div class="container">
-	<h4 style="font: bold;">ShopInfo</h4>
-	<br>
-	
- 	<table class='table table-bordered'>
-	<thead>
-	<tr>
-	<th>가게이름</th>
-	<th>가게주소</th>
-	<th>가게전화번호</th>
-	<th>영업시간</th>
-	</tr>
-	</thead>  
-    <tbody class='tbody'>
-   <tr>
-   <td>${slist[0].shopName}</td>
-   <td>${slist[0].shopAddress}</td>
-   <td>${slist[0].shopHP}</td>
-   <td>${slist[0].shopTime}</td>
-   </tr>
-    </tbody> 
-	</table>
-	<!-- 위는 식당정보 테이블 -->
-	
-	<h4 style="font: bold;">MenuList</h4>
-	<br>
-	
-	<!-- 해당식당 메뉴 테이블 -->
-	<table class='table table-bordered'>
-	<thead>
-	<tr>
-	<th></th>
-	<th>메뉴이름</th>
-	<th></th>
-	<th>메뉴가격</th>
-	<th></th>
-	<th>설정</th>
-	</tr>
-	</thead>  
-    <tbody class='tbody'>
-    
-   	<c:forEach items="${mlist}" var="mlist" varStatus="idx" >
-   	<tr>
-   		<td>${mlist.menuName}<input name="menuNo" type="hidden" value="${mlist.menuNo}"></td>
-   		<td><input name="updateName" type="text" value="${mlist.menuName}"></td>
-   		<td>${mlist.menuPrice}</td>
-   		<td><input name="updatePrice" type="text" value="${mlist.menuPrice}" placeholder="${mlist.menuPrice}" ></td>
-   		<td><button type="button" onclick="deleteMenu(${mlist.menuNo})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-   		<button type="button" onclick="updateMenu(${mlist.menuNo},${idx.index})"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
-   		</td>
-   	</tr>
-   </c:forEach>
-   
-   
-   <tr>
-   <td>메뉴이름<input name="shopNo" type="hidden" value="${slist[0].shopNo}"></td>
-   <td><input  name="menuName" type="text"></td>
-   <td>메뉴가격</td>
-   <td><input  name="menuPrice" type="text"></td>
-   <td><button type="button" onclick="insertMenu()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></td>
-   </tr>
-       </tbody> 
-	</table>
-	
-	
-	 <div id="menuList">
-	</div> 
+	<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>ShopInfo</h2>
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover" style="width: 100%">
+				<thead>
+					<tr>
+						<th>가게이름</th>
+						<th>가게주소</th>
+						<th>가게전화번호</th>
+						<th>영업시간</th>
+					</tr>
+				</thead>
+				<tbody class='tbody'>
+					<tr>
+						<td>${slist[0].shopName}</td>
+						<td>${slist[0].shopAddress}</td>
+						<td>${slist[0].shopHP}</td>
+						<td>${slist[0].shopTime}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			<!-- 위는 식당정보 테이블 -->
+
+			<h4 style="font: bold;">MenuList</h4>
+			<br>
+
+			<!-- 해당식당 메뉴 테이블 -->
+		<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-4">
+							<h2>ShopInfo</h2>
+						</div>
+					</div>
+				</div>	
+			<table class="table table-striped table-hover" style="width: 100%">
+				<thead>
+					<tr>
+						<th></th>
+						<th>메뉴이름</th>
+						<th></th>
+						<th>메뉴가격</th>
+						<th>설정</th>
+					</tr>
+				</thead>
+				<tbody class='tbody'>
+
+					<c:forEach items="${mlist}" var="mlist" varStatus="idx">
+						<tr>
+							<td>${mlist.menuName}<input name="menuNo" type="hidden" value="${mlist.menuNo}"></td>
+							<td><input name="updateName" type="text" value="${mlist.menuName}"></td>
+							<td>${mlist.menuPrice}</td>
+							<td><input name="updatePrice" type="text" 	value="${mlist.menuPrice}" placeholder="${mlist.menuPrice}"></td>
+							<td><button type="button" onclick="deleteMenu(${mlist.menuNo})">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								</button>
+								<button type="button" onclick="updateMenu(${mlist.menuNo},${idx.index})">
+									<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								</button></td>
+						</tr>
+					</c:forEach>
+
+
+					<tr>
+						<td>메뉴이름<input name="shopNo" type="hidden" value="${slist[0].shopNo}"></td>
+						<td><input name="menuName" type="text" id="menuName"></td>
+						<td>메뉴가격</td>
+						<td><input name="menuPrice" type="text" id="menuPrice"></td>
+						<td><button type="button" onclick="insertMenu()">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</button></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<div id="menuList"></div>
+		</div>
 	</div>
 </section>
 </body>
