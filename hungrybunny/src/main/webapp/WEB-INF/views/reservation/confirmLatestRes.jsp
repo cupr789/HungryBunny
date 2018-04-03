@@ -76,6 +76,7 @@ function test(res){
 	<div class="container">
 	<h1>예약확인</h1>
 		<div id="resList">
+		
 		</div>
 	</div>
 </section>

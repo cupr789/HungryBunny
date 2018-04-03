@@ -61,6 +61,34 @@
 
 <body>
 	<!-- Slider Section -->
+<section class="section">	
+	<form action="${root}/map/mapList" method="get">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h2>주소를 검색해주세요</h2>
+					<div id="custom-search-input">
+
+						<div class="input-group col-md-12">
+
+							<input id="address" name="address" type="text"
+								class="form-control input-lg" placeholder="주소를 입력해주세요" /> <span
+								class="input-group-btn">
+								<button class="btn btn-info btn-lg" type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>	
+	
+	
 	<section id="header-slider" class="section">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -97,35 +125,6 @@
 		</div>
 	</section>
 	<!-- Slider Section -->
-	<form action="${root}/map/mapList" method="get">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h2>주소를 검색해주세요</h2>
-					<div id="custom-search-input">
-
-						<div class="input-group col-md-12">
-
-							<input id="address" name="address" type="text"
-								class="form-control input-lg" placeholder="주소를 입력해주세요" /> <span
-								class="input-group-btn">
-								<button class="btn btn-info btn-lg" type="submit">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-
-
-
-
 
 	<!-- Service Section -->
 	<section id="services" class="section services">
