@@ -126,12 +126,6 @@ input[type="text"], input[type="password"] {
 				
 				return false;
 			}
-			re = /[A-Z]/;
-			if (!re.test(uiPwd)) {
-				alert("Error:암호에는 하나 이상의 대문자가 포함되어야 합니다!");
-				
-				return false;
-			}
 			re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 			if (!re.test(uiPwd)) {
 				alert("Error:암호에는 하나 이상의 특수문자가 포함되어야 합니다!");

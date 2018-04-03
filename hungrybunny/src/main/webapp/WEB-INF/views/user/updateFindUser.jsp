@@ -6,16 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script>
-	function checkForm(form) {
-		if (form.uiId.value == "") {
-			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.username.focus();
+<script >
+function checkForm(form) {
+	if (form.uiId.value.length < 6) {
+
+			alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+			form.uiId.focus();
 			return false;
 		}
-		re = /^\w+$/;
-		if (!re.test(form.uiId.value)) {
-			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
+		if (form.uiId.value.trim() == "") {
+			alert("Error: 사용자아이디를 비워둘수없습니다.");
+			form.uiId.focus();
+			return false;
+		}
+		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
+		if (re.test(form.uiId.value)) {
+			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 		}
