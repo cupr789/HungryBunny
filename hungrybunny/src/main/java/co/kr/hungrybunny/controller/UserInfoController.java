@@ -21,13 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.hungrybunny.service.UserInfoService;
-import co.kr.hungrybunny.vo.ReviewVO;
-import co.kr.hungrybunny.vo.ShopVO;
+import co.kr.hungrybunny.utils.PasswdUtil;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @Controller
@@ -36,12 +34,15 @@ public class UserInfoController {
 	@Autowired
 	private UserInfoService uis;
 	UserInfoVO ui = new UserInfoVO();
+	PasswdUtil pu= new PasswdUtil();
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> login(@RequestBody Map<String, Object> rmap, HttpSession hs) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ui.setUiId((String) rmap.get("uiId"));
-		ui.setUiPwd((String) rmap.get("uiPwd"));
+		String Pwd=rmap.get("uiPwd").toString();
+		String uiPwd=pu.makePasswd(Pwd)+"SMH!";
+		ui.setUiPwd(uiPwd);
 
 		if (uis.login(map, ui)) {
 			hs.setAttribute("user", map.get("user"));
@@ -56,12 +57,20 @@ public class UserInfoController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> join(@RequestBody UserInfoVO ui) {
+		
 		log.info("ui=>{}", ui);
 		ui.setUiId(ui.getUiId().trim());
 		ui.setUiName(ui.getUiName().trim());
 		ui.setUiPwd(ui.getUiPwd().trim());
 		ui.setUiHP(ui.getUiHP().trim());
 		ui.setUiEmail(ui.getUiEmail().trim());
+		String Pwd=ui.getUiPwd();
+		String uiPwd=pu.makePasswd(Pwd)+"SMH!";
+		System.out.println("777777777777777777"+uiPwd);
+		ui.setUiPwd(uiPwd);
+//		String str="qweqwe1Q!";
+//		System.out.println("6666666666666666666666"+pu.matchPasswd(str, uiPwd)); 
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("msg", "회원가입 실패 입니다.");
 		int result = uis.join(ui);
@@ -125,8 +134,9 @@ public class UserInfoController {
 	@RequestMapping(value = "/checkPwd", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> checkPwd(HttpSession hs, @RequestBody Map<String, Object> map) {
 		if (hs.getAttribute("userInfo") != null) {
-			String uiPwd = map.get("uiPwd").toString();
+			String Pwd = map.get("uiPwd").toString();
 			ui = (co.kr.hungrybunny.vo.UserInfoVO) hs.getAttribute("userInfo");
+			String uiPwd=pu.makePasswd(Pwd)+"SMH!";
 			if (uiPwd.equals(ui.getUiPwd())) {
 				map.put("biz", true);
 			} else {
@@ -258,7 +268,12 @@ public class UserInfoController {
 	
 	@RequestMapping(value = "/updateFindUser", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> updateFindUser(@RequestBody Map<String, Object> map, HttpSession hs) {
-		map.put("uiNo",hs.getAttribute("checkUiNo"));		
+		map.put("uiNo",hs.getAttribute("checkUiNo"));
+		String pwd=map.get("uiPwd").toString();
+		String uiPwd=pu.makePasswd(pwd)+"SMH!";
+		map.put("uiPwd",uiPwd);
+	
+		
 		uis.updateFindUser(map,hs);
 
 		return map;

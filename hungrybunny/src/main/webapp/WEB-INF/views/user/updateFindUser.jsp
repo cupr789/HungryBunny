@@ -8,74 +8,78 @@
 </head>
 <script >
 function checkForm(form) {
-	if (form.uiId.value == "") {
-		alert("Error: 사용자아이디를 비워둘수없습니다.");
-		form.username.focus();
-		return false;
-	}
-	re = /^\w+$/;
-	if (!re.test(form.uiId.value)) {
-		alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
-		form.uiId.focus();
-		return false;
-	}
+	if (form.uiId.value.length < 6) {
 
-	if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
-		if (form.uiPwd.value.length < 6) {
-			alert("Error: 비밀 번호는 최소 6개의 문자를 포함해야 합니다!");
-			form.uiPwd.focus();
+			alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+			form.uiId.focus();
 			return false;
 		}
-		if (form.uiPwd.value == form.uiId.value) {
-			alert("Error: 비밀 번호는 사용자 이름과 달라야 합니다!");
-			form.uiPwd.focus();
+		if (form.uiId.value.trim() == "") {
+			alert("Error: 사용자아이디를 비워둘수없습니다.");
+			form.uiId.focus();
 			return false;
 		}
-		re = /[0-9]/;
-		if (!re.test(form.uiPwd.value)) {
-			alert("Error: 암호는 하나 이상의 숫자를 포함해야 합니다!");
-			form.uiPwd.focus();
+		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
+		if (re.test(form.uiId.value)) {
+			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
+			form.uiId.focus();
 			return false;
 		}
-		re = /[a-z]/;
-		if (!re.test(form.uiPwd.value)) {
-			alert("Error: 암호는 하나 이상의 소문자를 포함해야 합니다!");
-			form.uiPwd.focus();
-			return false;
-		}
-		re = /[A-Z]/;
-		if (!re.test(form.uiPwd.value)) {
-			alert("Error:암호에는 하나 이상의 대문자가 포함되어야 합니다!");
-			form.uiPwd.focus();
-			return false;
-		}
-		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
-		if (!re.test(form.uiPwd.value)) {
-			alert("Error:암호에는 하나 이상의 특수문자가 포함되어야 합니다!");
-			form.uiPwd.focus();
-			return false;
-		}
-	} else {
-		alert("Error: 입력하신 비밀번호가 일치하지 않습니다");
-		form.uiPwd.focus();
-		return false;
-	}
-	updateFindUser();
-	return true;
-}
-function updateFindUser(){
-	var params = "uiId,uiPwd";
-	var au = new AjaxUtil("${root}/user/updateFindUser", params, "POST");
-	au.send(callback);
-}
-function callback(res){
-	alert(res.msg);
-	if(res.biz){
-		location.href="${root}/path/user/login"
-	}
-}
 
-
+		if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
+			if (form.uiPwd.value.length < 6) {
+				alert("Error: 비밀 번호는 최소 6개의 문자를 포함해야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+			if (form.uiPwd.value == form.uiId.value) {
+				alert("Error: 비밀 번호는 사용자 이름과 달라야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+			re = /[0-9]/;
+			if (!re.test(form.uiPwd.value)) {
+				alert("Error: 암호는 하나 이상의 숫자를 포함해야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+			re = /[a-z]/;
+			if (!re.test(form.uiPwd.value)) {
+				alert("Error: 암호는 하나 이상의 소문자를 포함해야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+			re = /[A-Z]/;
+			if (!re.test(form.uiPwd.value)) {
+				alert("Error:암호에는 하나 이상의 대문자가 포함되어야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+			re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
+			if (!re.test(form.uiPwd.value)) {
+				alert("Error:암호에는 하나 이상의 특수문자가 포함되어야 합니다!");
+				form.uiPwd.focus();
+				return false;
+			}
+		} else {
+			alert("Error: 입력하신 비밀번호가 일치하지 않습니다");
+			form.uiPwd.focus();
+			return false;
+		}
+		updateFindUser();
+		return true;
+	}
+	function updateFindUser() {
+		var params = "uiId,uiPwd";
+		var au = new AjaxUtil("${root}/user/updateFindUser", params, "POST");
+		au.send(callback);
+	}
+	function callback(res) {
+		alert(res.msg);
+		if (res.biz) {
+			location.href = "${root}/path/user/login"
+		}
+	}
 </script>
 <body>
 	<section class="section">

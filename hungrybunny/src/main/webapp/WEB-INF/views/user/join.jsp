@@ -128,12 +128,7 @@
 				form.uiPwd.focus();
 				return false;
 			}
-			re = /[A-Z]/;
-			if (!re.test(form.uiPwd.value)) {
-				alert("Error:암호에는 하나 이상의 대문자가 포함되어야 합니다!");
-				form.uiPwd.focus();
-				return false;
-			}
+		
 			re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 			if (!re.test(form.uiPwd.value)) {
 				alert("Error:암호에는 하나 이상의 특수문자가 포함되어야 합니다!");
