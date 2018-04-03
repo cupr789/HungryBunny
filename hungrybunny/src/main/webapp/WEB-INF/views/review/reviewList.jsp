@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="${rPath}/table/css/table.css"> 
 <script>
 var shopNo;
 function alertMsg(){
@@ -133,133 +133,141 @@ function closeImg()
 
 </script>
 <body onload="alertMsg()">
-	<section class="section">
+<section class="section">
 	<div class="container">
-		<table class="table table-bordered" style="width: 100%">
-			<thead>
-				<tr>
-					<th></th>
-					<th>ID</th>
-					<th>메뉴</th>
-					<th>코멘트</th>
-					<th>별점</th>
-					<th>날짜</th>
-					<th>사진</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${empty reviewList}">
-				<tr><td colspan="7">리뷰가 없습니다.</td></tr></c:if>
-				
-				<c:forEach items="${reviewList}" var="reviewList">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>리뷰리스트</h2>
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover" style="width: 100%">
+				<thead>
 					<tr>
-						<td><c:choose>
-								<c:when test="${admin == '1'}">
-									<input type="checkbox" name="reviewNo" value="${reviewList.reviewNo}">
-								</c:when>
-								<c:when test="${admin == '0'}">
-
-								</c:when>
-							</c:choose></td>
-						<td><div class="w3-xxxlarge">
-								<i class="glyphicon glyphicon-user"></i>
-							</div>${reviewList.uiId}</td>
-						<td>${reviewList.menuName}</td>
-						<td>${reviewList.reviewComment}</td>
-						<td width="15%">
-							<fieldset class="starability-basic">
-								<c:forEach begin="1" end="${reviewList.reviewRating}">
-									<input type="radio" />
-									<label for="rate1"></label>
-								</c:forEach>
-							</fieldset>
-						</td>
-						<td>${reviewList.resDate}</td>
-
-						<c:if test="${empty reviewList.fileName}">
-							<td>사진이 없또요</td>
-						</c:if>
-						<c:if test="${not empty reviewList.fileName}">
-							<td><img src="${rPath}/review/imgs/${reviewList.fileName}"
-								width="100" onclick="resizeImg(this.src)"></td>
-						</c:if>
+						<th></th>
+						<th>ID</th>
+						<th>메뉴</th>
+						<th>코멘트</th>
+						<th>별점</th>
+						<th>날짜</th>
+						<th>사진</th>
 					</tr>
-					<tr>
-						<c:choose>
-							<c:when test="${reviewList.adminComment != null}">
-								<td colspan="7">사장님댓글-->${reviewList.adminComment}</td>
-							</c:when>
-							<c:when test="${reviewList.adminComment == null}">
-								<td colspan="7">아직댓글이 없어요</td>
-							</c:when>
-						</c:choose>
+				</thead>
+				<tbody>
+					<c:if test="${empty reviewList}">
+						<tr>
+							<td colspan="7">리뷰가 없습니다.</td>
+						</tr>
+					</c:if>
 
-					</tr>
+					<c:forEach items="${reviewList}" var="reviewList">
+						<tr>
+							<td><c:choose>
+									<c:when test="${admin == '1'}">
+										<input type="checkbox" name="reviewNo" value="${reviewList.reviewNo}">
+									</c:when>
+									<c:when test="${admin == '0'}">
 
-				</c:forEach>
+									</c:when>
+								</c:choose></td>
+							<td><div class="w3-xxxlarge">
+									<i class="glyphicon glyphicon-user"></i>
+								</div>${reviewList.uiId}님</td>
+							<td>${reviewList.menuName}</td>
+							<td>${reviewList.reviewComment}</td>
+							<td width="15%">
+								<fieldset class="starability-basic">
+									<c:forEach begin="1" end="${reviewList.reviewRating}">
+										<input type="radio" />
+										<label for="rate1"></label>
+									</c:forEach>
+								</fieldset>
+							</td>
+							<td>${reviewList.resDate}</td>
 
-			</tbody>
-		</table>
+							<c:if test="${empty reviewList.fileName}">
+								<td>사진이 없또요</td>
+							</c:if>
+							<c:if test="${not empty reviewList.fileName}">
+								<td><img src="${rPath}/review/imgs/${reviewList.fileName}" width="100" onclick="resizeImg(this.src)"></td>
+							</c:if>
+						</tr>
+						<tr>
+							<c:choose>
+								<c:when test="${reviewList.adminComment != null}">
+									<td colspan="7">사장님댓글-->${reviewList.adminComment}</td>
+								</c:when>
+								<c:when test="${reviewList.adminComment == null}">
+									<td colspan="7">아직댓글이 없어요</td>
+								</c:when>
+							</c:choose>
 
-	</div>
-	<div>
+						</tr>
 
-		<br>
-		<c:choose>
-			<c:when test="${admin =='1'}">
-				<a> <label for="comment">Comment:</label> <textarea class="form-control" rows="5" id="adminComment" name="adminComment"></textarea>
-					<h6 class="pull-right" id="count_message"></h6>
+					</c:forEach>
 
-					<button onclick="adminComment()">등록하기</button>
-				</a>
-			</c:when>
-			<c:when test="${admin == '0'}">
+				</tbody>
+			</table>
 
-			</c:when>
-		</c:choose>
-
-	</div>
-
-	<!-- 페이징 -->
-	<div class="jb-center" style="text-align: center">
-		<ul class="pagination">
-			<c:choose>
-				<c:when test="${page.nowPage eq 1}">
-					<li class='disabled'><a>«</a></li>
-					<li class='disabled'><a>‹</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a>«</a></li>
-					<li><a>‹</a></li>
-				</c:otherwise>
-			</c:choose>
-
-			<!--페이지번호 -->
-			<c:forEach var='i' begin="${page.nowBlock}" end="${page.endBlock}"
-				step="1">
+			<div>
+				<br>
 				<c:choose>
-					<c:when test="${page.nowPage eq i}">
-						<li class='active'><a>${i}</a></li>
+					<c:when test="${admin =='1'}">
+						<a> <label for="comment">Comment:</label> <textarea class="form-control" rows="5" id="adminComment" name="adminComment"></textarea>
+							<h6 class="pull-right" id="count_message"></h6>
+							<button onclick="adminComment()">등록하기</button>
+						</a>
 					</c:when>
-					<c:otherwise>
-						<li><a>${i}</a></li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
+					<c:when test="${admin == '0'}">
 
-			<c:choose>
-				<c:when test="${page.nowPage eq page.totalPage}">
-					<li class='disabled'><a>›</a></li>
-					<li class='disabled'><a>»</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a>›</a></li>
-					<li><a>»</a></li>
-				</c:otherwise>
-			</c:choose>
-		</ul>
+					</c:when>
+				</c:choose>
+			</div>
+
+			<!-- 페이징 -->
+			<div class="clearfix" style="text-align: center">
+				<ul class="pagination">
+					<c:choose>
+						<c:when test="${page.nowPage eq 1}">
+							<li class='disabled'><a>«</a></li>
+							<li class='disabled'><a>‹</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a>«</a></li>
+							<li><a>‹</a></li>
+						</c:otherwise>
+					</c:choose>
+
+					<!--페이지번호 -->
+					<c:forEach var='i' begin="${page.nowBlock}" end="${page.endBlock}"
+						step="1">
+						<c:choose>
+							<c:when test="${page.nowPage eq i}">
+								<li class='active'><a>${i}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a>${i}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<c:choose>
+						<c:when test="${page.nowPage eq page.totalPage}">
+							<li class='disabled'><a>›</a></li>
+							<li class='disabled'><a>»</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a>›</a></li>
+							<li><a>»</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			</div>
+		</div>
 	</div>
-	</section>
+</section>
 </body>
 <script>
 $("li[class!='active'][class!='disabled']>a").click(function(){

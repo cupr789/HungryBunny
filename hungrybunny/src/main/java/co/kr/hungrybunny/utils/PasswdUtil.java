@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswdUtil 
 {
-	private static final String SALT = "biztalk0909!";
+	private static final String SALT = "smh0817!";
 	
 	public static String makePasswd( String passwd )
 	{
@@ -55,12 +55,5 @@ public class PasswdUtil
 	}
 	
 	
-	public static void main(String[] args){
-		String passwd = PasswdUtil.makePasswd("red");
-		for(int i=0;i<10;i++) {
-			passwd = PasswdUtil.makePasswd("red");
-			System.out.println(passwd);
-		}
-	}
 }
 

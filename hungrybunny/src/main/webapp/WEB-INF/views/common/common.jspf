@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="${rPath}/css/animate.min.css?${ver}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?${ver}">
 <link rel="stylesheet" type="text/css" href="${rPath}/css/star/starability-all.min.css"/>
+<link rel="stylesheet" href="${rPath}/css/login/style.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="${rPath}/table/css/table.css">
 
 <!-- JS FILES -->
 <script

@@ -14,15 +14,15 @@
 			and rm.menuNo=m.menuNo
 			and r.hallNo=h.hallNo
 			group by r.resNo
-			order by r.resNo desc;
+			order by r.resNo desc
 			<if test="snum !=null and snum !=''">
 				Limit ${snum}, ${enum}
 			</if>
 	</select>
 	
 	<select id="selectAdminHaveTotalCnt" parameterType="map" resultType="int">
-			select count(1)
-			select r.resNo,s.shopname, group_concat(concat(m.menuName,rm.resMenuCnt,'개') separator ' , ') as menuName, r.resDate, r.payPrice, p.PayType, u.uiName, u.uiHP, h.seatCnt, r.hallNo , r.currentStatus
+			select count(1) from
+			(select r.resNo,s.shopname, group_concat(concat(m.menuName,rm.resMenuCnt,'개') separator ' , ') as menuName, r.resDate, r.payPrice, p.PayType, u.uiName, u.uiHP, h.seatCnt, r.hallNo , r.currentStatus
 			from user_info u, reservation r, reservationmenu rm, pay_category p, shop s, menu m, hall h
 			where r.shopNo=#{shopNo}
 			and u.uiNo=r.uiNo

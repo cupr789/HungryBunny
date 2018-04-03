@@ -42,32 +42,16 @@ function join(){
 
 <body>
 <section class="section">
-<div class="container">
-    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <div class="panel-title">HungyrBunny!</div>
-            </div>
-            <div class="panel-body">
-                <a id="login-form">
-                    <div>
-                        <input type="text" class="form-control" name="uiId" placeholder="Username" autofocus>
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" name="uiPwd" placeholder="Password">
-                    </div>
-                    <a href="${pPath}/user/findUserInfo">아이디/비밀번호찾기</a>
-                    <div>
-                        <button type="button" onclick="login()" class="form-control btn btn-primary">로그인</button>
-                    </div>
-                    <div>
-                         <button type="button" onclick="join()" class="form-control btn btn-primary">회원가입</button>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="wrap">
+		<div class="avatar">
+			<img src="${rPath}/images/logo.png">
+		</div>
+		<input type="text" name="uiId" placeholder="Username" autofocus>
+		<input type="password" name="uiPwd" placeholder="Password"> 
+		<a href="${pPath}/user/findUserInfo" class="forgot_link">forgot ?</a>
+		<button onclick="login()">LOGIN</button>
+		<button onclick="join()">JOIN</button>
+	</div>
 </section>
 
 </body>

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${rPath}/css/login/radioInput.css" media="screen" type="text/css" />
 </head>
 <script>
 	function callback(res) {
@@ -33,7 +34,7 @@
 		}
 		re = /^\w+$/;
 		if (!re.test(form.uiId.value)) {
-			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
+			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 			
@@ -43,47 +44,67 @@
 		}
 
 	function checkForm(form) {
-		alert(form.uiName.value);
-		if (form.uiId.value.trim() == "") {
-			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.uiName.focus();
-			return false;
-		}
+		
+		
 		if (form.uiName.value.trim() == "") {
 			alert("Error: 사용자이름을 비워둘수없습니다.");
 			form.uiName.focus();
 			return false;
 		}
-		
-		if (typeof(form.uiName.value)==='number') {
-			alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
+		re = /[0-9]/;
+		if (re.test(form.uiName.value)) {
+			alert("Error: 이름에는 숫자가 들어갈수없습니다.");
 			form.uiName.focus();
 			return false;
 		}
+
 		 re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
-			if (re.test(form.uiName.value)) {
+		if (re.test(form.uiName.value)) {
 				alert("Error:사용자 이름에는 영문,한글만 포함해야 합니다.");
 				form.uiName.focus();
 				return false;
-			} 
+		}
+		if (form.uiId.value.length < 6) {
+				alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+				form.uiId.focus();
+				return false;
+		}
+		if (form.uiId.value.trim() == "") {
+				alert("Error: 사용자아이디를 비워둘수없습니다.");
+				form.uiId.focus();
+				return false;
+		}
 		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
 		if (re.test(form.uiId.value)) {
 			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
 			form.uiId.focus();
 			return false;
 		}
-			
-		if (typeof(form.uiId.value)==='number') {
-			alert("Error:사용자 아이디에는 영문, 숫자 및 밑줄만 포함해야 합니다.");
-			form.uiId.focus();
-			return false;
-		}
-		
-		if (form.uiHP.value.length != 11) {
-			alert("Error: 전화번호가 일치하지 않습니다.");
+	
+		re =  /[^0-9]/g;
+		if (re.test(form.uiHP.value)) {
+			alert("Error:사용자 전화에는 숫자 만 포함해야 합니다.");
 			form.uiHP.focus();
 			return false;
 		}
+
+		if (form.uiHP.value.length != 11) {
+			alert("Error: 전화번호를 확인 해주세요.");
+			form.uiHP.focus();
+			return false;
+		}
+		if (form.uiEmail.value.trim() == "") {
+			alert("Error: 사용자Email을 비워둘수없습니다.");
+			form.uiEmail.focus();
+			return false;
+	}
+		re = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+		if (!re.test(form.uiEmail.value)) {
+			alert("Error:사용자 Email전체를 입력해주세요.");
+			form.uiEmail.focus();
+			return false;
+		}
+		
 	
 		if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
 			if (form.uiPwd.value.length < 6) {
@@ -108,12 +129,7 @@
 				form.uiPwd.focus();
 				return false;
 			}
-			re = /[A-Z]/;
-			if (!re.test(form.uiPwd.value)) {
-				alert("Error:암호에는 하나 이상의 대문자가 포함되어야 합니다!");
-				form.uiPwd.focus();
-				return false;
-			}
+		
 			re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi;
 			if (!re.test(form.uiPwd.value)) {
 				alert("Error:암호에는 하나 이상의 특수문자가 포함되어야 합니다!");
@@ -135,64 +151,31 @@
 	}
 </script>
 <body>
-	<section class="section">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<div class="panel-title">회원가입!</div>
-				</div>
-				<div class="panel-body">
-					<form  id="login-form"
-						onsubmit="return checkForm(this)">
-						<div>
-							이름<input type="text" class="form-control" name="uiName"
-								placeholder="ex)홍길동" autofocus>
-						</div>
-						<div>
-							아이디<input type="text" class="form-control" name="uiId"
-								placeholder="ID">
-						</div>
-							<div>
-							Email<input type="text" class="form-control" name="uiEmail"
-								placeholder="Email.@nvaer.com">
-						</div>
-						<div>
-							비밀번호<input type="password" class="form-control" name="uiPwd"
-								placeholder="Password">
-						</div>
-						<div>
-							비밀번호확인<input type="password" class="form-control" name="uiPwd2"
-								placeholder="CheckPassword">
-								<a style="color:red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>
-						</div>
-						<div>
-							핸드폰<input type="text" class="form-control" name="uiHP"
-								placeholder="-없이숫자만 입력해주세요">
-						</div>
-						<div>
-							<input type="radio" id="admin1" name="admin" value="0"
-								checked="checked">일반사용자 <input type="radio" id="admin2"
-								name="admin" value="1">사장님
-						</div >
-						
-						<div>
-							<button type="button" onclick="checkForm2(form)"
-								class="form-control btn btn-primary">ID중복체크</button>
-						</div>
-						<div>
-							<button type="button" onclick="checkForm(form)"
-								class="form-control btn btn-primary">회원가입</button>
-						</div>
-						<div>
-							<button type="button" onclick="back()"
-								class="form-control btn btn-primary">돌아가기</button>
-						</div>
-					</form>
-				</div>
-			</div>
+<section class="section">
+	<div class="wrap">
+		<div class="avatar">
+			<img src="${rPath}/images/logo.png">
 		</div>
+		<form id="login-form" onsubmit="return checkForm(this)">
+			이름<input type="text" name="uiName" placeholder="ex)홍길동" autofocus>
+			아이디<input type="text" name="uiId" placeholder="ID">
+			Email<input type="text" name="uiEmail" placeholder="Email.@nvaer.com">
+			비밀번호<input type="password" name="uiPwd" placeholder="Password">
+			비밀번호확인<input type="password" name="uiPwd2" placeholder="CheckPassword">
+				<a style="color:red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>
+			핸드폰<input type="text" class="form-control" name="uiHP" placeholder="-없이숫자만 입력해주세요">
+			<!-- <input type="radio" id="admin1" name="admin" value="0" checked="checked">일반사용자 
+			<input type="radio" id="admin2" name="admin" value="1">사장님 -->
+			
+			<input type="radio" name="admin" id="admin1" value="0"><label for="admin1">일반사용자</label>
+			<input type="radio" name="admin" id="admin2" value="1"><label for="admin2">사장님</label>
+			
+			<button type="button" onclick="checkForm2(form)">ID중복체크</button>
+			<button type="button" onclick="checkForm(form)">회원가입</button>
+			<button type="button" onclick="back()">돌아가기</button>
+			
+		</form>
 	</div>
-	</section>
+</section>
 </body>
 </html>

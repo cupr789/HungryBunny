@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="${rPath}/table/css/table.css"> 
 <script>
 function adminHave(){
 	var au = new AjaxUtil("${root}/shop/adminHave",null,"GET");
@@ -27,8 +28,8 @@ function callback(res){
 	
  	
  	 	
-	$("#shopName").html("<h2>가게리스트</h2>"+
- 	"<table class='table table-bordered'>"+
+	$("#shopName").html(
+ 	"<table class='table table-striped table-hover' style='width: 100%'>"+
 	"<thead>"+
 	"<tr>"+
 	"<th>가게이름</th>"+
@@ -49,9 +50,21 @@ function callback(res){
 
 <body onload="adminHave()">
 <section class="section">
-<div class="container">
-<div id="shopName"></div>
-
+	<div class="container">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-4">
+						<h2>가게리스트</h2>
+					</div>
+				</div>
+			</div>
+			
+			<div id="shopName">
+			</div>
+			
+		</div>
+	</div>
 </section>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import co.kr.hungrybunny.dao.UserInfoDAO;
 import co.kr.hungrybunny.service.UserInfoService;
+import co.kr.hungrybunny.utils.PasswdUtil;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @Service
@@ -17,6 +18,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Autowired
 	private UserInfoDAO uidao;
+	PasswdUtil pu= new PasswdUtil();
 
 	@Override
 	public boolean login(Map<String, Object> rMap, UserInfoVO ui) {
@@ -64,7 +66,16 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void updateUser(Map<String, Object> map, UserInfoVO ui,HttpSession hs) {
-		String checkPwd = map.get("check").toString();
+		PasswdUtil pu= new PasswdUtil();
+		String pwd = map.get("check").toString();
+		String checkPwd=pu.makePasswd(pwd)+"SMH!";
+		String pwd2 = map.get("uiPwd").toString();
+		if(pwd2.length()>30) {
+			map.put("uiPwd",pwd2);	
+		}else {
+			String uiPwd=pu.makePasswd(pwd2)+"SMH!";
+			map.put("uiPwd",uiPwd);	
+		}
 		String check = map.get("uiId").toString();
 		String checkId="";
 		if(check.equals(ui.getUiId())) {
@@ -80,6 +91,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 					map.put("msg","수정성공이요 로그인부터 다시해주세요^^");
 					map.put("biz",true);
 					hs.invalidate();
+				}else if(faiResualt==0){
+					map.put("biz",true);
 				}else {
 					map.put("msg","서버오류..관리자에게 문의바람");
 				}
@@ -95,7 +108,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int deleteUser(Map<String, Object> map, UserInfoVO ui) {
-		String uiPwd = map.get("check").toString();
+		PasswdUtil pu= new PasswdUtil();
+		String Pwd = map.get("check").toString();
+		String uiPwd=pu.makePasswd(Pwd)+"SMH!";
 		if (uiPwd.equals(ui.getUiPwd())) {
 			String str = map.get("uiNo").toString();
 			int uiNo = Integer.parseInt(str);
@@ -137,6 +152,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void updateFindUser(Map<String, Object> map, HttpSession hs) {
+		int check =checkUserId(map.get("uiId").toString());
+		
+		if(check==0) {
 		int result =uidao.updateFindUser(map);
 		if(result==1) {
 			map.put("msg","변경성공이요~~");
@@ -145,6 +163,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}else {
 			map.put("msg","서버오류 관리자에게 문의 해주세요");
 		}
-		
+		}else {
+			map.put("msg","중복된아이디 입니다.");
+		}
 	}
 }
