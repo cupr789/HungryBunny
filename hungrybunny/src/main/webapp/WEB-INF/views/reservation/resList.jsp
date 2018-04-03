@@ -237,28 +237,24 @@ $(document).ready(function(){
 		<c:forEach items="${hallList}" var="hallList">
 			<c:choose>
 				<c:when test="${hallList.seatCnt eq '2'}">
-					<img src="${rPath}/images/person_icon/people1.jpg"
-						style="width: 30%;">
-					<input type="radio" name="hallNo"
-						value="${hallList.hallNo},${hallList.seatCnt}">
-				</c:when>
+					<img src="${rPath}/images/person_icon/people1.jpg" style="width: 30%;">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}" id="seatCnt2">
+					<label for="seatCnt2">${hallList.seatCnt}인석</label>
+				</c:when> 
 				<c:when test="${hallList.seatCnt eq '4'}">
-					<img src="${rPath}/images/person_icon/people2.jpg"
-						style="width: 30%;">
-					<input type="radio" name="hallNo"
-						value="${hallList.hallNo},${hallList.seatCnt}">
+					<img src="${rPath}/images/person_icon/people2.jpg" style="width: 30%;">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}" id="seatCnt4">
+					<label for="seatCnt4">${hallList.seatCnt}인석</label>
 				</c:when>
 				<c:when test="${hallList.seatCnt eq '6'}">
-					<img src="${rPath}/images/person_icon/people3.jpg"
-						style="width: 30%;">
-					<input type="radio" name="hallNo"
-						value="${hallList.hallNo},${hallList.seatCnt}">
+					<img src="${rPath}/images/person_icon/people3.jpg" style="width: 30%;">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}" id="seatCnt6">
+					<label for="seatCnt6">${hallList.seatCnt}인석</label>
 				</c:when>
 				<c:otherwise>
-					<img src="${rPath}/images/person_icon/people4.jpg"
-						style="width: 30%;">
-					<input type="radio" name="hallNo"
-						value="${hallList.hallNo},${hallList.seatCnt}">
+					<img src="${rPath}/images/person_icon/people4.jpg" style="width: 30%;">
+					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}" id="seatCnt8">
+					<label for="seatCnt8">${hallList.seatCnt}인석</label>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

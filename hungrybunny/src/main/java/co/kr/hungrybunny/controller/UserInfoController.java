@@ -94,7 +94,7 @@ public class UserInfoController {
 	@RequestMapping("/logout")
 	public ModelAndView goIndex(ModelAndView mav, HttpSession hs) {
 		hs.invalidate();
-		mav.setViewName("user/login");
+		mav.setViewName("user/login2");
 		return mav;
 	}
 

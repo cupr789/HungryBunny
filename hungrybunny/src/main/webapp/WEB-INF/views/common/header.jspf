@@ -9,7 +9,7 @@ ui=(UserInfoVO)session.getAttribute("userInfo");
 String adminMenu="";
 String adminUrl="";
 String loginMenu = "Login";
-String loginUrl =root+"/path/user/login";
+String loginUrl =root+"/path/user/login2";
 String updateUser="";
 String updateUserUrl="";
 String res="";
@@ -33,7 +33,7 @@ if(ui!=null){
 <section class="tophead" role="tophead"> 
   <!-- Navigation Section -->
   <header id="header">
-    <div class="header-content clearfix"> <a class="logo" href="#">Hungry Bunny</a>
+    <div class="header-content clearfix"> <a class="logo" href="/">Hungry Bunny</a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
           <li><a href="/">Home</a></li>

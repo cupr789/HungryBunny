@@ -32,10 +32,9 @@
 }
 .navigation a {
 	display: block;
-	font-size: 25px;
+	font-size: 15px;
 	margin: 0;
 	color: #fff;
-	font-size: 13px;
 	text-align: center;
 }
 .testimonials blockquote {

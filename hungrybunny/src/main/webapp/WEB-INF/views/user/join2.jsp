@@ -6,10 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-
-<link rel="stylesheet" href="${rPath}/css/login/reset.css">
-<link rel="stylesheet" href="${rPath}/css/login/style.css" media="screen" type="text/css" />
-
 <script>
 	function callback(res) {
 		alert(res.msg);
@@ -127,7 +123,6 @@
 </script>
 <body>
 <section class="section">
-	<div class="container">
 	<div class="wrap">
 		<div class="avatar">
 			<img src="${rPath}/images/logo.png">
@@ -152,8 +147,6 @@
 			
 		</form>
 	</div>
-	</div>
 </section>
-<script src="${rPath}/js/login/index.js"></script>
 </body>
 </html>

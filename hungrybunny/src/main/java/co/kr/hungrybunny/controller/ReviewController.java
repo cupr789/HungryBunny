@@ -143,7 +143,7 @@ public class ReviewController {
 		if(map.get("shopNo")!=null) {
 			mav.addObject("shopNo",map.get("shopNo"));
 		}
-		mav.setViewName("review/reviewList");
+		mav.setViewName("review/reviewList2");
 		////////////////////////////명훈
 		UserInfoVO ui=new UserInfoVO();
 		ui=(UserInfoVO) hs.getAttribute("userInfo");

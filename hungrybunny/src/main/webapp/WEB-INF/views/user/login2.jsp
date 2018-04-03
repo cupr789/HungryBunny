@@ -6,10 +6,6 @@
 <meta charset="UTF-8">
 <title>CodePen - Login</title>
 </head>
-
-<link rel="stylesheet" href="${rPath}/css/login/reset.css">
-<link rel="stylesheet" href="${rPath}/css/login/style.css" media="screen" type="text/css" />
-
 <script> 
 var cnt=0;
 
@@ -38,7 +34,7 @@ function callback(res){
 	}
 }
 function join(){
-	location.href="${root}/path/user/join";
+	location.href="${root}/path/user/join2";
 }
 </script>
 
@@ -53,11 +49,9 @@ function join(){
 			<i></i>
 		</div>
 		<input type="password" name="uiPwd" placeholder="Password"> <a href="${pPath}/user/findUserInfo" class="forgot_link">forgot ?</a>
-		<button onclick="login()">로그인</button>
-		<button onclick="join()">회원가입</button>
+		<button onclick="login()">LOGIN</button>
+		<button onclick="join()">JOIN</button>
 	</div>
-
-	
 </section>
 <script src="${rPath}/js/login/index.js"></script>
 
