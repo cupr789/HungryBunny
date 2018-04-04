@@ -14,76 +14,21 @@
 	 */
 </script>
 </head>
-
-<style>
-#custom-search-input {
-	padding: 3px;
-	border: solid 1px #E4E4E4;
-	border-radius: 6px;
-	background-color: #fff;
-}
-
-#custom-search-input input {
-	border: 0;
-	box-shadow: none;
-}
-
-#custom-search-input button {
-	margin: 2px 0 0 0;
-	background: none;
-	box-shadow: none;
-	border: 0;
-	color: #666666;
-	padding: 0 8px 0 10px;
-	border-left: solid 1px #ccc;
-}
-
-#custom-search-input button:hover {
-	border: 0;
-	box-shadow: none;
-	border-left: solid 1px #000;
-}
-
-#custom-search-input button:active {
-	border: 0;
-	box-shadow: none;
-	border: solid 1px #ccc;
-}
-
-#custom-search-input .glyphicon-search {
-	font-size: 23px;
-}
-</style>
-
-
-
-
-
+<link rel="stylesheet" type="text/css" href="${rPath}/css/index.css"> 
 <body>
 	<!-- Slider Section -->
 <section class="section">	
 	<form action="${root}/map/mapList" method="get">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
 					<div id="custom-search-input">
-
 						<div class="input-group col-md-12">
-
-							<input id="address" name="address" type="text"
-								class="form-control input-lg" placeholder="주소를 입력해주세요" /> <span
-								class="input-group-btn">
+							<input id="address" name="address" type="text" class="form-control input-lg" placeholder="주소를 입력해주세요"/> 
+							<span class="input-group-btn">
 								<button class="btn btn-info btn-lg" type="submit">
-									<i class="glyphicon glyphicon-search"></i>
+									<i class="glyphicon glyphicon-search"></i> 
 								</button>
 							</span>
-
 						</div>
-
 					</div>
-				</div>
-			</div>
-		</div>
 	</form>
 </section>	
 	
@@ -99,27 +44,24 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
 					<img src="${rPath}/images/slider/slid3.jpg" alt="Chania">
-					<div class="carousel-caption">
-						<h3>We'r Auro</h3>
-						<p>We Build Strong Brands which impact your customers</p>
-					</div>
+						<div class="carousel-caption">
+							<h3>We'r Auro</h3>
+							<p>We Build Strong Brands which impact your customers</p>
+						</div>
 				</div>
 				<div class="item">
 					<img src="${rPath}/images/slider/slid4.jpg" alt="Chania">
-					<div class="carousel-caption">
-						<h3>Minimal Agency Template</h3>
-						<p>We're Australia based branding & design agency</p>
-					</div>
+						<div class="carousel-caption">
+							<h3>Minimal Agency Template</h3>
+							<p>We're Australia based branding & design agency</p>
+						</div>
 				</div>
 			</div>
 			<!-- Controls -->
-			<a class="left carousel-control" href="#myCarousel" role="button"
-				data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span></a> <a
-				class="right carousel-control" href="#myCarousel" role="button"
-				data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> 
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span></a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> 
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span></a>
 		</div>
 	</section>

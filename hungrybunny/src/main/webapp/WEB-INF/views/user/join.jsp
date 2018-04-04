@@ -29,7 +29,8 @@
 	function checkForm2(form) {
 		if (form.uiId.value == "") {
 			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.username.focus();
+			form.uiName.value="";
+			form.uiName.focus();
 			return false;
 		}
 		re = /^\w+$/;
@@ -159,10 +160,11 @@
 		<form id="login-form" onsubmit="return checkForm(this)">
 			이름<input type="text" name="uiName" placeholder="ex)홍길동" autofocus>
 			아이디<input type="text" name="uiId" placeholder="ID">
-			Email<input type="text" name="uiEmail" placeholder="Email.@nvaer.com">
+			Email<input type="text" name="uiEmail" placeholder="Email@naver.com">
 			비밀번호<input type="password" name="uiPwd" placeholder="Password">
 			비밀번호확인<input type="password" name="uiPwd2" placeholder="CheckPassword">
 				<a style="color:red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>
+				<br>
 			핸드폰<input type="text" class="form-control" name="uiHP" placeholder="-없이숫자만 입력해주세요">
 			<!-- <input type="radio" id="admin1" name="admin" value="0" checked="checked">일반사용자 
 			<input type="radio" id="admin2" name="admin" value="1">사장님 -->

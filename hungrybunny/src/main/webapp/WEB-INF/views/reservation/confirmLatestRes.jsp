@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 function confirmRes(){
 	var au = new AjaxUtil2("${root}/res/confirmRes",null,"GET");
@@ -61,7 +62,7 @@ function test(res){
 			}else{
 				htmlStr += '<td><form method="POST" action="${pPath}/review/writeReview">'
 				+ '<input type="hidden" name="resNo" value="'+res[i].resNo+'">'
-				+ '<button name="shopNo" value="'+res[i].shopNo+'">리뷰남기러가기</button></form></td>';
+				+ '<button name="shopNo" value="'+res[i].shopNo+'" style="width: 120px;">리뷰남기러가기</button></form></td>';
 			}
 			htmlStr += '</tr>'; 
 		}

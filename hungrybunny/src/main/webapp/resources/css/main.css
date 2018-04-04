@@ -306,6 +306,7 @@ ul li {
 	width: 94%;
 	height: 500px;
 	margin: auto;
+	margin-top: -200px;
 }
 .item, .active, .carousel-inner {
 	height: 100%;

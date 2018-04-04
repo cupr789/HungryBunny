@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 	function insertMenu(){
 		
@@ -69,7 +70,7 @@
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-4"> 
 						<h2>ShopInfo</h2>
 					</div>
 				</div>
@@ -118,13 +119,12 @@
 					</tr>
 				</thead>
 				<tbody class='tbody'>
-
 					<c:forEach items="${mlist}" var="mlist" varStatus="idx">
 						<tr>
 							<td>${mlist.menuName}<input name="menuNo" type="hidden" value="${mlist.menuNo}"></td>
-							<td><input name="updateName" type="text" value="${mlist.menuName}"></td>
+							<td><div class="wrap"><input name="updateName" type="text" value="${mlist.menuName}" style="margin-left:-130px; width: 200px"></div></td>
 							<td>${mlist.menuPrice}</td>
-							<td><input name="updatePrice" type="text" 	value="${mlist.menuPrice}" placeholder="${mlist.menuPrice}"></td>
+							<td><div class="wrap"><input name="updatePrice" type="text" value="${mlist.menuPrice}" style="margin-left:-130px; width: 200px"></div></td>
 							<td><button type="button" onclick="deleteMenu(${mlist.menuNo})">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								</button>
@@ -137,9 +137,9 @@
 
 					<tr>
 						<td>메뉴이름<input name="shopNo" type="hidden" value="${slist[0].shopNo}"></td>
-						<td><input name="menuName" type="text" id="menuName"></td>
+						<td><div class="wrap"><input name="menuName" type="text" id="menuName" style="margin-left:-130px; width: 200px"></div></td> 
 						<td>메뉴가격</td>
-						<td><input name="menuPrice" type="text" id="menuPrice"></td>
+						<td><div class="wrap"><input name="menuPrice" type="text" id="menuPrice" style="margin-left:-130px; width: 200px"></div></td>
 						<td><button type="button" onclick="insertMenu()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							</button></td>

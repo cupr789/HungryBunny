@@ -14,7 +14,7 @@ function goConfirmRes(){
 <body>
 <section class="section">
 <h1>예약이 완료되었습니다!</h1>
-<button onclick="goConfirmRes()">예약확인</button>
+<div class="wrap"><button onclick="goConfirmRes()">예약확인</button></div>
 </section>
 </body>
 </html>

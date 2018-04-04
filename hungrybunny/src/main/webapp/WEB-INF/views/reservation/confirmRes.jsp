@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${rPath}/css/button.css">
 </head>
 <script>
 var resList;
@@ -166,7 +167,7 @@ function cancleRes(res){
 			<div id="resList">
 			</div>
 			
-			<button><a href="${pPath}/reservation/confirmLatestRes">지난 예약 보기</a></button>
+			<button style="width: 120px;"><a href="${pPath}/reservation/confirmLatestRes" style="color: #fff;">지난 예약 보기</a></button> 
 			
 		</div>
 	</div>

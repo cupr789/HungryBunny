@@ -8,6 +8,24 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=lLWN_ojJYVj9L7235_lg&submodules=geocoder"></script>
 <!-- <script src="/resources/js/jquery-3.2.1.js" charset="utf-8"></script> -->
+<style>
+button {
+    background: #04B431;
+    color: #fff;
+    font-size: 15px; 
+    height: 30px; 
+    width: 200px;
+    text-align: center; 
+    border: 0; 
+    transition: all 0.3s ease 0s;
+    opacity: 1;
+    border-radius: 20px;
+}
+
+button:hover {
+  opacity: 0.75;
+} 
+</style>
 </head>
 <body onload="conditionMap()">
 	<section class="section">

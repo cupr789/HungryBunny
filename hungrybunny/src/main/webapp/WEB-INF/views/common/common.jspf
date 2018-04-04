@@ -16,6 +16,7 @@
 	var pPath = "${pPath}";
 </script>
 <!-- CSS FILES -->
+<link rel="shortcut icon" href="${rPath}/images/logo.png">
 <link rel="stylesheet" href="${rPath}/css/bootstrap.min.css?${ver}">
 <link rel="stylesheet" href="${rPath}/css/flexslider.css?${ver}">
 <link rel="stylesheet" href="${rPath}/css/main.css?${ver}">

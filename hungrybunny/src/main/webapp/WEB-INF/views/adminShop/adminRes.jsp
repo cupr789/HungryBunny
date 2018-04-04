@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="${rPath}/table/css/table.css"> 
+<link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 	function hallUpdate(hallNo,idx){
 		
@@ -149,9 +149,10 @@
 								<c:when test="${hlist.hallStatus == '0'}">빈자리</c:when>
 							</c:choose>
 						</td>
-						<td><input type="radio" name="hallStatus" value="0">빈자리
+						<td>
+							<input type="radio" name="hallStatus" value="0">빈자리
 							<input type="radio" name="hallStatus" value="1">사용중
-							<button type="button" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button>
+							<div class="buttons"><button type="button" class="fill" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button></div>
 						</td>
 					</tr>
 				</c:forEach>

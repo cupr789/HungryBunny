@@ -287,7 +287,7 @@ $(document).ready(function(){
 				<option value="20">20분 안으로 도착</option>
 				<option value="30">30분 안으로 도착</option>
 			</select><br>
-			<button type="button" value="send" onclick="validate(${shopNo})">예약</button>
+			<button type="button" value="send" onclick="validate(${shopNo})" class="b">예약</button>
 		</div>
 	</section>
 </body>

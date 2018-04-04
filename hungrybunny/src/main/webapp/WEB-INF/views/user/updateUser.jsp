@@ -23,6 +23,24 @@ input[type="text"], input[type="password"] {
 	border-radius: 7px; 
 }
 
+button {
+    background: #04B431;
+    color: #fff;
+    font-size: 15px; 
+    height: 30px; 
+    width: 120px;
+    text-align: center; 
+    border: 0; 
+    transition: all 0.3s ease 0s;
+    opacity: 1;
+    border-radius: 20px;
+}
+
+button:hover {
+  opacity: 0.75;
+}
+
+
 </style>
 <script>
 	function info(){

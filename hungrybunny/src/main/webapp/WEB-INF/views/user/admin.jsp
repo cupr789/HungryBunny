@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" href="${rPath}/table/css/table.css"> 
+<link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 function adminHave(){
 	var au = new AjaxUtil("${root}/shop/adminHave",null,"GET");
