@@ -9,7 +9,15 @@
 <script>
 	function insertMenu(){
 		
-		alert($.trim($("#menuName").val()));
+		if ($("#menuName").val().trim().length == 0){
+			alert("메뉴이름을 적어주세요");
+			return false;
+		}
+		
+		if ($("#menuPrice").val().trim().length == 0){
+			alert("메뉴가격을 적어주세요");
+			return false;
+		}
 		
 		var params = "menuName,menuPrice,shopNo";
 		var au = new AjaxUtil("${root}/menu/insert",params,"POST");

@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="${rPath}/table/css/table.css"> 
 <script>
 var shopNo;
 function alertMsg(){
@@ -38,8 +36,7 @@ function adminComment(){
 		
 	})
 	function callback(res){
-			alert(res.msg);
-			
+			window.location.reload();
 		
 	}	
 	

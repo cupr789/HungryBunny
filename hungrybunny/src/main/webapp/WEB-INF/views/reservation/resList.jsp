@@ -10,20 +10,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Button Styles Inspiration</title>
-<meta name="description"
-	content="Some ideas for modern button styles and effects" />
-<meta name="keywords"
-	content="button, effect, hover, style, inspiration, web design" />
+<meta name="description" content="Some ideas for modern button styles and effects" />
+<meta name="keywords" content="button, effect, hover, style, inspiration, web design" />
 <meta name="author" content="Codrops" />
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="${rPath}/css/button/normalize.css" />
-<link rel="stylesheet" type="text/css"
-	href="${rPath}/css/button/vicons-font.css" />
-<link rel="stylesheet" type="text/css"
-	href="${rPath}/css/button/base.css" />
-<link rel="stylesheet" type="text/css"
-	href="${rPath}/css/button/buttons.css" />
+<link rel="stylesheet" type="text/css" href="${rPath}/css/button/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${rPath}/css/button/vicons-font.css" />
+<link rel="stylesheet" type="text/css" href="${rPath}/css/button/base.css" />
+<link rel="stylesheet" type="text/css" href="${rPath}/css/button/buttons.css" />
+<link rel="stylesheet" type="text/css" href="${rPath}/css/login/radioInput.css" />
 
 <script>
 
@@ -126,7 +121,7 @@ $(document).ready(function(){
 	}
 
 
-	var webSocket = new WebSocket('ws://localhost/alarm');
+	var webSocket = new WebSocket('ws://192.168.0.40/alarm');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};

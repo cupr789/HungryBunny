@@ -113,12 +113,20 @@ ul li {
 	transition: padding 0.3s;
 }
 #header .logo {
-	font-size: 21px;
+	font-size: 25px;
 	color: #000;
 	font-weight: 700;
 	float: left;
 	text-transform: uppercase;
 }
+
+#header .logo img{
+	width: 65px;
+	height: 65px; 
+	margin-top: -19px;  
+	margin-right: 5px;
+}
+
 #header.fixed {
 	background-color: #fff;
 }

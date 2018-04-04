@@ -48,7 +48,7 @@ function join(){
 		</div>
 		<input type="text" name="uiId" placeholder="Username" autofocus>
 		<input type="password" name="uiPwd" placeholder="Password"> 
-		<a href="${pPath}/user/findUserInfo" class="forgot_link">forgot ?</a>
+		<a href="${pPath}/user/findUserInfo" class="forgot_link">아이디/비밀번호 찾기</a>
 		<button onclick="login()">LOGIN</button>
 		<button onclick="join()">JOIN</button>
 	</div>

@@ -66,7 +66,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<h2>주소를 검색해주세요</h2>
 					<div id="custom-search-input">
 
 						<div class="input-group col-md-12">

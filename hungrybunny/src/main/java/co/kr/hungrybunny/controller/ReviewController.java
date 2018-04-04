@@ -97,6 +97,7 @@ public class ReviewController {
 					fos.write(buffer, 0, readCount);
 				}
 				rs.insertReview(map);
+				System.out.println("map이 뭐에요?"+map);
 				mav.addObject("msg", "리뷰 작성 성공!");
 				mav.addObject("shopNo", map.get("shopNo"));
 				mav.setViewName("review/completeReview");
@@ -109,7 +110,6 @@ public class ReviewController {
 				return mav;
 			}
 		} else {
-			map.put("msg", "너 왜 파일 선택 안하냐ㅎ");
 			
 			/// 사진없이 리뷰를 작성하기위해 추가한 코드
 			rs.insertReview(map);
