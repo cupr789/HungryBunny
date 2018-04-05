@@ -19,7 +19,7 @@ function confirmRes(){
 		alert(shopNo);
 		
 		
-		var webSocket = new WebSocket('ws://localhost/alarm');
+		var webSocket = new WebSocket('ws://13.125.97.161/alarm');
 		webSocket.onerror = function(event) {
 			onError(event)
 		};
