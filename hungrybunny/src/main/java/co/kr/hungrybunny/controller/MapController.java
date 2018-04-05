@@ -26,8 +26,8 @@ public class MapController {
 	
 	@RequestMapping(value="/mapList", method=RequestMethod.GET)
 	public @ResponseBody ModelAndView getMenuList(@RequestParam Map<String,Object> map ,ModelAndView mav){
-		System.out.println("검색한 값: "+map.get("address"));
-		mav.addObject("address",map.get("address"));
+		System.out.println("검색한 값: "+map.get("keyword"));
+		mav.addObject("keyword",map.get("keyword"));
 		mav.setViewName("reservation/shopCa");
 		return mav;
 	}

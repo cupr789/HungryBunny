@@ -66,26 +66,48 @@ function searchJuso(){
 	}
 }
 
+function swapStr(rr){
+/*  	alert("!!!");
+ 	var inputObj = $("input[name='keyword']");
+ 	inputObj.value=str; */
+	 console.log(rr.id);
+	  	var obj = document.getElementById(rr);
+	  	$("input[name='keyword']").val(rr.innerHTML); 
+ }
+ 
+ function hoverFunc(rr){
+
+	$("span[id='"+rr.id+"']").hover(function() {
+		   $(this).css("background-color", "#D5D5D5");
+	},function() {
+		   $(this).css("background-color", "white");
+	});
+	
+}
+
 function enterSearch() {
 	var inputValue = $("input[name='keyword']").val();
 	searchJuso();
 	$.ajax({
-		 url :"http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do",
+		 url :"http://www.juso.go.kr/addrlink/addrLinkApi.do",
 		 type:"post",
 		 data:$("#searchAddr").serialize(),
-		 dataType:"jsonp",
+		 dataType:"json",
 		 crossDomain:true,
 		 success:function(jsonStr){
 			 var str="";
-			 console.log(jsonStr.results.juso);
+
+
+
+			 console.log(jsonStr);
 			 	for(loadIdx in jsonStr.results.juso){
-			 		str+=jsonStr.results.juso[loadIdx].roadAddr+"<br>";
+			 		var strObj=jsonStr.results.juso[loadIdx].roadAddrPart1;
+			 		str+="<span id='span"+loadIdx+"' onmouseover='hoverFunc(span"+loadIdx+")' onclick='swapStr(span"+loadIdx+")'>"+jsonStr.results.juso[loadIdx].roadAddrPart1+"</span><br>";
 			 	}
 			 	
-				//$("#dbSearch").html(str);
-			
+				$("#dbSearch").html(str);
 				
-				/* var errCode = jsonStr.results.common.errorCode;
+				 /* var errCode = jsonStr.results.common.errorCode;
 					var errDesc = jsonStr.results.common.errorMessage;
 					if(errCode != "0"){
 						alert(errCode+"="+errDesc);
@@ -93,7 +115,12 @@ function enterSearch() {
 						if(jsonStr != null){
 							makeListJson(jsonStr);
 						}
-					} */
+					}  */
+					
+
+					
+					
+					
 				},
 				error: function(xhr,status, error){
 			    	alert("에러발생");
@@ -101,20 +128,20 @@ function enterSearch() {
 	})
 
 }
-
 </script>
 </head>
+<span onmouseover=""></span>
 <link rel="stylesheet" type="text/css" href="${rPath}/css/index.css"> 
 <body>
 	<!-- Slider Section -->
-<section class="section">	
+<section class="section">
 	<form action="${root}/map/mapList" id="searchAddr" method="get" onsubmit="return validation()"> 
 					<div id="custom-search-input">
 						<div class="input-group col-md-12">
-							<input type="hidden" name="confmKey" value="TESTJUSOGOKR"/>
+							<input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE4MDQwNDIzMDM0ODEwNzc5NjA="/>
 							<input type="hidden" name="resultType" value="json"/>
 							<input type="hidden" name="currentPage" value="1"/>
-							<input type="hidden" name="countPerPage" value="10"/>
+							<input type="hidden" name="countPerPage" value="5"/>
 							<input id="address" name="keyword" type="text" onkeyup="enterSearch()" class="form-control input-lg" placeholder="주소를 입력해주세요" /> 
 							<span class="input-group-btn">
 								<button class="btn btn-info btn-lg" type="submit">

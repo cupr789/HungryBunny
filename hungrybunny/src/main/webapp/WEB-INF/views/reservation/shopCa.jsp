@@ -19,7 +19,7 @@
 		au.send(shopListCB); 
 	}
 	function shopListCB(res){
-		var searchAddr = "${address}";
+		var searchAddr = "${keyword}";
 		alert(searchAddr);
 		alert(shopCaNum);
 	/* 	var param = {searchAddr:searchAddr,shopCaNum:shopCaNum};
@@ -33,7 +33,7 @@
 				location.href="firstMap.jsp";
 			}
 		}) */
-		location.href="${root}/path/map/firstMap?address="+searchAddr+"&shopCaNo="+shopCaNum;
+		location.href="${root}/path/map/firstMap?keyword="+searchAddr+"&shopCaNo="+shopCaNum;
 	}
 	
 	function backToCa(){

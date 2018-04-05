@@ -27,14 +27,15 @@ button:hover {
 } 
 </style>
 </head>
-<body onload="conditionMap()">
+<body onload="conditionMap()" style="align-items: center;">
 	<section class="section">
 		<!--   <div>
   	<input id="address" type="text" placeholder="도로명주소 입력해주세요!">
   	<button id="submit" type="button">검색</button>
   </div> -->
-		<div id="map" style="width: 80%; height: 400px;"></div>
-		
+  <div align="center">
+		<div id="map" style="width: 80%; height: 400px; align-content: center;" align="center"></div>
+</div>		
 	</section>
 </body>
 
@@ -81,11 +82,11 @@ button:hover {
 
 	function conditionMap() {
 		var shopCaNo = getParameters("shopCaNo");
-		var address = getParameters("address");
+		var keyword = getParameters("keyword");
 
 		var param = {
 			shopCaNo : shopCaNo,
-			address : address
+			address : keyword
 		};
 
 		$.ajax({
@@ -240,7 +241,7 @@ button:hover {
 			searchAddressToCoordinate($('#address').val());
 		});
 
-		searchAddressToCoordinate(getParameters("address"));
+		searchAddressToCoordinate(getParameters("keyword"));
 	}
 
 	naver.maps.onJSContentLoaded = initGeocoder;
