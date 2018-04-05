@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 	function hallUpdate(hallNo,idx){
 		
@@ -65,7 +66,6 @@
 </script>
 <body>
 <section class="section">
-<h1>홀이다 씨방아 </h1>
 <div class="container">
 	<div class="table-wrapper">
 		<div class="table-title">
