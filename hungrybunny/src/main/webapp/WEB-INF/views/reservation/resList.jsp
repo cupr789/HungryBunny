@@ -121,7 +121,7 @@ $(document).ready(function(){
 	}
 
 
-	var webSocket = new WebSocket('ws://192.168.0.40/alarm');
+	var webSocket = new WebSocket('ws://localhost/alarm');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};

@@ -32,6 +32,7 @@
 	</servlet-mapping>
 
 	<jsp-config>
+		
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/common/common.jspf</include-prelude>
@@ -42,6 +43,7 @@
 	</jsp-config>
 
 	<filter>
+		
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
