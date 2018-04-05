@@ -12,15 +12,19 @@ String loginMenu = "Login/join";
 String loginUrl =root+"/path/user/login";
 String updateUser="";
 String updateUserUrl="";
+String resCheck="";
+String resCheckUrl="";
 String res="";
-String resUrl="";
+String resUrl=""; 
 if(ui!=null){
+	res="RESERVATION";
+	resUrl=root+"/path/reservation/shopCa";
 	updateUser="개인정보변경";
 	updateUserUrl=root+"/path/user/checkPwd";
 	loginMenu = "Logout";
 	loginUrl = root+"/user/logout";
-	res = "예약확인";
-	resUrl = root+"/path/reservation/confirmRes";
+	resCheck = "예약확인";
+	resCheckUrl = root+"/path/reservation/confirmRes";
 	if (ui.getAdmin()==1){
 		adminMenu="MYshop";
 		adminUrl=root+"/path/user/admin";
@@ -38,9 +42,10 @@ if(ui!=null){
         <ul class="primary-nav">
           <li><a href="/">Home</a></li>
           <li><a href="<%=loginUrl%>"><%=loginMenu%></a></li>
-          <li><a href="${pPath}/reservation/shopCa">Reservation</a></li>
-          <!-- <li><a href="#contact">Contact</a></li> -->
           <li><a href="<%=resUrl%>"><%=res%></a></li>
+         <%--  <li><a href="${pPath}/reservation/shopCa">Reservation</a></li> --%>
+          <!-- <li><a href="#contact">Contact</a></li> -->
+          <li><a href="<%=resCheckUrl%>"><%=resCheck%></a></li>
           <li><a href="<%=updateUserUrl%>"><%=updateUser%></a></li>
           <li><a href="<%=adminUrl%>"><%=adminMenu%></a></li>
         </ul>

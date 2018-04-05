@@ -20,8 +20,9 @@ function callback(res){
 		 +"<td>"+res.spList[i].shopHP+"</td>"
 		 +"<td>"+ res.spList[i].shopTime+"</td>"
 		 +"<td>"
-		 +"<form action='${root}/adminRes/resInfo'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cutlery' aria-hidden='true'></span></button></form>"
-		 +"<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></button></form>"
+		 +"<form action='${root}/adminRes/resInfo'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'>예약관리</button></form>"
+		 +"<form action='${root}/shop/updateShop'><button name='updateShop' type='submit' value='"+res.spList[i].shopNo+"'>메뉴관리</button></form>"
+		 +"<form action='${root}/adminRes/hallInfo' method='GET'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'>홀관리</button></form>"
 		 +"<form action='${root}/review/reviewList' method='GET'><button name='shopNo' type='submit' value='"+res.spList[i].shopNo+"'>리뷰보기</button></form>"
 		 +"</td></tr>";
 		 	} 

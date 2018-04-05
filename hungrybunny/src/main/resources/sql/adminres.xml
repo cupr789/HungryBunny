@@ -35,6 +35,22 @@
 			order by r.currentStatus desc, r.resNo desc) adminResTotCnt
 			
 	</select>
+	<select id="hallTotalCnt" parameterType="map" resultType="int">
+	select count(1) from hall where shopNo=#{shopNo}
+	</select>
+	<select id="hallInfo" parameterType="map" resultType="map">
+	select * from hall where shopNo=#{shopNo}
+	<if test="snum !=null and snum !=''">
+				Limit ${snum}, ${enum}
+			</if>
+	</select>
+	<insert id="insertHall" parameterType="map" >
+	insert into hall(seatCnt,hallstatus,shopNo)
+	values(#{seatCnt},0,#{shopNo})
+	</insert>
+	<delete id="deleteHall" parameterType="map">
+	delete from hall where hallNo=${hallNo}
+	</delete>
 	
 	<select id="selecthall" parameterType="map" resultType="map">
 	select * from hall where shopNo=#{shopNo}

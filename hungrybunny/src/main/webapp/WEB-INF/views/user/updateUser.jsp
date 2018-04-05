@@ -54,7 +54,7 @@ button:hover {
 			 	"<table class='table table-striped table-hover' style='width: 100%'>"+
 				"<tbody>"+
 				"<tr><td width='30%'>이름</td><td>"+res.userList.uiName+"</td><td><input name='uiName' value='"+res.userList.uiName+"' type='text'></td></tr>"+
-				"<tr><td>아이디</td><td>"+res.userList.uiId+"</td><td><input name='uiId' value='"+res.userList.uiId+"' type='text'></td></tr>"+
+				"<tr><td>아이디</td><td>"+res.userList.uiId+"</td><td><input name='uiId' value='"+res.userList.uiId+"' type='hidden'></td></tr>"+
 				"<tr><td>비밀전호</td><td></td><td><input name='uiPwd' type='password' value='"+res.userList.uiPwd+"' ></td></tr>"+
 				"<tr><td>전화번호</td><td>"+res.userList.uiHP+"</td><td><input name='uiHP' value='"+res.userList.uiHP+"' type='text'></td></tr>"+
 				"<tr><td>Email</td><td>"+res.userList.uiEmail+"</td><td><input name='uiEmail' value='"+res.userList.uiEmail+"' type='text'></td></tr>"+

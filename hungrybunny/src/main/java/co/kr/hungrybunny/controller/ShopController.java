@@ -44,6 +44,7 @@ public class ShopController {
 	
 	@RequestMapping(value="/shopList/{shopCaNo}", method=RequestMethod.POST)
 	public @ResponseBody List<ShopVO> getShopList(@PathVariable("shopCaNo") int shopCaNo, HttpSession hs){
+		
 		System.out.println("shopCaNo받아옴"+shopCaNo);
 		shopList = shs.getShopList(shopCaNo);
 		System.out.println("shopList에는 "+shopList);

@@ -7,28 +7,7 @@
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="${rPath}/css/button.css">
-<script>
-	function hallUpdate(hallNo,idx){
-		
-		var hallStatus=$("input:radio[name=hallStatus]:checked").val();
-		var param={hallStatus:hallStatus,hallNo:hallNo};
-		console.log(param);
-		$.ajax({
-		       type:"POST",
-	           url:"${root}/adminRes/hallUpdate",
-	           data:param,
-	           success :callback,
-	           error : callback
-			
-		})
-		function callback(res){
-			
-				 location.reload();
-			
-		}
-		
-	}
-</script>
+
 
 <body>
 <section class="section">
@@ -120,45 +99,7 @@
 		</div>
 	</div>
 	
-	<div class="table-wrapper">
-		<div class="table-title">
-			<div class="row">
-				<div class="col-sm-4">
-					<h2>홀현황</h2>
-				</div>
-			</div>
-		</div>
-			<table class="table table-striped table-hover" style="width: 100%">
-				<thead>
-					<tr>
-						<th>좌석수</th>
-						<th>번호</th>
-						<th>사용현황</th>
-						<th>수정</th>
-					</tr>
-				</thead>
-				<tbody class='tbody'>
-				<c:forEach items="${hallList}" var="hlist" varStatus="idx">
-					<c:set value="${hlist.hallStatus} " var="msg" />
-					<tr>
-						<td>${hlist.seatCnt}</td>
-						<td>${hlist.hallNo}</td>
-						<td>
-							<c:choose>
-								<c:when test="${hlist.hallStatus == '1'}">사용중</c:when>
-								<c:when test="${hlist.hallStatus == '0'}">빈자리</c:when>
-							</c:choose>
-						</td>
-						<td>
-							<input type="radio" name="hallStatus" value="0">빈자리
-							<input type="radio" name="hallStatus" value="1">사용중
-							<div class="buttons"><button type="button" class="fill" onclick="hallUpdate(${hlist.hallNo},${idx.index})">수정</button></div>
-						</td>
-					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
-		</div>
+
 	</div>
 </section>
 </body>
