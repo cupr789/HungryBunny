@@ -83,4 +83,11 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 		ss.close();
 		return result;
 	}
+
+	@Override
+	public UserInfoVO checkEmail(UserInfoVO ui) {
+		SqlSession ss = ssf.openSession();
+		ui= ss.selectOne("user_info.chckEmail", ui);
+		return ui;
+	}
 }
