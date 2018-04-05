@@ -8,6 +8,28 @@
 </head>
 <link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
+	function insertcheck(){
+		 var menuName = $("input[name='menuName']").val();
+		 var menuPrice = $("input[name='menuPrice']").val();
+		 if (menuName.trim() == "") {
+				alert("Error: 메뉴이름을 비워둘수없습니다.");
+				return false;
+			}	
+		 if (menuPrice.trim() == "") {
+				alert("Error: 메뉴가격을 비워둘수없습니다.");
+				return false;
+			}
+			
+			re =  /[^0-9]/g;
+			if (re.test(menuPrice)) {
+				alert("Error:메뉴가격에는 숫자 만 포함해야 합니다.");
+				return false;
+			}
+			insertMenu();
+			return true;
+		
+	}
+
 	function insertMenu(){
 		
 		if ($("#menuName").val().trim().length == 0){
@@ -42,10 +64,26 @@
 			 location.reload()
 		}
 	}
+
+	
 	function updateMenu(menuNo,idx){
 
 		 var menuName = $("[name=updateName]").eq(idx).val();
 		var menuPrice = $("[name=updatePrice]").eq(idx).val();
+		 if (menuName.trim() == "") {
+				alert("Error: 메뉴이름을 비워둘수없습니다.");
+				return false;
+			}	
+		 if (menuPrice.trim() == "") {
+				alert("Error: 메뉴가격을 비워둘수없습니다.");
+				return false;
+			}
+			
+			re =  /[^0-9]/g;
+			if (re.test(menuPrice)) {
+				alert("Error:메뉴가격에는 숫자 만 포함해야 합니다.");
+				return false;
+			}
 		 var param = {menuNo:menuNo,menuName:menuName,menuPrice:menuPrice};
 		 console.log(param)
 		$.ajax({
@@ -140,7 +178,7 @@
 						<td><div class="wrap"><input name="menuName" type="text" id="menuName" style="margin-left:-130px; width: 200px"></div></td> 
 						<td>메뉴가격</td>
 						<td><div class="wrap"><input name="menuPrice" type="text" id="menuPrice" style="margin-left:-130px; width: 200px"></div></td>
-						<td><button type="button" onclick="insertMenu()">
+						<td><button type="button" onclick="insertcheck()">
 								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 							</button></td>
 					</tr>

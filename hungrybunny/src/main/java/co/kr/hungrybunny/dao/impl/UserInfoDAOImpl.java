@@ -78,6 +78,7 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	@Override
 	public int updateFindUser(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
+		System.out.println("ddddddd"+map);
 		int result=ss.update("user_info.updateFindUser", map);
 		ss.close();
 		return result;

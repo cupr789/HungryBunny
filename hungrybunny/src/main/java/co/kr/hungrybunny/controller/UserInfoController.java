@@ -193,6 +193,7 @@ public class UserInfoController {
 			String to = uiEmail;
 			int uiNo = list.get(0).getUiNo();
 			String uiName = list.get(0).getUiName();
+			String uiId=list.get(0).getUiId();
 
 			// Get the session object
 			Properties props = new Properties();
@@ -216,7 +217,8 @@ public class UserInfoController {
 
 				// Text
 				message.setText(
-						"다음숫자를 입력해주세요 브끄^^--->" + "[" + uiNo + "]\r\n" + uiName + "님 hungryBunny를 이용해주셔서 감사합니다.");
+						"다음숫자를 입력해주세요 ----->" + "[" + uiNo + "]\r\n" + uiName + "님의아이디는--->"+"["+uiId+"]"+"입니다"+
+						" \r\n hungryBunny를 이용해주셔서 감사합니다.");
 
 				// send the message
 				Transport.send(message);

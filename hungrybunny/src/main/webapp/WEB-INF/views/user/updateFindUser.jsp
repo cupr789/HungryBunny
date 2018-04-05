@@ -8,32 +8,10 @@
 </head>
 <script >
 function checkForm(form) {
-	if (form.uiId.value.length < 6) {
-
-			alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
-			form.uiId.focus();
-			return false;
-		}
-		if (form.uiId.value.trim() == "") {
-			alert("Error: 사용자아이디를 비워둘수없습니다.");
-			form.uiId.focus();
-			return false;
-		}
-		re = /[`~!@@#$%^&*|₩₩₩'₩";:₩/6?]/gi;
-		if (re.test(form.uiId.value)) {
-			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
-			form.uiId.focus();
-			return false;
-		}
 
 		if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
 			if (form.uiPwd.value.length < 6) {
 				alert("Error: 비밀 번호는 최소 6개의 문자를 포함해야 합니다!");
-				form.uiPwd.focus();
-				return false;
-			}
-			if (form.uiPwd.value == form.uiId.value) {
-				alert("Error: 비밀 번호는 사용자 이름과 달라야 합니다!");
 				form.uiPwd.focus();
 				return false;
 			}
@@ -70,7 +48,7 @@ function checkForm(form) {
 		return true;
 	}
 	function updateFindUser() {
-		var params = "uiId,uiPwd";
+		var params = "uiPwd";
 		var au = new AjaxUtil("${root}/user/updateFindUser", params, "POST");
 		au.send(callback);
 	}
@@ -117,7 +95,6 @@ function checkForm(form) {
 		<br>
 		
 		<form id="login-form" onsubmit="return checkForm(this)">
-			아이디<input type="text" name="uiId" placeholder="ID">
 			변경할 비밀번호<input type="password" name="uiPwd" placeholder="New Password">
 			변경할 비밀번호확인<input type="password" name="uiPwd2" placeholder="Check Password"> 
 				<a style="color: red">*password는 6자 이상으로 한다 특수문자,대소문자,숫자 1개이상</a>

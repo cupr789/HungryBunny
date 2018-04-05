@@ -12,5 +12,10 @@ public interface AdaminResService {
 	
 	List<Object> getAdminShop(Map<String, Object> map);
 	public Integer getAdminShopTotalCnt(Map<String, Object> map);
+	List<Object> hallInfo(Map<String, Object> map);
+	public Integer hallTotalCnt(Map<String, Object> map);
 	public int updateHall(Map<String, Object> map);
+	void insertHall(Map<String, Object> map);
+	void deleteHall(Map<String, Object> map);
+	
 }

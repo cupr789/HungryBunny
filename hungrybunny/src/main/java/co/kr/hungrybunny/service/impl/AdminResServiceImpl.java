@@ -57,4 +57,32 @@ public class AdminResServiceImpl implements AdaminResService{
 	
 	}
 
+
+	@Override
+	public List<Object> hallInfo(Map<String, Object> map) {
+		List<Object> list=ardao.hallInfo(map);
+		return list;
+	}
+
+
+	@Override
+	public Integer hallTotalCnt(Map<String, Object> map) {
+		
+		return ardao.hallTotalCnt(map);
+	}
+
+
+	@Override
+	public void insertHall(Map<String, Object> map) {
+		
+		int result=ardao.insertHall(map);
+
+	}
+
+	@Override
+	public void deleteHall(Map<String, Object> map) {
+		int result=ardao.deleteHall(map);
+		
+	}
+
 }
