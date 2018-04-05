@@ -47,4 +47,36 @@ public class AdminResDAOImpl implements AdminResDAO{
 		System.out.println("llllll           "     +result);
 		return result;
 	}
+
+	@Override
+	public List<Object> hallInfo(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		List<Object> list=ss.selectList("adminres.hallInfo", map);
+		ss.close();
+		return list;
+	}
+
+	@Override
+	public Integer hallTotalCnt(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.selectOne("adminres.hallTotalCnt", map);
+		ss.close();
+		return result;
+	}
+
+	@Override
+	public int insertHall(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.insert("adminres.insertHall", map);
+		ss.close();
+		return result;
+	}
+
+	@Override
+	public int deleteHall(Map<String, Object> map) {
+		SqlSession ss = ssf.openSession();
+		int result=ss.delete("adminres.deleteHall", map);
+		ss.close();
+		return result;
+	}
 }

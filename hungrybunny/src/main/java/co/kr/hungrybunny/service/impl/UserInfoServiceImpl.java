@@ -152,9 +152,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void updateFindUser(Map<String, Object> map, HttpSession hs) {
-		int check =checkUserId(map.get("uiId").toString());
 		
-		if(check==0) {
+		
+		
 		int result =uidao.updateFindUser(map);
 		if(result==1) {
 			map.put("msg","변경성공이요~~");
@@ -163,8 +163,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}else {
 			map.put("msg","서버오류 관리자에게 문의 해주세요");
 		}
-		}else {
-			map.put("msg","중복된아이디 입니다.");
-		}
+		
 	}
 }

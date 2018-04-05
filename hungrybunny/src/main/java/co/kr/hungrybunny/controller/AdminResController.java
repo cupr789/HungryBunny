@@ -61,6 +61,32 @@ public class AdminResController {
 		mav.setViewName("adminShop/adminRes");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/hallInfo", method = RequestMethod.GET)
+	public ModelAndView hallInfo(ModelAndView mav, HttpSession hs, @RequestParam Map<String, Object> map, @ModelAttribute Paging page) {
+		if (hs.getAttribute("userNo") != null) {
+
+			logger.info("nowPage => {} ", page.getNowPage());
+			map.put("snum", Integer.toString(page.getStartNum()));
+			map.put("enum",Integer.toString(page.getRowCnt()));
+			
+			List<Object> list = ars.hallInfo(map);
+			int totalCnt = ars.hallTotalCnt(map);
+			page.setTotalCnt(totalCnt);
+			System.out.println(list+" ???!!??");
+			if(map.get("shopNo")!=null) {
+				mav.addObject("shopNo",map.get("shopNo"));
+				mav.addObject("hallList", list);
+				mav.addObject("totalCnt", totalCnt);
+				mav.addObject("page", page);
+			}
+		} else {
+			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+		}
+
+		mav.setViewName("adminShop/hallInfo");
+		return mav;
+	}
 
 	@RequestMapping(value = "/hallUpdate", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> hallUpdate(@RequestParam Map<String, Object> map, HttpSession hs) {
@@ -72,6 +98,30 @@ public class AdminResController {
 				map.put("msg", "수정실패");
 			}
 
+		} else {
+			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+		}
+
+		return map;
+	}
+	@RequestMapping(value = "/insertHall", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> insertHall(@RequestParam Map<String, Object> map, HttpSession hs) {
+		if (hs.getAttribute("userNo") != null) {
+			ars.insertHall(map);
+				System.out.println(map.get("shopNo"));
+				System.out.println(map.get("seatCnt"));
+		} else {
+			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+		}
+
+		return map;
+	}
+	@RequestMapping(value = "/deleteHall", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> deleteHall(@RequestParam Map<String, Object> map, HttpSession hs) {
+		if (hs.getAttribute("userNo") != null) {
+			
+				System.out.println(map.get("hallNo")+"pppppppppppppppppppppppppppppppppppppp");
+				ars.deleteHall(map);
 		} else {
 			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
 		}

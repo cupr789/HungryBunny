@@ -37,6 +37,6 @@
 	select * from user_info where uiNo=#{num}	
 	</select>
 	<update id="updateFindUser" parameterType="map">
-	update user_info set uiId=#{uiId}, uiPwd=#{uiPwd} where uiNo=#{uiNo}	
+	update user_info set uiPwd=#{uiPwd} where uiNo=#{uiNo}	
 	</update>
 </mapper>  
