@@ -45,6 +45,7 @@ public class AdminResDAOImpl implements AdminResDAO{
 		SqlSession ss = ssf.openSession();
 		int result=ss.update("adminres.updateHall", pmap);
 		System.out.println("llllll           "     +result);
+		ss.close();
 		return result;
 	}
 
