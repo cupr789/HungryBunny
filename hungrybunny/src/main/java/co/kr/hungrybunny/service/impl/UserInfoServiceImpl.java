@@ -55,10 +55,21 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 		return 0;
 	}
-
+	public int checkEmail(String uiEmail) {
+		UserInfoVO ui = new UserInfoVO();
+		ui.setUiEmail(uiEmail);
+		if(uidao.checkEmail(ui) != null) {
+			return 1;
+		}
+				
+		return 0;
+	}
 	@Override
 	public int join(UserInfoVO ui) {
 		if (checkUserId(ui.getUiId()) == 1) {
+			return 2;
+		}
+		if (checkEmail(ui.getUiEmail())==1) {
 			return 2;
 		}
 		return uidao.insertUserInfo(ui);

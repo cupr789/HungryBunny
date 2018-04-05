@@ -14,7 +14,8 @@ function login(){
 	var au = new AjaxUtil("${root}/user/login",params,"POST");
 	au.send(callback);  
 }
-function keyFunc(){
+
+/* function keyFunc(){
 	$("#uiPwd").keyup(function(event){
 		  if (event.keyCode == "13") {
 			    login();
@@ -22,7 +23,7 @@ function keyFunc(){
 	});
 
 }
-	
+	 */
 	
 
 function callback(res){
@@ -54,7 +55,7 @@ function join(){
 			<img src="${rPath}/images/logo.png">
 		</div>
 		<input type="text" name="uiId" placeholder="Username" autofocus>
-		<input type="password" id="uiPwd" name="uiPwd" placeholder="Password" onkeyup="keyFunc()"> 
+		<input type="password" id="uiPwd" name="uiPwd" placeholder="Password"> 
 		<a href="${pPath}/user/findUserInfo" class="forgot_link">아이디/비밀번호 찾기</a>
 		<button onclick="login()">LOGIN</button>
 		<button onclick="join()">JOIN</button>

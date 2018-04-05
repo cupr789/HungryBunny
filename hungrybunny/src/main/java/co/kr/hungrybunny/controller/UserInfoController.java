@@ -78,6 +78,9 @@ public class UserInfoController {
 		if (result == 1) {
 			map.put("msg", "매달 회비가 5만원씩 부과됩니다");
 			map.put("biz", true);
+		}else {
+			
+			map.put("msg","Email중복이요.");
 		}
 
 		System.out.println("ui받아와??   " + ui);

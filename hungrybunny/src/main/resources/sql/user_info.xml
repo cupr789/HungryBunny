@@ -15,6 +15,11 @@
 			and uiPwd = #{uiPwd}
 		</if>
 	</select>
+		<select id="chckEmail" parameterType="ui" resultType="ui">
+		select * from user_info
+		where uiEmail=#{uiEmail}
+	
+	</select>
 	
 	<insert id="insertUserInfo" parameterType="ui">
 		insert into user_info(uiName, uiId, uiPwd, uiHP, admin,uiEmail)

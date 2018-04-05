@@ -184,6 +184,7 @@ $(document).ready(function(){
 				success: function(res){
 					console.log(res);
 					alert("예약이 성공하였습니다!");
+					/* location.href="${pPath}/reservation/confirmRes"; */
 				}
 			})   
 		} else {

@@ -8,6 +8,7 @@ import co.kr.hungrybunny.vo.UserInfoVO;
 public interface UserInfoDAO {
 
 	public UserInfoVO selectUserInfo(UserInfoVO ui);
+	public UserInfoVO checkEmail(UserInfoVO ui);
 	
 	public int insertUserInfo(UserInfoVO ui);
 	

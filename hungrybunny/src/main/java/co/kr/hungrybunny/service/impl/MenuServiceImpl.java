@@ -47,7 +47,7 @@ public class MenuServiceImpl implements MenuService {
 	
 	}
 
-	@Override
+	
 	public int checkMenu(int menuNo) {
 		List<ReservationMenuVO> list=menudao.checkReservation(menuNo);
 		if(!list.isEmpty()) {
@@ -58,13 +58,13 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public int updateMenu(Map<String, Object> map) {
-		int num=checkMenu((Integer) map.get("menuNo"));
-		if(num==2) {
-			map.put("msg","예약된메뉴입니다....");
-			return 2;
-		}else {
+//		int num=checkMenu((Integer) map.get("menuNo"));
+//		if(num==2) {
+//			map.put("msg","예약된메뉴입니다....");
+//			return 2;
+//		}else {
 			return menudao.updateMenu(map);
-		}
+//		}
 		
 	}
 	
