@@ -228,9 +228,12 @@ $(document).ready(function(){
 <body>
 	<section class="section">
 	<div class="container">
-		<h2>예약하기</h2>
+		<h2 style="margin-bottom: 100px;">예약하기</h2>
 		<c:forEach items="${hallList}" var="hallList">
 			<c:choose>
+				<c:when test="${hallList.seatCnt eq '0'}">
+					<h1 style="font-size: 60px;">예약할 수 있는 자리 없음</h1> 
+				</c:when> 
 				<c:when test="${hallList.seatCnt eq '2'}">
 					<img src="${rPath}/images/person_icon/people1.jpg" style="width: 30%;">
 					<input type="radio" name="hallNo" value="${hallList.hallNo},${hallList.seatCnt}" id="seatCnt2">
