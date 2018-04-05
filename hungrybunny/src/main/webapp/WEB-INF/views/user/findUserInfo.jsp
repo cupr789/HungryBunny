@@ -66,7 +66,7 @@
 		</div>
 		<br>
 		<div style="text-align: center">가입하신 Email을 입력해주세요</div>
-		<input type="text" name="uiEmail" placeholder="oooo@naver.com">
+		<input type="text" name="uiEmail" placeholder="oooo@naver.com" autofocus>
 		<button type="button" onclick="check()">메일보내기</button>
 	</div>
 	</section>

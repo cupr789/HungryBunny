@@ -1,5 +1,7 @@
 package co.kr.hungrybunny.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Service;
 import co.kr.hungrybunny.dao.AdminResDAO;
 import co.kr.hungrybunny.dao.HallDAO;
 import co.kr.hungrybunny.dao.ResDAO;
+import co.kr.hungrybunny.dao.ReviewDAO;
 import co.kr.hungrybunny.service.ResService;
+import co.kr.hungrybunny.vo.ReservationVO;
 
 @Service
 public class ResServiceImpl implements ResService{
@@ -20,6 +24,8 @@ public class ResServiceImpl implements ResService{
 	private HallDAO hdao;
 	@Autowired
 	private AdminResDAO ardao;
+	@Autowired
+	private ReviewDAO rvdao;
 
 	@Override
 	public int insertRes(Map<String, Object> map) {
@@ -33,8 +39,16 @@ public class ResServiceImpl implements ResService{
 	}
 
 	@Override
-	public List<Map<String,String>> getConfirmRes(int uiNo){
-		return rdao.selectConfirmRes(uiNo);
+	public List<ReservationVO> getConfirmRes(int uiNo){
+		List<ReservationVO> resList = rdao.selectConfirmRes(uiNo);
+		int resNo = 0;
+		int result = 0;
+		for(int i=0;i<resList.size();i++) {
+			resNo = resList.get(i).getResNo();
+			result = rvdao.checkReview(resNo);
+			resList.get(i).setReviewResult(result);
+		}
+		return resList;
 	}
 
 	@Override

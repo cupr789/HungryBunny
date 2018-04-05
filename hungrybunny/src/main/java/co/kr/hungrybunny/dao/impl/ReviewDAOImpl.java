@@ -50,4 +50,32 @@ public class ReviewDAOImpl implements ReviewDAO {
 		ss.close();
 		return result;
 	}
+
+	//2018-04-05 혜진 추가함
+	@Override
+	public int selectReviewRating(int shopNo) {
+		SqlSession ss = ssf.openSession();
+		int reviewRatingAvg = 0;
+		System.out.println("shopNo는 계속 오니?"+ shopNo);
+		String reviewRatingAvgStr = ss.selectOne("review.selectReviewRatingAvg", shopNo);
+		System.out.println("나오는 값은 이거에요"+reviewRatingAvgStr);
+		if(reviewRatingAvgStr==null) {
+			reviewRatingAvg = 0;
+		}else {
+			reviewRatingAvg = Integer.parseInt(reviewRatingAvgStr.toString());
+		}
+		ss.close();
+		return reviewRatingAvg;
+	}
+	
+	@Override
+	public int checkReview(int resNo) {
+		SqlSession ss = ssf.openSession();
+		String reviewNoStr = ss.selectOne("review.checkReview", resNo);
+		if(reviewNoStr==null) {
+			return 0;
+		}
+		ss.close();
+		return 1;
+	}
 }

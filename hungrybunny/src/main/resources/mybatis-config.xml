@@ -17,6 +17,7 @@
 		<typeAlias alias="adminres" type="co.kr.hungrybunny.vo.AdminResVO"/>
 		<typeAlias alias="payCa" type="co.kr.hungrybunny.vo.PayCaVO"/>
 		<typeAlias alias="review" type="co.kr.hungrybunny.vo.ReviewVO"/>
+		<typeAlias alias="res" type="co.kr.hungrybunny.vo.ReservationVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="sql/menu.xml"/>

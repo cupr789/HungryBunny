@@ -28,12 +28,13 @@ button {
     color: #fff;
     font-size: 15px; 
     height: 30px; 
-    width: 120px;
+    width: 180px;
     text-align: center; 
     border: 0; 
     transition: all 0.3s ease 0s;
     opacity: 1;
     border-radius: 20px;
+    margin-left: 25px;
 }
 
 button:hover {

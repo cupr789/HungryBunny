@@ -39,4 +39,12 @@
 	<update id="adminComment" parameterType="map">
 		update review set adminComment = #{adminComment} where reviewNo = #{reviewNo};
 	</update>
+	
+	<select id="selectReviewRatingAvg" parameterType="int" resultType="String">
+		select floor(avg(reviewRating)) as reviewRatingAvg from review where shopNo=#{shopNo};
+	</select>
+	
+	<select id="checkReview" parameterType="int" resultType="String">
+		select reviewNo from review where resNo=#{resNo};
+	</select>
 </mapper>  

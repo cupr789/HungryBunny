@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.kr.hungrybunny.dao.ReviewDAO;
 import co.kr.hungrybunny.dao.ShopDAO;
 import co.kr.hungrybunny.service.ShopService;
 import co.kr.hungrybunny.vo.ShopVO;
@@ -16,11 +17,21 @@ public class ShopServiceImpl implements ShopService{
 
 	@Autowired
 	private ShopDAO sdao;
+	@Autowired
+	private ReviewDAO rdao;
 	
+	
+	//2018-04-05 혜진 수정함
 	@Override
 	public List<ShopVO> getShopList(int shopCaNo) {
-		System.out.println("너 값 어딨어"+sdao.selectShopList(shopCaNo));
-		return sdao.selectShopList(shopCaNo);
+		List<ShopVO> shopList = sdao.selectShopList(shopCaNo);
+		int reviewRatingAvg = 0;
+		for(int i=0;i<shopList.size();i++) {
+			reviewRatingAvg = rdao.selectReviewRating(shopList.get(i).getShopNo());
+			shopList.get(i).setReviewRatingAvg(reviewRatingAvg);
+			System.out.println("여기서 shopList를 뽑자"+shopList);
+		}
+		return shopList;
 	}
 	
 	@Override

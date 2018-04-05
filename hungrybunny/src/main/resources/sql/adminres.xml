@@ -14,7 +14,7 @@
 			and rm.menuNo=m.menuNo
 			and r.hallNo=h.hallNo
 			group by r.resNo
-			order by r.resNo desc
+			order by r.currentStatus desc, r.resNo desc
 			<if test="snum !=null and snum !=''">
 				Limit ${snum}, ${enum}
 			</if>
@@ -32,7 +32,7 @@
 			and rm.menuNo=m.menuNo
 			and r.hallNo=h.hallNo
 			group by r.resNo
-			order by r.resNo desc) adminResTotCnt
+			order by r.currentStatus desc, r.resNo desc) adminResTotCnt
 			
 	</select>
 	

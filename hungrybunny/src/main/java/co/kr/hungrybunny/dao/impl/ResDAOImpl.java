@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.kr.hungrybunny.dao.ResDAO;
+import co.kr.hungrybunny.vo.ReservationVO;
 
 @Repository
 public class ResDAOImpl implements ResDAO {
@@ -71,9 +72,9 @@ public class ResDAOImpl implements ResDAO {
 	}
 	
 	@Override
-	public List<Map<String,String>> selectConfirmRes(int uiNo){
+	public List<ReservationVO> selectConfirmRes(int uiNo){
 		SqlSession ss = ssf.openSession();
-		List<Map<String,String>> confirmResList = ss.selectList("res.confirmRes", uiNo);
+		List<ReservationVO> confirmResList = ss.selectList("res.confirmRes", uiNo);
 		System.out.println("confirmResList???"+confirmResList);
 		ss.close();
 		return confirmResList;

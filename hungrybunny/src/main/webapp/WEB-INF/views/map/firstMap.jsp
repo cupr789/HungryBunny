@@ -114,12 +114,32 @@ button:hover {
 					});
 
 					marker.set('seq', i);
-
+					
 					marker.addListener('mouseover', function onMouseOver(e) {
 						marker = e.overlay, seq = marker.get('seq');
+						
+						var reviewRating = "";
+						if(shopList[seq].reviewRatingAvg==0){
+							reviewRating += "아직 평점이 없네요!";
+						} else if(shopList[seq].reviewRatingAvg==1){
+							reviewRating += "<input type='radio'/><label for='rate1'></label>";
+						} else if(shopList[seq].reviewRatingAvg==2){
+							reviewRating += "<input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label>";
+						} else if(shopList[seq].reviewRatingAvg==3){
+							reviewRating += "<input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label>";
+						} else if(shopList[seq].reviewRatingAvg==4){
+							reviewRating += "<input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label>";
+						} else if(shopList[seq].reviewRatingAvg==5){
+							reviewRating += "<input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label><input type='radio'/><label for='rate1'></label>";
+						}
+						
 						infoWindow
-								.setContent([ "<div style='align-content: center'><h3>" + shopList[seq].shopName
-										+ "</h3><br><form action='${root}/res/checkOption' method='get'><button name='shopNo' value='"+shopList[seq].shopNo+"'>예약하러가기</button></form>"
+								.setContent([ "<div style='align-content: center'><h3>" + shopList[seq].shopName + "</h3>"
+										+ "<br>주소 : "+shopList[seq].shopAddress
+										+ "<br>번호 : "+shopList[seq].shopHP
+										+ "<br>운영시간 : "+shopList[seq].shopTime
+										+ "<br>평점 : "+"<fieldset class='starability-basic'>"+reviewRating+"</label></fieldset>"
+										+ "<br><form action='${root}/res/checkOption' method='get'><button name='shopNo' value='"+shopList[seq].shopNo+"'>예약하러가기</button></form>"
 										+ "<form action='${root}/review/reviewList' method='GET'><button name='shopNo' value='"+shopList[seq].shopNo+"'>리뷰보기</button></form></div>" ]
 										.join('\n'));
 						infoWindow.open(map, marker);

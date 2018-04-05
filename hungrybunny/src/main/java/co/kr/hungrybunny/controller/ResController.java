@@ -22,6 +22,7 @@ import co.kr.hungrybunny.service.HallService;
 import co.kr.hungrybunny.service.PayCaService;
 import co.kr.hungrybunny.service.ResService;
 import co.kr.hungrybunny.vo.HallVO;
+import co.kr.hungrybunny.vo.ReservationVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
 
 @Controller
@@ -57,7 +58,6 @@ public class ResController {
 	
 	@RequestMapping(value="/askRes", method = RequestMethod.POST)
 	public ModelAndView insertRes(ModelAndView mav,@RequestBody Map<String, Object> map,HttpSession hs) {
-		System.out.println("res컨트롤러??????????");		
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		map.put("uiNo", ui.getUiNo());
 		String hallno = map.get("hallNo").toString();
@@ -79,12 +79,10 @@ public class ResController {
 	}
 	
 	@RequestMapping(value="/confirmRes", method = RequestMethod.GET)
-	public @ResponseBody List<Map<String,String>> getConfirmRes(HttpSession hs){
-		System.out.println("??????????????????????롸???");
+	public @ResponseBody List<ReservationVO> getConfirmRes(HttpSession hs){
 		UserInfoVO ui = (UserInfoVO)hs.getAttribute("userInfo");
 		int uiNo = ui.getUiNo();
-		System.out.println("uiNo에요"+uiNo);
-		List<Map<String,String>> resList = new ArrayList<Map<String,String>>();
+		List<ReservationVO> resList = new ArrayList<ReservationVO>();
 		resList = rs.getConfirmRes(uiNo);
 		System.out.println("resList!!!!!!!!!!!!!!!"+resList);
 		return resList;

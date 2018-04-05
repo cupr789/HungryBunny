@@ -50,7 +50,7 @@
 		</div>
 		<br>
 		<div style="text-align: center">메일로받은 번호를 입력해주세요</div>
-		<input type="text" name="uiNo" placeholder="Number">
+		<input type="text" name="uiNo" placeholder="Number" autofocus>
 		<button type="button" onclick="checkUiNo()">확인</button>
 		
 	</div>

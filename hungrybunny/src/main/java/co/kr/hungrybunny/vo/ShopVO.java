@@ -11,21 +11,8 @@ public class ShopVO {
 	private double shopLat;
 	private int shopCaNo;
 	private int uiNo;
+	private int reviewRatingAvg;
 	
-	
-	
-	public double getShopLon() {
-		return shopLon;
-	}
-	public void setShopLon(double shopLon) {
-		this.shopLon = shopLon;
-	}
-	public double getShopLat() {
-		return shopLat;
-	}
-	public void setShopLat(double shopLat) {
-		this.shopLat = shopLat;
-	}
 	public int getShopNo() {
 		return shopNo;
 	}
@@ -56,6 +43,18 @@ public class ShopVO {
 	public void setShopTime(String shopTime) {
 		this.shopTime = shopTime;
 	}
+	public double getShopLon() {
+		return shopLon;
+	}
+	public void setShopLon(double shopLon) {
+		this.shopLon = shopLon;
+	}
+	public double getShopLat() {
+		return shopLat;
+	}
+	public void setShopLat(double shopLat) {
+		this.shopLat = shopLat;
+	}
 	public int getShopCaNo() {
 		return shopCaNo;
 	}
@@ -68,11 +67,17 @@ public class ShopVO {
 	public void setUiNo(int uiNo) {
 		this.uiNo = uiNo;
 	}
+	public int getReviewRatingAvg() {
+		return reviewRatingAvg;
+	}
+	public void setReviewRatingAvg(int reviewRatingAvg) {
+		this.reviewRatingAvg = reviewRatingAvg;
+	}
 	
 	@Override
 	public String toString() {
 		return "ShopVO [shopNo=" + shopNo + ", shopName=" + shopName + ", shopAddress=" + shopAddress + ", shopHP="
 				+ shopHP + ", shopTime=" + shopTime + ", shopLon=" + shopLon + ", shopLat=" + shopLat + ", shopCaNo="
-				+ shopCaNo + ", uiNo=" + uiNo + "]";
+				+ shopCaNo + ", uiNo=" + uiNo + ", reviewRatingAvg=" + reviewRatingAvg + "]";
 	}
 }

@@ -22,7 +22,9 @@ function test(res){
 		}
 	}
 	
-	htmlStr = '';
+	var htmlStr = '';
+	var reviewResultStr= '';
+	
 	htmlStr += '<table class="table table-striped table-hover" style="width: 100%">';
 	htmlStr += '<thead>';
 	htmlStr += '<tr>'; 
@@ -39,31 +41,27 @@ function test(res){
 	if(res.length==0){
 		htmlStr += '<tr><td>지난예약내역이 없습니다</tr></td>';
 	}else{
-		for(var i=0;i<res.length;i++){
-			for(var j=0;j<i;j++){
-				if(res[i].resDate==res[j].resDate){
-					res[i].shopName = '';
-					res[i].payPrice = '';
-					res[i].payType = '';
-					res[i].resDate = '';
-				}
-			}
-		}
+		
 		console.log(res);
 		for(var i=0;i<res.length;i++){
+			
+			
+			if(res[i].reviewResult==0){
+				reviewResultStr = '<td><form method="POST" action="${pPath}/review/writeReview">'
+								+ '<input type="hidden" name="resNo" value="'+res[i].resNo+'">'
+								+ '<button name="shopNo" value="'+res[i].shopNo+'" style="width: 120px;">리뷰남기러가기</button></form></td>';
+			} else if(res[i].reviewResult==1){
+				reviewResultStr = '<td>리뷰를 이미 작성했어요</td>';
+			}
+			
+			
 			htmlStr += '<tr>';
 			htmlStr += '<td>'+res[i].shopName+'</td>';
 			htmlStr += '<td>'+res[i].menuName+'</td>';
 			htmlStr += '<td>'+res[i].payPrice+'</td>';
 			htmlStr += '<td>'+res[i].payType+'</td>';
 			htmlStr += '<td>'+res[i].resDate+'</td>';
-			if(res[i].shopName==""){
-				htmlStr += '<td></td>';
-			}else{
-				htmlStr += '<td><form method="POST" action="${pPath}/review/writeReview">'
-				+ '<input type="hidden" name="resNo" value="'+res[i].resNo+'">'
-				+ '<button name="shopNo" value="'+res[i].shopNo+'" style="width: 120px;">리뷰남기러가기</button></form></td>';
-			}
+			htmlStr += reviewResultStr;
 			htmlStr += '</tr>'; 
 		}
 		htmlStr += '</tbody>';

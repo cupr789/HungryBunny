@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.kr.hungrybunny.dao.ReviewDAO;
 import co.kr.hungrybunny.dao.ShopDAO;
 import co.kr.hungrybunny.vo.ShopVO;
 
@@ -16,6 +17,9 @@ public class ShopDAOImpl implements ShopDAO {
 
 	@Autowired
 	private SqlSessionFactory ssf;
+	
+	@Autowired
+	private ReviewDAO rdao;
 	
 //	@Override
 //	public List<ShopVO> selectShopList() {

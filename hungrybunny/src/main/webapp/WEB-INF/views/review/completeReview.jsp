@@ -6,15 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="${rPath}/css/button.css">
+<style>
+button{
+	width: 200px;
+}
+</style>
 <script >
-alert("${shopNo}");
 </script>
 <body>
 <section class="section">
 <h1>리뷰 작성 완료!</h1>
-<h1>${shopNo}</h1>
 	<form action="${root}/review/reviewList" method="GET">
-		
 		<button name="shopNo" value="${shopNo}">전체 리뷰 보기</button>
 	</form>
 </section>
