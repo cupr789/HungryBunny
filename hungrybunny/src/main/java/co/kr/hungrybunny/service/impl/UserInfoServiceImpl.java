@@ -41,7 +41,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 				rMap.put("biz", true);
 				return true;
 			} else {
-				rMap.put("msg", "사장님인지 아닌지 체크 해주세요^^");
+				rMap.put("msg", "사장님인지 아닌지 체크 해주세요");
 			}
 		}
 		return false;
@@ -99,7 +99,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 			if(result==0) {
 				int faiResualt=uidao.updateUser(map);
 				if(faiResualt==1) {
-					map.put("msg","수정성공이요 로그인부터 다시해주세요^^");
+					map.put("msg","수정성공이요 로그인부터 다시해주세요");
 					map.put("biz",true);
 					hs.invalidate();
 				}else if(faiResualt==0){
@@ -127,15 +127,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 			int uiNo = Integer.parseInt(str);
 			int result = uidao.deleteUser(uiNo);
 			if (result == 1) {
-				map.put("msg", "이런....매정한사람....");
+				map.put("msg", "정상적으로 회원탈퇴 되었습니다");
 				map.put("biz",true);
 				return 1;
 			} else {
-				map.put("msg", "관리자에게 문의바랍니다 ㅜㅜ ");
+				map.put("msg", "관리자에게 문의바랍니다 ");
 				return 0;
 			}
 		} else {
-			map.put("msg", "비밀번호를 잘못입력했어요 ㅜㅜ ");
+			map.put("msg", "비밀번호를 잘못입력했어요");
 			return 0;
 		}
 		
@@ -168,7 +168,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		int result =uidao.updateFindUser(map);
 		if(result==1) {
-			map.put("msg","변경성공이요~~");
+			map.put("msg","변경성공입니다.");
 			map.put("biz",true);
 			hs.invalidate();
 		}else {

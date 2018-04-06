@@ -43,7 +43,6 @@ public class MenuController {
 	
 	@RequestMapping(value="/menuList/{shopNo}", method=RequestMethod.POST)
 	public @ResponseBody List<MenuVO> getMenuList(@PathVariable("shopNo") int shopNo){
-		System.out.println("메뉴 컨트롤러 왔샤");
 		List<MenuVO> menuList = new ArrayList<MenuVO>();
 		menuList = ms.getMenuList(shopNo);
 		System.out.println("컨트롤러의 menuList : "+menuList);
@@ -52,8 +51,6 @@ public class MenuController {
 	
 	@RequestMapping(value="/menuList2", method=RequestMethod.POST)
 	public ModelAndView getMenuListForRes(ModelAndView mav, @RequestParam Map<String, Object> map){
-		System.out.println("메뉴 컨트롤러 왔샤");
-		System.out.println("map.get(\"shopNo\")를 가져와야해"+map.get("shopNo"));
 		String str = map.get("shopNo").toString();
 		int shopNo = Integer.parseInt(str);
 		List<MenuVO> menuList = new ArrayList<MenuVO>();
@@ -70,11 +67,11 @@ public class MenuController {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 			int result=ms.inertMenu(mv);
 			if(result==1) {
-				map.put("msg","추가됬어요~~브끄^^");
+				map.put("msg","추가됬어요");
 				map.put("biz",true);
 			}
 		} else {
-			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+			map.put("msg", "로그인 부터 다시해주세요");
 		}
 		
 		return map;
@@ -87,11 +84,11 @@ public class MenuController {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 			int result=ms.deleteMenu(mv,map);
 			if(result==1) {
-				map.put("msg","삭제성공이요~~");
+				map.put("msg","삭제성공이요");
 				map.put("biz",true);
 			}
 		} else {
-			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+			map.put("msg", "로그인 부터 다시해주세요");
 		}
 		
 		return map;
@@ -100,16 +97,15 @@ public class MenuController {
 	public @ResponseBody Map<String, Object> updateMenu(@RequestParam Map<String, Object> map,HttpSession hs){
 		if (hs.getAttribute("userNo") != null) {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
-			System.out.println("$$$$$$$$$$$$$$$$$$$$"+map.get("menuNo"));
 			map.put("menuNo",Integer.parseInt(map.get("menuNo").toString()));
 			map.put("menuPrice",Integer.parseInt(map.get("menuPrice").toString()));
 			int result=ms.updateMenu(map);
 			if(result==1) {
-				map.put("msg","수정성공이요~~");
+				map.put("msg","수정성공이요");
 				map.put("biz",true);
 			}
 		} else {
-			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+			map.put("msg", "로그인 부터 다시해주세요");
 		}
 		
 		return map;
@@ -124,7 +120,7 @@ public class MenuController {
 			Map<String, List<String>> menuNoList =ms.getMenuName(map);
 			map.put("namesAndCnt", menuNoList);
 		} else {
-			map.put("msg", "로그인 부터 다시해주세요~~~~~~");
+			map.put("msg", "로그인 부터 다시해주세요");
 		}
 		
 		return map;

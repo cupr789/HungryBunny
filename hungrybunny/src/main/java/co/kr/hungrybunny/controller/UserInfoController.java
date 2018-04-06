@@ -66,7 +66,7 @@ public class UserInfoController {
 		ui.setUiEmail(ui.getUiEmail().trim());
 		String Pwd=ui.getUiPwd();
 		String uiPwd=pu.makePasswd(Pwd)+"SMH!";
-		System.out.println("777777777777777777"+uiPwd);
+		
 		ui.setUiPwd(uiPwd);
 //		String str="qweqwe1Q!";
 //		System.out.println("6666666666666666666666"+pu.matchPasswd(str, uiPwd)); 
@@ -76,7 +76,7 @@ public class UserInfoController {
 		int result = uis.join(ui);
 
 		if (result == 1) {
-			map.put("msg", "매달 회비가 5만원씩 부과됩니다");
+			map.put("msg", "회원가입 성공이요.");
 			map.put("biz", true);
 		}else {
 			
@@ -115,7 +115,7 @@ public class UserInfoController {
 		if (hs.getAttribute("userNo") != null) {
 
 		} else {
-			map.put("msg", "로그인부터해주세요 브끄^^");
+			map.put("msg", "로그인부터해주세요 ");
 		}
 		map.put("userList", hs.getAttribute("userInfo"));
 		return map;
@@ -128,7 +128,7 @@ public class UserInfoController {
 			uis.updateUser(map, ui, hs);
 
 		} else {
-			map.put("msg", "로그인부터해주세요 브끄^^");
+			map.put("msg", "로그인부터해주세요");
 		}
 
 		return map;
@@ -146,7 +146,7 @@ public class UserInfoController {
 				map.put("msg", "비밀번호가 일치하지 않습니다");
 			}
 		} else {
-			map.put("msg", "로그인부터해주세요 브끄^^");
+			map.put("msg", "로그인부터해주세요");
 		}
 
 		return map;
@@ -161,7 +161,7 @@ public class UserInfoController {
 				hs.invalidate();
 			}
 		} else {
-			map.put("msg", "로그인부터해주세요 브끄^^");
+			map.put("msg", "로그인부터해주세요 ");
 		}
 
 		return map;
@@ -190,8 +190,8 @@ public class UserInfoController {
 			hs.setAttribute("checkUiNo", list.get(0).getUiNo());
 
 			String host = "smtp.naver.com";
-			final String user = "";
-			final String password = "";
+			final String user = "mhsong9191";
+			final String password = "Eunji0147!@";
 			String uiEmail = map.get("uiEmail").toString().trim();
 			String to = uiEmail;
 			int uiNo = list.get(0).getUiNo();
@@ -262,7 +262,7 @@ public class UserInfoController {
 				}
 
 			} else {
-				map.put("msg", "눈에 좃박았냐? 제대로보고 써라 ");
+				map.put("msg", "인증번호를 다시 입력해주세여 ");
 			}
 		}else {
 			map.put("msg", "값을 입력해주세요");
