@@ -19,8 +19,8 @@
 	}
 	function shopListCB(res){
 		var searchAddr = "${keyword}";
-		alert(searchAddr);
-		alert(shopCaNum);
+		/* alert(searchAddr);
+		alert(shopCaNum); */
 	/* 	var param = {searchAddr:searchAddr,shopCaNum:shopCaNum};
 		//param=JSON.stringify(param);
 		console.log(param);

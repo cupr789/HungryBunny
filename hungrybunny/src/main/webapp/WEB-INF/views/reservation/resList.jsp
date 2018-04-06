@@ -121,7 +121,7 @@ $(document).ready(function(){
 	}
 
 
-	var webSocket = new WebSocket('ws://13.125.97.161/alarm');
+	var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};
@@ -196,7 +196,8 @@ $(document).ready(function(){
 		console.log("연결성공");
 	}
 	function onError(event) {
-		alert(event.data);
+		//alert(event.data);
+		console.log(event.data);
 	}
 	
 	function send(shopNo) {

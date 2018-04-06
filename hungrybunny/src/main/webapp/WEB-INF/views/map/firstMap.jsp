@@ -167,7 +167,7 @@ button:hover {
 	// search by tm128 coordinate
 	function searchCoordinateToAddress(latlng) {
 		var tm128 = naver.maps.TransCoord.fromLatLngToTM128(latlng);
-		alert(latlng + "  ??");
+		//alert(latlng + "  ??");
 		infoWindow.close();
 
 		naver.maps.Service
