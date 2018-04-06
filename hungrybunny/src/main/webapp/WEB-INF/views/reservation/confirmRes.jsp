@@ -19,7 +19,7 @@ function confirmRes(){
 		alert(shopNo);
 		
 		
-		var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
+		var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');
 		webSocket.onerror = function(event) {
 			onError(event)
 		};

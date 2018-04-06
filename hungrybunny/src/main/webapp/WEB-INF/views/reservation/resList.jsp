@@ -121,9 +121,10 @@ $(document).ready(function(){
 	}
 
 	var webSocket = null;
+	alert("${userInfo.uiId}");
 	function connectionWS(){
 		try{
-			webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
+			webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');
 		}catch(e){
 			throw e;
 		}

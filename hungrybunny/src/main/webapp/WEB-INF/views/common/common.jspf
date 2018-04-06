@@ -44,7 +44,7 @@
 <c:if test="${userInfo.admin eq 1}">
 <script type="text/javascript">
 
-	var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
+	var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};
