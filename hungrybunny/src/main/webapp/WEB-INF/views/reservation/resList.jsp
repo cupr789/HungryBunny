@@ -120,8 +120,20 @@ $(document).ready(function(){
 		})
 	}
 
-
-	var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
+	var webSocket = null;
+	function connectionWS(){
+		try{
+			webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm');
+		}catch(e){
+			throw e;
+		}
+	}
+	try{
+		while(webSocket==null || webSocket.readyState==3){
+			setTimeout(connectionWS(),1000);
+		}
+	}catch(e){
+	}
 	webSocket.onerror = function(event) {
 		onError(event)
 	};

@@ -55,14 +55,15 @@ public class BunnySocket {
 		Object targetId = map.get("target");
 		map.put("senderId", userId);
 		System.out.println("버니 소켓 : "+map);
+		log.info("버니 소켓 => {}", map);
 		text = mapper.writeValueAsString(map);
-		System.out.println(text+"             ???");
 		synchronized (sessionMap) {
 			final Iterator<String> it = sessionMap.keySet().iterator();
 			while(it.hasNext()) {
 				final String key = it.next();
 				if(key.equals(targetId)) {
 					Session ss = sessionMap.get(key);
+					log.info("key => {}", key);
 					ss.getBasicRemote().sendText(text);
 				}
 			}
@@ -85,8 +86,12 @@ public class BunnySocket {
 		this.config = config;
 		final HttpSession hs = (HttpSession) config.getUserProperties()
                 .get(HttpSession.class.getName());
+		if(hs.getAttribute("userInfo")==null) {
+			log.info("로그인 이것들아!!");
+		}
 		final UserInfoVO uiv = (UserInfoVO)hs.getAttribute("userInfo");
 		final String userId = uiv.getUiId();
+		log.info("open httpSession key:{}",userId);
 		sessionMap.put(userId, session);
 		System.out.println("sessionMap : "+sessionMap);
 	}
@@ -94,6 +99,7 @@ public class BunnySocket {
 	@OnClose
 	public void onClose(Session session) {
 		String key = getSessionKey(session);
+		log.info("close httpSession key:{}",key);
 		if(key!=null) {
 			sessionMap.remove(key);
 		}
