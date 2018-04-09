@@ -190,8 +190,8 @@ public class UserInfoController {
 			hs.setAttribute("checkUiNo", list.get(0).getUiNo());
 
 			String host = "smtp.naver.com";
-			final String user = "";
-			final String password = "";
+			final String user = "mhsong9191";
+			final String password = "Eunji0147!@";
 			String uiEmail = map.get("uiEmail").toString().trim();
 			String to = uiEmail;
 			int uiNo = list.get(0).getUiNo();
