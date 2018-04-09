@@ -48,7 +48,7 @@
 
 	<div class="wrap">
 		<div class="avatar">
-			<img src="${rPath}/images/logo.png">
+			<img src="${rPath}/images/logo3.png">
 		</div>
 		<br>
 		<div style="text-align: center">비밀번호를 입력해주세요</div>

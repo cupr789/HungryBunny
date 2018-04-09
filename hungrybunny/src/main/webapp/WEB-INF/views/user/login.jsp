@@ -52,7 +52,7 @@ function join(){
 <section class="section">
 	<div class="wrap">
 		<div class="avatar">
-			<img src="${rPath}/images/logo.png">
+			<img src="${rPath}/images/logo3.png">
 		</div>
 		<input type="text" name="uiId" placeholder="Username" autofocus>
 		<input type="password" id="uiPwd" name="uiPwd" placeholder="Password"> 

@@ -155,7 +155,7 @@
 <section class="section">
 	<div class="wrap">
 		<div class="avatar">
-			<img src="${rPath}/images/logo.png">
+			<img src="${rPath}/images/logo3.png">
 		</div>
 		<form id="login-form" onsubmit="return checkForm(this)">
 			이름<input type="text" name="uiName" placeholder="ex)홍길동" autofocus>

@@ -90,7 +90,7 @@ function checkForm(form) {
 	
 	<div class="wrap">
 		<div class="avatar">
-			<img src="${rPath}/images/logo.png">
+			<img src="${rPath}/images/logo3.png">
 		</div>
 		<br>
 		
