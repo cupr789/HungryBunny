@@ -16,7 +16,6 @@ function confirmRes(){
 	var resDate = "${resDate}";
 	if(updateMsg){
 		alert(updateMsg);
-		alert(shopNo);
 		
 		
 		var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');

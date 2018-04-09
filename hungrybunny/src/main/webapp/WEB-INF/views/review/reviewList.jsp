@@ -22,7 +22,6 @@ function adminComment(){
 	if(reviewNo==null){
 		alert("수정하려는 댓글을 체크해주세요");
 	}
-	alert(reviewNo);
 	var adminComment=$("#adminComment").val();
 	alert(adminComment);
 	

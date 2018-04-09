@@ -41,7 +41,6 @@ function handleImgFileSelect(e){
 	
 	filesArr.forEach(function(f){
 		if(!f.type.match("image.*")){
-			alert("으아아ㅏ아아아아아");
 			return;
 		}
 		
