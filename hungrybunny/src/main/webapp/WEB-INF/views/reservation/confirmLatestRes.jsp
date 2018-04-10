@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${rPath}/css/button.css">
 <script>
 function confirmRes(){
-	var au = new AjaxUtil2("${root}/res/confirmRes",null,"POST");
+	var au = new AjaxUtil2("${root}/res/confirmRes",null,"GET");
 	au.send(test);
 }
 function test(res){
