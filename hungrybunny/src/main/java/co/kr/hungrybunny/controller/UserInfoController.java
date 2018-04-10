@@ -105,7 +105,9 @@ public class UserInfoController {
 
 	@RequestMapping("/logout")
 	public ModelAndView goIndex(ModelAndView mav, HttpSession hs) {
-		hs.invalidate();
+		hs.removeAttribute("userNo");
+		hs.removeAttribute("user");
+		hs.removeAttribute("userInfo");
 		mav.setViewName("user/login");
 		return mav;
 	}
