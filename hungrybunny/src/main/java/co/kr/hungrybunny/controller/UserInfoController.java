@@ -42,9 +42,10 @@ public class UserInfoController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ui.setUiId((String) rmap.get("uiId"));
 		String Pwd=rmap.get("uiPwd").toString();
+		if(!Config.debug) {
 			String uiPwd=pu.makePasswd(Pwd)+"SMH!";
-			ui.setUiPwd(uiPwd);
-
+			ui.setUiPwd(uiPwd); 
+		}
 		if (uis.login(map, ui)) {
 			hs.setAttribute("user", map.get("user"));
 			hs.setAttribute("userNo", map.get("userNo"));
