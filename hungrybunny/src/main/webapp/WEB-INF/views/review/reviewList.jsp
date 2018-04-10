@@ -23,7 +23,6 @@ function adminComment(){
 		alert("수정하려는 댓글을 체크해주세요");
 	}
 	var adminComment=$("#adminComment").val();
-	alert(adminComment);
 	
 	var param={reviewNo:reviewNo,adminComment:adminComment};
 	$.ajax({
