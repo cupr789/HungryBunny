@@ -186,7 +186,7 @@ function closeImg()
 								<td>사진이 없또요</td>
 							</c:if>
 							<c:if test="${not empty reviewList.fileName}">
-								<td><img src="${fPath}/images/${reviewList.fileName}" width="100" onclick="resizeImg(this.src)"></td>
+								<td><img src="${fPath}/${reviewList.fileName}" width="100" onclick="resizeImg(this.src)"></td>
 							</c:if>
 						</tr>
 						<tr>
