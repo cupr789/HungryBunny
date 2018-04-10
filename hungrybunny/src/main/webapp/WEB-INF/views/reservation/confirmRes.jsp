@@ -166,7 +166,7 @@ function cancleRes(res){
 			<div id="resList">
 			</div>
 			
-			<button style="width: 120px;"><a href="${pPath}/reservation/confirmLatestRes" style="color: #fff;">지난 예약 보기</a></button> 
+			<a href="${pPath}/reservation/confirmLatestRes" style="color: #fff;"><button style="width: 120px;">지난 예약 보기</button></a> 
 			
 		</div>
 	</div>
