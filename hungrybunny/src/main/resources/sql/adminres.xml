@@ -38,8 +38,8 @@
 	<select id="hallTotalCnt" parameterType="map" resultType="int">
 	select count(1) from hall where shopNo=#{shopNo}
 	</select>
-	<select id="hallInfo" parameterType="map" resultType="map">
-	select * from hall where shopNo=#{shopNo}
+	<select id="hallInfo" parameterType="map" resultType="hall">
+	select *,(@COUNT:=@COUNT+1) as reidx from hall, (select @COUNT:=0) idx where shopNo=#{shopNo}
 	<if test="snum !=null and snum !=''">
 				Limit ${snum}, ${enum}
 			</if>
@@ -53,7 +53,7 @@
 	</delete>
 	
 	<select id="selecthall" parameterType="map" resultType="map">
-	select * from hall where shopNo=#{shopNo}
+	select * from hall shopNo=#{shopNo}
 	</select>
 	
 	<parameterMap id="procMap" type="HashMap">

@@ -90,7 +90,7 @@
 					<c:set value="${hlist.hallStatus} " var="msg" />
 					<tr>
 						<td>${hlist.seatCnt}</td>
-						<td>${hlist.hallNo}</td>
+						<td>${hlist.reidx}</td>
 						<td>
 							<c:choose>
 								<c:when test="${hlist.hallStatus == '1'}">사용중</c:when>

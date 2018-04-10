@@ -33,6 +33,11 @@
 			form.uiName.focus();
 			return false;
 		}
+		if (form.uiId.value.length < 6) {
+			alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+			form.uiId.focus();
+			return false;
+	}
 		re = /^\w+$/;
 		if (!re.test(form.uiId.value)) {
 			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
@@ -45,8 +50,9 @@
 		}
 
 	function checkForm(form) {
+		 var adminNum = $("input:radio[name='admin']:checked").val();
 		
-		
+ 
 		if (form.uiName.value.trim() == "") {
 			alert("Error: 사용자이름을 비워둘수없습니다.");
 			form.uiName.focus();
@@ -89,11 +95,7 @@
 			return false;
 		}
 
-		if (form.uiHP.value.length != 11) {
-			alert("Error: 전화번호를 확인 해주세요.");
-			form.uiHP.focus();
-			return false;
-		}
+	
 		if (form.uiEmail.value.trim() == "") {
 			alert("Error: 사용자Email을 비워둘수없습니다.");
 			form.uiEmail.focus();
@@ -105,6 +107,7 @@
 			form.uiEmail.focus();
 			return false;
 		}
+	 
 		
 	
 		if (form.uiPwd.value != "" && form.uiPwd.value == form.uiPwd2.value) {
@@ -142,6 +145,16 @@
 			form.uiPwd.focus();
 			return false;
 		}
+		if (form.uiHP.value.length != 11) {
+			alert("Error: 전화번호를 확인 해주세요.");
+			form.uiHP.focus();
+			return false;
+		}
+		 if (adminNum==null) {
+				alert("Error:사용자유형을 체크해주세요");
+				form.uiName.focus();
+				return false;
+			}
 		join();
 		return true;
 	}
