@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import co.kr.hungrybunny.dao.AdminResDAO;
+import co.kr.hungrybunny.vo.HallVO;
 
 @Repository
 public class AdminResDAOImpl implements AdminResDAO{
@@ -36,6 +37,7 @@ public class AdminResDAOImpl implements AdminResDAO{
 	public List<Object> selectShophall(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
 		List<Object> list=ss.selectList("adminres.selecthall",map);
+		System.out.println("halllist임        "+list);
 		ss.close();
 		return list;
 	}
@@ -50,9 +52,9 @@ public class AdminResDAOImpl implements AdminResDAO{
 	}
 
 	@Override
-	public List<Object> hallInfo(Map<String, Object> map) {
+	public List<HallVO> hallInfo(Map<String, Object> map) {
 		SqlSession ss = ssf.openSession();
-		List<Object> list=ss.selectList("adminres.hallInfo", map);
+		List<HallVO> list=ss.selectList("adminres.hallInfo", map);
 		ss.close();
 		return list;
 	}

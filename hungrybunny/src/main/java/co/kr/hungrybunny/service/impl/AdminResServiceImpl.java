@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 import co.kr.hungrybunny.dao.AdminResDAO;
 import co.kr.hungrybunny.service.AdaminResService;
+import co.kr.hungrybunny.vo.HallVO;
 
 
 @Service
@@ -59,8 +60,8 @@ public class AdminResServiceImpl implements AdaminResService{
 
 
 	@Override
-	public List<Object> hallInfo(Map<String, Object> map) {
-		List<Object> list=ardao.hallInfo(map);
+	public List<HallVO> hallInfo(Map<String, Object> map) {
+		List<HallVO> list=ardao.hallInfo(map);
 		return list;
 	}
 

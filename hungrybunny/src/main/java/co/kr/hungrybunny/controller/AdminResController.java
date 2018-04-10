@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import co.kr.hungrybunny.service.AdaminResService;
+import co.kr.hungrybunny.vo.HallVO;
 import co.kr.hungrybunny.vo.Paging;
 import co.kr.hungrybunny.vo.ShopVO;
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -70,7 +71,7 @@ public class AdminResController {
 			map.put("snum", Integer.toString(page.getStartNum()));
 			map.put("enum",Integer.toString(page.getRowCnt()));
 			
-			List<Object> list = ars.hallInfo(map);
+			List<HallVO> list = ars.hallInfo(map);
 			int totalCnt = ars.hallTotalCnt(map);
 			page.setTotalCnt(totalCnt);
 			System.out.println(list+" ???!!??");
