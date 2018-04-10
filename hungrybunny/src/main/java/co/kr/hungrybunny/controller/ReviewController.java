@@ -55,7 +55,7 @@ public class ReviewController {
 	public ModelAndView writeReview(@RequestParam Map<String, Object> map, @RequestParam("file") MultipartFile file,
 			ModelAndView mav, MultipartHttpServletRequest request) throws IOException {
 		if (!file.isEmpty()) {
-			String path = request.getSession().getServletContext().getRealPath("resources/review/imgs");
+			String path = request.getSession().getServletContext().getRealPath("/file");
 			File dir = new File(path);
 
 			if (!dir.exists()) { // 파일이 존재하지 않는다면
