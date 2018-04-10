@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.kr.hungrybunny.common.Config;
 import co.kr.hungrybunny.service.UserInfoService;
 import co.kr.hungrybunny.utils.PasswdUtil;
 import co.kr.hungrybunny.vo.UserInfoVO;
@@ -41,8 +42,8 @@ public class UserInfoController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ui.setUiId((String) rmap.get("uiId"));
 		String Pwd=rmap.get("uiPwd").toString();
-		String uiPwd=pu.makePasswd(Pwd)+"SMH!";
-		ui.setUiPwd(uiPwd);
+			String uiPwd=pu.makePasswd(Pwd)+"SMH!";
+			ui.setUiPwd(uiPwd);
 
 		if (uis.login(map, ui)) {
 			hs.setAttribute("user", map.get("user"));

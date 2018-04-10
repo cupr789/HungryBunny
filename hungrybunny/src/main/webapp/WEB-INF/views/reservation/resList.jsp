@@ -123,7 +123,7 @@ $(document).ready(function(){
 	var webSocket = null;
 	function connectionWS(){
 		try{
-			webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');
+			webSocket = new WebSocket('ws://' + wsUrl + '/alarm/${userInfo.uiId}');
 		}catch(e){
 			throw e;
 		}

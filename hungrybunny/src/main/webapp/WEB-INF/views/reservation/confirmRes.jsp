@@ -18,7 +18,7 @@ function confirmRes(){
 		alert(updateMsg);
 		
 		
-		var webSocket = new WebSocket('ws://hungrybunny.co.kr/alarm/${userInfo.uiId}');
+		var webSocket = new WebSocket('ws://' + wsUrl + '/alarm/${userInfo.uiId}');
 		webSocket.onerror = function(event) {
 			onError(event)
 		};

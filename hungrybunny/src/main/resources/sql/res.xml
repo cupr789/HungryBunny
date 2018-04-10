@@ -16,7 +16,8 @@
 	</insert>
 	
 	<select id="confirmRes" parameterType="int" resultType="res">
-		select s.shopName, s.shopNo, s.shopAddress, s.shopHP, group_concat(distinct concat(rm.menuName_Log,'(',rm.menuPrice_Log,'원) ',rm.resMenuCnt,'개') separator ' , ') menuName, cast(r.resDate as char) as resDate, r.payPrice, p.payType, h.seatCnt, r.currentStatus, r.resNo, h.hallNo, h.hallStatus
+			select s.shopName, s.shopNo, s.shopAddress, s.shopHP, group_concat(distinct concat(rm.menuName_Log,'(',rm.menuPrice_Log,'원) ',rm.resMenuCnt,'개') separator ' , ') menuName, cast(r.resDate as char) as resDate, r.payPrice, p.payType, h.seatCnt, r.currentStatus, r.resNo, h.hallNo, h.hallStatus,
+		(select count(1) from review rv where rv.resNo=rm.resNo) reviewResult
 			from shop s, reservation r, user_info u, menu m, reservationmenu rm, hall h, pay_category p
 			where r.uiNo=#{uiNo}
 			and r.shopNo=s.shopNo

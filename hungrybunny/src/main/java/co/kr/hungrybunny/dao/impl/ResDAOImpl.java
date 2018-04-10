@@ -73,10 +73,19 @@ public class ResDAOImpl implements ResDAO {
 	
 	@Override
 	public List<ReservationVO> selectConfirmRes(int uiNo){
-		SqlSession ss = ssf.openSession();
-		List<ReservationVO> confirmResList = ss.selectList("res.confirmRes", uiNo);
-		System.out.println("confirmResList???"+confirmResList);
-		ss.close();
+		SqlSession ss = null; 
+		List<ReservationVO> confirmResList = null;
+		try {
+			ss =  ssf.openSession();
+			confirmResList = ss.selectList("res.confirmRes", uiNo);
+			System.out.println("confirmResList???"+confirmResList);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{ 
+			if(ss!=null) {
+				ss.close();
+			}
+		}
 		return confirmResList;
 	}
 	

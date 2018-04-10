@@ -41,13 +41,6 @@ public class ResServiceImpl implements ResService{
 	@Override
 	public List<ReservationVO> getConfirmRes(int uiNo){
 		List<ReservationVO> resList = rdao.selectConfirmRes(uiNo);
-		int resNo = 0;
-		int result = 0;
-		for(int i=0;i<resList.size();i++) {
-			resNo = resList.get(i).getResNo();
-			result = rvdao.checkReview(resNo);
-			resList.get(i).setReviewResult(result);
-		}
 		return resList;
 	}
 

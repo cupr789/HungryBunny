@@ -67,15 +67,4 @@ public class ReviewDAOImpl implements ReviewDAO {
 		ss.close();
 		return reviewRatingAvg;
 	}
-	
-	@Override
-	public int checkReview(int resNo) {
-		SqlSession ss = ssf.openSession();
-		String reviewNoStr = ss.selectOne("review.checkReview", resNo);
-		if(reviewNoStr==null) {
-			return 0;
-		}
-		ss.close();
-		return 1;
-	}
 }

@@ -13,5 +13,4 @@ public interface ReviewDAO {
 	public Integer selectReviewTotalCnt(Map<String, Object> map);
 	public int adminComment(Map<String, Object> map);
 	public int selectReviewRating(int shopNo);
-	public int checkReview(int resNo);
 }
