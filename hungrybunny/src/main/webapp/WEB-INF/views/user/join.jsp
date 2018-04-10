@@ -33,6 +33,11 @@
 			form.uiName.focus();
 			return false;
 		}
+		if (form.uiId.value.length < 6) {
+			alert("Error: 아이디에는 최소 6개의 문자를 포함해야 합니다!");
+			form.uiId.focus();
+			return false;
+	}
 		re = /^\w+$/;
 		if (!re.test(form.uiId.value)) {
 			alert("Error:사용자 아이디에는 영문, 숫자 만 포함해야 합니다.");
