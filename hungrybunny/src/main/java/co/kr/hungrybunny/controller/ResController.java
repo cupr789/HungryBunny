@@ -91,7 +91,7 @@ public class ResController {
 		}
 	}
 
-	@RequestMapping(value = "/confirmRes", method = RequestMethod.GET)
+	@RequestMapping(value = "/confirmRes", method = RequestMethod.POST)
 	public @ResponseBody List<ReservationVO> getConfirmRes(HttpSession hs) {
 		System.out.println("??????????????????????롸???");
 		UserInfoVO ui = (UserInfoVO) hs.getAttribute("userInfo");

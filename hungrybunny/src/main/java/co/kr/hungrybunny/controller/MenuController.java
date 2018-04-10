@@ -63,7 +63,7 @@ public class MenuController {
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> insertMenu(@RequestBody MenuVO mv,HttpSession hs){
 		Map<String, Object> map = new HashMap<String, Object>();
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 			int result=ms.inertMenu(mv);
 			if(result==1) {
@@ -80,7 +80,7 @@ public class MenuController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> deleteMenu(@RequestBody MenuVO mv,HttpSession hs){
 		Map<String, Object> map = new HashMap<String, Object>();
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 			int result=ms.deleteMenu(mv,map);
 			if(result==1) {
@@ -95,7 +95,7 @@ public class MenuController {
 	}
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> updateMenu(@RequestParam Map<String, Object> map,HttpSession hs){
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			ui.setUiNo((Integer) hs.getAttribute("userNo"));
 			map.put("menuNo",Integer.parseInt(map.get("menuNo").toString()));
 			map.put("menuPrice",Integer.parseInt(map.get("menuPrice").toString()));

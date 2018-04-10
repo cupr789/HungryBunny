@@ -37,7 +37,7 @@ public class AdminResController {
 
 	@RequestMapping(value = "/resInfo", method = RequestMethod.GET)
 	public ModelAndView goIndex(ModelAndView mav, HttpSession hs, @RequestParam Map<String, Object> map, @ModelAttribute Paging page) {
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 
 			logger.info("nowPage => {} ", page.getNowPage());
 			map.put("snum", Integer.toString(page.getStartNum()));
@@ -64,7 +64,7 @@ public class AdminResController {
 	
 	@RequestMapping(value = "/hallInfo", method = RequestMethod.GET)
 	public ModelAndView hallInfo(ModelAndView mav, HttpSession hs, @RequestParam Map<String, Object> map, @ModelAttribute Paging page) {
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 
 			logger.info("nowPage => {} ", page.getNowPage());
 			map.put("snum", Integer.toString(page.getStartNum()));
@@ -90,7 +90,7 @@ public class AdminResController {
 
 	@RequestMapping(value = "/hallUpdate", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> hallUpdate(@RequestParam Map<String, Object> map, HttpSession hs) {
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			int result = ars.updateHall(map);
 			if (result >= 1) {
 				map.put("msg", "수정완료");
@@ -106,7 +106,7 @@ public class AdminResController {
 	}
 	@RequestMapping(value = "/insertHall", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> insertHall(@RequestParam Map<String, Object> map, HttpSession hs) {
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			ars.insertHall(map);
 				System.out.println(map.get("shopNo"));
 				System.out.println(map.get("seatCnt"));
@@ -118,7 +118,7 @@ public class AdminResController {
 	}
 	@RequestMapping(value = "/deleteHall", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> deleteHall(@RequestParam Map<String, Object> map, HttpSession hs) {
-		if (hs.getAttribute("userNo") != null) {
+		if (hs.getAttribute("userInfo") != null) {
 			
 				System.out.println(map.get("hallNo")+"pppppppppppppppppppppppppppppppppppppp");
 				ars.deleteHall(map);

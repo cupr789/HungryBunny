@@ -164,8 +164,6 @@ button:hover {
 	}
 function callback2(res){
 		
-		alert(res.msg);
-		alert(res.biz);
 		if(res.biz){
 			updateUser2();
 		}
