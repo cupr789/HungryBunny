@@ -15,6 +15,7 @@
 	var root = "${root}";
 	var rPath = "${rPath}";
 	var pPath = "${pPath}";
+	var fPath = "${fPath}";
 </script>
 <!-- CSS FILES -->
 <link rel="shortcut icon" href="${rPath}/images/logo3.png">
