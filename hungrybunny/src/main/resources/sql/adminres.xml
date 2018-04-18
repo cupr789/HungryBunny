@@ -53,7 +53,7 @@
 	</delete>
 	
 	<select id="selecthall" parameterType="map" resultType="map">
-	select * from hall shopNo=#{shopNo}
+	select * from hall where shopNo=#{shopNo}
 	</select>
 	
 	<parameterMap id="procMap" type="HashMap">
