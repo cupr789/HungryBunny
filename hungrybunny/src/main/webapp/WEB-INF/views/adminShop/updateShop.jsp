@@ -134,15 +134,12 @@
 		</div>
 			<!-- 위는 식당정보 테이블 -->
 
-			<h4 style="font: bold;">MenuList</h4>
-			<br>
-
 			<!-- 해당식당 메뉴 테이블 -->
 		<div class="table-wrapper">
 				<div class="table-title">
 					<div class="row">
 						<div class="col-sm-4">
-							<h2>ShopInfo</h2>
+							<h2>MenuList</h2>
 						</div>
 					</div>
 				</div>	
